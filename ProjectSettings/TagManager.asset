@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - PlayerProjectile
+  - Bounds
+  - EnemyProjectile
+  - Door
+  - RapidShot
+  - ShopItem
+  - Wall
+  - DamageDisplayPivot
+  - PlayerSpawnPoint
+  - Pit
+  - SpawnedObject
+  - LevelStructure
+  - Price
+  - Item Name
+  - Loot
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Enemy
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 1954032405
+    locked: 0
+  - name: Pit
+    uniqueID: 1684478017
+    locked: 0
+  - name: Walls
+    uniqueID: 4290856473
+    locked: 0
+  - name: Wall_Above_Player
+    uniqueID: 181733749
+    locked: 0
+  - name: Doors
+    uniqueID: 2696603919
+    locked: 0
+  - name: Enemy
+    uniqueID: 1306825231
+    locked: 0
+  - name: Player
+    uniqueID: 2829249815
+    locked: 0
+  - name: Projectile
+    uniqueID: 2144306759
+    locked: 0
+  - name: Fog
+    uniqueID: 3039848127
+    locked: 0

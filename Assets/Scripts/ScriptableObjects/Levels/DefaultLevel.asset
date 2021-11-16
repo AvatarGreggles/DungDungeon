@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3a27946834042c0850c743414f2fb2, type: 3}
+  m_Name: DefaultLevel
+  m_EditorClassIdentifier: 
+  listToSpawnFrom: {fileID: 8765113662994128772, guid: b29d28c30faca45b1816d63feb259d27, type: 3}
+  levelListItems:
+  - {fileID: 7994435189591651914, guid: b29d28c30faca45b1816d63feb259d27, type: 3}
+  - {fileID: 4768627449868515180, guid: b29d28c30faca45b1816d63feb259d27, type: 3}
+  - {fileID: 8765113662800668924, guid: b29d28c30faca45b1816d63feb259d27, type: 3}
+  - {fileID: 5410653915693006063, guid: b29d28c30faca45b1816d63feb259d27, type: 3}
+  spawnedObject: {fileID: 0}
+  prefabSpawnPoint: {x: 0, y: 0, z: 0}
+  levelType: 0

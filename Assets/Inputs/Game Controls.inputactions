@@ -1,0 +1,44 @@
+{
+    "name": "Game Controls",
+    "maps": [
+        {
+            "name": "Non-connected Player",
+            "id": "638c0dec-a105-4b45-a648-cd3db94168d1",
+            "actions": [
+                {
+                    "name": "JoinGame",
+                    "type": "Button",
+                    "id": "81fb4632-1566-4549-ba80-32079633cbc9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b6d988a0-1a60-4077-97e8-347f4a9c0cc5",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoinGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5ad0f82d-efe6-425d-bb32-ff1a88a0f454",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoinGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
