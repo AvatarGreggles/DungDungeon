@@ -127,30 +127,57 @@ public class Player : MonoBehaviour
     {
         for (int i = 1; i < toLevelUp.Length; i++)
         {
-            toLevelUp[i] = (int)(Mathf.Floor(baseXP * (Mathf.Pow(i, 1.5f))));
+            toLevelUp[i] = (int)(Mathf.Floor(baseXP * (Mathf.Pow(i, 1.2f))));
         }
     }
 
-    public void GainEXP(float value)
+    // public void GainEXP(float value)
+    // {
+    //     experience += value;
+    //     if (HasReachedNextLevel())
+    //     {
+    //         experience = toLevelUp[level] - experience;
+    //         if (experience < 0)
+    //         {
+    //             experience *= 1;
+    //         }
+    //         Debug.Log(experience);
+    //         temporaryExperienceHolder = 0;
+    //         SetTempEXPText();
+    //     }
+    //     SetEXPText();
+    // }
+
+    //should count up until it hits the experience amount to add.
+    public IEnumerator FillExperienceBar(float experienceToAdd)
     {
-        experience += value;
-        if (HasReachedNextLevel())
+
+        temporaryExperienceHolder = 0;
+        SetTempEXPText();
+        // addingXp = true;
+        //received from external sources. Add xp incrementally to move bar up slowly instead of chunks.
+        for (int i = 0; i < experienceToAdd; i++)
         {
-            experience = toLevelUp[level] - experience;
-            if (experience < 0)
+            experience++;
+            SetEXPText();
+            if (HasReachedNextLevel())
             {
-                experience *= 1;
+                experience = toLevelUp[level - 1] - experience;
+                if (experience < 0)
+                {
+                    experience *= 1;
+                }
             }
-            Debug.Log(experience);
-            temporaryExperienceHolder = 0;
-            SetTempEXPText();
+            yield return new WaitForSeconds(.001f);
         }
-        SetEXPText();
+
+        // addingXp = false;
     }
 
     public void MergeTempExperience()
     {
-        GainEXP(temporaryExperienceHolder);
+        StartCoroutine(FillExperienceBar(temporaryExperienceHolder));
+        // GainEXP(temporaryExperienceHolder);
     }
 
     public void UpdateTempExperienceHolder(float value)
