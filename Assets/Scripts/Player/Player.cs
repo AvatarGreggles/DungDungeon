@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public float shield;
     [SerializeField] public float maxShield = 3;
     [SerializeField] GameObject healthBar;
+    [SerializeField] GameObject expBar;
     public float attack = 1;
     public GameObject damageDisplayPivot;
 
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
     AudioSource audioSource;
 
     Vector3 initialHealthBarSize;
+    Vector3 initialEXPBarSize;
 
     public SpriteRenderer dungSprite;
 
@@ -50,9 +52,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] TMPro.TMP_Text playerLevelTextP1;
     // [SerializeField] Text playerLevelTextP2;
-
-    [SerializeField] TMPro.TMP_Text playerEXPTextP1;
-    [SerializeField] TMPro.TMP_Text playerTempEXPTextP1;
 
 
 
@@ -69,10 +68,10 @@ public class Player : MonoBehaviour
     {
         SetPlayerTag();
         initialHealthBarSize = healthBar.transform.localScale;
+        initialEXPBarSize = expBar.transform.localScale;
         SetLevelText();
-        SetEXPText();
-        SetTempEXPText();
         LevelXPSetUp();
+        expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
 
         dungSprite.enabled = false;
     }
@@ -107,22 +106,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    void SetEXPText()
-    {
-        if (playerInput.playerIndex == 0)
-        {
-            playerEXPTextP1.text = experience.ToString();
-        }
-    }
-
-    void SetTempEXPText()
-    {
-        if (playerInput.playerIndex == 0)
-        {
-            playerTempEXPTextP1.text = temporaryExperienceHolder.ToString();
-        }
-    }
-
     void LevelXPSetUp()
     {
         for (int i = 1; i < toLevelUp.Length; i++)
@@ -153,13 +136,15 @@ public class Player : MonoBehaviour
     {
 
         temporaryExperienceHolder = 0;
-        SetTempEXPText();
+
         // addingXp = true;
         //received from external sources. Add xp incrementally to move bar up slowly instead of chunks.
         for (int i = 0; i < experienceToAdd; i++)
         {
             experience++;
-            SetEXPText();
+            Debug.Log("filling up");
+            expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
+
             if (HasReachedNextLevel())
             {
                 experience = toLevelUp[level - 1] - experience;
@@ -183,7 +168,6 @@ public class Player : MonoBehaviour
     public void UpdateTempExperienceHolder(float value)
     {
         temporaryExperienceHolder += value;
-        SetTempEXPText();
     }
 
     public bool HasReachedNextLevel()
