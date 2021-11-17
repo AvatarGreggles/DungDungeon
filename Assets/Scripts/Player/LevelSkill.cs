@@ -46,7 +46,16 @@ public class LevelSkill : MonoBehaviour
 
     public void ChooseSkill()
     {
-        skill.IncreaseStat(player, skillScreen);
+        if (skill.skillType == Skill.SkillType.Boost)
+        {
+            skill.IncreaseStat(player, skillScreen);
+        }
+
+        if (skill.skillType == Skill.SkillType.Equip)
+        {
+            skill.ApplyEffect(player);
+        }
+
         GameController.Instance.currentState = State.Active;
         skillScreen.gameObject.SetActive(false);
     }

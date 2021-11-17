@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1465717481
-  m_SortingLayer: 7
+  m_SortingLayerID: 1017452047
+  m_SortingLayer: 12
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 94c071e45fe7c4869a56a9f3a98202ff, type: 3}
   m_Color: {r: 0.096787095, g: 0.45811516, b: 1, a: 1}
@@ -156,8 +156,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1465717481
-  m_SortingLayer: 7
+  m_SortingLayerID: 1017452047
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6526278113208250979
@@ -323,7 +323,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1465717481
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 0, g: 0.11664677, b: 1, a: 1}
@@ -433,8 +433,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1465717481
-  m_SortingLayer: 7
+  m_SortingLayerID: 1017452047
+  m_SortingLayer: 12
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 68fc9af3c48fb4016b992dbb3437ba84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -516,7 +516,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1465717481
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e47b454bcc2de4896836aed0f762d10d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -598,7 +598,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1465717481
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 087c71bada6064e0e9fbd43c7070be77, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -679,8 +679,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1465717481
-  m_SortingLayer: 7
+  m_SortingLayerID: 1017452047
+  m_SortingLayer: 12
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -855,7 +855,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1465717481
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 2358af37daf0e42fbb06358657783577, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -966,8 +966,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1465717481
-  m_SortingLayer: 7
+  m_SortingLayerID: 1017452047
+  m_SortingLayer: 12
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1016,7 +1016,7 @@ Transform:
   m_GameObject: {fileID: 8568219434171882062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9324848, y: 0.9324848, z: 0.9324848}
+  m_LocalScale: {x: 0.86417, y: 0.86417, z: 0.86417}
   m_Children:
   - {fileID: 6191264138805621162}
   - {fileID: 3072028461453810290}
@@ -1070,7 +1070,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1465717481
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bd7989e27a5df4cce948cda16a8d7595, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1151,6 +1151,7 @@ MonoBehaviour:
   spawnPosition: {fileID: 0}
   playerAnimator: {fileID: 7285743007244160389}
   playerInput: {fileID: 0}
+  dungAccumulationRate: 0.1
 --- !u!114 &-3320277435940982530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1208,8 +1209,6 @@ MonoBehaviour:
   isShooting: 0
   toLevelUp: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   playerLevelTextP1: {fileID: 6526278113208250979}
-  playerEXPTextP1: {fileID: 0}
-  playerTempEXPTextP1: {fileID: 0}
 --- !u!114 &3620035378186348920
 MonoBehaviour:
   m_ObjectHideFlags: 0

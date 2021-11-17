@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Skill", order = 1)]
+
 public class Skill : ScriptableObject
 {
 
@@ -12,7 +13,6 @@ public class Skill : ScriptableObject
         Equip,
         Boost
     }
-
     public enum TargetStat
     {
         None,
@@ -59,5 +59,11 @@ public class Skill : ScriptableObject
     }
 
 
-
+    public void ApplyEffect(Player player)
+    {
+        if (targetStat == TargetStat.Dung)
+        {
+            player.GetComponent<PlayerMovement>().dungAccumulationRate *= 2f;
+        }
+    }
 }

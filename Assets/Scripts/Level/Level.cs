@@ -24,9 +24,20 @@ public class Level : ScriptableObject
 
     public GameObject GetRandomPrefabFromList()
     {
-        List<GameObject> tempList = levelListItems;
+        List<GameObject> tempList = new List<GameObject>(); ;
+
+        foreach (GameObject levelListItem in levelListItems)
+        {
+            if (levelListItem.activeSelf)
+            {
+                tempList.Add(levelListItem);
+            }
+        }
+
+
         int randomIndex = Random.Range(0, tempList.Count);
-        if (tempList[randomIndex] != spawnedObject)
+        //TODO: Make not same level load in a row
+        if (tempList[randomIndex] != spawnedObject && tempList[randomIndex].activeSelf)
         {
             return tempList[randomIndex];
         }

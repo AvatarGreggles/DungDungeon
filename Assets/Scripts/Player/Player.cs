@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
 
     public int[] toLevelUp = new int[1];
 
+
     [SerializeField] TMPro.TMP_Text playerLevelTextP1;
     // [SerializeField] Text playerLevelTextP2;
 

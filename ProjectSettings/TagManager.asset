@@ -72,15 +72,24 @@ TagManager:
   - name: Doors
     uniqueID: 2696603919
     locked: 0
+  - name: Bottom_Entry_Layer
+    uniqueID: 1480662497
+    locked: 0
   - name: Enemy
     uniqueID: 1306825231
     locked: 0
   - name: Player
     uniqueID: 2829249815
     locked: 0
+  - name: Top_Entry_Layer
+    uniqueID: 4181241465
+    locked: 0
   - name: Projectile
     uniqueID: 2144306759
     locked: 0
   - name: Fog
     uniqueID: 3039848127
+    locked: 0
+  - name: HealthUI
+    uniqueID: 1017452047
     locked: 0

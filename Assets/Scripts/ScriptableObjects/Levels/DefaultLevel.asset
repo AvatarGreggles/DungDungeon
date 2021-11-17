@@ -18,6 +18,7 @@ MonoBehaviour:
   - {fileID: 4768627449868515180, guid: b29d28c30faca45b1816d63feb259d27, type: 3}
   - {fileID: 8765113662800668924, guid: b29d28c30faca45b1816d63feb259d27, type: 3}
   - {fileID: 5410653915693006063, guid: b29d28c30faca45b1816d63feb259d27, type: 3}
+  - {fileID: 4961253278229324887, guid: b29d28c30faca45b1816d63feb259d27, type: 3}
   spawnedObject: {fileID: 0}
   prefabSpawnPoint: {x: 0, y: 0, z: 0}
   levelType: 0

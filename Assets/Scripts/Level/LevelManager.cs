@@ -110,12 +110,17 @@ public class LevelManager : MonoBehaviour
         floorText.text = currentFloor;
     }
 
-    private void PopulateEnemiesList()
+    public void PopulateEnemiesList()
     {
         foreach (GameObject enemyObj in GameObject.FindGameObjectsWithTag("Enemy"))
         {
             enemies.Add(enemyObj);
         }
+    }
+
+    public void PopulateEnemy(GameObject enemyObj)
+    {
+        enemies.Add(enemyObj);
     }
 
     private void ResetShooting()

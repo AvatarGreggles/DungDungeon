@@ -7,6 +7,7 @@ public class DoorManager : MonoBehaviour
 {
 
     [SerializeField] TilemapRenderer tilemap;
+    [SerializeField] TilemapCollider2D collider;
 
     // Start is called before the first frame update
     void Start()
@@ -49,11 +50,13 @@ public class DoorManager : MonoBehaviour
     void HideDoor()
     {
         tilemap.enabled = true;
+        collider.enabled = true;
     }
 
     void ShowDoor()
     {
         tilemap.enabled = false;
+        collider.enabled = false;
     }
 
     void DisableDoor()

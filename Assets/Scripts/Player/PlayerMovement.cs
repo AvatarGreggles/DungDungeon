@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] PlayerInput playerInput;
 
+    public float dungAccumulationRate = 0.1f;
+
 
     private void Awake()
     {
@@ -131,7 +133,8 @@ public class PlayerMovement : MonoBehaviour
         // Vector3 newPosWithRotation = new Vector3(newPos.x, newPos.y, targetedEnemy.z);
         if (newPos != new Vector2(transform.position.x, transform.position.y) && GameController.Instance.currentState != State.Cleared && player.dungAccumulated < player.maxDungSize)
         {
-            player.dungAccumulated += 0.1f;
+            player.dungAccumulated += dungAccumulationRate;
+
             GameController.Instance.SetDungText(player.dungAccumulated, playerInput);
         }
         rbody.MovePosition(newPos);

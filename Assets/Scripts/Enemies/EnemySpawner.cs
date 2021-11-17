@@ -8,6 +8,10 @@ public class EnemySpawner : MonoBehaviour
     int enemiesSpawned = 0;
     float timebtwspawn;
 
+    [SerializeField] Transform spawnPos;
+
+
+
     void Update()
     {
         if (timebtwspawn <= 0 && enemiesSpawned < numberOfEnemiesToSpawn)
@@ -22,9 +26,10 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Instantiate(Object, transform.position, Quaternion.identity);
+        GameObject enemy = Instantiate(Object, spawnPos.position, Quaternion.identity);
         enemiesSpawned++;
         timebtwspawn = startTimeBtwSpawn;
+        LevelManager.Instance.PopulateEnemy(enemy);
     }
 
     void spawnTimeCountdown()
