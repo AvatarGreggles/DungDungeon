@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     [SerializeField] public float maxShield = 3;
     [SerializeField] GameObject healthBar;
     [SerializeField] GameObject expBar;
+
     public float attack = 1;
     public GameObject damageDisplayPivot;
 
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
 
     Vector3 initialHealthBarSize;
     Vector3 initialEXPBarSize;
+    float initialDungBarSize;
 
     public SpriteRenderer dungSprite;
 
@@ -70,10 +72,12 @@ public class Player : MonoBehaviour
         SetPlayerTag();
         initialHealthBarSize = healthBar.transform.localScale;
         initialEXPBarSize = expBar.transform.localScale;
+        initialDungBarSize = GameController.Instance.dungBarP1.fillAmount;
+
         SetLevelText();
         LevelXPSetUp();
         expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
-
+        GameController.Instance.dungBarP1.fillAmount = dungAccumulated / maxDungSize;
         dungSprite.enabled = false;
     }
 
@@ -90,6 +94,13 @@ public class Player : MonoBehaviour
     {
         ShowSprite();
         dungSprite.transform.localScale += new Vector3(0.025f, 0.025f, 0f);
+    }
+
+    public void AccumulateDung(float dungAccumulationRate)
+    {
+        dungAccumulated += dungAccumulationRate;
+        GameController.Instance.dungBarP1.fillAmount = dungAccumulated / maxDungSize;
+        GameController.Instance.SetDungText(dungAccumulated, playerInput);
     }
 
     public void GainLevel()

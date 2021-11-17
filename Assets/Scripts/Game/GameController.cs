@@ -36,6 +36,8 @@ public class GameController : MonoBehaviour
     [SerializeField] Text dungTextP1;
     [SerializeField] Text dungTextP2;
 
+    [SerializeField] public Image dungBarP1;
+
     public List<Player> players;
 
     private void Awake()

@@ -30,6 +30,14 @@ public class PlayerMovement : MonoBehaviour
 
     public float dungAccumulationRate = 0.1f;
 
+    [SerializeField] Transform dustSpawnPointLeft;
+    [SerializeField] Transform dustSpawnPointRight;
+
+    [SerializeField] GameObject dustTrailObject;
+    GameObject dustTrail;
+
+    Vector3 newTrailRotation;
+
 
     private void Awake()
     {
@@ -38,12 +46,18 @@ public class PlayerMovement : MonoBehaviour
         playerSprite = GetComponent<SpriteRenderer>();
         originalDungScale = transform.localScale;
         playerInput = GetComponent<PlayerInput>();
+
+        dustTrail = Instantiate(dustTrailObject, dustSpawnPointLeft.position, Quaternion.identity);
+        dustTrail.transform.SetParent(player.transform);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         spawnPosition = LevelManager.Instance.playerSpawnPoint;
+
+
+        newTrailRotation = dustTrail.transform.position;
 
     }
 
@@ -69,12 +83,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-
+        // Vector3 newTrailRotation = dustTrail.transform.position;
         if (isFacingRight)
         {
             // Vector3 newScale = transform.localScale;
             // newScale.x = originalDungScale.x * 1f;
             // transform.localScale = newScale;
+            dustTrail.transform.position = new Vector3(dustSpawnPointLeft.transform.position.x, dustSpawnPointLeft.transform.position.y, dustSpawnPointLeft.transform.position.z);
+            dustTrail.transform.eulerAngles = new Vector3(newTrailRotation.x, 90, newTrailRotation.z);
             playerSprite.flipX = false;
         }
         else
@@ -82,6 +98,9 @@ public class PlayerMovement : MonoBehaviour
             // Vector3 newScale = transform.localScale;
             // newScale.x = originalDungScale.x * -1f;
             // transform.localScale = newScale;
+            dustTrail.transform.eulerAngles = new Vector3(newTrailRotation.x, -90, newTrailRotation.z);
+
+            dustTrail.transform.position = new Vector3(dustSpawnPointRight.transform.position.x, dustSpawnPointRight.transform.position.y, dustSpawnPointRight.transform.position.z);
             playerSprite.flipX = true;
         }
 
@@ -112,13 +131,17 @@ public class PlayerMovement : MonoBehaviour
         if (movement.x < 0f)
         {
             // playerAnimator.SetBool("IsFacingRight", false);
+            dustTrail.transform.eulerAngles = new Vector3(newTrailRotation.x, 90, newTrailRotation.z);
             isFacingRight = false;
         }
         else if (movement.x > 0f)
         {
             // playerAnimator.SetBool("IsFacingRight", true);
+            dustTrail.transform.eulerAngles = new Vector3(newTrailRotation.x, -90, newTrailRotation.z);
             isFacingRight = true;
         }
+
+        dustTrail.GetComponent<ParticleSystem>().Play();
 
     }
 
@@ -130,13 +153,20 @@ public class PlayerMovement : MonoBehaviour
         Vector2 adjustedMovement = movement * movementSpeed;
         Vector2 newPos = currentPos + adjustedMovement * Time.fixedDeltaTime;
 
+
         // Vector3 newPosWithRotation = new Vector3(newPos.x, newPos.y, targetedEnemy.z);
         if (newPos != new Vector2(transform.position.x, transform.position.y) && GameController.Instance.currentState != State.Cleared && player.dungAccumulated < player.maxDungSize)
         {
-            player.dungAccumulated += dungAccumulationRate;
+            player.AccumulateDung(dungAccumulationRate);
 
-            GameController.Instance.SetDungText(player.dungAccumulated, playerInput);
         }
+
+        if (adjustedMovement == Vector2.zero)
+        {
+            dustTrail.GetComponent<ParticleSystem>().Stop();
+        }
+
+
         rbody.MovePosition(newPos);
     }
 

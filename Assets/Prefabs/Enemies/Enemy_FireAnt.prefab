@@ -174,13 +174,13 @@ GameObject:
   m_Component:
   - component: {fileID: 892204089878461155}
   - component: {fileID: 6675418181168402869}
-  - component: {fileID: 992552544}
   - component: {fileID: 992552546}
   - component: {fileID: -540677613515049708}
   - component: {fileID: 2743760151754937190}
   - component: {fileID: 566540265}
   - component: {fileID: 3648859150586951878}
   - component: {fileID: -6947175245239999833}
+  - component: {fileID: 8767488807775109269}
   m_Layer: 6
   m_Name: Enemy_FireAnt
   m_TagString: Enemy
@@ -257,22 +257,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &992552544
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3296269669463947543}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.5257251, y: -1.2960405}
-  serializedVersion: 2
-  m_Radius: 0.7194474
 --- !u!114 &992552546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +370,32 @@ MonoBehaviour:
   m_shotRoutineFinishedCallbackEvents:
     m_PersistentCalls:
       m_Calls: []
+--- !u!61 &8767488807775109269
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3296269669463947543}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.045910597, y: -1.3620139}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 4}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.3472185, y: 1.0005081}
+  m_EdgeRadius: 0
 --- !u!1 &6193555712537493919
 GameObject:
   m_ObjectHideFlags: 0
