@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d848c2a3bb2439194e0c9f8097e858, type: 3}
+  m_Name: Pass Through
+  m_EditorClassIdentifier: 
+  skillName: Pass Through
+  skillDescription: Your Dung passes through walls
+  skillIcon: {fileID: -7961490728788840413, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
+  skillType: 0
+  statIncrease: 0
+  targetStat: 0
+  ability: 0

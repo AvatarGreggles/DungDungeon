@@ -10,6 +10,8 @@ public class PlayerAbilities : MonoBehaviour
     public bool attackUpEnabled = false;
     public bool healthUpEnabled = false;
 
+    public bool projectilePassThroughEnabled = false;
+
     Player player;
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,11 @@ public class PlayerAbilities : MonoBehaviour
     public void RapidShotEnabled()
     {
         rapidShotEnabled = true;
+    }
+
+    public void ProjectilePassThroughEnabled()
+    {
+        projectilePassThroughEnabled = true;
     }
 
     public void BurstShotEnabled()

@@ -74,16 +74,10 @@ public class NewSkillScreen : MonoBehaviour
                 newSkill.GetComponent<LevelSkill>().SetSkillNameText();
                 newSkill.GetComponent<LevelSkill>().SetSkillDescriptionText();
                 newSkill.GetComponent<LevelSkill>().SetSkillIcon();
-                // newShopItem.GetComponent<ShopItem>().purchaseButton.onClick.AddListener(PurchaseItem);
                 newSkill.transform.SetParent(skillList);
             }
 
         }
-    }
-
-    public void PurchaseItem(Item item)
-    {
-
     }
 
     // Update is called once per frame

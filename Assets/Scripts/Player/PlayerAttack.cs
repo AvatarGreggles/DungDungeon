@@ -68,6 +68,10 @@ public class PlayerAttack : MonoBehaviour
 
                     GameObject projectile = Instantiate(m_Projectile, m_SpawnTransform.position, m_Projectile.transform.rotation);
                     projectile.GetComponent<Projectile>().SetScale(player);
+                    if (playerAbilities.projectilePassThroughEnabled)
+                    {
+                        projectile.GetComponent<Projectile>().EnablePassThroughWall();
+                    }
 
                     // COST BASED
                     // playerMovement.dungAccumulated -= attackCost;

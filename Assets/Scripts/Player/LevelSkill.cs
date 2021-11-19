@@ -56,6 +56,12 @@ public class LevelSkill : MonoBehaviour
             skill.ApplyEffect(player);
         }
 
+        if (skill.skillType == Skill.SkillType.Ability)
+        {
+            PlayerAbilities playerAbilities = player.GetComponent<PlayerAbilities>();
+            skill.EnableAbility(playerAbilities);
+        }
+
         GameController.Instance.currentState = State.Active;
         skillScreen.gameObject.SetActive(false);
     }

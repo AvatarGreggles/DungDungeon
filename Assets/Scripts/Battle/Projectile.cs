@@ -20,6 +20,8 @@ public class Projectile : MonoBehaviour
 
     SpriteRenderer projectileSprite;
 
+    bool shouldPlayerProjectilePassThroughWall = false;
+
     public enum projectileTypes
     {
         Default,
@@ -172,10 +174,20 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        if (!isPlayerProjectile && other.gameObject.CompareTag("Wall"))
+        ShouldDestroyProjectileOnWallCollision(other.gameObject);
+    }
+
+    private void ShouldDestroyProjectileOnWallCollision(GameObject collidedObject)
+    {
+        if (collidedObject.CompareTag("Wall") && !shouldPlayerProjectilePassThroughWall)
         {
             Destroy(gameObject);
         }
+    }
+
+    public void EnablePassThroughWall()
+    {
+        shouldPlayerProjectilePassThroughWall = true;
     }
 
     private void RotateTowardsTarget(Transform target)

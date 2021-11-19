@@ -76,17 +76,9 @@ public class Shop : MonoBehaviour
                 newShopItem.GetComponent<ShopItem>().SetItemNameText();
                 newShopItem.GetComponent<ShopItem>().SetItemDescriptionText();
                 newShopItem.GetComponent<ShopItem>().SetItemIcon();
-                // newShopItem.GetComponent<ShopItem>().purchaseButton.onClick.AddListener(PurchaseItem);
                 newShopItem.transform.SetParent(playerShopUI);
             }
 
         }
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

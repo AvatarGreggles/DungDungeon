@@ -11,8 +11,15 @@ public class Skill : ScriptableObject
     public enum SkillType
     {
         Equip,
-        Boost
+        Boost,
+        Ability
     }
+
+    public enum Ability
+    {
+        PassThrough
+    }
+
     public enum TargetStat
     {
         None,
@@ -29,6 +36,7 @@ public class Skill : ScriptableObject
     public SkillType skillType;
     public float statIncrease;
     public TargetStat targetStat;
+    public Ability ability;
 
 
     public void IncreaseStat(Player player, NewSkillScreen skillScreen)
@@ -64,6 +72,14 @@ public class Skill : ScriptableObject
         if (targetStat == TargetStat.Dung)
         {
             player.GetComponent<PlayerMovement>().dungAccumulationRate *= 2f;
+        }
+    }
+
+    public void EnableAbility(PlayerAbilities playerAbilities)
+    {
+        if (ability == Ability.PassThrough)
+        {
+            playerAbilities.projectilePassThroughEnabled = true;
         }
     }
 }

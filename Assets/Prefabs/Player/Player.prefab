@@ -1290,6 +1290,7 @@ MonoBehaviour:
   burstShotEnabled: 0
   attackUpEnabled: 0
   healthUpEnabled: 0
+  projectilePassThroughEnabled: 0
 --- !u!95 &7285743007244160389
 Animator:
   serializedVersion: 3

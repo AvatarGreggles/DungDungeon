@@ -54,8 +54,17 @@ public class ShopItem : MonoBehaviour
 
     public void PurchaseItem()
     {
-        GameController.Instance.RemoveCurrency(item.price);
-        shop.UpdateCurrency();
-        item.IncreaseStat(player, shop);
+        int currencyAfterPurchase = GameController.Instance.totalCurrency - item.price;
+
+        if (currencyAfterPurchase >= 0)
+        {
+            GameController.Instance.RemoveCurrency(item.price);
+            shop.UpdateCurrency();
+            item.IncreaseStat(player, shop);
+        }
+        else
+        {
+            Debug.Log("Not enough money");
+        }
     }
 }
