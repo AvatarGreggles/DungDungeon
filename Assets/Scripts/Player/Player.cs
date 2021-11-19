@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public float shield;
     [SerializeField] public float maxShield = 3;
     [SerializeField] GameObject healthBar;
+    [SerializeField] GameObject shieldBar;
     [SerializeField] GameObject expBar;
 
     public float attack = 1;
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
     AudioSource audioSource;
 
     Vector3 initialHealthBarSize;
+    Vector3 initialShieldBarSize;
     Vector3 initialEXPBarSize;
     float initialDungBarSize;
 
@@ -62,6 +64,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         health = maxHealth;
+        shield = maxShield;
         audioSource = GetComponent<AudioSource>();
         playerInput = GetComponent<PlayerInput>();
     }
@@ -71,6 +74,7 @@ public class Player : MonoBehaviour
     {
         SetPlayerTag();
         initialHealthBarSize = healthBar.transform.localScale;
+        initialShieldBarSize = shieldBar.transform.localScale;
         initialEXPBarSize = expBar.transform.localScale;
         initialDungBarSize = GameController.Instance.dungBarP1.fillAmount;
 
@@ -171,6 +175,13 @@ public class Player : MonoBehaviour
         // addingXp = false;
     }
 
+    public void ResetShield()
+    {
+        shield = maxShield;
+        shieldBar.transform.localScale = new Vector3(initialShieldBarSize.x * (shield / maxShield), initialShieldBarSize.y, initialShieldBarSize.z);
+
+    }
+
     public void MergeTempExperience()
     {
         StartCoroutine(FillExperienceBar(temporaryExperienceHolder));
@@ -227,8 +238,18 @@ public class Player : MonoBehaviour
 
     public void DealDamage(int damage)
     {
-        health -= damage;
-        healthBar.transform.localScale = new Vector3(healthBar.transform.localScale.x * (health / maxHealth), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+        if (shield > 0)
+        {
+            shield -= damage;
+            shieldBar.transform.localScale = new Vector3(initialShieldBarSize.x * (shield / maxShield), initialShieldBarSize.y, initialShieldBarSize.z);
+
+        }
+        else
+        {
+            health -= damage;
+            healthBar.transform.localScale = new Vector3(initialHealthBarSize.x * (health / maxHealth), initialHealthBarSize.y, initialHealthBarSize.z);
+
+        }
 
         audioSource.PlayOneShot(hurtSound, 1f);
 

@@ -153,11 +153,23 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void ResetShield()
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach (GameObject go in gos)
+        {
+            go.GetComponent<Player>().ResetShield();
+        }
+    }
+
     public void NextLevel()
     {
         SetFloorText(floor.ToString());
         PopulateEnemiesList();
         ResetShooting();
+        ResetShield();
     }
 
 
@@ -166,11 +178,13 @@ public class LevelManager : MonoBehaviour
         SetFloorText("Boss");
         PopulateEnemiesList();
         ResetShooting();
+        ResetShield();
     }
 
     public void EnterShop()
     {
         SetFloorText("Shop");
+        ResetShield();
     }
 
     public void PauseGame()
