@@ -15,7 +15,7 @@ MonoBehaviour:
   skillName: Pass Through
   skillDescription: Your Dung passes through walls
   skillIcon: {fileID: -7961490728788840413, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
-  skillType: 0
+  skillType: 2
   statIncrease: 0
   targetStat: 0
   ability: 0
