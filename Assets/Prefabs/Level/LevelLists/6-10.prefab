@@ -10278,7 +10278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8765113662994128771}
   m_Layer: 0
-  m_Name: DefaultLevels
+  m_Name: 6-10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

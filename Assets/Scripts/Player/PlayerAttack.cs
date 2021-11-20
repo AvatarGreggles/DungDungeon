@@ -77,10 +77,10 @@ public class PlayerAttack : MonoBehaviour
                     // playerMovement.dungAccumulated -= attackCost;
 
                     float bonusCritDamage = 1f;
-                    if (UnityEngine.Random.value * 100f <= 100f)
+                    if (UnityEngine.Random.value * 100f <= player.criticalHitRatio)
                     {
                         Debug.Log("Crtical");
-                        bonusCritDamage = 1f;
+                        bonusCritDamage = 2f;
                     }
 
                     projectile.GetComponent<Projectile>().power = Convert.ToInt32(Mathf.Round((GetComponent<Player>().attack * bonusCritDamage) + (player.dungAccumulated / 10)));

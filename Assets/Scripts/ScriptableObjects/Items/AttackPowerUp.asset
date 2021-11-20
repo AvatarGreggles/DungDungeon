@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Heavy Dung
   itemDescription: Boosts the base damage you deal
-  price: 10
+  price: 50
   itemIcon: {fileID: -8322868590462112959, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   itemType: 1
   statIncrease: 2
