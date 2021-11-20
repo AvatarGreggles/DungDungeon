@@ -30,6 +30,11 @@ public class HandleGlobalPlayerInput : MonoBehaviour
         {
             EnableJoining();
         }
+
+        if (GameController.Instance.currentState == State.Death)
+        {
+            DisableJoining();
+        }
     }
 
     void DisableJoining()

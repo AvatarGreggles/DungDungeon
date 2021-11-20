@@ -10,6 +10,7 @@ public enum State
     Initial,
     Active,
     Paused,
+    Death,
     Cleared,
     Shop,
     LevelUp,
@@ -32,6 +33,8 @@ public class GameController : MonoBehaviour
     public GameObject pauseMenu;
 
     public GameObject levelUpMenu;
+    public GameObject gameOverMenu;
+
 
     [SerializeField] Text dungTextP1;
     [SerializeField] Text dungTextP2;
@@ -62,7 +65,7 @@ public class GameController : MonoBehaviour
                 StartCoroutine(LevelTransition.Instance.OnStart());
             }
 
-            if (currentState == State.Paused)
+            if (currentState == State.Death)
             {
                 StartCoroutine(LevelTransition.Instance.OnDeath());
 

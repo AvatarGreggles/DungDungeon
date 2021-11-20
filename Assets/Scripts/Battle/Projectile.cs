@@ -187,7 +187,7 @@ public class Projectile : MonoBehaviour
 
         if (collidedObject.CompareTag("Wall") && shouldPlayerProjectileBounce)
         {
-            m_Rigidbody.gravityScale = 1f;
+            // m_Rigidbody.gravityScale = 1f;
 
         }
     }

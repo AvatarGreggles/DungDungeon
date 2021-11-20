@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
     {
         foreach (Player player in GameController.Instance.players)
         {
-            player.UpdateTempExperienceHolder(enemyStats.expYield);
+            player.UpdateTempExperienceHolder(enemyStats.expYield, enemyStats.currencyDrop);
 
         }
     }
@@ -84,7 +84,10 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<Player>().DealDamage(1);
+            if (other.gameObject != null)
+            {
+                other.gameObject.GetComponent<Player>().DealDamage(1);
+            }
         }
     }
 }

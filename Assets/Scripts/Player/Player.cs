@@ -57,6 +57,10 @@ public class Player : MonoBehaviour
 
     public int[] toLevelUp = new int[1];
 
+    public int levelReached = 0;
+    public int enemiesKilled = 0;
+    public int moneyEarned = 0;
+
     Collider2D collider;
 
 
@@ -117,6 +121,7 @@ public class Player : MonoBehaviour
     public void GainLevel()
     {
         level += 1;
+        levelReached = level;
         SetLevelText();
     }
 
@@ -195,8 +200,11 @@ public class Player : MonoBehaviour
         // GainEXP(temporaryExperienceHolder);
     }
 
-    public void UpdateTempExperienceHolder(float value)
+    //TODO: Reaname this method
+    public void UpdateTempExperienceHolder(float value, int currency)
     {
+        moneyEarned += currency;
+        enemiesKilled++;
         temporaryExperienceHolder += value;
     }
 
@@ -246,7 +254,10 @@ public class Player : MonoBehaviour
         }
 
         bool isPlayer = gameObject.CompareTag("Player");
-        StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation(collider, isPlayer));
+        if (gameObject != null)
+        {
+            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation(collider, isPlayer));
+        }
 
         audioSource.PlayOneShot(hurtSound, 1f);
 
@@ -254,7 +265,7 @@ public class Player : MonoBehaviour
 
         if (AreAllPlayersDead())
         {
-            GameController.Instance.currentState = State.Paused;
+            GameController.Instance.currentState = State.Death;
         }
     }
 
