@@ -256,7 +256,7 @@ public class Player : MonoBehaviour
         bool isPlayer = gameObject.CompareTag("Player");
         if (gameObject != null)
         {
-            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation(collider, isPlayer));
+            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation(collider, isPlayer, gameObject));
         }
 
         audioSource.PlayOneShot(hurtSound, 1f);
