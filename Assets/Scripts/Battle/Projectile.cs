@@ -124,7 +124,6 @@ public class Projectile : MonoBehaviour
         GameObject damageObject = Instantiate(damageSprite, damageDisplayPivot.position, damageDisplayPivot.rotation);
         damageObject.transform.SetParent(target.transform);
         damageObject.GetComponent<DisplayDamage>().showDamage(power);
-
         gameObject.SetActive(false);
         damageObject.transform.SetParent(null);
     }
@@ -144,6 +143,7 @@ public class Projectile : MonoBehaviour
 
     private IEnumerator OnProjectileImpact(Enemy enemy = default, Player player = default)
     {
+        if (player != null && player.isInvincible) { yield break; }
         ShowDamage(enemy, player);
         HandleDamageDealing(enemy, player);
 

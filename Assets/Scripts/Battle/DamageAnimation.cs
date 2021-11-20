@@ -16,16 +16,17 @@ public class DamageAnimation : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
     }
 
-    public IEnumerator PlayDamageAnimation(Collider2D collider, bool isPlayer, GameObject newGameObject)
+    public IEnumerator PlayDamageAnimation(GameObject damagedTarget)
     {
+        bool isPlayer = damagedTarget.CompareTag("Player");
+        Player player = damagedTarget.GetComponent<Player>();
 
         if (isPlayer)
         {
-            if (collider.gameObject.tag == "Player")
+            if (player != null)
             {
-                Physics2D.IgnoreCollision(newGameObject.GetComponent<Collider2D>(), collider, true);
+                player.isInvincible = true;
             }
-            // collider.enabled = false;
             sprite.color = new Color(1, 0, 0, 1);
             yield return new WaitForSeconds(damageAnimationFramleDelay);
             sprite.color = new Color(1, 1, 1, 1);
@@ -44,13 +45,11 @@ public class DamageAnimation : MonoBehaviour
             sprite.color = new Color(1, 0, 0, 1);
             yield return new WaitForSeconds(damageAnimationFramleDelay);
             sprite.color = new Color(1, 1, 1, 1);
-            yield return new WaitForSeconds(invincibilityTime);
-
-            if (collider.gameObject.tag == "Player")
+            if (player != null)
             {
-                Physics2D.IgnoreCollision(newGameObject.GetComponent<Collider2D>(), collider, false);
+                yield return new WaitForSeconds(player.invincibilityFrameTime);
+                player.isInvincible = false;
             }
-            // collider.enabled = true;
         }
     }
 }

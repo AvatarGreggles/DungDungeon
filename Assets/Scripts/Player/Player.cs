@@ -63,6 +63,9 @@ public class Player : MonoBehaviour
 
     Collider2D collider;
 
+    public float invincibilityFrameTime = 1f;
+    public bool isInvincible = false;
+
 
     [SerializeField] TMPro.TMP_Text playerLevelTextP1;
     // [SerializeField] Text playerLevelTextP2;
@@ -240,6 +243,9 @@ public class Player : MonoBehaviour
 
     public void DealDamage(int damage)
     {
+
+        if (isInvincible) { return; }
+
         if (shield > 0)
         {
             shield -= damage;
@@ -252,11 +258,9 @@ public class Player : MonoBehaviour
             healthBar.transform.localScale = new Vector3(initialHealthBarSize.x * (health / maxHealth), initialHealthBarSize.y, initialHealthBarSize.z);
 
         }
-
-        bool isPlayer = gameObject.CompareTag("Player");
         if (gameObject != null)
         {
-            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation(collider, isPlayer, gameObject));
+            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation(gameObject));
         }
 
         audioSource.PlayOneShot(hurtSound, 1f);

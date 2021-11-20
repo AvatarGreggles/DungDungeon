@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
         if (gameObject.activeSelf)
         {
             bool isPlayer = gameObject.CompareTag("Player");
-            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation(collider, isPlayer, gameObject));
+            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation(gameObject));
             healthBar.transform.localScale = new Vector3(healthBar.transform.localScale.x * (health / enemyStats.maxHP), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
         }
 
