@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public float temporaryExperienceHolder;
     public float experienceToNextLevel;
     public int level;
+    public int previousLevel;
 
     public float criticalHitRatio = 6.25f;
 
@@ -74,6 +75,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        previousLevel = level;
         SetPlayerTag();
         initialHealthBarSize = healthBar.transform.localScale;
         initialShieldBarSize = shieldBar.transform.localScale;
@@ -113,7 +115,6 @@ public class Player : MonoBehaviour
     {
         level += 1;
         SetLevelText();
-        GameController.Instance.currentState = State.LevelUp;
     }
 
     void SetLevelText()
@@ -163,8 +164,9 @@ public class Player : MonoBehaviour
             Debug.Log("filling up");
             expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
 
-            if (HasReachedNextLevel())
+            if (experience >= toLevelUp[level])
             {
+                GainLevel();
                 experience = toLevelUp[level - 1] - experience;
                 if (experience < 0)
                 {
@@ -193,19 +195,6 @@ public class Player : MonoBehaviour
     public void UpdateTempExperienceHolder(float value)
     {
         temporaryExperienceHolder += value;
-    }
-
-    public bool HasReachedNextLevel()
-    {
-        if (experience >= toLevelUp[level])
-        {
-            GainLevel();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 
 

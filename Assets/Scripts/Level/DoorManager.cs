@@ -9,6 +9,13 @@ public class DoorManager : MonoBehaviour
     [SerializeField] TilemapRenderer tilemap;
     [SerializeField] TilemapCollider2D collider;
 
+    public static DoorManager Instance { get; set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +35,26 @@ public class DoorManager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(LevelManager.Instance.HandleLevelLoad());
-            ResetPlayers();
-            HideDoor();
-            DisableDoor();
+            Player player = other.gameObject.GetComponent<Player>();
+            if (player.level > player.previousLevel)
+            {
+                Debug.Log("Levlled up");
+                GameController.Instance.currentState = State.LevelUp;
+                player.previousLevel = player.level;
+            }
+            else
+            {
+                MoveToNextLevel();
+            }
         }
+    }
+
+    public void MoveToNextLevel()
+    {
+        StartCoroutine(LevelManager.Instance.HandleLevelLoad());
+        ResetPlayers();
+        HideDoor();
+        DisableDoor();
     }
 
     void ResetPlayers()
