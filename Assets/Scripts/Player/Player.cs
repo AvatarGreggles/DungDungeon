@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     public float experienceToNextLevel;
     public int level;
 
+    public float criticalHitRatio = 6.25f;
+
     [SerializeField] public float maxHealth = 3;
 
     public float attackSpeedBonus;

@@ -21,6 +21,7 @@ public class Item : ScriptableObject
         Shield,
         Speed,
         Dung,
+        CritChance,
     }
 
     public string itemName;
@@ -56,6 +57,12 @@ public class Item : ScriptableObject
         {
             player.attackSpeedBonus += statIncrease;
             shop.UpdateSpeedText();
+        }
+
+        if (targetStat == TargetStat.CritChance)
+        {
+            player.criticalHitRatio += statIncrease;
+            shop.UpdateCritRatioText();
         }
     }
 

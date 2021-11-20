@@ -19,6 +19,8 @@ public class Shop : MonoBehaviour
     [SerializeField] Text attackStatText;
     [SerializeField] Text speedStatText;
 
+    [SerializeField] Text critRatioStatText;
+
     Player player;
 
     public void CloseShop()
@@ -52,6 +54,13 @@ public class Shop : MonoBehaviour
         attackStatText.text = player.attack.ToString();
     }
 
+    public void UpdateCritRatioText()
+    {
+        critRatioStatText.text = player.criticalHitRatio.ToString();
+    }
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +73,7 @@ public class Shop : MonoBehaviour
         UpdateShieldText();
         UpdateAttackText();
         UpdateSpeedText();
+        UpdateCritRatioText();
 
         foreach (Item shopItem in shopItems)
         {

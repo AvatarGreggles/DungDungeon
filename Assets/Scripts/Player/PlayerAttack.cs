@@ -75,7 +75,15 @@ public class PlayerAttack : MonoBehaviour
 
                     // COST BASED
                     // playerMovement.dungAccumulated -= attackCost;
-                    projectile.GetComponent<Projectile>().power = Convert.ToInt32(Mathf.Round(GetComponent<Player>().attack + (player.dungAccumulated / 10)));
+
+                    float bonusCritDamage = 1f;
+                    if (UnityEngine.Random.value * 100f <= 100f)
+                    {
+                        Debug.Log("Crtical");
+                        bonusCritDamage = 1f;
+                    }
+
+                    projectile.GetComponent<Projectile>().power = Convert.ToInt32(Mathf.Round((GetComponent<Player>().attack * bonusCritDamage) + (player.dungAccumulated / 10)));
                     player.dungAccumulated = 0;
                     GameController.Instance.SetDungText(player.dungAccumulated, playerInput);
                     attackReleased = false;
