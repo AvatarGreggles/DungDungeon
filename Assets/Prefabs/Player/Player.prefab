@@ -1426,7 +1426,7 @@ MonoBehaviour:
   maxHealth: 4
   attackSpeedBonus: 1
   shield: 0
-  maxShield: 3
+  maxShield: 10
   healthBar: {fileID: 2078988125718980244}
   shieldBar: {fileID: 6829623281336045877}
   expBar: {fileID: 70515633247146582}
@@ -1442,6 +1442,9 @@ MonoBehaviour:
   maxDungSize: 5
   isShooting: 0
   toLevelUp: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  levelReached: 0
+  enemiesKilled: 0
+  moneyEarned: 0
   playerLevelTextP1: {fileID: 6526278113208250979}
 --- !u!114 &3620035378186348920
 MonoBehaviour:
@@ -1469,7 +1472,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8568219434171882062}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 4df13f8d2d7084a748d87af7d1aa8548, type: 2}
   m_CullingMode: 0

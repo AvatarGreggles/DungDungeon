@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 newTrailRotation;
 
+    Animator animator;
+
 
     private void Awake()
     {
@@ -49,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
 
         dustTrail = Instantiate(dustTrailObject, dustSpawnPointLeft.position, Quaternion.identity);
         dustTrail.transform.SetParent(player.transform);
+
+        animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -163,7 +167,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (adjustedMovement == Vector2.zero)
         {
+            animator.SetBool("IsMoving", false);
             dustTrail.GetComponent<ParticleSystem>().Stop();
+        }
+        else
+        {
+            animator.SetBool("IsMoving", true);
         }
 
 

@@ -69,7 +69,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1017452047
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -151,7 +151,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1017452047
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 68fc9af3c48fb4016b992dbb3437ba84, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0c54cdcb002964283a78f5499e1a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_bulletPrefab: {fileID: 5635037643616482937, guid: 3b919c585e948430798909e00e425798, type: 3}
+  m_bulletPrefab: {fileID: 1530938748849006514, guid: 14cd44a3e82a2406195153a7518107c1, type: 3}
   m_bulletNum: 4
   m_bulletSpeed: 3
   m_accelerationSpeed: 0.2
@@ -412,6 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00717d90db8054e058b3b5f7ba57502d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invincibilityTime: 1
 --- !u!114 &-6947175245239999833
 MonoBehaviour:
   m_ObjectHideFlags: 0
