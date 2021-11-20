@@ -17,7 +17,8 @@ public class Skill : ScriptableObject
 
     public enum Ability
     {
-        PassThrough
+        PassThrough,
+        Bounce
     }
 
     public enum TargetStat
@@ -81,5 +82,12 @@ public class Skill : ScriptableObject
         {
             playerAbilities.projectilePassThroughEnabled = true;
         }
+
+        if (ability == Ability.Bounce)
+        {
+            playerAbilities.projectileBounceEnabled = true;
+        }
+
+
     }
 }

@@ -21,6 +21,7 @@ public class Projectile : MonoBehaviour
     SpriteRenderer projectileSprite;
 
     bool shouldPlayerProjectilePassThroughWall = false;
+    bool shouldPlayerProjectileBounce = false;
 
     public enum projectileTypes
     {
@@ -179,15 +180,26 @@ public class Projectile : MonoBehaviour
 
     private void ShouldDestroyProjectileOnWallCollision(GameObject collidedObject)
     {
-        if (collidedObject.CompareTag("Wall") && !shouldPlayerProjectilePassThroughWall)
+        if (collidedObject.CompareTag("Wall") && !shouldPlayerProjectilePassThroughWall && !shouldPlayerProjectileBounce)
         {
             Destroy(gameObject);
+        }
+
+        if (collidedObject.CompareTag("Wall") && shouldPlayerProjectileBounce)
+        {
+            m_Rigidbody.gravityScale = 1f;
+
         }
     }
 
     public void EnablePassThroughWall()
     {
         shouldPlayerProjectilePassThroughWall = true;
+    }
+
+    public void EnableProjectileBounce()
+    {
+        shouldPlayerProjectileBounce = true;
     }
 
     private void RotateTowardsTarget(Transform target)

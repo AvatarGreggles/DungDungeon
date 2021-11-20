@@ -73,6 +73,13 @@ public class PlayerAttack : MonoBehaviour
                         projectile.GetComponent<Projectile>().EnablePassThroughWall();
                     }
 
+                    if (playerAbilities.projectileBounceEnabled)
+                    {
+                        projectile.GetComponent<Projectile>().EnableProjectileBounce();
+                    }
+
+
+
                     // COST BASED
                     // playerMovement.dungAccumulated -= attackCost;
 

@@ -11,6 +11,8 @@ public class PlayerAbilities : MonoBehaviour
     public bool healthUpEnabled = false;
 
     public bool projectilePassThroughEnabled = false;
+    public bool projectileBounceEnabled = false;
+
 
     Player player;
     // Start is called before the first frame update
@@ -34,6 +36,12 @@ public class PlayerAbilities : MonoBehaviour
     {
         projectilePassThroughEnabled = true;
     }
+
+    public void ProjectileBounceEnabled()
+    {
+        projectileBounceEnabled = true;
+    }
+
 
     public void BurstShotEnabled()
     {

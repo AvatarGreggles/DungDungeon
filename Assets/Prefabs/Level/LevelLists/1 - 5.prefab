@@ -456,7 +456,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 4752591482235526158}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: cc6bba36d33664ade9869ff89d8e901a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2238,7 +2238,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 4768627447866017932}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: cc6bba36d33664ade9869ff89d8e901a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -3099,7 +3099,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 5898699815203815312}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: cc6bba36d33664ade9869ff89d8e901a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -8922,7 +8922,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 7994435190032200038}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: cc6bba36d33664ade9869ff89d8e901a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -10531,7 +10531,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: cc6bba36d33664ade9869ff89d8e901a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
