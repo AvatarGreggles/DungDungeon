@@ -33286,7 +33286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8990078009512057380, guid: dee879c8166d7438ab1d521354477398, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8990078009512057384, guid: dee879c8166d7438ab1d521354477398, type: 3}
       propertyPath: m_Pivot.x
@@ -36355,5 +36355,9 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[1].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 9036858177331025143, guid: fb47165932a394f449e1fddca9a14535, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2703a12278d1341c3913231994eaaef5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb47165932a394f449e1fddca9a14535, type: 3}

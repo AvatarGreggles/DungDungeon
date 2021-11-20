@@ -57,6 +57,8 @@ public class Player : MonoBehaviour
 
     public int[] toLevelUp = new int[1];
 
+    Collider2D collider;
+
 
     [SerializeField] TMPro.TMP_Text playerLevelTextP1;
     // [SerializeField] Text playerLevelTextP2;
@@ -70,6 +72,7 @@ public class Player : MonoBehaviour
         shield = maxShield;
         audioSource = GetComponent<AudioSource>();
         playerInput = GetComponent<PlayerInput>();
+        collider = GetComponent<Collider2D>();
     }
 
 
@@ -242,6 +245,9 @@ public class Player : MonoBehaviour
 
         }
 
+        bool isPlayer = gameObject.CompareTag("Player");
+        StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation(collider, isPlayer));
+
         audioSource.PlayOneShot(hurtSound, 1f);
 
         IsPlayerDead();
@@ -258,10 +264,6 @@ public class Player : MonoBehaviour
         {
             Camera.main.transform.SetParent(null);
             gameObject.SetActive(false);
-        }
-        else
-        {
-            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation());
         }
     }
 

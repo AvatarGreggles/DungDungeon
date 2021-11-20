@@ -12,9 +12,12 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] GameObject loot;
 
+    Collider2D collider;
+
     private void Awake()
     {
         health = enemyStats.maxHP;
+        collider = GetComponent<Collider2D>();
     }
 
     void Start()
@@ -33,7 +36,8 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if (gameObject.activeSelf)
         {
-            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation());
+            bool isPlayer = gameObject.CompareTag("Player");
+            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation(collider, isPlayer));
             healthBar.transform.localScale = new Vector3(healthBar.transform.localScale.x * (health / enemyStats.maxHP), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
         }
 
@@ -73,6 +77,14 @@ public class Enemy : MonoBehaviour
         {
             healthBar.SetActive(true);
             healthBarBackground.SetActive(true);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<Player>().DealDamage(1);
         }
     }
 }

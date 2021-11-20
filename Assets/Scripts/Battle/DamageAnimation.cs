@@ -8,14 +8,24 @@ public class DamageAnimation : MonoBehaviour
 
     SpriteRenderer sprite;
 
+    public float invincibilityTime = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
     }
 
-    public IEnumerator PlayDamageAnimation()
+    public IEnumerator PlayDamageAnimation(Collider2D collider, bool isPlayer)
     {
+        if (isPlayer)
+        {
+            collider.enabled = false;
+            sprite.color = new Color(1, 0, 0, 1);
+            yield return new WaitForSeconds(damageAnimationFramleDelay);
+            sprite.color = new Color(1, 1, 1, 1);
+            yield return new WaitForSeconds(damageAnimationFramleDelay);
+        }
         sprite.color = new Color(1, 0, 0, 1);
         yield return new WaitForSeconds(damageAnimationFramleDelay);
         sprite.color = new Color(1, 1, 1, 1);
@@ -23,5 +33,14 @@ public class DamageAnimation : MonoBehaviour
         sprite.color = new Color(1, 0, 0, 1);
         yield return new WaitForSeconds(damageAnimationFramleDelay);
         sprite.color = new Color(1, 1, 1, 1);
+
+        if (isPlayer)
+        {
+            sprite.color = new Color(1, 0, 0, 1);
+            yield return new WaitForSeconds(damageAnimationFramleDelay);
+            sprite.color = new Color(1, 1, 1, 1);
+            yield return new WaitForSeconds(invincibilityTime);
+            collider.enabled = true;
+        }
     }
 }
