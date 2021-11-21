@@ -97,6 +97,7 @@ public class ShopItem : MonoBehaviour
             {
                 item.EnableAbility(player.GetComponent<PlayerAbilities>());
             }
+
         }
         else
         {

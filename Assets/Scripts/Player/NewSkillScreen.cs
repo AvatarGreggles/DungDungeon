@@ -153,9 +153,9 @@ public class NewSkillScreen : MonoBehaviour
 
     public void HandleInteract()
     {
-        if (currentSkillSelected != 0)
+        Debug.Log(currentSkillSelected);
+        if (currentSkillSelected != -1)
         {
-            Debug.Log("clicked");
             LevelSkill[] currentSkills = skillList.GetComponentsInChildren<LevelSkill>();
             currentSkills[currentSkillSelected].ChooseSkill();
             playerInput.SwitchCurrentActionMap("Player");

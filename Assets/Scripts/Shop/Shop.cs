@@ -24,7 +24,7 @@ public class Shop : MonoBehaviour
 
     [SerializeField] int shopItemOfferCount = 3;
 
-    int currentItemSelected = 0;
+    int currentItemSelected = -1;
 
     private Vector2 navigateMovement;
 
@@ -38,6 +38,7 @@ public class Shop : MonoBehaviour
     {
         gameObject.SetActive(false);
         GameController.Instance.currentState = State.Active;
+        playerInput.SwitchCurrentActionMap("Player");
     }
 
     public void UpdateCurrency()
@@ -111,7 +112,6 @@ public class Shop : MonoBehaviour
 
         navigateMovement = value.Get<Vector2>();
 
-        Debug.Log(navigateMovement);
 
 
         // if (navigateMovement.x == 0f)
@@ -119,19 +119,24 @@ public class Shop : MonoBehaviour
         //     return;
         // }
 
-        ShopItem[] currentItems = shopItemUI.GetComponentsInChildren<ShopItem>();
-        foreach (ShopItem item in currentItems)
-        {
-            item.UnsetItemAsSelected();
-        }
+        ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
+
 
         if (navigateMovement.y < 0f)
         {
-            currentItemSelected--;
+            foreach (ShopItem item in currentItems)
+            {
+                item.UnsetItemAsSelected();
+            }
+            currentItemSelected++;
         }
         else if (navigateMovement.y > 0f)
         {
-            currentItemSelected++;
+            foreach (ShopItem item in currentItems)
+            {
+                item.UnsetItemAsSelected();
+            }
+            currentItemSelected--;
         }
 
         if (currentItemSelected < 0)
@@ -150,9 +155,12 @@ public class Shop : MonoBehaviour
 
     public void HandleInteract()
     {
-        Debug.Log("clicked");
-        LevelSkill[] currentSkills = shopItemUI.GetComponentsInChildren<LevelSkill>();
-        currentSkills[currentItemSelected].ChooseSkill();
-        playerInput.SwitchCurrentActionMap("Player");
+        if (currentItemSelected != -1)
+        {
+            Debug.Log(currentItemSelected);
+            ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
+            currentItems[currentItemSelected].PurchaseItem();
+
+        }
     }
 }

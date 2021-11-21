@@ -52,7 +52,6 @@ public class LevelSkill : MonoBehaviour
 
         skillCardSpriteRenderer.sprite = defaultSkillCard;
         isSelected = false;
-        Debug.Log(skill.name + " is selected");
     }
 
     public void SetSkillNameText()

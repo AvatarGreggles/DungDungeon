@@ -217,8 +217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemCardSpriteRenderer: {fileID: 3056363912410741081}
-  selectedItemCard: {fileID: 1909944001367179602, guid: 4731ec22ab9974123b81944ae9316847, type: 3}
-  defaultItemCard: {fileID: -3003608095193546460, guid: 4731ec22ab9974123b81944ae9316847, type: 3}
+  selectedItemCard: {fileID: -3003608095193546460, guid: 4731ec22ab9974123b81944ae9316847, type: 3}
+  defaultItemCard: {fileID: 1909944001367179602, guid: 4731ec22ab9974123b81944ae9316847, type: 3}
   item: {fileID: 0}
   priceText: {fileID: 3056363910930252154}
   itemNameText: {fileID: 3056363910918656841}

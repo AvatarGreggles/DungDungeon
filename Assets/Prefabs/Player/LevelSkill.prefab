@@ -135,8 +135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillCardSpriteRenderer: {fileID: 3056363912410741081}
-  selectedSkillCard: {fileID: 1909944001367179602, guid: 4731ec22ab9974123b81944ae9316847, type: 3}
-  defaultSkillCard: {fileID: -3003608095193546460, guid: 4731ec22ab9974123b81944ae9316847, type: 3}
+  selectedSkillCard: {fileID: -3003608095193546460, guid: 4731ec22ab9974123b81944ae9316847, type: 3}
+  defaultSkillCard: {fileID: 1909944001367179602, guid: 4731ec22ab9974123b81944ae9316847, type: 3}
   skill: {fileID: 0}
   skillNameText: {fileID: 3056363910918656841}
   skillDescriptionText: {fileID: 2104002183341530504}

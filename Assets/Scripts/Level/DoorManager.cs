@@ -38,7 +38,6 @@ public class DoorManager : MonoBehaviour
             Player player = other.gameObject.GetComponent<Player>();
             if (player.willLevelUp)
             {
-                Debug.Log("Levlled up");
                 GameController.Instance.currentState = State.LevelUp;
                 player.previousLevel = player.level;
             }
