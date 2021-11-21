@@ -130,6 +130,12 @@ public class Player : MonoBehaviour
                     health++;
                     UpdateHealthBar();
                 }
+
+                if (health == maxHealth)
+                {
+                    UpdateHealthBar();
+                }
+
             }
         }
     }
@@ -286,6 +292,22 @@ public class Player : MonoBehaviour
         {
             Shop shopScreen = FindObjectOfType<Shop>();
             shopScreen.HandleInteract();
+        }
+    }
+
+    public void OnCancel()
+    {
+        // if (GameController.Instance.currentState == State.LevelUp)
+        // {
+        //     GameController.Instance.currentState = State.Active;
+        //     GameController.Instance.levelUpMenu.SetActive(false);
+        // }
+
+        if (GameController.Instance.currentState == State.Shop)
+        {
+            GameController.Instance.currentState = State.Active;
+            GameController.Instance.shopMenu.SetActive(false);
+            playerInput.SwitchCurrentActionMap("Player");
         }
     }
 
