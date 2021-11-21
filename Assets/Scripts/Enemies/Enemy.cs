@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
 
     Collider2D collider;
 
+    Vector3 initialHealthBarSize;
+
     private void Awake()
     {
         health = enemyStats.maxHP;
@@ -24,6 +26,8 @@ public class Enemy : MonoBehaviour
     {
         healthBar.SetActive(false);
         healthBarBackground.SetActive(false);
+
+        initialHealthBarSize = healthBar.transform.localScale;
     }
 
     void OnEnable()
@@ -38,7 +42,7 @@ public class Enemy : MonoBehaviour
         {
             bool isPlayer = gameObject.CompareTag("Player");
             StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation(gameObject));
-            healthBar.transform.localScale = new Vector3(healthBar.transform.localScale.x * (health / enemyStats.maxHP), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+            healthBar.transform.localScale = new Vector3(initialHealthBarSize.x * (health / enemyStats.maxHP), initialHealthBarSize.y, initialHealthBarSize.z);
         }
 
         IsEnemyDead();

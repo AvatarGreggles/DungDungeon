@@ -21,6 +21,8 @@ public class NewSkillScreen : MonoBehaviour
 
     [SerializeField] Text critRatioStatText;
 
+    [SerializeField] int skillOfferCount = 3;
+
 
     Player player;
 
@@ -74,7 +76,9 @@ public class NewSkillScreen : MonoBehaviour
         UpdateSpeedText();
         UpdateCritRatioText();
 
-        foreach (Skill skill in skills)
+        List<Skill> randomSkillItems = HelperMethods.GetRandomItemsFromList<Skill>(skills, skillOfferCount);
+
+        foreach (Skill skill in randomSkillItems)
         {
             GameObject newSkill = Instantiate(newSkillObject, newSkillObject.transform.position, newSkillObject.transform.rotation);
             if (newSkill)

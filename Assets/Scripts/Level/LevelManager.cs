@@ -43,6 +43,12 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator HandleLevelLoad(bool isFirstLevelLoad = false)
     {
+        if (floor >= levels.Count)
+        {
+            GameController.Instance.currentState = State.GameWin;
+            yield break;
+        }
+
         if (isFirstLevelLoad)
         {
             GameController.Instance.currentState = State.Initial;

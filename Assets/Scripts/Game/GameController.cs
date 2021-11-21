@@ -14,6 +14,7 @@ public enum State
     Cleared,
     Shop,
     LevelUp,
+    GameWin,
 }
 
 public class GameController : MonoBehaviour
@@ -35,6 +36,8 @@ public class GameController : MonoBehaviour
     public GameObject levelUpMenu;
     public GameObject gameOverMenu;
 
+    public GameObject gameWinMenu;
+
 
     [SerializeField] Text dungTextP1;
     [SerializeField] Text dungTextP2;
@@ -42,6 +45,12 @@ public class GameController : MonoBehaviour
     [SerializeField] public Image dungBarP1;
 
     public List<Player> players;
+
+    public float gameRuntime = 0f;
+
+    public Text gameRuntimeText;
+    public int delayAmount = 1; // Second count
+    protected float Timer;
 
     private void Awake()
     {
@@ -71,6 +80,14 @@ public class GameController : MonoBehaviour
 
             }
 
+            if (currentState == State.GameWin)
+            {
+                StartCoroutine(LevelTransition.Instance.OnGameWin());
+
+            }
+
+
+
             if (currentState == State.Active)
             {
                 StartCoroutine(LevelTransition.Instance.OnUnpause());
@@ -87,6 +104,22 @@ public class GameController : MonoBehaviour
             }
 
             previousState = currentState;
+        }
+
+        if (currentState == State.Active)
+        {
+            Timer += Time.deltaTime;
+
+            if (Timer >= delayAmount)
+            {
+                Timer = 0f;
+                gameRuntime++; // For every DelayAmount or "second" it will add one to the GoldValue
+                float minutes = Mathf.Floor(gameRuntime / 60);
+                float seconds = Mathf.Floor(gameRuntime) - (minutes * 60);
+
+                gameRuntimeText.text = minutes.ToString() + "m " + seconds.ToString() + "s";
+                Debug.Log(gameRuntime);
+            }
         }
     }
     public void AddCurrency(int value)

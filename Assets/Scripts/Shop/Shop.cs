@@ -21,6 +21,8 @@ public class Shop : MonoBehaviour
 
     [SerializeField] Text critRatioStatText;
 
+    [SerializeField] int shopItemOfferCount = 3;
+
     Player player;
 
     public void CloseShop()
@@ -75,7 +77,9 @@ public class Shop : MonoBehaviour
         UpdateSpeedText();
         UpdateCritRatioText();
 
-        foreach (Item shopItem in shopItems)
+        List<Item> randomShopItems = HelperMethods.GetRandomItemsFromList<Item>(shopItems, shopItemOfferCount);
+
+        foreach (Item shopItem in randomShopItems)
         {
             GameObject newShopItem = Instantiate(shopItemUI, shopItemUI.transform.position, shopItemUI.transform.rotation);
             if (newShopItem)

@@ -76,6 +76,14 @@ public class LevelTransition : MonoBehaviour
         GameController.Instance.gameOverMenu.SetActive(true);
     }
 
+    public IEnumerator OnGameWin()
+    {
+        var sequence = DOTween.Sequence();
+        sequence.Append(overlay.transform.DOScaleX(1f, 0.4f));
+        yield return sequence.WaitForCompletion();
+        GameController.Instance.gameOverMenu.SetActive(true);
+    }
+
     public IEnumerator OnUnpause()
     {
         GameController.Instance.pauseMenu.SetActive(false);
