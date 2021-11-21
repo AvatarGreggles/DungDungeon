@@ -5030,9 +5030,9 @@ MonoBehaviour:
   shopItemUI: {fileID: 3056363911117304719, guid: 4455216e137cf4f6dac970d05b2bb4db, type: 3}
   shopItems:
   - {fileID: 11400000, guid: 6523f805ac49748419949313cad3e38f, type: 2}
-  - {fileID: 11400000, guid: 3e620fd5723b64879b3d85127e02056a, type: 2}
-  - {fileID: 11400000, guid: 81431d0f28bc84a7abec90d899c1eb22, type: 2}
-  - {fileID: 11400000, guid: b7ab26d68beab4570ac474bfe5c33487, type: 2}
+  - {fileID: 11400000, guid: 4142efcb32fe14e3a8fa751d5506486f, type: 2}
+  - {fileID: 11400000, guid: 4142efcb32fe14e3a8fa751d5506486f, type: 2}
+  - {fileID: 11400000, guid: 4142efcb32fe14e3a8fa751d5506486f, type: 2}
   - {fileID: 11400000, guid: 9234294a3b80843c1b0a9d9e7f605372, type: 2}
   playerShopUI: {fileID: 1497437522}
   currencyText: {fileID: 370497260}
@@ -5041,7 +5041,7 @@ MonoBehaviour:
   attackStatText: {fileID: 252113997}
   speedStatText: {fileID: 2047001618}
   critRatioStatText: {fileID: 224794378}
-  shopItemOfferCount: 3
+  shopItemOfferCount: 5
 --- !u!1 &330083069
 GameObject:
   m_ObjectHideFlags: 0
@@ -32334,7 +32334,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 454d9aa1a237f43ef8a22f5b3912d08d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b836d625557f44db78c0f941d632354c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.75
   m_Pitch: 1
@@ -37857,7 +37857,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 1128215384}
   levelUpMenu: {fileID: 1317138463}
   gameOverMenu: {fileID: 1132348098}
-  gameWinMenu: {fileID: 0}
+  gameWinMenu: {fileID: 424334227}
   dungTextP1: {fileID: 1632190601}
   dungTextP2: {fileID: 124093799}
   dungBarP1: {fileID: 1395684068}
@@ -38582,6 +38582,7 @@ GameObject:
   - component: {fileID: 1317138466}
   - component: {fileID: 1317138465}
   - component: {fileID: 1317138467}
+  - component: {fileID: 1317138468}
   m_Layer: 5
   m_Name: NewSkillScreen
   m_TagString: Untagged
@@ -38673,6 +38674,36 @@ MonoBehaviour:
   speedStatText: {fileID: 805672444}
   critRatioStatText: {fileID: 797453444}
   skillOfferCount: 2
+--- !u!114 &1317138468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317138463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 7a017147b17364874b8a5fbd95f628d0, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1319509414
 GameObject:
   m_ObjectHideFlags: 0

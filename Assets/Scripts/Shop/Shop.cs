@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class Shop : MonoBehaviour
 {
@@ -23,7 +24,15 @@ public class Shop : MonoBehaviour
 
     [SerializeField] int shopItemOfferCount = 3;
 
+    int currentItemSelected = 0;
+
+    private Vector2 navigateMovement;
+
     Player player;
+
+    PlayerInput playerInput;
+
+    List<Item> randomShopItems;
 
     public void CloseShop()
     {
@@ -69,6 +78,8 @@ public class Shop : MonoBehaviour
     {
 
         player = FindObjectOfType<Player>();
+        playerInput = player.GetComponent<PlayerInput>();
+        playerInput.SwitchCurrentActionMap("LevelUpMenu");
 
         UpdateCurrency();
         UpdateHPText();
@@ -77,14 +88,13 @@ public class Shop : MonoBehaviour
         UpdateSpeedText();
         UpdateCritRatioText();
 
-        List<Item> randomShopItems = HelperMethods.GetRandomItemsFromList<Item>(shopItems, shopItemOfferCount);
+        randomShopItems = HelperMethods.GetRandomItemsFromList<Item>(shopItems, shopItemOfferCount);
 
         foreach (Item shopItem in randomShopItems)
         {
             GameObject newShopItem = Instantiate(shopItemUI, shopItemUI.transform.position, shopItemUI.transform.rotation);
             if (newShopItem)
             {
-                Debug.Log(newShopItem);
                 newShopItem.GetComponent<ShopItem>().item = shopItem;
                 newShopItem.GetComponent<ShopItem>().SetPriceText();
                 newShopItem.GetComponent<ShopItem>().SetItemNameText();
@@ -94,5 +104,55 @@ public class Shop : MonoBehaviour
             }
 
         }
+    }
+
+    public void HandleNavigation(InputValue value)
+    {
+
+        navigateMovement = value.Get<Vector2>();
+
+        Debug.Log(navigateMovement);
+
+
+        // if (navigateMovement.x == 0f)
+        // {
+        //     return;
+        // }
+
+        ShopItem[] currentItems = shopItemUI.GetComponentsInChildren<ShopItem>();
+        foreach (ShopItem item in currentItems)
+        {
+            item.UnsetItemAsSelected();
+        }
+
+        if (navigateMovement.y < 0f)
+        {
+            currentItemSelected--;
+        }
+        else if (navigateMovement.y > 0f)
+        {
+            currentItemSelected++;
+        }
+
+        if (currentItemSelected < 0)
+        {
+            currentItemSelected = currentItems.Length - 1;
+        }
+
+        if (currentItemSelected > currentItems.Length - 1)
+        {
+            currentItemSelected = 0;
+        }
+
+        currentItems[currentItemSelected].SetItemAsSelected();
+
+    }
+
+    public void HandleInteract()
+    {
+        Debug.Log("clicked");
+        LevelSkill[] currentSkills = shopItemUI.GetComponentsInChildren<LevelSkill>();
+        currentSkills[currentItemSelected].ChooseSkill();
+        playerInput.SwitchCurrentActionMap("Player");
     }
 }

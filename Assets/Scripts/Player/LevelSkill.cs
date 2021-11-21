@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class LevelSkill : MonoBehaviour
 {
 
+    [SerializeField] Image skillCardSpriteRenderer;
+    [SerializeField] Sprite selectedSkillCard;
+    [SerializeField] Sprite defaultSkillCard;
+
+    //Todo: common, rare, epic?
+
     [SerializeField] public Skill skill;
     [SerializeField] Text skillNameText;
     [SerializeField] Text skillDescriptionText;
@@ -16,17 +22,37 @@ public class LevelSkill : MonoBehaviour
 
     NewSkillScreen skillScreen;
 
+    public bool isSelected = false;
+
     // Start is called before the first frame update
     void Start()
     {
         skillScreen = FindObjectOfType<NewSkillScreen>();
         player = FindObjectsOfType<Player>()[0];
+
+        skillCardSpriteRenderer.sprite = defaultSkillCard;
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void SetSkillAsSelected()
+    {
+
+        skillCardSpriteRenderer.sprite = selectedSkillCard;
+        isSelected = true;
+        Debug.Log(skill.name + " is selected");
+    }
+
+    public void UnsetSkillAsSelected()
+    {
+
+        skillCardSpriteRenderer.sprite = defaultSkillCard;
+        isSelected = false;
+        Debug.Log(skill.name + " is selected");
     }
 
     public void SetSkillNameText()

@@ -52,9 +52,13 @@ public class GameController : MonoBehaviour
     public int delayAmount = 1; // Second count
     protected float Timer;
 
+    PlayerInputManager playerInputManager;
+
     private void Awake()
     {
         Instance = this;
+
+        playerInputManager = GetComponent<PlayerInputManager>();
     }
 
     private void Start()
@@ -90,7 +94,12 @@ public class GameController : MonoBehaviour
 
             if (currentState == State.Active)
             {
+                // PlayerInput playerInput = players[0].GetComponent<PlayerInput>();
+                // PlayerInput levelupMenuInput = levelUpMenu.GetComponent<PlayerInput>();
+                // playerInput.actions.Enable();
+                // levelupMenuInput.actions.Disable();
                 StartCoroutine(LevelTransition.Instance.OnUnpause());
+
             }
 
             if (currentState == State.Shop)
@@ -100,6 +109,11 @@ public class GameController : MonoBehaviour
 
             if (currentState == State.LevelUp)
             {
+                // PlayerInput playerInput = players[0].GetComponent<PlayerInput>();
+                // PlayerInput levelupMenuInput = levelUpMenu.GetComponent<PlayerInput>();
+                // playerInput.actions.Disable();
+                // levelupMenuInput.actions.Enable();
+
                 StartCoroutine(LevelTransition.Instance.OnLevelUp());
             }
 
@@ -118,7 +132,6 @@ public class GameController : MonoBehaviour
                 float seconds = Mathf.Floor(gameRuntime) - (minutes * 60);
 
                 gameRuntimeText.text = minutes.ToString() + "m " + seconds.ToString() + "s";
-                Debug.Log(gameRuntime);
             }
         }
     }

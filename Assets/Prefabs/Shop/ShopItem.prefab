@@ -216,11 +216,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b69dc32589ed40ecbf5044e0ef2667a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemCardSpriteRenderer: {fileID: 3056363912410741081}
+  selectedItemCard: {fileID: 1909944001367179602, guid: 4731ec22ab9974123b81944ae9316847, type: 3}
+  defaultItemCard: {fileID: -3003608095193546460, guid: 4731ec22ab9974123b81944ae9316847, type: 3}
   item: {fileID: 0}
   priceText: {fileID: 3056363910930252154}
   itemNameText: {fileID: 3056363910918656841}
   itemDescriptionText: {fileID: 2104002183341530504}
   itemIcon: {fileID: 2849769793751243742}
+  isSelected: 0
 --- !u!1 &3056363912410741083
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +237,7 @@ GameObject:
   - component: {fileID: 3056363912410741080}
   - component: {fileID: 3056363912410741081}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: ItemCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,10 +257,10 @@ RectTransform:
   m_Father: {fileID: 3056363911117304718}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.6445, y: 3.578}
+  m_SizeDelta: {x: 535.7237, y: 67.156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3056363912410741080
 CanvasRenderer:
@@ -286,8 +290,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 1909944001367179602, guid: 4731ec22ab9974123b81944ae9316847, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

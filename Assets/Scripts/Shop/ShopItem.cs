@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class ShopItem : MonoBehaviour
 {
 
+    [SerializeField] Image itemCardSpriteRenderer;
+    [SerializeField] Sprite selectedItemCard;
+    [SerializeField] Sprite defaultItemCard;
+
+    //Todo: common, rare, epic?
+
     [SerializeField] public Item item;
     [SerializeField] Text priceText;
     [SerializeField] Text itemNameText;
@@ -17,6 +23,8 @@ public class ShopItem : MonoBehaviour
 
     Shop shop;
 
+    public bool isSelected = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,10 +34,19 @@ public class ShopItem : MonoBehaviour
         shop = FindObjectOfType<Shop>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void SetItemAsSelected()
     {
 
+        itemCardSpriteRenderer.sprite = selectedItemCard;
+        isSelected = true;
+    }
+
+    public void UnsetItemAsSelected()
+    {
+
+        itemCardSpriteRenderer.sprite = defaultItemCard;
+        isSelected = false;
     }
 
     public void SetItemNameText()
@@ -54,13 +71,32 @@ public class ShopItem : MonoBehaviour
 
     public void PurchaseItem()
     {
+        if (item.itemType == Item.ItemType.Heal && player.health >= player.maxHealth)
+        {
+            Debug.Log("Your health is already full");
+            return;
+        }
+
         int currencyAfterPurchase = GameController.Instance.totalCurrency - item.price;
 
         if (currencyAfterPurchase >= 0)
         {
             GameController.Instance.RemoveCurrency(item.price);
             shop.UpdateCurrency();
-            item.IncreaseStat(player, shop);
+            if (item.itemType == Item.ItemType.Boost)
+            {
+                item.IncreaseStat(player, shop);
+            }
+
+            if (item.itemType == Item.ItemType.Heal)
+            {
+                item.HealStat(player, shop);
+            }
+
+            if (item.itemType == Item.ItemType.Equip)
+            {
+                item.EnableAbility(player.GetComponent<PlayerAbilities>());
+            }
         }
         else
         {

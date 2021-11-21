@@ -95,7 +95,7 @@ public class LevelManager : MonoBehaviour
 
         foreach (Player player in GameController.Instance.players)
         {
-            if (player.isActiveAndEnabled)
+            if (player != null && player.isActiveAndEnabled)
             {
                 player.MergeTempExperience();
             }

@@ -12,6 +12,9 @@ public class Projectile : MonoBehaviour
     private Rigidbody2D m_Rigidbody;
 
     [SerializeField] GameObject damageSprite;
+    [SerializeField] GameObject criticalDamageSprite;
+
+
 
     [SerializeField] bool isPlayerProjectile;
 
@@ -22,6 +25,8 @@ public class Projectile : MonoBehaviour
 
     bool shouldPlayerProjectilePassThroughWall = false;
     bool shouldPlayerProjectileBounce = false;
+
+    public bool isCriticalHit = false;
 
     public enum projectileTypes
     {
@@ -121,7 +126,8 @@ public class Projectile : MonoBehaviour
         GameObject target = isPlayerProjectile ? enemy.gameObject : player.gameObject;
         Transform damageDisplayPivot = isPlayerProjectile ? enemy.damageDisplayPivot.transform : player.damageDisplayPivot.transform;
 
-        GameObject damageObject = Instantiate(damageSprite, damageDisplayPivot.position, damageDisplayPivot.rotation);
+        GameObject spriteToInstantiate = isCriticalHit ? criticalDamageSprite : damageSprite;
+        GameObject damageObject = Instantiate(spriteToInstantiate, damageDisplayPivot.position, damageDisplayPivot.rotation);
         damageObject.transform.SetParent(target.transform);
         damageObject.GetComponent<DisplayDamage>().showDamage(power);
         gameObject.SetActive(false);

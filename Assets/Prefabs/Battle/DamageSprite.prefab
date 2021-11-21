@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1465717481
-  m_SortingLayer: 5
+  m_SortingLayerID: 1017452047
+  m_SortingLayer: 13
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 971f06b8fe3794116ae311b40ef6ed81, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -98,7 +98,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDisplayTime: 0.33
   damageText: {fileID: 3983655340872620768}
-  damageValue: 1
 --- !u!1 &5303353934285342298
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +236,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: -1465717481
+  m_SortingLayerID: 1017452047
   m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &3214885166717347584

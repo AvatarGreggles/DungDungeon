@@ -10,7 +10,8 @@ public class Item : ScriptableObject
     public enum ItemType
     {
         Equip,
-        Boost
+        Boost,
+        Heal,
     }
 
     public enum TargetStat
@@ -32,9 +33,32 @@ public class Item : ScriptableObject
     public float statIncrease;
     public TargetStat targetStat;
 
+    public Ability ability;
+
+    public enum Ability
+    {
+        None,
+        HPRegeneration
+    }
+
+
+    public void HealStat(Player player, Shop shop)
+    {
+        if (targetStat == TargetStat.HP)
+        {
+            player.health += statIncrease;
+            if (player.health > player.maxHealth)
+            {
+                player.health = player.maxHealth;
+            }
+            shop.UpdateHPText();
+            player.UpdateHealthBar();
+        }
+    }
 
     public void IncreaseStat(Player player, Shop shop)
     {
+
         if (targetStat == TargetStat.Attack)
         {
             player.attack += statIncrease;
@@ -66,6 +90,12 @@ public class Item : ScriptableObject
         }
     }
 
-
+    public void EnableAbility(PlayerAbilities playerAbilities)
+    {
+        if (ability == Ability.HPRegeneration)
+        {
+            playerAbilities.HPRegenerationEnabled();
+        }
+    }
 
 }

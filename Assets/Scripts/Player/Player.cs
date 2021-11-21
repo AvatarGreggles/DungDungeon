@@ -66,9 +66,17 @@ public class Player : MonoBehaviour
     public float invincibilityFrameTime = 1f;
     public bool isInvincible = false;
 
+    public bool willLevelUp = false;
+
 
     [SerializeField] TMPro.TMP_Text playerLevelTextP1;
     // [SerializeField] Text playerLevelTextP2;
+
+    PlayerAbilities playerAbilities;
+
+    public int delayAmount = 1; // Second count
+    protected float Timer;
+
 
 
 
@@ -80,6 +88,8 @@ public class Player : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         playerInput = GetComponent<PlayerInput>();
         collider = GetComponent<Collider2D>();
+        playerAbilities = GetComponent<PlayerAbilities>();
+
     }
 
 
@@ -97,6 +107,7 @@ public class Player : MonoBehaviour
         expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
         GameController.Instance.dungBarP1.fillAmount = dungAccumulated / maxDungSize;
         dungSprite.enabled = false;
+
     }
 
     private void Update()
@@ -105,6 +116,21 @@ public class Player : MonoBehaviour
         {
             SetSpriteSize();
             prevDungAccumulated = dungAccumulated;
+        }
+
+        if (playerAbilities.hpRegeneration)
+        {
+            Timer += Time.deltaTime;
+
+            if (Timer >= delayAmount)
+            {
+                Timer = 0f;
+                if (health < maxHealth)
+                {
+                    health++;
+                    UpdateHealthBar();
+                }
+            }
         }
     }
 
@@ -144,35 +170,22 @@ public class Player : MonoBehaviour
         }
     }
 
-    // public void GainEXP(float value)
-    // {
-    //     experience += value;
-    //     if (HasReachedNextLevel())
-    //     {
-    //         experience = toLevelUp[level] - experience;
-    //         if (experience < 0)
-    //         {
-    //             experience *= 1;
-    //         }
-    //         Debug.Log(experience);
-    //         temporaryExperienceHolder = 0;
-    //         SetTempEXPText();
-    //     }
-    //     SetEXPText();
-    // }
-
     //should count up until it hits the experience amount to add.
     public IEnumerator FillExperienceBar(float experienceToAdd)
     {
 
         temporaryExperienceHolder = 0;
 
+        if (experience + experienceToAdd >= toLevelUp[level])
+        {
+            willLevelUp = true;
+        }
+
         // addingXp = true;
         //received from external sources. Add xp incrementally to move bar up slowly instead of chunks.
         for (int i = 0; i < experienceToAdd; i++)
         {
             experience++;
-            Debug.Log("filling up");
             expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
 
             if (experience >= toLevelUp[level])
@@ -241,6 +254,41 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void UpdateHealthBar()
+    {
+        healthBar.transform.localScale = new Vector3(initialHealthBarSize.x * (health / maxHealth), initialHealthBarSize.y, initialHealthBarSize.z);
+    }
+
+    public void OnNavigateUI(InputValue value)
+    {
+        if (GameController.Instance.currentState == State.LevelUp)
+        {
+            NewSkillScreen levelUpScreen = FindObjectOfType<NewSkillScreen>();
+            levelUpScreen.HandleNavigation(value);
+        }
+
+        if (GameController.Instance.currentState == State.Shop)
+        {
+            Shop shopScreen = FindObjectOfType<Shop>();
+            shopScreen.HandleNavigation(value);
+        }
+    }
+
+    public void OnInteract()
+    {
+        if (GameController.Instance.currentState == State.LevelUp)
+        {
+            NewSkillScreen levelUpScreen = FindObjectOfType<NewSkillScreen>();
+            levelUpScreen.HandleInteract();
+        }
+
+        if (GameController.Instance.currentState == State.Shop)
+        {
+            Shop shopScreen = FindObjectOfType<Shop>();
+            shopScreen.HandleInteract();
+        }
+    }
+
     public void DealDamage(int damage)
     {
 
@@ -255,7 +303,7 @@ public class Player : MonoBehaviour
         else
         {
             health -= damage;
-            healthBar.transform.localScale = new Vector3(initialHealthBarSize.x * (health / maxHealth), initialHealthBarSize.y, initialHealthBarSize.z);
+            UpdateHealthBar();
 
         }
         if (gameObject != null)

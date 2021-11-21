@@ -87,6 +87,7 @@ public class PlayerAttack : MonoBehaviour
                     if (UnityEngine.Random.value * 100f <= player.criticalHitRatio)
                     {
                         Debug.Log("Crtical");
+                        projectile.GetComponent<Projectile>().isCriticalHit = true;
                         bonusCritDamage = 2f;
                     }
 

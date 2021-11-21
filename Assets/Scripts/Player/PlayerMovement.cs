@@ -128,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMove(InputValue value)
     {
+        Debug.Log("trying to move");
         movement = value.Get<Vector2>();
 
         StartCoroutine(CheckIfReleased(movement));
