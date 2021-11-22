@@ -19,6 +19,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] bool isPlayerProjectile;
 
     public AudioClip shoot;
+    public AudioClip hit;
     AudioSource audioSource;
 
     SpriteRenderer projectileSprite;
@@ -130,8 +131,16 @@ public class Projectile : MonoBehaviour
         GameObject damageObject = Instantiate(spriteToInstantiate, damageDisplayPivot.position, damageDisplayPivot.rotation);
         damageObject.transform.SetParent(target.transform);
         damageObject.GetComponent<DisplayDamage>().showDamage(power);
-        gameObject.SetActive(false);
-        damageObject.transform.SetParent(null);
+        bool shootThroughEnemiesEnabled = FindObjectOfType<Player>().GetComponent<PlayerAbilities>().shootThroughEnemiesEnabled;
+        if (enemy && shootThroughEnemiesEnabled)
+        {
+            damageObject.transform.SetParent(null);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            damageObject.transform.SetParent(null);
+        }
     }
 
     void HandleDamageDealing(Enemy enemy, Player player)
@@ -150,12 +159,16 @@ public class Projectile : MonoBehaviour
     private IEnumerator OnProjectileImpact(Enemy enemy = default, Player player = default)
     {
         if (player != null && player.isInvincible) { yield break; }
+        if (isPlayerProjectile)
+        {
+            audioSource.PlayOneShot(hit, 0.7F);
+        }
         ShowDamage(enemy, player);
         HandleDamageDealing(enemy, player);
 
         // Clean up projectile
         yield return new WaitForSeconds(0.5f);
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

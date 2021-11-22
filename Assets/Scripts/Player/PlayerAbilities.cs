@@ -13,6 +13,8 @@ public class PlayerAbilities : MonoBehaviour
     public bool projectilePassThroughEnabled = false;
     public bool projectileBounceEnabled = false;
 
+    public bool shootThroughEnemiesEnabled = false;
+
     public bool hpRegeneration = false;
 
 
@@ -44,6 +46,10 @@ public class PlayerAbilities : MonoBehaviour
         projectileBounceEnabled = true;
     }
 
+    public void ShootThroughEnemiesEnabled()
+    {
+        shootThroughEnemiesEnabled = true;
+    }
 
     public void BurstShotEnabled()
     {

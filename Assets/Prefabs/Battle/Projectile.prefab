@@ -105,7 +105,8 @@ MonoBehaviour:
   damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
   criticalDamageSprite: {fileID: 1905902881067641905, guid: cc282c30cc80f42c4b4399f5d779cec6, type: 3}
   isPlayerProjectile: 1
-  shoot: {fileID: 8300000, guid: ef30a3f6446e744278a796cd6fe664c6, type: 3}
+  shoot: {fileID: 8300000, guid: 75635f27d9cfb48aab37664ca5b3a6ab, type: 3}
+  hit: {fileID: 8300000, guid: 27d5f787b40174222b849793cec1858f, type: 3}
   isCriticalHit: 0
   projectileType: 0
 --- !u!50 &6242001473308761388
@@ -176,7 +177,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0

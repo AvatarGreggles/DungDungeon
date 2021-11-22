@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class LevelSkill : MonoBehaviour
 {
@@ -22,13 +23,16 @@ public class LevelSkill : MonoBehaviour
 
     NewSkillScreen skillScreen;
 
+    PlayerInput playerInput;
+
     public bool isSelected = false;
 
     // Start is called before the first frame update
     void Start()
     {
         skillScreen = FindObjectOfType<NewSkillScreen>();
-        player = FindObjectsOfType<Player>()[0];
+        player = FindObjectOfType<Player>();
+        playerInput = player.GetComponent<PlayerInput>();
 
         skillCardSpriteRenderer.sprite = defaultSkillCard;
     }
@@ -90,5 +94,6 @@ public class LevelSkill : MonoBehaviour
         GameController.Instance.currentState = State.Active;
         DoorManager.Instance.MoveToNextLevel();
         skillScreen.gameObject.SetActive(false);
+        playerInput.SwitchCurrentActionMap("Player");
     }
 }

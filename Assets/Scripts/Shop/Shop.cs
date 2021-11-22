@@ -129,6 +129,17 @@ public class Shop : MonoBehaviour
                 item.UnsetItemAsSelected();
             }
             currentItemSelected++;
+
+
+            if (currentItemSelected < 0)
+            {
+                currentItemSelected = currentItems.Length - 1;
+            }
+
+            if (currentItemSelected > currentItems.Length - 1)
+            {
+                currentItemSelected = 0;
+            }
         }
         else if (navigateMovement.y > 0f)
         {
@@ -137,17 +148,19 @@ public class Shop : MonoBehaviour
                 item.UnsetItemAsSelected();
             }
             currentItemSelected--;
+
+
+            if (currentItemSelected < 0)
+            {
+                currentItemSelected = currentItems.Length - 1;
+            }
+
+            if (currentItemSelected > currentItems.Length - 1)
+            {
+                currentItemSelected = 0;
+            }
         }
 
-        if (currentItemSelected < 0)
-        {
-            currentItemSelected = currentItems.Length - 1;
-        }
-
-        if (currentItemSelected > currentItems.Length - 1)
-        {
-            currentItemSelected = 0;
-        }
 
         currentItems[currentItemSelected].SetItemAsSelected();
 

@@ -1383,6 +1383,7 @@ MonoBehaviour:
   dustSpawnPointLeft: {fileID: 5964126066873873064}
   dustSpawnPointRight: {fileID: 3151957356505702708}
   dustTrailObject: {fileID: 8655670639085478576, guid: e28330e9e722f4ae9964bf175a970a29, type: 3}
+  dungCollectSound: {fileID: 8300000, guid: 5435cb232842043c6906185526a7e02a, type: 3}
 --- !u!114 &-3320277435940982530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1435,7 +1436,7 @@ MonoBehaviour:
   p1Tag: {fileID: 2597456256049176975}
   p2Tag: {fileID: 2519305091937041666}
   playerInput: {fileID: 8568219434171882053}
-  hurtSound: {fileID: 8300000, guid: 1da55aec9f88c43e2a68be5e9265dc5c, type: 3}
+  hurtSound: {fileID: 8300000, guid: e842f9e99074a423889a584a3ed61d33, type: 3}
   dungSprite: {fileID: 4680403796343406537}
   dungAccumulated: 0
   prevDungAccumulated: 0
@@ -1445,7 +1446,11 @@ MonoBehaviour:
   levelReached: 0
   enemiesKilled: 0
   moneyEarned: 0
+  invincibilityFrameTime: 1
+  isInvincible: 0
+  willLevelUp: 0
   playerLevelTextP1: {fileID: 6526278113208250979}
+  delayAmount: 1
 --- !u!114 &3620035378186348920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1464,6 +1469,7 @@ MonoBehaviour:
   healthUpEnabled: 0
   projectilePassThroughEnabled: 0
   projectileBounceEnabled: 1
+  hpRegeneration: 0
 --- !u!95 &7285743007244160389
 Animator:
   serializedVersion: 3

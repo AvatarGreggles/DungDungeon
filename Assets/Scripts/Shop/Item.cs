@@ -38,7 +38,8 @@ public class Item : ScriptableObject
     public enum Ability
     {
         None,
-        HPRegeneration
+        HPRegeneration,
+        ShootThroughEnemy
     }
 
 
@@ -95,6 +96,16 @@ public class Item : ScriptableObject
         if (ability == Ability.HPRegeneration)
         {
             playerAbilities.HPRegenerationEnabled();
+        }
+
+        if (ability == Ability.HPRegeneration)
+        {
+            playerAbilities.HPRegenerationEnabled();
+        }
+
+        if (ability == Ability.ShootThroughEnemy)
+        {
+            playerAbilities.ShootThroughEnemiesEnabled();
         }
     }
 

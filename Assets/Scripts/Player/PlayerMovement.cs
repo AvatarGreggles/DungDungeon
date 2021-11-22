@@ -40,6 +40,9 @@ public class PlayerMovement : MonoBehaviour
 
     Animator animator;
 
+    public AudioClip dungCollectSound;
+    AudioSource audioSource;
+
 
     private void Awake()
     {
@@ -48,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         playerSprite = GetComponent<SpriteRenderer>();
         originalDungScale = transform.localScale;
         playerInput = GetComponent<PlayerInput>();
+        audioSource = GetComponent<AudioSource>();
 
         dustTrail = Instantiate(dustTrailObject, dustSpawnPointLeft.position, Quaternion.identity);
         dustTrail.transform.SetParent(player.transform);
@@ -161,6 +165,10 @@ public class PlayerMovement : MonoBehaviour
         // Vector3 newPosWithRotation = new Vector3(newPos.x, newPos.y, targetedEnemy.z);
         if (newPos != new Vector2(transform.position.x, transform.position.y) && GameController.Instance.currentState != State.Cleared && player.dungAccumulated < player.maxDungSize)
         {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(dungCollectSound, 0.75F);
+            }
             player.AccumulateDung(dungAccumulationRate);
 
         }

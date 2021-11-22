@@ -135,7 +135,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -235,6 +235,9 @@ MonoBehaviour:
   m_Lifespan: 8
   power: 1
   damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
+  criticalDamageSprite: {fileID: 0}
   isPlayerProjectile: 0
-  shoot: {fileID: 8300000, guid: ef30a3f6446e744278a796cd6fe664c6, type: 3}
+  shoot: {fileID: 8300000, guid: e08c6eded6b5e4fbe931dc4df1f763b9, type: 3}
+  hit: {fileID: 0}
+  isCriticalHit: 0
   projectileType: 0
