@@ -12,10 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c548c840cd7174769b02fea60994279c, type: 3}
   m_Name: Boss_Spider
   m_EditorClassIdentifier: 
-  maxHP: 80
+  level: 1
+  baseMaxHP: 50
+  baseAttackPower: 3
+  baseMoveSpeed: 2
+  baseAttackSpeed: 1
+  baseDefense: 1
+  baseCurrencyDrop: 50
+  baseExpYield: 150
+  maxHP: 1
   attackPower: 2
-  moveSpeed: 4
-  attackSpeed: 2
+  moveSpeed: 1
   defense: 1
-  currencyDrop: 50
+  currencyDrop: 1
   expYield: 125

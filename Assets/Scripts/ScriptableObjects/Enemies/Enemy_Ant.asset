@@ -12,10 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c548c840cd7174769b02fea60994279c, type: 3}
   m_Name: Enemy_Ant
   m_EditorClassIdentifier: 
+  level: 1
+  baseMaxHP: 4
+  baseAttackPower: 1
+  baseMoveSpeed: 2
+  baseAttackSpeed: 20
+  baseDefense: 1
+  baseCurrencyDrop: 10
+  baseExpYield: 25
   maxHP: 4
-  attackPower: 1
+  attackPower: 50
   moveSpeed: 2
-  attackSpeed: 1
-  defense: 0
+  attackSpeed: 20
+  defense: 1
   currencyDrop: 10
-  expYield: 35
+  expYield: 25

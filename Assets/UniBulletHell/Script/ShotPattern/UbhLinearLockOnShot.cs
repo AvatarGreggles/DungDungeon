@@ -37,8 +37,10 @@ public class UbhLinearLockOnShot : UbhLinearShot
 
     public override void Shot()
     {
+
         AimTarget();
         base.Shot();
+
     }
 
     public override void FinishedShot()

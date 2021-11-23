@@ -3,6 +3,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/EnemyStats", order = 1)]
 public class EnemyStats : ScriptableObject
 {
+    public int level = 1;
+    public int baseMaxHP = 1;
+    public int baseAttackPower = 1;
+    public int baseMoveSpeed = 1;
+    public int baseAttackSpeed = 1;
+    public int baseDefense = 1;
+    public int baseCurrencyDrop = 1;
+    public int baseExpYield = 1;
+
     public int maxHP = 1;
     public int attackPower = 1;
     public int moveSpeed = 1;
@@ -11,14 +20,23 @@ public class EnemyStats : ScriptableObject
     public int currencyDrop = 1;
     public int expYield = 1;
 
-    private void Start()
+    void OnEnable()
     {
-        maxHP = maxHP * LevelManager.Instance.floor;
-        attackPower = attackPower * LevelManager.Instance.floor;
-        moveSpeed = moveSpeed * LevelManager.Instance.floor;
-        attackSpeed = attackSpeed * LevelManager.Instance.floor;
-        defense = defense * LevelManager.Instance.floor;
-        currencyDrop = currencyDrop * LevelManager.Instance.floor;
-        expYield = expYield * LevelManager.Instance.floor;
+        maxHP = baseMaxHP;
+        attackPower = baseAttackPower;
+        moveSpeed = baseMoveSpeed;
+        attackSpeed = baseAttackSpeed;
+        defense = baseDefense * level;
+        currencyDrop = baseCurrencyDrop;
+        expYield = baseExpYield;
+
+        maxHP = maxHP * level;
+        attackPower = attackPower * level;
+        moveSpeed = moveSpeed * level;
+        attackSpeed = attackSpeed * level;
+        defense = defense * level;
+        currencyDrop = currencyDrop * level;
+        expYield = expYield * level;
     }
+
 }

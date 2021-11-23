@@ -12,10 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c548c840cd7174769b02fea60994279c, type: 3}
   m_Name: Enemy_FireAnt
   m_EditorClassIdentifier: 
-  maxHP: 8
+  level: 1
+  baseMaxHP: 8
+  baseAttackPower: 2
+  baseMoveSpeed: 2
+  baseAttackSpeed: 2
+  baseDefense: 1
+  baseCurrencyDrop: 20
+  baseExpYield: 50
+  maxHP: 1
   attackPower: 2
-  moveSpeed: 3
-  attackSpeed: 0
-  defense: 0
-  currencyDrop: 20
+  moveSpeed: 1
+  defense: 1
+  currencyDrop: 1
   expYield: 75

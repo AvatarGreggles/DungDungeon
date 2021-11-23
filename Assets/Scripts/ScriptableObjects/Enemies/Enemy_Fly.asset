@@ -12,10 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c548c840cd7174769b02fea60994279c, type: 3}
   m_Name: Enemy_Fly
   m_EditorClassIdentifier: 
-  maxHP: 4
+  level: 1
+  baseMaxHP: 4
+  baseAttackPower: 1
+  baseMoveSpeed: 2
+  baseAttackSpeed: 1
+  baseDefense: 1
+  baseCurrencyDrop: 10
+  baseExpYield: 25
+  maxHP: 1
   attackPower: 1
   moveSpeed: 1
-  attackSpeed: 3
-  defense: 0
-  currencyDrop: 10
+  defense: 1
+  currencyDrop: 1
   expYield: 25

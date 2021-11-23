@@ -18,12 +18,12 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        health = enemyStats.maxHP;
         collider = GetComponent<Collider2D>();
     }
 
     void Start()
     {
+        health = enemyStats.maxHP;
         healthBar.SetActive(false);
         healthBarBackground.SetActive(false);
 
@@ -33,6 +33,12 @@ public class Enemy : MonoBehaviour
     void OnEnable()
     {
         health = enemyStats.maxHP;
+    }
+
+
+    int GetAttackPower()
+    {
+        return enemyStats.attackPower * LevelManager.Instance.floor;
     }
 
     public void DealDamage(int damage)

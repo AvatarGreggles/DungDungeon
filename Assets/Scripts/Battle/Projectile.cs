@@ -7,6 +7,8 @@ public class Projectile : MonoBehaviour
     public float m_Speed = 10f;   // this is the projectile's speed
     public float m_Lifespan = 3f; // this is the projectile's lifespan (in seconds)
 
+    public float enemyAttackSpeed;
+
     public int power = 1;
 
     private Rigidbody2D m_Rigidbody;
@@ -62,25 +64,28 @@ public class Projectile : MonoBehaviour
         player.ResetSpriteSize();
     }
 
+    public void SetPower(int attack)
+    {
+        power = attack;
+    }
+
+    public void SetEnemyAttackSpeed(float speed)
+    {
+
+        enemyAttackSpeed = speed;
+        Debug.Log(enemyAttackSpeed);
+    }
+
     public void moveTowardsCloestTarget()
     {
         GameObject targetGO;
-
-        if (isPlayerProjectile)
-        {
-            targetGO = FindClosestTarget("Enemy");
-        }
-        else
-        {
-            targetGO = FindClosestTarget("Player");
-        }
+        targetGO = FindClosestTarget("Enemy");
 
         if (!targetGO)
         {
             Destroy(gameObject);
             return;
         }
-
 
         if (targetGO)
         {
@@ -89,7 +94,11 @@ public class Projectile : MonoBehaviour
             var dir = targetGO.transform.position - transform.position;
             dir = dir.normalized;
             RotateTowardsTarget(targetGO.transform);
-            m_Rigidbody.AddForce(dir * (m_Speed * player.attackSpeedBonus));
+            if (targetGO.CompareTag("Enemy"))
+            {
+                m_Rigidbody.AddForce(dir * (m_Speed + player.attackSpeedBonus));
+            }
+
         }
 
     }

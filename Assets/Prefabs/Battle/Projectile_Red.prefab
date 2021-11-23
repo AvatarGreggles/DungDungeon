@@ -253,6 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Speed: 10
   m_Lifespan: 5
+  enemyAttackSpeed: 1
   power: 1
   damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
   criticalDamageSprite: {fileID: 0}

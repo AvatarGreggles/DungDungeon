@@ -313,7 +313,7 @@ public class Player : MonoBehaviour
 
     public void DealDamage(int damage)
     {
-
+        Debug.Log(damage);
         if (isInvincible) { return; }
 
         if (shield > 0)
@@ -324,6 +324,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            shieldBar.transform.localScale = new Vector3(0f, initialShieldBarSize.y, initialShieldBarSize.z);
             health -= damage;
             UpdateHealthBar();
 
