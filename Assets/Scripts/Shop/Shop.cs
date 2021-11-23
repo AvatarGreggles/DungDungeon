@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 public class Shop : MonoBehaviour
 {
@@ -109,6 +110,12 @@ public class Shop : MonoBehaviour
 
     public void HandleNavigation(InputValue value)
     {
+        ShopItem[] items = FindObjectsOfType<ShopItem>();
+        ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
+        if (items.Length == 0 && currentItems.Length == 0)
+        {
+            return;
+        }
 
         navigateMovement = value.Get<Vector2>();
 
@@ -118,8 +125,6 @@ public class Shop : MonoBehaviour
         // {
         //     return;
         // }
-
-        ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
 
 
         if (navigateMovement.y < 0f)
@@ -168,11 +173,22 @@ public class Shop : MonoBehaviour
 
     public void HandleInteract()
     {
+        ShopItem[] items = FindObjectsOfType<ShopItem>();
+        ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
+        if (items.Length == 0 && currentItems.Length == 0)
+        {
+            return;
+        }
         if (currentItemSelected != -1)
         {
-            Debug.Log(currentItemSelected);
-            ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
+
+            Debug.Log("purchased, should remove");
+
             currentItems[currentItemSelected].PurchaseItem();
+
+            items[currentItemSelected].gameObject.SetActive(false);
+            currentItemSelected = 0;
+            currentItems[currentItemSelected].SetItemAsSelected();
 
         }
     }
