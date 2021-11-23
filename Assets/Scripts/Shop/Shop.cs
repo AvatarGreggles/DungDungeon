@@ -37,6 +37,7 @@ public class Shop : MonoBehaviour
 
     public void CloseShop()
     {
+        currentItemSelected = -1;
         gameObject.SetActive(false);
         GameController.Instance.currentState = State.Active;
         playerInput.SwitchCurrentActionMap("Player");
@@ -75,13 +76,18 @@ public class Shop : MonoBehaviour
 
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    // Start is called before the first frame updates
 
+    private void OnEnable()
+    {
+        ClearItems();
+        GenerateItems();
+    }
+
+    public void GenerateItems()
+    {
         player = FindObjectOfType<Player>();
         playerInput = player.GetComponent<PlayerInput>();
-        playerInput.SwitchCurrentActionMap("LevelUpMenu");
 
         UpdateCurrency();
         UpdateHPText();
@@ -90,6 +96,7 @@ public class Shop : MonoBehaviour
         UpdateSpeedText();
         UpdateCritRatioText();
 
+        playerInput.SwitchCurrentActionMap("LevelUpMenu");
         randomShopItems = HelperMethods.GetRandomItemsFromList<Item>(shopItems, shopItemOfferCount);
 
         foreach (Item shopItem in randomShopItems)
@@ -108,11 +115,23 @@ public class Shop : MonoBehaviour
         }
     }
 
+    public void ClearItems()
+    {
+        ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
+
+        foreach (ShopItem shopItem in currentItems)
+        {
+            shopItem.gameObject.SetActive(false);
+        }
+        currentItemSelected = -1;
+    }
+
+
+
     public void HandleNavigation(InputValue value)
     {
-        ShopItem[] items = FindObjectsOfType<ShopItem>();
         ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
-        if (items.Length == 0 && currentItems.Length == 0)
+        if (currentItems.Length == 0)
         {
             return;
         }
@@ -173,9 +192,9 @@ public class Shop : MonoBehaviour
 
     public void HandleInteract()
     {
-        ShopItem[] items = FindObjectsOfType<ShopItem>();
+        // ShopItem[] items = FindObjectsOfType<ShopItem>();
         ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
-        if (items.Length == 0 && currentItems.Length == 0)
+        if (currentItems.Length == 0)
         {
             return;
         }
@@ -186,7 +205,7 @@ public class Shop : MonoBehaviour
 
             currentItems[currentItemSelected].PurchaseItem();
 
-            items[currentItemSelected].gameObject.SetActive(false);
+            currentItems[currentItemSelected].gameObject.SetActive(false);
             currentItemSelected = 0;
             currentItems[currentItemSelected].SetItemAsSelected();
 

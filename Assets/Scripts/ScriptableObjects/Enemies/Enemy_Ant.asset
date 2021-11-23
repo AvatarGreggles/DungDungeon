@@ -21,7 +21,7 @@ MonoBehaviour:
   baseCurrencyDrop: 10
   baseExpYield: 25
   maxHP: 4
-  attackPower: 50
+  attackPower: 1
   moveSpeed: 2
   attackSpeed: 20
   defense: 1

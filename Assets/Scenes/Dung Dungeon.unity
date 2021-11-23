@@ -39738,6 +39738,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8990078009512057391, guid: dee879c8166d7438ab1d521354477398, type: 3}
+      propertyPath: shopMenu
+      value: 
+      objectReference: {fileID: 321985589}
+    - target: {fileID: 8990078009512057391, guid: dee879c8166d7438ab1d521354477398, type: 3}
+      propertyPath: skillScreen
+      value: 
+      objectReference: {fileID: 1317138467}
+    - target: {fileID: 8990078009512057391, guid: dee879c8166d7438ab1d521354477398, type: 3}
       propertyPath: transitionLength
       value: 0.5
       objectReference: {fileID: 0}
@@ -41119,7 +41127,7 @@ MonoBehaviour:
   levels:
   - {fileID: 11400000, guid: eced8d211dcf444e79a9d6071ce5cef4, type: 2}
   - {fileID: 11400000, guid: 5dbd8bfee0cfd458fb592c9202a9e3c0, type: 2}
-  - {fileID: 11400000, guid: eced8d211dcf444e79a9d6071ce5cef4, type: 2}
+  - {fileID: 11400000, guid: 5dbd8bfee0cfd458fb592c9202a9e3c0, type: 2}
   - {fileID: 11400000, guid: eced8d211dcf444e79a9d6071ce5cef4, type: 2}
   - {fileID: 11400000, guid: 5dbd8bfee0cfd458fb592c9202a9e3c0, type: 2}
   - {fileID: 11400000, guid: eced8d211dcf444e79a9d6071ce5cef4, type: 2}

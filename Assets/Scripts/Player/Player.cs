@@ -313,7 +313,6 @@ public class Player : MonoBehaviour
 
     public void DealDamage(int damage)
     {
-        Debug.Log(damage);
         if (isInvincible) { return; }
 
         if (shield > 0)

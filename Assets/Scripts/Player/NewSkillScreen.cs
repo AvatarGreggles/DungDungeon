@@ -73,14 +73,10 @@ public class NewSkillScreen : MonoBehaviour
     }
 
 
-    // Start is called before the first frame update
-    void Start()
+    public void GenerateSkills()
     {
-
         player = FindObjectOfType<Player>();
         playerInput = player.GetComponent<PlayerInput>();
-        playerInput.SwitchCurrentActionMap("LevelUpMenu");
-
         UpdateCurrency();
         UpdateHPText();
         UpdateShieldText();
@@ -88,8 +84,8 @@ public class NewSkillScreen : MonoBehaviour
         UpdateSpeedText();
         UpdateCritRatioText();
 
+        playerInput.SwitchCurrentActionMap("LevelUpMenu");
         randomSkillItems = HelperMethods.GetRandomItemsFromList<Skill>(skills, skillOfferCount);
-
         foreach (Skill skill in randomSkillItems)
         {
             GameObject newSkill = Instantiate(newSkillObject, newSkillObject.transform.position, newSkillObject.transform.rotation);
@@ -105,11 +101,24 @@ public class NewSkillScreen : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ClearSkills()
     {
+        LevelSkill[] currentSkills = skillList.GetComponentsInChildren<LevelSkill>();
+
+        foreach (LevelSkill skill in currentSkills)
+        {
+            skill.gameObject.SetActive(false);
+        }
+        currentSkillSelected = -1;
+    }
+
+    private void OnEnable()
+    {
+        ClearSkills();
+        GenerateSkills();
 
     }
+
 
     public void HandleNavigation(InputValue value)
     {
@@ -158,7 +167,9 @@ public class NewSkillScreen : MonoBehaviour
         {
             LevelSkill[] currentSkills = skillList.GetComponentsInChildren<LevelSkill>();
             currentSkills[currentSkillSelected].ChooseSkill();
+            currentSkills[currentSkillSelected].UnsetSkillAsSelected();
             playerInput.SwitchCurrentActionMap("Player");
+            currentSkillSelected = -1;
         }
     }
 }
