@@ -61,6 +61,11 @@ public class LevelManager : MonoBehaviour
         }
         levels[floor - 1].LoadLevel();
         SetPlayerSpawnPoint();
+        Shopkeeper shopkeeper = FindObjectOfType<Shopkeeper>();
+        if (shopkeeper != null)
+        {
+            shopkeeper.hasVisited = false;
+        }
         yield return null;
     }
 
