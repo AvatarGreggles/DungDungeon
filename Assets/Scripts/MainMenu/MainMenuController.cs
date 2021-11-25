@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -51,9 +52,17 @@ public class MainMenuController : MonoBehaviour
        });
     }
 
+    IEnumerator EnterGame()
+    {
+        var sequence = DOTween.Sequence();
+        sequence.Append(Camera.main.transform.DOScaleZ(1f, 2.4f));
+        yield return sequence.WaitForCompletion();
+    }
+
     public void HandleStartClick(Button button = null)
     {
-        SceneManager.LoadScene(1);
+        // SceneManager.LoadScene(1);
+        StartCoroutine(EnterGame());
     }
 
     public void HandleQuitClick(Button button = null)
@@ -104,6 +113,7 @@ public class MainMenuController : MonoBehaviour
 
     public void OnInteract()
     {
+        if (currentSkillSelected == -1) { return; }
         audioSource.PlayOneShot(selectItemSound, 1f);
         buttons[currentSkillSelected].onClick.Invoke();
     }
