@@ -69,12 +69,12 @@ public class ShopItem : MonoBehaviour
         itemIcon.sprite = item.itemIcon;
     }
 
-    public void PurchaseItem()
+    public bool PurchaseItem()
     {
         if (item.itemType == Item.ItemType.Heal && player.health >= player.maxHealth)
         {
             Debug.Log("Your health is already full");
-            return;
+            return false;
         }
 
         int currencyAfterPurchase = GameController.Instance.totalCurrency - item.price;
@@ -98,10 +98,13 @@ public class ShopItem : MonoBehaviour
                 item.EnableAbility(player.GetComponent<PlayerAbilities>());
             }
 
+            return true;
+
         }
         else
         {
             Debug.Log("Not enough money");
+            return false;
         }
     }
 }

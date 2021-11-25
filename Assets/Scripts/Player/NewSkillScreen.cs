@@ -32,14 +32,26 @@ public class NewSkillScreen : MonoBehaviour
 
     PlayerInput playerInput;
 
+    public AudioClip switchItemSound;
+    public AudioClip selectItemSound;
+    public AudioClip levelupSound;
+    AudioSource audioSource;
+
 
     Player player;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     // public void CloseSkillScreen()
     // {
     //     gameObject.SetActive(false);
     //     GameController.Instance.currentState = State.Active;
     // }
+
+
 
 
     public void UpdateCurrency()
@@ -114,9 +126,16 @@ public class NewSkillScreen : MonoBehaviour
 
     private void OnEnable()
     {
+        GameController.Instance.StopGameMusic();
+        audioSource.PlayOneShot(levelupSound, 1f);
         ClearSkills();
         GenerateSkills();
 
+    }
+
+    private void OnDisable()
+    {
+        GameController.Instance.PlayGameMusic();
     }
 
 
@@ -139,10 +158,12 @@ public class NewSkillScreen : MonoBehaviour
 
         if (navigateMovement.x < 0f)
         {
+            audioSource.PlayOneShot(switchItemSound, 1f);
             currentSkillSelected--;
         }
         else if (navigateMovement.x > 0f)
         {
+            audioSource.PlayOneShot(switchItemSound, 1f);
             currentSkillSelected++;
         }
 
@@ -162,9 +183,11 @@ public class NewSkillScreen : MonoBehaviour
 
     public void HandleInteract()
     {
+        audioSource.PlayOneShot(selectItemSound, 1f);
         Debug.Log(currentSkillSelected);
         if (currentSkillSelected != -1)
         {
+
             LevelSkill[] currentSkills = skillList.GetComponentsInChildren<LevelSkill>();
             currentSkills[currentSkillSelected].ChooseSkill();
             currentSkills[currentSkillSelected].UnsetSkillAsSelected();

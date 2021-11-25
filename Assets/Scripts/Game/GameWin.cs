@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameWin : MonoBehaviour
 {
@@ -28,8 +29,51 @@ public class GameWin : MonoBehaviour
     [SerializeField] Text levelReachedText;
     [SerializeField] Text gameRuntimeText;
 
+    [SerializeField] Button goToShopButton;
+
+    [SerializeField] Button quitButton;
+
 
     Player player;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+        goToShopButton.onClick.AddListener(() =>
+ {
+     HandleGoToShop();
+ });
+
+        quitButton.onClick.AddListener(() =>
+     {
+         HandleGoToMainMenu();
+     });
+
+        player = GameController.Instance.players[0];
+
+        UpdateCurrency();
+        UpdateHPText();
+        UpdateShieldText();
+        UpdateAttackText();
+        UpdateSpeedText();
+        UpdateCritRatioText();
+        UpdateEnemiesKilledText();
+        UpdateLevelReachedText();
+        UpdateMoneyEarnedText();
+        UpdateGameRuntimeText();
+
+    }
+
+    public void HandleGoToShop()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void HandleGoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 
     // public void CloseSkillScreen()
     // {
@@ -90,39 +134,6 @@ public class GameWin : MonoBehaviour
     public void UpdateCritRatioText()
     {
         critRatioStatText.text = player.criticalHitRatio.ToString();
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-        player = GameController.Instance.players[0];
-
-        UpdateCurrency();
-        UpdateHPText();
-        UpdateShieldText();
-        UpdateAttackText();
-        UpdateSpeedText();
-        UpdateCritRatioText();
-        UpdateEnemiesKilledText();
-        UpdateLevelReachedText();
-        UpdateMoneyEarnedText();
-        UpdateGameRuntimeText();
-
-        // foreach (Skill skill in skills)
-        // {
-        //     GameObject newSkill = Instantiate(newSkillObject, newSkillObject.transform.position, newSkillObject.transform.rotation);
-        //     if (newSkill)
-        //     {
-        //         newSkill.GetComponent<LevelSkill>().skill = skill;
-        //         newSkill.GetComponent<LevelSkill>().SetSkillNameText();
-        //         newSkill.GetComponent<LevelSkill>().SetSkillDescriptionText();
-        //         newSkill.GetComponent<LevelSkill>().SetSkillIcon();
-        //         newSkill.transform.SetParent(skillList);
-        //     }
-
-        // }
     }
 
     // Update is called once per frame

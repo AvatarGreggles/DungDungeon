@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.6256, y: 153}
+  m_AnchoredPosition: {x: 1.6256, y: 131}
   m_SizeDelta: {x: 208.8749, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3056363910918656840
@@ -66,7 +66,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 0a0d76bdbb99c492b962a4e6a5b7d568, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
@@ -107,7 +107,7 @@ RectTransform:
   m_GameObject: {fileID: 3056363911117304719}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.12, y: 1.12, z: 1.12}
   m_Children:
   - {fileID: 3056363912410741082}
   - {fileID: 3056363910918656842}
@@ -135,8 +135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillCardSpriteRenderer: {fileID: 3056363912410741081}
-  selectedSkillCard: {fileID: -3003608095193546460, guid: 4731ec22ab9974123b81944ae9316847, type: 3}
-  defaultSkillCard: {fileID: 1909944001367179602, guid: 4731ec22ab9974123b81944ae9316847, type: 3}
+  selectedSkillCard: {fileID: 21300000, guid: 56df179610a4b49dfa11d490c4f54bb1, type: 3}
+  defaultSkillCard: {fileID: 21300000, guid: 10a155fc9c23b43629a79c7e322caba3, type: 3}
   skill: {fileID: 0}
   skillNameText: {fileID: 3056363910918656841}
   skillDescriptionText: {fileID: 2104002183341530504}
@@ -169,7 +169,7 @@ RectTransform:
   m_GameObject: {fileID: 3056363912410741083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.853, y: 1.853, z: 1.853}
   m_Children: []
   m_Father: {fileID: 3056363911117304718}
   m_RootOrder: 0
@@ -177,7 +177,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.19429, y: -12.421}
-  m_SizeDelta: {x: 307.57, y: 422.36}
+  m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3056363912410741080
 CanvasRenderer:
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1909944001367179602, guid: 4731ec22ab9974123b81944ae9316847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 10a155fc9c23b43629a79c7e322caba3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -244,14 +244,14 @@ RectTransform:
   m_GameObject: {fileID: 4310538533864531386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1641, y: 1.1641, z: 1.1641}
   m_Children: []
   m_Father: {fileID: 3056363911117304718}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.5343, y: 44}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 3.5343, y: 23}
   m_SizeDelta: {x: 130, y: 130.051}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3114597675356847101
@@ -319,15 +319,15 @@ RectTransform:
   m_GameObject: {fileID: 7560473215622501130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_LocalScale: {x: 1.0625, y: 1.0625, z: 1.0625}
   m_Children: []
   m_Father: {fileID: 3056363911117304718}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.0442, y: -119}
-  m_SizeDelta: {x: 216.8927, y: 122.57}
+  m_AnchoredPosition: {x: 3.0442, y: -136.99661}
+  m_SizeDelta: {x: 216.8927, y: 93.7754}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2185831760772506148
 CanvasRenderer:
@@ -358,7 +358,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 0a0d76bdbb99c492b962a4e6a5b7d568, type: 3}
     m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0

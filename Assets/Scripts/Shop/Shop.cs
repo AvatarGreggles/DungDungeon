@@ -13,6 +13,10 @@ public class Shop : MonoBehaviour
 
     [SerializeField] Transform playerShopUI;
 
+    public AudioClip switchItemSound;
+    public AudioClip selectItemSound;
+    AudioSource audioSource;
+
 
     [SerializeField] Text currencyText;
 
@@ -34,6 +38,11 @@ public class Shop : MonoBehaviour
     PlayerInput playerInput;
 
     List<Item> randomShopItems;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void CloseShop()
     {
@@ -140,21 +149,15 @@ public class Shop : MonoBehaviour
         Debug.Log(navigateMovement.x);
 
 
-        if (navigateMovement.x != 0f && navigateMovement.y != 0f)
-        {
-            return;
-        }
-
-
         if (navigateMovement.y < 0f)
         {
+            audioSource.PlayOneShot(switchItemSound, 1f);
             foreach (ShopItem item in currentItems)
             {
                 item.UnsetItemAsSelected();
             }
             currentItemSelected++;
 
-
             if (currentItemSelected < 0)
             {
                 currentItemSelected = currentItems.Length - 1;
@@ -164,16 +167,19 @@ public class Shop : MonoBehaviour
             {
                 currentItemSelected = 0;
             }
+
+            currentItems[currentItemSelected].SetItemAsSelected();
+
         }
         else if (navigateMovement.y > 0f)
         {
+            audioSource.PlayOneShot(switchItemSound, 1f);
             foreach (ShopItem item in currentItems)
             {
                 item.UnsetItemAsSelected();
             }
             currentItemSelected--;
 
-
             if (currentItemSelected < 0)
             {
                 currentItemSelected = currentItems.Length - 1;
@@ -183,15 +189,16 @@ public class Shop : MonoBehaviour
             {
                 currentItemSelected = 0;
             }
+
+            currentItems[currentItemSelected].SetItemAsSelected();
+
         }
-
-
-        currentItems[currentItemSelected].SetItemAsSelected();
 
     }
 
     public void HandleInteract()
     {
+        audioSource.PlayOneShot(selectItemSound, 1f);
         // ShopItem[] items = FindObjectsOfType<ShopItem>();
         ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
         if (currentItems.Length == 0)
@@ -201,13 +208,16 @@ public class Shop : MonoBehaviour
         if (currentItemSelected != -1)
         {
 
-            Debug.Log("purchased, should remove");
 
-            currentItems[currentItemSelected].PurchaseItem();
+            bool successfulPurchase = currentItems[currentItemSelected].PurchaseItem();
 
-            currentItems[currentItemSelected].gameObject.SetActive(false);
-            currentItemSelected = 0;
-            currentItems[currentItemSelected].SetItemAsSelected();
+            if (successfulPurchase)
+            {
+                Debug.Log("purchased, should remove");
+                currentItems[currentItemSelected].gameObject.SetActive(false);
+                currentItemSelected = 0;
+                currentItems[currentItemSelected].SetItemAsSelected();
+            }
 
         }
     }

@@ -17,6 +17,6 @@ MonoBehaviour:
   price: 50
   itemIcon: {fileID: -8322868590462112959, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   itemType: 1
-  statIncrease: 25
+  statIncrease: 1.25
   targetStat: 2
   ability: 0

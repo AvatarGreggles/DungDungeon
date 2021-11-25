@@ -54,16 +54,31 @@ public class GameController : MonoBehaviour
 
     PlayerInputManager playerInputManager;
 
+    public AudioClip gameMusic;
+    [SerializeField] AudioSource audioSource;
+
+
     private void Awake()
     {
         Instance = this;
 
         playerInputManager = GetComponent<PlayerInputManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
     {
         StartCoroutine(LevelManager.Instance.HandleLevelLoad(true));
+    }
+
+    public void StopGameMusic()
+    {
+        audioSource.Stop();
+    }
+
+    public void PlayGameMusic()
+    {
+        audioSource.Play();
     }
 
     private void Update()

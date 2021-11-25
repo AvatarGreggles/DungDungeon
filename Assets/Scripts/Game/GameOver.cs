@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
@@ -27,15 +28,11 @@ public class GameOver : MonoBehaviour
 
     [SerializeField] Text levelReachedText;
     [SerializeField] Text gameRuntimeText;
-
-
     Player player;
+    [SerializeField] Button goToShopButton;
 
-    // public void CloseSkillScreen()
-    // {
-    //     gameObject.SetActive(false);
-    //     GameController.Instance.currentState = State.Active;
-    // }
+    [SerializeField] Button quitButton;
+
 
     public void UpdateCurrency()
     {
@@ -97,6 +94,17 @@ public class GameOver : MonoBehaviour
     void Start()
     {
 
+        goToShopButton.onClick.AddListener(() =>
+{
+    HandleGoToShop();
+});
+
+        quitButton.onClick.AddListener(() =>
+     {
+         HandleGoToMainMenu();
+     });
+
+
         player = GameController.Instance.players[0];
 
         UpdateCurrency();
@@ -109,25 +117,16 @@ public class GameOver : MonoBehaviour
         UpdateLevelReachedText();
         UpdateMoneyEarnedText();
         UpdateGameRuntimeText();
-
-        // foreach (Skill skill in skills)
-        // {
-        //     GameObject newSkill = Instantiate(newSkillObject, newSkillObject.transform.position, newSkillObject.transform.rotation);
-        //     if (newSkill)
-        //     {
-        //         newSkill.GetComponent<LevelSkill>().skill = skill;
-        //         newSkill.GetComponent<LevelSkill>().SetSkillNameText();
-        //         newSkill.GetComponent<LevelSkill>().SetSkillDescriptionText();
-        //         newSkill.GetComponent<LevelSkill>().SetSkillIcon();
-        //         newSkill.transform.SetParent(skillList);
-        //     }
-
-        // }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void HandleGoToShop()
     {
-
+        SceneManager.LoadScene(2);
     }
+
+    public void HandleGoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 }
