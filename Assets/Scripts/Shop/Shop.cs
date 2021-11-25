@@ -137,13 +137,13 @@ public class Shop : MonoBehaviour
         }
 
         navigateMovement = value.Get<Vector2>();
+        Debug.Log(navigateMovement.x);
 
 
-
-        // if (navigateMovement.x == 0f)
-        // {
-        //     return;
-        // }
+        if (navigateMovement.x != 0f && navigateMovement.y != 0f)
+        {
+            return;
+        }
 
 
         if (navigateMovement.y < 0f)

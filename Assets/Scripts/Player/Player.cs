@@ -77,14 +77,16 @@ public class Player : MonoBehaviour
     public int delayAmount = 1; // Second count
     protected float Timer;
 
+    PlayerBaseStatManager playerBaseStats;
 
+    [SerializeField] GameObject criticalDamageSprite;
+    [SerializeField] GameObject damageSprite;
 
 
 
     private void Awake()
     {
-        health = maxHealth;
-        shield = maxShield;
+
         audioSource = GetComponent<AudioSource>();
         playerInput = GetComponent<PlayerInput>();
         collider = GetComponent<Collider2D>();
@@ -95,6 +97,13 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        playerBaseStats = FindObjectOfType<PlayerBaseStatManager>();
+        health = maxHealth + playerBaseStats.bonusMaxHP;
+        maxShield = maxShield + playerBaseStats.bonusMaxShield;
+        shield = maxShield;
+        attack = attack + playerBaseStats.bonusAttackPower;
+        maxDungSize = maxDungSize + playerBaseStats.bonusMaxDung;
+
         previousLevel = level;
         SetPlayerTag();
         initialHealthBarSize = healthBar.transform.localScale;
@@ -267,6 +276,7 @@ public class Player : MonoBehaviour
 
     public void OnNavigateUI(InputValue value)
     {
+
         if (GameController.Instance.currentState == State.LevelUp)
         {
             NewSkillScreen levelUpScreen = FindObjectOfType<NewSkillScreen>();
@@ -311,13 +321,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void DealDamage(int damage)
+    public void DealDamage(int damage, bool isCriticalHit)
     {
         if (isInvincible) { return; }
+
+        GameObject spriteToInstantiate = isCriticalHit ? criticalDamageSprite : damageSprite;
+        GameObject damageObject = Instantiate(spriteToInstantiate, damageDisplayPivot.transform.position, damageDisplayPivot.transform.rotation);
+        damageObject.transform.SetParent(transform);
+        damageObject.GetComponent<DisplayDamage>().showDamage(damage);
+        damageObject.transform.SetParent(null);
 
         if (shield > 0)
         {
             shield -= damage;
+
             shieldBar.transform.localScale = new Vector3(initialShieldBarSize.x * (shield / maxShield), initialShieldBarSize.y, initialShieldBarSize.z);
 
         }
@@ -325,6 +342,7 @@ public class Player : MonoBehaviour
         {
             shieldBar.transform.localScale = new Vector3(0f, initialShieldBarSize.y, initialShieldBarSize.z);
             health -= damage;
+
             UpdateHealthBar();
 
         }

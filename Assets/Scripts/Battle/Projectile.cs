@@ -131,39 +131,19 @@ public class Projectile : MonoBehaviour
         return closest;
     }
 
-    void ShowDamage(Enemy enemy, Player player)
-    {
-        GameObject target = isPlayerProjectile ? enemy.gameObject : player.gameObject;
-        Transform damageDisplayPivot = isPlayerProjectile ? enemy.damageDisplayPivot.transform : player.damageDisplayPivot.transform;
+    // void ShowDamage(Enemy enemy, Player player)
+    // {
+    //     bool shootThroughEnemiesEnabled = FindObjectOfType<Player>().GetComponent<PlayerAbilities>().shootThroughEnemiesEnabled;
+    //     if (enemy && shootThroughEnemiesEnabled)
+    //     {
+    //         //Do something
+    //     }
+    //     else
+    //     {
+    //         gameObject.SetActive(false);
 
-        GameObject spriteToInstantiate = isCriticalHit ? criticalDamageSprite : damageSprite;
-        GameObject damageObject = Instantiate(spriteToInstantiate, damageDisplayPivot.position, damageDisplayPivot.rotation);
-        damageObject.transform.SetParent(target.transform);
-        damageObject.GetComponent<DisplayDamage>().showDamage(power);
-        bool shootThroughEnemiesEnabled = FindObjectOfType<Player>().GetComponent<PlayerAbilities>().shootThroughEnemiesEnabled;
-        if (enemy && shootThroughEnemiesEnabled)
-        {
-            damageObject.transform.SetParent(null);
-        }
-        else
-        {
-            gameObject.SetActive(false);
-            damageObject.transform.SetParent(null);
-        }
-    }
-
-    void HandleDamageDealing(Enemy enemy, Player player)
-    {
-        if (enemy)
-        {
-            enemy.DealDamage(power);
-        }
-
-        if (player)
-        {
-            player.DealDamage(power);
-        }
-    }
+    //     }
+    // }
 
     private IEnumerator OnProjectileImpact(Enemy enemy = default, Player player = default)
     {
@@ -172,9 +152,16 @@ public class Projectile : MonoBehaviour
         {
             audioSource.PlayOneShot(hit, 0.7F);
         }
-        ShowDamage(enemy, player);
-        HandleDamageDealing(enemy, player);
+        // ShowDamage();
+        if (enemy)
+        {
+            enemy.DealDamage(power, isCriticalHit);
+        }
 
+        if (player)
+        {
+            player.DealDamage(power, isCriticalHit);
+        }
         // Clean up projectile
         yield return new WaitForSeconds(0.5f);
         // Destroy(gameObject);

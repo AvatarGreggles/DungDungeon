@@ -62,7 +62,7 @@ public class Item : ScriptableObject
 
         if (targetStat == TargetStat.Attack)
         {
-            player.attack += statIncrease;
+            player.attack *= statIncrease;
             shop.UpdateAttackText();
         }
 

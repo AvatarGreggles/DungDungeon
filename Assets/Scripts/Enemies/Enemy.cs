@@ -16,6 +16,10 @@ public class Enemy : MonoBehaviour
 
     Vector3 initialHealthBarSize;
 
+    [SerializeField] GameObject criticalDamageSprite;
+    [SerializeField] GameObject damageSprite;
+
+
     private void Awake()
     {
         collider = GetComponent<Collider2D>();
@@ -41,8 +45,15 @@ public class Enemy : MonoBehaviour
         return enemyStats.attackPower * LevelManager.Instance.floor;
     }
 
-    public void DealDamage(int damage)
+    public void DealDamage(int damage, bool isCriticalHit)
     {
+        GameObject spriteToInstantiate = isCriticalHit ? criticalDamageSprite : damageSprite;
+        // GameObject spriteToInstantiate = damageSprite;
+        GameObject damageObject = Instantiate(spriteToInstantiate, damageDisplayPivot.transform.position, damageDisplayPivot.transform.rotation);
+        damageObject.transform.SetParent(transform);
+        damageObject.GetComponent<DisplayDamage>().showDamage(damage);
+        damageObject.transform.SetParent(null);
+
         health -= damage;
         if (gameObject.activeSelf)
         {
@@ -96,7 +107,7 @@ public class Enemy : MonoBehaviour
         {
             if (other.gameObject.activeSelf)
             {
-                other.gameObject.GetComponent<Player>().DealDamage(1);
+                other.gameObject.GetComponent<Player>().DealDamage(Mathf.RoundToInt(enemyStats.attackPower / 2), false);
             }
         }
     }

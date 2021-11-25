@@ -345,6 +345,8 @@ MonoBehaviour:
   damageDisplayPivot: {fileID: 6193555712537493919}
   enemyStats: {fileID: 11400000, guid: 0513b762c02e540f69ef8dca514d466c, type: 2}
   loot: {fileID: 3627446960729447023, guid: 6b59ef42d087c4997ba67356c9b1a196, type: 3}
+  criticalDamageSprite: {fileID: 1905902881067641905, guid: cc282c30cc80f42c4b4399f5d779cec6, type: 3}
+  damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
 --- !u!114 &-540677613515049708
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 495141f68fa05491f863dcd0730ee22b
   - enabled: 0
-    path: Assets/Scenes/Game.unity
+    path: 
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Dung Dungeon.unity
     guid: 464aa1e4334804305b0d88588cc6219c
+  - enabled: 1
+    path: Assets/Scenes/Nest.unity
+    guid: c3006b4d2f9104d539f9a91e3d1ba88d
   m_configObjects: {}

@@ -28,6 +28,8 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] PlayerInput playerInput;
 
+    PlayerBaseStatManager playerBaseStatManager;
+
 
     private void Awake()
     {
@@ -41,6 +43,7 @@ public class PlayerAttack : MonoBehaviour
     private void Start()
     {
 
+        playerBaseStatManager = FindObjectOfType<PlayerBaseStatManager>();
         // StartCoroutine(Shooting());
     }
 
@@ -91,7 +94,7 @@ public class PlayerAttack : MonoBehaviour
                         bonusCritDamage = 2f;
                     }
 
-                    projectile.GetComponent<Projectile>().power = Convert.ToInt32(Mathf.Round((GetComponent<Player>().attack * bonusCritDamage) + (player.dungAccumulated / 10)));
+                    projectile.GetComponent<Projectile>().power = Convert.ToInt32(Mathf.Round((GetComponent<Player>().attack * bonusCritDamage))); // TODO: Modifier for dung collected player.dungAccumulated / 10
                     player.dungAccumulated = 0;
                     GameController.Instance.SetDungText(player.dungAccumulated, playerInput);
                     attackReleased = false;

@@ -1034,7 +1034,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6328877851658528041}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 2.69, z: -0.2801067}
+  m_LocalPosition: {x: -0.12, y: 3.2, z: -0.2801067}
   m_LocalScale: {x: 2.539835, y: 2.539835, z: 2.539835}
   m_Children: []
   m_Father: {fileID: 8568219434171882056}
@@ -1424,14 +1424,14 @@ MonoBehaviour:
   level: 1
   previousLevel: 0
   criticalHitRatio: 6.25
-  maxHealth: 4
+  maxHealth: 500
   attackSpeedBonus: 1
   shield: 0
-  maxShield: 10
+  maxShield: 300
   healthBar: {fileID: 2078988125718980244}
   shieldBar: {fileID: 6829623281336045877}
   expBar: {fileID: 70515633247146582}
-  attack: 1
+  attack: 100
   damageDisplayPivot: {fileID: 6328877851658528041}
   p1Tag: {fileID: 2597456256049176975}
   p2Tag: {fileID: 2519305091937041666}
@@ -1451,6 +1451,8 @@ MonoBehaviour:
   willLevelUp: 0
   playerLevelTextP1: {fileID: 6526278113208250979}
   delayAmount: 1
+  criticalDamageSprite: {fileID: 1905902881067641905, guid: cc282c30cc80f42c4b4399f5d779cec6, type: 3}
+  damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
 --- !u!114 &3620035378186348920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1469,6 +1471,7 @@ MonoBehaviour:
   healthUpEnabled: 0
   projectilePassThroughEnabled: 0
   projectileBounceEnabled: 1
+  shootThroughEnemiesEnabled: 0
   hpRegeneration: 0
 --- !u!95 &7285743007244160389
 Animator:

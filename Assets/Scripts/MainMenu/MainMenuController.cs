@@ -10,17 +10,24 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] Button startButton;
     [SerializeField] Button quitButton;
 
+    [SerializeField] Button nestButton;
+
     // Start is called before the first frame update
     void Start()
     {
         startButton.onClick.AddListener(() =>
         {
-            HandleStartClick(startButton);
+            HandleStartClick();
         });
 
         quitButton.onClick.AddListener(() =>
        {
-           HandleQuitClick(startButton);
+           HandleQuitClick();
+       });
+
+        nestButton.onClick.AddListener(() =>
+       {
+           HandleNestClick();
        });
     }
 
@@ -32,5 +39,10 @@ public class MainMenuController : MonoBehaviour
     public void HandleQuitClick(Button button = null)
     {
         Debug.Log(button);
+    }
+
+    public void HandleNestClick(Button button = null)
+    {
+        SceneManager.LoadScene(2);
     }
 }

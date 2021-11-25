@@ -275,6 +275,8 @@ MonoBehaviour:
   damageDisplayPivot: {fileID: 6193555712537493919}
   enemyStats: {fileID: 11400000, guid: faac9371ab5fa443a8867800b7ad7fc7, type: 2}
   loot: {fileID: 3627446960729447023, guid: 6b59ef42d087c4997ba67356c9b1a196, type: 3}
+  criticalDamageSprite: {fileID: 1905902881067641905, guid: cc282c30cc80f42c4b4399f5d779cec6, type: 3}
+  damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
 --- !u!114 &-540677613515049708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,6 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00717d90db8054e058b3b5f7ba57502d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invincibilityTime: 1
 --- !u!114 &-6947175245239999833
 MonoBehaviour:
   m_ObjectHideFlags: 0

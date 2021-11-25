@@ -43,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip dungCollectSound;
     AudioSource audioSource;
 
+    PlayerBaseStatManager playerBaseStats;
+
 
     private void Awake()
     {
@@ -62,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerBaseStats = FindObjectOfType<PlayerBaseStatManager>();
         spawnPosition = LevelManager.Instance.playerSpawnPoint;
 
 
@@ -158,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
     private void Movement()
     {
         Vector2 currentPos = rbody.position;
-        Vector2 adjustedMovement = movement * movementSpeed;
+        Vector2 adjustedMovement = movement * (movementSpeed + playerBaseStats.bonusMoveSpeed);
         Vector2 newPos = currentPos + adjustedMovement * Time.fixedDeltaTime;
 
 
