@@ -10,11 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c548c840cd7174769b02fea60994279c, type: 3}
-  m_Name: Enemy_Plant
+  m_Name: Enemy_Ant
   m_EditorClassIdentifier: 
-  maxHP: 4
-  attackPower: 1
-  moveSpeed: 1
-  attackSpeed: 1
-  defense: 0
-  currencyDrop: 1
+  level: 1
+  baseMaxHP: 200
+  baseAttackPower: 100
+  baseMoveSpeed: 2
+  baseAttackSpeed: 20
+  baseDefense: 1
+  baseCurrencyDrop: 10
+  baseExpYield: 25
+  maxHP: 200
+  attackPower: 0
+  moveSpeed: 0
+  attackSpeed: 20
+  defense: 1
+  currencyDrop: 0
+  expYield: 0
+  statRange: 0
