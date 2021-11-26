@@ -52,17 +52,17 @@ public class MainMenuController : MonoBehaviour
        });
     }
 
-    IEnumerator EnterGame()
-    {
-        var sequence = DOTween.Sequence();
-        sequence.Append(Camera.main.transform.DOScaleZ(1f, 2.4f));
-        yield return sequence.WaitForCompletion();
-    }
+    // IEnumerator EnterGame()
+    // {
+    //     var sequence = DOTween.Sequence();
+    //     sequence.Append(Camera.main.transform.DOScaleZ(1f, 2.4f));
+    //     yield return sequence.WaitForCompletion();
+    // }
 
     public void HandleStartClick(Button button = null)
     {
-        // SceneManager.LoadScene(1);
-        StartCoroutine(EnterGame());
+        SceneManager.LoadScene(1);
+        // StartCoroutine(EnterGame());
     }
 
     public void HandleQuitClick(Button button = null)

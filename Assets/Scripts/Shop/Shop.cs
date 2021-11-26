@@ -39,6 +39,8 @@ public class Shop : MonoBehaviour
 
     List<Item> randomShopItems;
 
+    [SerializeField] GameObject outOfStockObject;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -198,13 +200,16 @@ public class Shop : MonoBehaviour
 
     public void HandleInteract()
     {
-        audioSource.PlayOneShot(selectItemSound, 1f);
-        // ShopItem[] items = FindObjectsOfType<ShopItem>();
-        ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
-        if (currentItems.Length == 0)
+        if (currentItemSelected == -1)
         {
             return;
         }
+
+        ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
+
+        audioSource.PlayOneShot(selectItemSound, 1f);
+        // ShopItem[] items = FindObjectsOfType<ShopItem>();
+
         if (currentItemSelected != -1)
         {
 
@@ -217,8 +222,15 @@ public class Shop : MonoBehaviour
                 currentItems[currentItemSelected].gameObject.SetActive(false);
                 currentItemSelected = 0;
                 currentItems[currentItemSelected].SetItemAsSelected();
-            }
 
+                ShopItem[] availableItems = playerShopUI.GetComponentsInChildren<ShopItem>();
+                if (availableItems.Length == 0)
+                {
+                    outOfStockObject.SetActive(true);
+                    currentItemSelected = -1;
+                }
+
+            }
         }
     }
 }
