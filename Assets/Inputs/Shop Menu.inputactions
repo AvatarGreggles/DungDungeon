@@ -1,8 +1,8 @@
 {
-    "name": "Pause Menu",
+    "name": "Shop Menu",
     "maps": [
         {
-            "name": "Pause Menu",
+            "name": "ShopMenu",
             "id": "31e4cc7a-40e4-4d8d-8bcc-8228c81e3c39",
             "actions": [
                 {

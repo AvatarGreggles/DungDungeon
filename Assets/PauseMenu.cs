@@ -48,6 +48,7 @@ public class PauseMenu : MonoBehaviour
 
     PlayerInput playerInput;
 
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -116,8 +117,8 @@ public class PauseMenu : MonoBehaviour
 
     private void UnpauseGame()
     {
-        playerInput = FindObjectOfType<PlayerInput>();
-        playerInput.SwitchCurrentActionMap("Player");
+        playerInput.actions.Enable();
+        currentItemSelected = -1;
         StartCoroutine(LevelTransition.Instance.OnUnpause());
     }
 
@@ -144,8 +145,6 @@ public class PauseMenu : MonoBehaviour
 
         player = GameController.Instance.players[0];
 
-        player.GetComponent<PlayerInput>().enabled = false;
-
         UpdateCurrency();
         UpdateHPText();
         UpdateShieldText();
@@ -156,6 +155,8 @@ public class PauseMenu : MonoBehaviour
         UpdateLevelReachedText();
         UpdateMoneyEarnedText();
         UpdateGameRuntimeText();
+
+        playerInput.actions.Disable();
     }
 
     public void HandleGoToShop()
@@ -236,8 +237,12 @@ public class PauseMenu : MonoBehaviour
     {
         if (currentItemSelected == -1) { return; }
         audioSource.PlayOneShot(selectItemSound, 1f);
-        player.GetComponent<PlayerInput>().enabled = true;
         buttons[currentItemSelected].onClick.Invoke();
         currentItemSelected = -1;
+    }
+
+    public void OnCancel()
+    {
+        HandleContinueGame();
     }
 }

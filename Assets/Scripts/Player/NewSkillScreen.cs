@@ -96,7 +96,7 @@ public class NewSkillScreen : MonoBehaviour
         UpdateSpeedText();
         UpdateCritRatioText();
 
-        playerInput.enabled = false;
+        playerInput.actions.Disable();
         randomSkillItems = HelperMethods.GetRandomItemsFromList<Skill>(skills, skillOfferCount);
         foreach (Skill skill in randomSkillItems)
         {
@@ -135,7 +135,10 @@ public class NewSkillScreen : MonoBehaviour
 
     private void OnDisable()
     {
-        GameController.Instance.PlayGameMusic();
+        if (GameController.Instance != null)
+        {
+            GameController.Instance.PlayGameMusic();
+        }
     }
 
 
@@ -185,7 +188,7 @@ public class NewSkillScreen : MonoBehaviour
     {
         if (currentSkillSelected != -1)
         {
-            playerInput.enabled = true;
+            playerInput.actions.Enable();
             audioSource.PlayOneShot(selectItemSound, 1f);
             Debug.Log(currentSkillSelected);
 

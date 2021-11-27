@@ -340,21 +340,13 @@ public class Player : MonoBehaviour
     public void OnNavigateUI(InputValue value)
     {
 
-        if (GameController.Instance.currentState == State.Shop)
-        {
-            Shop shopScreen = FindObjectOfType<Shop>();
-            shopScreen.HandleNavigation(value);
-        }
+
     }
 
     public void OnInteract()
     {
 
-        if (GameController.Instance.currentState == State.Shop)
-        {
-            Shop shopScreen = FindObjectOfType<Shop>();
-            shopScreen.HandleInteract();
-        }
+
     }
 
     public void OnCancel()

@@ -75,8 +75,6 @@ public class GameWin : MonoBehaviour
 
         player = GameController.Instance.players[0];
 
-        player.GetComponent<PlayerInput>().enabled = false;
-
         UpdateCurrency();
         UpdateHPText();
         UpdateShieldText();
@@ -236,7 +234,6 @@ public class GameWin : MonoBehaviour
     public void OnInteract()
     {
         if (currentItemSelected == -1) { return; }
-        player.GetComponent<PlayerInput>().enabled = true;
         audioSource.PlayOneShot(selectItemSound, 1f);
         buttons[currentItemSelected].onClick.Invoke();
         currentItemSelected = -1;

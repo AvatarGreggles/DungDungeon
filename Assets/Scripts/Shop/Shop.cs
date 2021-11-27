@@ -51,7 +51,7 @@ public class Shop : MonoBehaviour
         currentItemSelected = -1;
         gameObject.SetActive(false);
         GameController.Instance.currentState = State.Active;
-        playerInput.SwitchCurrentActionMap("Player");
+        playerInput.actions.Enable();
     }
 
     public void UpdateCurrency()
@@ -107,7 +107,8 @@ public class Shop : MonoBehaviour
         UpdateSpeedText();
         UpdateCritRatioText();
 
-        playerInput.SwitchCurrentActionMap("LevelUpMenu");
+        playerInput.actions.Disable();
+
         randomShopItems = HelperMethods.GetRandomItemsFromList<Item>(shopItems, shopItemOfferCount);
 
         foreach (Item shopItem in randomShopItems)
@@ -139,7 +140,7 @@ public class Shop : MonoBehaviour
 
 
 
-    public void HandleNavigation(InputValue value)
+    public void OnNavigateUI(InputValue value)
     {
         ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
         if (currentItems.Length == 0)
@@ -197,7 +198,7 @@ public class Shop : MonoBehaviour
 
     }
 
-    public void HandleInteract()
+    public void OnInteract()
     {
         if (currentItemSelected == -1)
         {
@@ -236,5 +237,10 @@ public class Shop : MonoBehaviour
                 // audioSource.PlayOneShot(selectItemSound, 1f);
             }
         }
+    }
+
+    public void OnCancel()
+    {
+        CloseShop();
     }
 }
