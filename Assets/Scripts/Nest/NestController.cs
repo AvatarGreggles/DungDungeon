@@ -219,6 +219,16 @@ public class NestController : MonoBehaviour
         // Set stat passive gameobject to true
     }
 
+    public void OnCancel(InputValue value)
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void OnStart(InputValue value)
+    {
+        SceneManager.LoadScene(1);
+    }
+
     public void OnNavigateUI(InputValue value)
     {
         navigateMovement = value.Get<Vector2>();

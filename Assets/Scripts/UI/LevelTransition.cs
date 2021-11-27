@@ -58,7 +58,10 @@ public class LevelTransition : MonoBehaviour
         var sequence = DOTween.Sequence();
         sequence.Append(overlay.transform.DOScaleX(1f, 0.4f));
         yield return new WaitForSeconds(0.5f);
+
         GameController.Instance.levelUpMenu.SetActive(true);
+
+
     }
 
     public IEnumerator OnPause()
@@ -91,6 +94,7 @@ public class LevelTransition : MonoBehaviour
         sequence.Append(overlay.transform.DOScaleX(1f, 0.4f));
         yield return sequence.WaitForCompletion();
         GameController.Instance.gameWinMenu.SetActive(true);
+        Debug.Log("Courtininggg");
     }
 
     public IEnumerator OnUnpause()

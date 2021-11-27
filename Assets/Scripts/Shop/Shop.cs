@@ -206,7 +206,6 @@ public class Shop : MonoBehaviour
 
         ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
 
-        audioSource.PlayOneShot(selectItemSound, 1f);
         // ShopItem[] items = FindObjectsOfType<ShopItem>();
 
         if (currentItemSelected != -1)
@@ -217,6 +216,7 @@ public class Shop : MonoBehaviour
 
             if (successfulPurchase)
             {
+                audioSource.PlayOneShot(selectItemSound, 1f);
                 Debug.Log("purchased, should remove");
                 currentItems[currentItemSelected].gameObject.SetActive(false);
                 currentItemSelected = 0;
@@ -229,6 +229,11 @@ public class Shop : MonoBehaviour
                     currentItemSelected = -1;
                 }
 
+            }
+            else
+            {
+                // Play error sound purchasing
+                // audioSource.PlayOneShot(selectItemSound, 1f);
             }
         }
     }

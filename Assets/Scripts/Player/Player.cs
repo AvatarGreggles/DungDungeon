@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
 
     Collider2D collider;
 
-    public float invincibilityFrameTime = 1f;
+    public float invincibilityFrameTime = 4f;
     public bool isInvincible = false;
 
     public bool willLevelUp = false;
@@ -86,6 +86,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] public List<Item> itemInventory;
     [SerializeField] public List<Skill> skillInventory;
+
+    float stopwatch = 0;
 
 
     private void Awake()
@@ -130,6 +132,21 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+
+        if (isInvincible == true)
+        {
+            stopwatch += Time.deltaTime;
+            if (stopwatch >= invincibilityFrameTime)
+            {
+                Debug.Log("no longer inv");
+                isInvincible = false;
+            }
+        }
+        else
+        {
+            stopwatch = 0;
+        }
+
         if (dungAccumulated != prevDungAccumulated && dungAccumulated > 0 && dungAccumulated < maxDungSize && !isShooting)
         {
             SetSpriteSize();
@@ -197,10 +214,17 @@ public class Player : MonoBehaviour
         else
         {
             Debug.Log("loool");
+            playerInput.SwitchCurrentActionMap("PauseMenu");
             GameController.Instance.currentState = State.Paused;
         }
 
 
+    }
+
+    public void OnUnpauseGame()
+    {
+        playerInput.SwitchCurrentActionMap("Player");
+        GameController.Instance.currentState = State.Active;
     }
 
     void SetLevelText()
@@ -316,12 +340,6 @@ public class Player : MonoBehaviour
     public void OnNavigateUI(InputValue value)
     {
 
-        if (GameController.Instance.currentState == State.LevelUp)
-        {
-            NewSkillScreen levelUpScreen = FindObjectOfType<NewSkillScreen>();
-            levelUpScreen.HandleNavigation(value);
-        }
-
         if (GameController.Instance.currentState == State.Shop)
         {
             Shop shopScreen = FindObjectOfType<Shop>();
@@ -331,11 +349,6 @@ public class Player : MonoBehaviour
 
     public void OnInteract()
     {
-        if (GameController.Instance.currentState == State.LevelUp)
-        {
-            NewSkillScreen levelUpScreen = FindObjectOfType<NewSkillScreen>();
-            levelUpScreen.HandleInteract();
-        }
 
         if (GameController.Instance.currentState == State.Shop)
         {
@@ -346,11 +359,6 @@ public class Player : MonoBehaviour
 
     public void OnCancel()
     {
-        // if (GameController.Instance.currentState == State.LevelUp)
-        // {
-        //     GameController.Instance.currentState = State.Active;
-        //     GameController.Instance.levelUpMenu.SetActive(false);
-        // }
 
         if (GameController.Instance.currentState == State.Shop)
         {
@@ -363,6 +371,7 @@ public class Player : MonoBehaviour
     public void DealDamage(int damage, bool isCriticalHit)
     {
         if (isInvincible) { return; }
+        isInvincible = true;
 
         GameObject spriteToInstantiate = isCriticalHit ? criticalDamageSprite : damageSprite;
         GameObject damageObject = Instantiate(spriteToInstantiate, damageDisplayPivot.transform.position, damageDisplayPivot.transform.rotation);

@@ -2917,6 +2917,8 @@ MonoBehaviour:
   - {fileID: 215688350}
   - {fileID: 473243614}
   - {fileID: 147584804}
+  - {fileID: 1662112089}
+  - {fileID: 256036204}
   switchItemSound: {fileID: 8300000, guid: 0d996343027e542a8a67a843da615aca, type: 3}
   selectItemSound: {fileID: 8300000, guid: 7804c5f5d784d4025bf0a4f9fcc64951, type: 3}
   increaseBonusHealth: {fileID: 618259718}

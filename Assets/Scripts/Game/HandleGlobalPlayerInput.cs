@@ -21,7 +21,7 @@ public class HandleGlobalPlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((playerInputManager.playerCount == playerInputManager.maxPlayerCount) || GameController.Instance.currentState == State.Death)
+        if ((playerInputManager.playerCount == playerInputManager.maxPlayerCount) || GameController.Instance.currentState == State.Death || GameController.Instance.currentState == State.GameWin)
         {
             DisableJoining();
         }

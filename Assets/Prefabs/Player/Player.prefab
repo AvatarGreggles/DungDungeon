@@ -1431,7 +1431,7 @@ MonoBehaviour:
   healthBar: {fileID: 2078988125718980244}
   shieldBar: {fileID: 6829623281336045877}
   expBar: {fileID: 70515633247146582}
-  attack: 100
+  attack: 9999
   damageDisplayPivot: {fileID: 6328877851658528041}
   p1Tag: {fileID: 2597456256049176975}
   p2Tag: {fileID: 2519305091937041666}
@@ -1446,7 +1446,7 @@ MonoBehaviour:
   levelReached: 0
   enemiesKilled: 0
   moneyEarned: 0
-  invincibilityFrameTime: 1
+  invincibilityFrameTime: 2
   isInvincible: 0
   willLevelUp: 0
   playerLevelTextP1: {fileID: 6526278113208250979}
@@ -1456,7 +1456,6 @@ MonoBehaviour:
   damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
   itemInventory: []
   skillInventory: []
-  entity: {fileID: 0}
 --- !u!114 &3620035378186348920
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -96,7 +96,7 @@ public class NewSkillScreen : MonoBehaviour
         UpdateSpeedText();
         UpdateCritRatioText();
 
-        playerInput.SwitchCurrentActionMap("LevelUpMenu");
+        playerInput.enabled = false;
         randomSkillItems = HelperMethods.GetRandomItemsFromList<Skill>(skills, skillOfferCount);
         foreach (Skill skill in randomSkillItems)
         {
@@ -139,7 +139,7 @@ public class NewSkillScreen : MonoBehaviour
     }
 
 
-    public void HandleNavigation(InputValue value)
+    public void OnNavigateUI(InputValue value)
     {
 
         navigateMovement = value.Get<Vector2>();
@@ -181,17 +181,17 @@ public class NewSkillScreen : MonoBehaviour
 
     }
 
-    public void HandleInteract()
+    public void OnInteract()
     {
         if (currentSkillSelected != -1)
         {
+            playerInput.enabled = true;
             audioSource.PlayOneShot(selectItemSound, 1f);
             Debug.Log(currentSkillSelected);
 
             LevelSkill[] currentSkills = skillList.GetComponentsInChildren<LevelSkill>();
             currentSkills[currentSkillSelected].ChooseSkill();
             currentSkills[currentSkillSelected].UnsetSkillAsSelected();
-            playerInput.SwitchCurrentActionMap("Player");
             currentSkillSelected = -1;
         }
     }

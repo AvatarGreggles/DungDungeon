@@ -35,6 +35,7 @@ public class GameController : MonoBehaviour, ISavable
 
     public GameObject levelUpMenu;
     public GameObject gameOverMenu;
+    public GameWin gameWinScreen;
 
     public GameObject gameWinMenu;
 
@@ -235,7 +236,6 @@ public class GameController : MonoBehaviour, ISavable
             playerEnemiesKilled = player.enemiesKilled,
             playerMoneyEarned = player.moneyEarned,
             playerInvincibilityFrameTime = player.invincibilityFrameTime,
-            playerIsInvincible = player.isInvincible,
             playerWillLevelUp = player.willLevelUp,
 
         };
@@ -277,7 +277,6 @@ public class GameController : MonoBehaviour, ISavable
             player.enemiesKilled = loadedData.playerEnemiesKilled;
             player.moneyEarned = loadedData.playerMoneyEarned;
             player.invincibilityFrameTime = loadedData.playerInvincibilityFrameTime;
-            player.isInvincible = loadedData.playerIsInvincible;
             player.willLevelUp = loadedData.playerWillLevelUp;
 
             Debug.Log("Player data loaded");
@@ -314,7 +313,6 @@ public class GameController : MonoBehaviour, ISavable
         public int playerEnemiesKilled;
         public int playerMoneyEarned;
         public float playerInvincibilityFrameTime;
-        public bool playerIsInvincible;
         public bool playerWillLevelUp;
 
 

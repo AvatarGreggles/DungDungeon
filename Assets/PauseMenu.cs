@@ -36,7 +36,22 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] Button continueButton;
 
+    [SerializeField] List<Button> buttons;
+
+    int currentItemSelected = -1;
+
+    private Vector2 navigateMovement;
+
+    public AudioClip switchItemSound;
+    public AudioClip selectItemSound;
+    AudioSource audioSource;
+
     PlayerInput playerInput;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
 
     public void UpdateCurrency()
@@ -97,7 +112,6 @@ public class PauseMenu : MonoBehaviour
     private void OnEnable()
     {
         playerInput = FindObjectOfType<PlayerInput>();
-        playerInput.SwitchCurrentActionMap("PauseMenu");
     }
 
     private void UnpauseGame()
@@ -130,6 +144,8 @@ public class PauseMenu : MonoBehaviour
 
         player = GameController.Instance.players[0];
 
+        player.GetComponent<PlayerInput>().enabled = false;
+
         UpdateCurrency();
         UpdateHPText();
         UpdateShieldText();
@@ -155,5 +171,73 @@ public class PauseMenu : MonoBehaviour
     public void HandleContinueGame()
     {
         UnpauseGame();
+    }
+
+    public void OnNavigateUI(InputValue value)
+    {
+        navigateMovement = value.Get<Vector2>();
+
+
+        foreach (Button button in buttons)
+        {
+            button.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+        }
+
+        if (currentItemSelected == -1)
+        {
+            currentItemSelected = 0;
+            audioSource.PlayOneShot(switchItemSound, 1f);
+            return;
+        }
+
+        // On top row
+
+
+        if (navigateMovement.x > 0f)
+        {
+            audioSource.PlayOneShot(switchItemSound, 1f);
+            currentItemSelected++;
+        }
+        else if (navigateMovement.x < 0f)
+        {
+            audioSource.PlayOneShot(switchItemSound, 1f);
+            currentItemSelected--;
+        }
+
+        // Move to next section
+        if (navigateMovement.y > 0f)
+        {
+            audioSource.PlayOneShot(switchItemSound, 1f);
+            currentItemSelected--;
+        }
+        else if (navigateMovement.y < 0f)
+        {
+            audioSource.PlayOneShot(switchItemSound, 1f);
+            currentItemSelected++;
+        }
+
+
+
+        if (currentItemSelected < 0)
+        {
+            currentItemSelected = buttons.Count - 1;
+        }
+
+        if (currentItemSelected > buttons.Count - 1)
+        {
+            currentItemSelected = 0;
+        }
+
+
+        buttons[currentItemSelected].GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.2f);
+    }
+
+    public void OnInteract()
+    {
+        if (currentItemSelected == -1) { return; }
+        audioSource.PlayOneShot(selectItemSound, 1f);
+        player.GetComponent<PlayerInput>().enabled = true;
+        buttons[currentItemSelected].onClick.Invoke();
+        currentItemSelected = -1;
     }
 }

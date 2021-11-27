@@ -36,6 +36,12 @@ public class DoorManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Player player = other.gameObject.GetComponent<Player>();
+
+            if (LevelManager.Instance.floor > LevelManager.Instance.levels.Count - 1)
+            {
+                GameController.Instance.currentState = State.GameWin;
+                return;
+            }
             if (player.willLevelUp)
             {
                 GameController.Instance.currentState = State.LevelUp;

@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] GameObject waitScreen;
     [SerializeField] public Transform playerSpawnPoint;
-    [SerializeField] List<Level> levels;
+    [SerializeField] public List<Level> levels;
 
     bool isFloorCleared = false;
 
@@ -45,6 +45,7 @@ public class LevelManager : MonoBehaviour
     {
         if (floor >= levels.Count)
         {
+            Debug.Log("Should win game");
             GameController.Instance.currentState = State.GameWin;
             yield break;
         }

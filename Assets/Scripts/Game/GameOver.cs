@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+
 
 public class GameOver : MonoBehaviour
 {
@@ -35,6 +37,19 @@ public class GameOver : MonoBehaviour
 
     [SerializeField] Button retryButton;
 
+    [SerializeField] List<Button> buttons;
+
+    int currentItemSelected = -1;
+
+    private Vector2 navigateMovement;
+
+    public AudioClip switchItemSound;
+    public AudioClip selectItemSound;
+    AudioSource audioSource;
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
 
     public void UpdateCurrency()
@@ -146,6 +161,74 @@ public class GameOver : MonoBehaviour
         // player.ResetHealth();
         // player.SavePlayer();
         SceneManager.LoadScene(1);
+    }
+
+
+    public void OnNavigateUI(InputValue value)
+    {
+        navigateMovement = value.Get<Vector2>();
+
+
+        foreach (Button button in buttons)
+        {
+            button.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+        }
+
+        if (currentItemSelected == -1)
+        {
+            currentItemSelected = 0;
+            audioSource.PlayOneShot(switchItemSound, 1f);
+            return;
+        }
+
+        // On top row
+
+
+        if (navigateMovement.x > 0f)
+        {
+            audioSource.PlayOneShot(switchItemSound, 1f);
+            currentItemSelected++;
+        }
+        else if (navigateMovement.x < 0f)
+        {
+            audioSource.PlayOneShot(switchItemSound, 1f);
+            currentItemSelected--;
+        }
+
+        // Move to next section
+        if (navigateMovement.y > 0f)
+        {
+            audioSource.PlayOneShot(switchItemSound, 1f);
+            currentItemSelected--;
+        }
+        else if (navigateMovement.y < 0f)
+        {
+            audioSource.PlayOneShot(switchItemSound, 1f);
+            currentItemSelected++;
+        }
+
+
+
+        if (currentItemSelected < 0)
+        {
+            currentItemSelected = buttons.Count - 1;
+        }
+
+        if (currentItemSelected > buttons.Count - 1)
+        {
+            currentItemSelected = 0;
+        }
+
+
+        buttons[currentItemSelected].GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.2f);
+    }
+
+    public void OnInteract()
+    {
+        if (currentItemSelected == -1) { return; }
+        audioSource.PlayOneShot(selectItemSound, 1f);
+        buttons[currentItemSelected].onClick.Invoke();
+        currentItemSelected = -1;
     }
 
 

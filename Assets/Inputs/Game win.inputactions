@@ -1,8 +1,8 @@
 {
-    "name": "Main Menu",
+    "name": "Game win",
     "maps": [
         {
-            "name": "Main Menu",
+            "name": "GameWin",
             "id": "31e4cc7a-40e4-4d8d-8bcc-8228c81e3c39",
             "actions": [
                 {
@@ -17,22 +17,6 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "10b07478-a729-42aa-99a5-4ad562edd20e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
-                    "name": "Cancel",
-                    "type": "Button",
-                    "id": "a2c1d988-5112-4bc9-9110-e85179f74412",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press"
-                },
-                {
-                    "name": "Start",
-                    "type": "Button",
-                    "id": "7ed052b7-fc3b-4dc8-875e-f40d59598f68",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -278,50 +262,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "734a80ca-e95d-43b9-9971-4880d2a20cc8",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Cancel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cf4e6d33-1f65-4ad5-8d9d-12e1a445d015",
-                    "path": "<Keyboard>/backspace",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Cancel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bc4a836e-3de3-4bea-b932-3f22118ed135",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Start",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e48e4a6d-74e6-414e-8ff0-cea313514092",
-                    "path": "<Keyboard>/enter",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Start",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
