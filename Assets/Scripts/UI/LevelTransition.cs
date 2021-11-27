@@ -61,6 +61,15 @@ public class LevelTransition : MonoBehaviour
         GameController.Instance.levelUpMenu.SetActive(true);
     }
 
+    public IEnumerator OnPause()
+    {
+        var sequence = DOTween.Sequence();
+        sequence.Append(overlay.transform.DOScaleX(1f, 0.2f));
+        yield return new WaitForSeconds(0.5f);
+
+        GameController.Instance.pauseMenu.SetActive(true);
+    }
+
     public IEnumerator OnJoin()
     {
         var sequence = DOTween.Sequence();
@@ -86,10 +95,11 @@ public class LevelTransition : MonoBehaviour
 
     public IEnumerator OnUnpause()
     {
-        GameController.Instance.pauseMenu.SetActive(false);
         var sequence = DOTween.Sequence();
-        sequence.Append(overlay.transform.DOScaleX(0f, 0.4f));
+        sequence.Append(overlay.transform.DOScaleX(0f, 0.2f));
         yield return sequence.WaitForCompletion();
+        GameController.Instance.currentState = State.Active;
+        GameController.Instance.pauseMenu.SetActive(false);
     }
 
 }

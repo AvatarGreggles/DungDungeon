@@ -87,8 +87,6 @@ public class Player : MonoBehaviour
     [SerializeField] public List<Item> itemInventory;
     [SerializeField] public List<Skill> skillInventory;
 
-    public SavableEntity entity;
-
 
     private void Awake()
     {
@@ -97,6 +95,8 @@ public class Player : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         collider = GetComponent<Collider2D>();
         playerAbilities = GetComponent<PlayerAbilities>();
+
+        GameController.Instance.LoadData();
 
     }
 
@@ -188,6 +188,21 @@ public class Player : MonoBehaviour
         skillInventory.Add(skill);
     }
 
+    public void OnPauseGame()
+    {
+        if (GameController.Instance.currentState == State.Initial || GameController.Instance.currentState == State.Death || GameController.Instance.currentState == State.GameWin || GameController.Instance.currentState == State.LevelUp || GameController.Instance.currentState == State.Shop)
+        {
+            return;
+        }
+        else
+        {
+            Debug.Log("loool");
+            GameController.Instance.currentState = State.Paused;
+        }
+
+
+    }
+
     void SetLevelText()
     {
         if (playerInput.playerIndex == 0)
@@ -242,6 +257,11 @@ public class Player : MonoBehaviour
         shield = maxShield;
         shieldBar.transform.localScale = new Vector3(initialShieldBarSize.x * (shield / maxShield), initialShieldBarSize.y, initialShieldBarSize.z);
 
+    }
+
+    public void ResetInvincibility()
+    {
+        isInvincible = false;
     }
 
     public void MergeTempExperience()

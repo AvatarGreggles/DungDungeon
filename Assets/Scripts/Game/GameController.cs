@@ -77,8 +77,14 @@ public class GameController : MonoBehaviour, ISavable
 
     public void LoadData()
     {
-        // SavingSystem.i.Load("saveSlot1");
+        SavingSystem.i.Load("saveSlot1");
     }
+
+    public void SaveData()
+    {
+        SavingSystem.i.Save("saveSlot1");
+    }
+
 
     public void StopGameMusic()
     {
@@ -105,7 +111,16 @@ public class GameController : MonoBehaviour, ISavable
             if (currentState == State.Death)
             {
                 // SavingSystem.i.Save("saveSlot1");
+                SaveData();
                 StartCoroutine(LevelTransition.Instance.OnDeath());
+
+            }
+
+            if (currentState == State.Paused)
+            {
+                // SavingSystem.i.Save("saveSlot1");
+                SaveData();
+                StartCoroutine(LevelTransition.Instance.OnPause());
 
             }
 
@@ -205,9 +220,9 @@ public class GameController : MonoBehaviour, ISavable
             playerAttackSpeedBonus = player.attackSpeedBonus,
             playerShield = player.shield,
             playerMaxShield = player.maxShield,
-            playerHealthBar = player.healthBar,
-            playerShieldBar = player.shieldBar,
-            playerExpBar = player.expBar,
+            // playerHealthBar = player.healthBar,
+            // playerShieldBar = player.shieldBar,
+            // playerExpBar = player.expBar,
             playerAttack = player.attack,
             playerDungAccumulated = player.dungAccumulated,
             playerPrevDungAccumulated = player.prevDungAccumulated,
@@ -219,9 +234,7 @@ public class GameController : MonoBehaviour, ISavable
             playerInvincibilityFrameTime = player.invincibilityFrameTime,
             playerIsInvincible = player.isInvincible,
             playerWillLevelUp = player.willLevelUp,
-            playerPlayerAbilities = player.playerAbilities,
-            playerItemInventory = player.itemInventory,
-            playerSkillInventory = player.skillInventory,
+
         };
         Debug.Log("Game controller saved");
 
@@ -249,9 +262,9 @@ public class GameController : MonoBehaviour, ISavable
             player.attackSpeedBonus = loadedData.playerAttackSpeedBonus;
             player.shield = loadedData.playerShield;
             player.maxShield = loadedData.playerMaxShield;
-            player.healthBar = loadedData.playerHealthBar;
-            player.shieldBar = loadedData.playerShieldBar;
-            player.expBar = loadedData.playerExpBar;
+            // player.healthBar = loadedData.playerHealthBar;
+            // player.shieldBar = loadedData.playerShieldBar;
+            // player.expBar = loadedData.playerExpBar;
             player.attack = loadedData.playerAttack;
             player.dungAccumulated = loadedData.playerDungAccumulated;
             player.prevDungAccumulated = loadedData.playerPrevDungAccumulated;
@@ -263,9 +276,6 @@ public class GameController : MonoBehaviour, ISavable
             player.invincibilityFrameTime = loadedData.playerInvincibilityFrameTime;
             player.isInvincible = loadedData.playerIsInvincible;
             player.willLevelUp = loadedData.playerWillLevelUp;
-            player.playerAbilities = loadedData.playerPlayerAbilities;
-            player.itemInventory = loadedData.playerItemInventory;
-            player.skillInventory = loadedData.playerSkillInventory;
 
             Debug.Log("Player data loaded");
         }
@@ -289,9 +299,9 @@ public class GameController : MonoBehaviour, ISavable
         public float playerAttackSpeedBonus;
         public float playerShield;
         public float playerMaxShield;
-        public GameObject playerHealthBar;
-        public GameObject playerShieldBar;
-        public GameObject playerExpBar;
+        // public GameObject playerHealthBar;
+        // public GameObject playerShieldBar;
+        // public GameObject playerExpBar;
         public float playerAttack;
         public float playerDungAccumulated;
         public float playerPrevDungAccumulated;
@@ -303,9 +313,7 @@ public class GameController : MonoBehaviour, ISavable
         public float playerInvincibilityFrameTime;
         public bool playerIsInvincible;
         public bool playerWillLevelUp;
-        public PlayerAbilities playerPlayerAbilities;
-        public List<Item> playerItemInventory;
-        public List<Skill> playerSkillInventory;
+
 
     }
 }

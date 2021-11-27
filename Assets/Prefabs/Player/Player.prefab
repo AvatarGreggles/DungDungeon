@@ -1224,7 +1224,6 @@ GameObject:
   - component: {fileID: 4792874046299293430}
   - component: {fileID: 5705499219796297356}
   - component: {fileID: 256465949867495522}
-  - component: {fileID: -6558505403515600811}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1451,11 +1450,13 @@ MonoBehaviour:
   isInvincible: 0
   willLevelUp: 0
   playerLevelTextP1: {fileID: 6526278113208250979}
+  playerAbilities: {fileID: 0}
   delayAmount: 1
   criticalDamageSprite: {fileID: 1905902881067641905, guid: cc282c30cc80f42c4b4399f5d779cec6, type: 3}
   damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
   itemInventory: []
   skillInventory: []
+  entity: {fileID: 0}
 --- !u!114 &3620035378186348920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1620,16 +1621,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-6558505403515600811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8568219434171882062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4881f89f8b930e34489bbb86116ccd4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uniqueId: 

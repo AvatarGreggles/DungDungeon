@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] Button quitButton;
 
     [SerializeField] Button continueButton;
+
+    PlayerInput playerInput;
 
 
     public void UpdateCurrency()
@@ -91,6 +94,19 @@ public class PauseMenu : MonoBehaviour
         critRatioStatText.text = player.criticalHitRatio.ToString();
     }
 
+    private void OnEnable()
+    {
+        playerInput = FindObjectOfType<PlayerInput>();
+        playerInput.SwitchCurrentActionMap("PauseMenu");
+    }
+
+    private void UnpauseGame()
+    {
+        playerInput = FindObjectOfType<PlayerInput>();
+        playerInput.SwitchCurrentActionMap("Player");
+        StartCoroutine(LevelTransition.Instance.OnUnpause());
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -138,6 +154,6 @@ public class PauseMenu : MonoBehaviour
 
     public void HandleContinueGame()
     {
-        SceneManager.LoadScene(1);
+        UnpauseGame();
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Skill", order = 1)]
-
+[System.Serializable]
 public class Skill : ScriptableObject
 {
 

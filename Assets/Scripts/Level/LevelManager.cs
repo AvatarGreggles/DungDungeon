@@ -173,6 +173,7 @@ public class LevelManager : MonoBehaviour
         foreach (GameObject go in gos)
         {
             go.GetComponent<Player>().ResetShield();
+            go.GetComponent<Player>().ResetInvincibility();
         }
     }
 

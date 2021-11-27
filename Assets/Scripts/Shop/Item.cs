@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Item", order = 1)]
+[System.Serializable]
 public class Item : ScriptableObject
 {
 
