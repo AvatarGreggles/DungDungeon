@@ -96,7 +96,7 @@ public class LevelTransition : MonoBehaviour
     public IEnumerator OnUnpause()
     {
         var sequence = DOTween.Sequence();
-        sequence.Append(overlay.transform.DOScaleX(0f, 0.2f));
+        sequence.Append(overlay.transform.DOScaleX(0f, 0.4f));
         yield return sequence.WaitForCompletion();
         GameController.Instance.currentState = State.Active;
         GameController.Instance.pauseMenu.SetActive(false);

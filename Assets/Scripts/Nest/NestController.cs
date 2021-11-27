@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class NestController : MonoBehaviour
 {
@@ -18,6 +19,15 @@ public class NestController : MonoBehaviour
     [SerializeField] Button startButton;
     [SerializeField] Button backButton;
 
+    [SerializeField] List<Button> buttons;
+    int currentItemSelected = -1;
+
+    public AudioClip switchItemSound;
+    public AudioClip selectItemSound;
+    AudioSource audioSource;
+
+    private Vector2 navigateMovement;
+
     [SerializeField] Button increaseBonusHealth;
     [SerializeField] Button increaseBonusShield;
     [SerializeField] Button increaseBonusAttackPower;
@@ -29,6 +39,7 @@ public class NestController : MonoBehaviour
     private void Awake()
     {
         // SavingSystem.i.Load("saveSlot1");
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -206,6 +217,96 @@ public class NestController : MonoBehaviour
         // subtract cost
         // Set player passive ability
         // Set stat passive gameobject to true
+    }
+
+    public void OnNavigateUI(InputValue value)
+    {
+        navigateMovement = value.Get<Vector2>();
+
+
+        foreach (Button button in buttons)
+        {
+            button.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+        }
+
+        // On top row
+        if (currentItemSelected <= 8)
+        {
+            if (currentItemSelected == -1)
+            {
+                currentItemSelected = 0;
+                audioSource.PlayOneShot(switchItemSound, 1f);
+                return;
+            }
+
+            if (navigateMovement.x > 0f)
+            {
+                audioSource.PlayOneShot(switchItemSound, 1f);
+                currentItemSelected++;
+            }
+            else if (navigateMovement.x < 0f)
+            {
+                audioSource.PlayOneShot(switchItemSound, 1f);
+                currentItemSelected--;
+            }
+
+            // Move to next section
+            if (navigateMovement.y > 0f)
+            {
+                return;
+            }
+            else if (navigateMovement.y < 0f)
+            {
+                audioSource.PlayOneShot(switchItemSound, 1f);
+                currentItemSelected = 9;
+            }
+        }
+        else if (currentItemSelected > 8)
+        {
+
+            if (navigateMovement.x > 0f)
+            {
+                audioSource.PlayOneShot(switchItemSound, 1f);
+                currentItemSelected++;
+            }
+            else if (navigateMovement.x < 0f)
+            {
+                audioSource.PlayOneShot(switchItemSound, 1f);
+                currentItemSelected--;
+            }
+
+            // Move to next section
+            if (navigateMovement.y > 0f)
+            {
+                audioSource.PlayOneShot(switchItemSound, 1f);
+                currentItemSelected -= 2;
+            }
+            else if (navigateMovement.y < 0f)
+            {
+                audioSource.PlayOneShot(switchItemSound, 1f);
+                currentItemSelected += 2;
+            }
+        }
+
+        if (currentItemSelected < 0)
+        {
+            currentItemSelected = buttons.Count - 1;
+        }
+
+        if (currentItemSelected > buttons.Count - 1)
+        {
+            currentItemSelected = 0;
+        }
+
+
+        buttons[currentItemSelected].GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.2f);
+    }
+
+    public void OnInteract()
+    {
+        if (currentItemSelected == -1) { return; }
+        audioSource.PlayOneShot(selectItemSound, 1f);
+        buttons[currentItemSelected].onClick.Invoke();
     }
 }
 

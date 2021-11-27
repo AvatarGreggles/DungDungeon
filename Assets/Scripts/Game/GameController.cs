@@ -69,15 +69,18 @@ public class GameController : MonoBehaviour, ISavable
     private void Start()
     {
         StartCoroutine(LevelManager.Instance.HandleLevelLoad(true));
-        float minutes = Mathf.Floor(gameRuntime / 60);
-        float seconds = Mathf.Floor(gameRuntime) - (minutes * 60);
-
-        gameRuntimeText.text = minutes.ToString() + "m " + seconds.ToString() + "s";
     }
 
     public void LoadData()
     {
         SavingSystem.i.Load("saveSlot1");
+
+        currencyUI.UpdateCurrency();
+
+        float minutes = Mathf.Floor(gameRuntime / 60);
+        float seconds = Mathf.Floor(gameRuntime) - (minutes * 60);
+
+        gameRuntimeText.text = minutes.ToString() + "m " + seconds.ToString() + "s";
     }
 
     public void SaveData()
