@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using System;
+
 
 public class Player : MonoBehaviour
 {
@@ -26,9 +28,9 @@ public class Player : MonoBehaviour
 
     public float shield;
     [SerializeField] public float maxShield = 3;
-    [SerializeField] GameObject healthBar;
-    [SerializeField] GameObject shieldBar;
-    [SerializeField] GameObject expBar;
+    [SerializeField] public GameObject healthBar;
+    [SerializeField] public GameObject shieldBar;
+    [SerializeField] public GameObject expBar;
 
     public float attack = 1;
     public GameObject damageDisplayPivot;
@@ -72,7 +74,7 @@ public class Player : MonoBehaviour
     [SerializeField] TMPro.TMP_Text playerLevelTextP1;
     // [SerializeField] Text playerLevelTextP2;
 
-    PlayerAbilities playerAbilities;
+    public PlayerAbilities playerAbilities;
 
     public int delayAmount = 1; // Second count
     protected float Timer;
@@ -82,6 +84,10 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject criticalDamageSprite;
     [SerializeField] GameObject damageSprite;
 
+    [SerializeField] public List<Item> itemInventory;
+    [SerializeField] public List<Skill> skillInventory;
+
+    public SavableEntity entity;
 
 
     private void Awake()
@@ -98,7 +104,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerBaseStats = FindObjectOfType<PlayerBaseStatManager>();
-        health = maxHealth + playerBaseStats.bonusMaxHP;
+        maxHealth = maxHealth + playerBaseStats.bonusMaxHP;
+        health = maxHealth;
         maxShield = maxShield + playerBaseStats.bonusMaxShield;
         shield = maxShield;
         attack = attack + playerBaseStats.bonusAttackPower;
@@ -116,6 +123,8 @@ public class Player : MonoBehaviour
         expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
         GameController.Instance.dungBarP1.fillAmount = dungAccumulated / maxDungSize;
         dungSprite.enabled = false;
+
+        // GameController.Instance.LoadData();
 
     }
 
@@ -167,6 +176,16 @@ public class Player : MonoBehaviour
         level += 1;
         levelReached = level;
         SetLevelText();
+    }
+
+    public void AddItem(Item item)
+    {
+        itemInventory.Add(item);
+    }
+
+    public void AddSkill(Skill skill)
+    {
+        skillInventory.Add(skill);
     }
 
     void SetLevelText()

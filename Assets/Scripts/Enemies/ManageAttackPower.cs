@@ -10,7 +10,6 @@ public class ManageAttackPower : MonoBehaviour
         int attackPower = GetComponentInParent<Enemy>().enemyStats.attackPower;
         int attackSpeed = GetComponentInParent<Enemy>().enemyStats.attackSpeed;
 
-        Debug.Log(attackPower);
 
         //TODO make getter functions that get the calculated stats
         GetComponent<UbhLinearLockOnShot>().m_bulletPrefab.GetComponent<Projectile>().SetPower(attackPower);

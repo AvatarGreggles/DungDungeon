@@ -48,7 +48,6 @@ public class LevelSkill : MonoBehaviour
 
         skillCardSpriteRenderer.sprite = selectedSkillCard;
         isSelected = true;
-        Debug.Log(skill.name + " is selected");
     }
 
     public void UnsetSkillAsSelected()
@@ -90,6 +89,8 @@ public class LevelSkill : MonoBehaviour
             PlayerAbilities playerAbilities = player.GetComponent<PlayerAbilities>();
             skill.EnableAbility(playerAbilities);
         }
+
+        player.AddSkill(skill);
 
         GameController.Instance.currentState = State.Active;
         DoorManager.Instance.MoveToNextLevel();

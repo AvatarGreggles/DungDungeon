@@ -33,6 +33,8 @@ public class GameWin : MonoBehaviour
 
     [SerializeField] Button quitButton;
 
+    [SerializeField] Button retryButton;
+
 
     Player player;
 
@@ -40,10 +42,17 @@ public class GameWin : MonoBehaviour
     void Start()
     {
 
+        gameObject.SetActive(false);
+
         goToShopButton.onClick.AddListener(() =>
  {
      HandleGoToShop();
  });
+
+        retryButton.onClick.AddListener(() =>
+  {
+      HandleRetryGame();
+  });
 
         quitButton.onClick.AddListener(() =>
      {
@@ -67,13 +76,26 @@ public class GameWin : MonoBehaviour
 
     public void HandleGoToShop()
     {
+        // player.ResetHealth();
+        // player.SavePlayer();
         SceneManager.LoadScene(2);
     }
 
     public void HandleGoToMainMenu()
     {
+        // player.ResetHealth();
+        // player.SavePlayer();
         SceneManager.LoadScene(0);
     }
+
+    public void HandleRetryGame()
+    {
+        // player.ResetHealth();
+        // GameController.Instance.SavePlayer();
+        SceneManager.LoadScene(1);
+    }
+
+
 
     // public void CloseSkillScreen()
     // {

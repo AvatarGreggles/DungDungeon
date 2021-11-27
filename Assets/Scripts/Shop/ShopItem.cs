@@ -100,6 +100,8 @@ public class ShopItem : MonoBehaviour
 
             Debug.Log("You purchased " + item.itemName);
 
+            player.AddItem(item);
+
             return true;
 
         }

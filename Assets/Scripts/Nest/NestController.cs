@@ -26,6 +26,11 @@ public class NestController : MonoBehaviour
     [SerializeField] Button increaseMaxDung;
     [SerializeField] Button unlockPassiveButton;
 
+    private void Awake()
+    {
+        // SavingSystem.i.Load("saveSlot1");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,7 +91,7 @@ public class NestController : MonoBehaviour
             statPoint.transform.SetParent(healthStats);
         }
 
-        for (var i = 0; i < PlayerBaseStatManager.instance.bonusMaxHP; i++)
+        for (var i = 0; i < PlayerBaseStatManager.instance.bonusMaxShield; i++)
         {
             GameObject statPoint = Instantiate(statBlockSprite, shieldStats.position, shieldStats.rotation);
             statPoint.transform.SetParent(shieldStats);
@@ -133,6 +138,7 @@ public class NestController : MonoBehaviour
         PlayerBaseStatManager.instance.bonusMaxHP += 1;
         GameObject statPoint = Instantiate(statBlockSprite, healthStats.position, healthStats.rotation);
         statPoint.transform.SetParent(healthStats);
+        SavingSystem.i.Save("saveSlot3");
         // subtract cost
         // Increase player health by 1
         // Set stat increase gameobject to true
@@ -143,6 +149,7 @@ public class NestController : MonoBehaviour
         PlayerBaseStatManager.instance.bonusAttackPower += 1;
         GameObject statPoint = Instantiate(statBlockSprite, attackStats.position, attackStats.rotation);
         statPoint.transform.SetParent(attackStats);
+        SavingSystem.i.Save("saveSlot3");
         // subtract cost
         // Increase player attack by 1
         // Set stat increase gameobject to true
@@ -154,6 +161,7 @@ public class NestController : MonoBehaviour
         PlayerBaseStatManager.instance.bonusMaxShield += 1;
         GameObject statPoint = Instantiate(statBlockSprite, shieldStats.position, shieldStats.rotation);
         statPoint.transform.SetParent(shieldStats);
+        SavingSystem.i.Save("saveSlot3");
         // subtract cost
         // Increase player attack by 1
         // Set stat increase gameobject to true
@@ -164,6 +172,7 @@ public class NestController : MonoBehaviour
         PlayerBaseStatManager.instance.bonusDefense += 1;
         GameObject statPoint = Instantiate(statBlockSprite, defenseStats.position, defenseStats.rotation);
         statPoint.transform.SetParent(defenseStats);
+        SavingSystem.i.Save("saveSlot3");
         // subtract cost
         // Increase player attack by 1
         // Set stat increase gameobject to true
@@ -174,6 +183,7 @@ public class NestController : MonoBehaviour
         PlayerBaseStatManager.instance.bonusMoveSpeed += 1;
         GameObject statPoint = Instantiate(statBlockSprite, speedStats.position, speedStats.rotation);
         statPoint.transform.SetParent(speedStats);
+        SavingSystem.i.Save("saveSlot3");
         // subtract cost
         // Increase player attack by 1
         // Set stat increase gameobject to true
@@ -185,6 +195,7 @@ public class NestController : MonoBehaviour
         PlayerBaseStatManager.instance.bonusMaxDung += 1;
         GameObject statPoint = Instantiate(statBlockSprite, dungStats.position, dungStats.rotation);
         statPoint.transform.SetParent(dungStats);
+        SavingSystem.i.Save("saveSlot3");
         // subtract cost
         // Increase player attack by 1
         // Set stat increase gameobject to true

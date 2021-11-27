@@ -43,10 +43,11 @@ public class Item : ScriptableObject
     }
 
 
-    public void HealStat(Player player, Shop shop)
+    public bool HealStat(Player player, Shop shop)
     {
         if (targetStat == TargetStat.HP)
         {
+            if (player.health == player.maxHealth) { return false; }
             player.health += statIncrease;
             if (player.health > player.maxHealth)
             {
@@ -55,6 +56,7 @@ public class Item : ScriptableObject
             shop.UpdateHPText();
             player.UpdateHealthBar();
         }
+        return true;
     }
 
     public void IncreaseStat(Player player, Shop shop)

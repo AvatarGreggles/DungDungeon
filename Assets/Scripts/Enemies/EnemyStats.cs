@@ -36,40 +36,86 @@ public class EnemyStats : ScriptableObject
     void OnEnable()
     {
         int multiplier = 1;
-        if (statRange == StatRange.S)
+        int minLevel = 5;
+        int maxLevel = 10;
+        int incrementor = 5;
+        LevelManager levelManager = FindObjectOfType<LevelManager>();
+        if (levelManager.floor <= minLevel)
         {
             multiplier = 1;
         }
 
-        if (statRange == StatRange.M)
-        {
-            multiplier = 2;
-        }
+        // if (levelManager.floor > minLevel && levelManager.floor  <= maxLevel)
+        // {
+        //     multiplier = 2;
+        // }
 
-        if (statRange == StatRange.L)
-        {
-            multiplier = 3;
-        }
+        // minLevel += incrementor;
+        // maxLevel += incrementor;
 
-        if (statRange == StatRange.XL)
-        {
-            multiplier = 4;
-        }
+        // if (LevelManager.Instance.floor > minLevel && LevelManager.Instance.floor <= maxLevel)
+        // {
+        //     multiplier = 3;
+        // }
 
-        if (statRange == StatRange.XXL)
-        {
-            multiplier = 5;
-        }
+        // minLevel += incrementor;
+        // maxLevel += incrementor;
 
-        if (statRange == StatRange.XXX)
-        {
-            multiplier = 6;
-        }
+        // if (LevelManager.Instance.floor > minLevel && LevelManager.Instance.floor <= maxLevel)
+        // {
+        //     multiplier = 4;
+        // }
 
-        if (statRange == StatRange.Nightmare)
-        {
-            multiplier = 7;
-        }
+        // minLevel += incrementor;
+        // maxLevel += incrementor;
+
+        // if (LevelManager.Instance.floor > minLevel && LevelManager.Instance.floor <= maxLevel)
+        // {
+        //     multiplier = 5;
+        // }
+
+        // minLevel += incrementor;
+        // maxLevel += incrementor;
+
+        // if (LevelManager.Instance.floor > minLevel && LevelManager.Instance.floor <= maxLevel)
+        // {
+        //     multiplier = 6;
+        // }
+
+        // // if (statRange == StatRange.S)
+        // // {
+        // //     multiplier = 1;
+        // // }
+
+        // // if (statRange == StatRange.M)
+        // // {
+        // //     multiplier = 2;
+        // // }
+
+        // if (statRange == StatRange.L)
+        // {
+        //     multiplier = 3;
+        // }
+
+        // if (statRange == StatRange.XL)
+        // {
+        //     multiplier = 4;
+        // }
+
+        // if (statRange == StatRange.XXL)
+        // {
+        //     multiplier = 5;
+        // }
+
+        // if (statRange == StatRange.XXX)
+        // {
+        //     multiplier = 6;
+        // }
+
+        // if (statRange == StatRange.Nightmare)
+        // {
+        //     multiplier = 7;
+        // }
 
 
         maxHP = baseMaxHP;

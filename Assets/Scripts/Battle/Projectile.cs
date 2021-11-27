@@ -73,7 +73,7 @@ public class Projectile : MonoBehaviour
     {
 
         enemyAttackSpeed = speed;
-        Debug.Log(enemyAttackSpeed);
+
     }
 
     public void moveTowardsCloestTarget()

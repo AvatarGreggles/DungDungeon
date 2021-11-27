@@ -56,7 +56,6 @@ public class EnemyTriggerZone : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("You are in my zone!!!!");
             isTriggered = true;
         }
     }

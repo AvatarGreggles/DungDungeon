@@ -17,7 +17,7 @@ public enum State
     GameWin,
 }
 
-public class GameController : MonoBehaviour
+public class GameController : MonoBehaviour, ISavable
 {
 
     public State currentState;
@@ -69,6 +69,15 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         StartCoroutine(LevelManager.Instance.HandleLevelLoad(true));
+        float minutes = Mathf.Floor(gameRuntime / 60);
+        float seconds = Mathf.Floor(gameRuntime) - (minutes * 60);
+
+        gameRuntimeText.text = minutes.ToString() + "m " + seconds.ToString() + "s";
+    }
+
+    public void LoadData()
+    {
+        // SavingSystem.i.Load("saveSlot1");
     }
 
     public void StopGameMusic()
@@ -95,6 +104,7 @@ public class GameController : MonoBehaviour
 
             if (currentState == State.Death)
             {
+                // SavingSystem.i.Save("saveSlot1");
                 StartCoroutine(LevelTransition.Instance.OnDeath());
 
             }
@@ -173,6 +183,129 @@ public class GameController : MonoBehaviour
         {
             dungTextP2.text = value.ToString("F0");
         }
+
+    }
+
+    public object CaptureState()
+    {
+        Player player = players[0].GetComponent<Player>();
+        var saveState = new GameControllerSaveState()
+        {
+            totalCurrentCurrency = totalCurrency,
+            totalGameRuntime = gameRuntime,
+
+            playerHealth = player.health,
+            playerExperience = player.experience,
+            playerTemporaryExperienceHolder = player.temporaryExperienceHolder,
+            playerExperienceToNextLevel = player.experienceToNextLevel,
+            playerLevel = player.level,
+            playerPreviousLevel = player.previousLevel,
+            playerCriticalHitRatio = player.criticalHitRatio,
+            playerMaxHealth = player.maxHealth,
+            playerAttackSpeedBonus = player.attackSpeedBonus,
+            playerShield = player.shield,
+            playerMaxShield = player.maxShield,
+            playerHealthBar = player.healthBar,
+            playerShieldBar = player.shieldBar,
+            playerExpBar = player.expBar,
+            playerAttack = player.attack,
+            playerDungAccumulated = player.dungAccumulated,
+            playerPrevDungAccumulated = player.prevDungAccumulated,
+            playerMaxDungSize = player.maxDungSize,
+            playerToLevelUp = player.toLevelUp,
+            playerLevelReached = player.levelReached,
+            playerEnemiesKilled = player.enemiesKilled,
+            playerMoneyEarned = player.moneyEarned,
+            playerInvincibilityFrameTime = player.invincibilityFrameTime,
+            playerIsInvincible = player.isInvincible,
+            playerWillLevelUp = player.willLevelUp,
+            playerPlayerAbilities = player.playerAbilities,
+            playerItemInventory = player.itemInventory,
+            playerSkillInventory = player.skillInventory,
+        };
+        Debug.Log("Game controller saved");
+
+        return saveState;
+    }
+
+    public void RestoreState(object state)
+    {
+        Player player = players[0].GetComponent<Player>();
+        GameControllerSaveState loadedData = (GameControllerSaveState)state;
+
+        totalCurrency = loadedData.totalCurrentCurrency;
+        gameRuntime = loadedData.totalGameRuntime;
+
+        if (player != null)
+        {
+            player.health = loadedData.playerHealth;
+            player.experience = loadedData.playerExperience;
+            player.temporaryExperienceHolder = loadedData.playerTemporaryExperienceHolder;
+            player.experienceToNextLevel = loadedData.playerExperienceToNextLevel;
+            player.level = loadedData.playerLevel;
+            player.previousLevel = loadedData.playerPreviousLevel;
+            player.criticalHitRatio = loadedData.playerCriticalHitRatio;
+            player.maxHealth = loadedData.playerMaxHealth;
+            player.attackSpeedBonus = loadedData.playerAttackSpeedBonus;
+            player.shield = loadedData.playerShield;
+            player.maxShield = loadedData.playerMaxShield;
+            player.healthBar = loadedData.playerHealthBar;
+            player.shieldBar = loadedData.playerShieldBar;
+            player.expBar = loadedData.playerExpBar;
+            player.attack = loadedData.playerAttack;
+            player.dungAccumulated = loadedData.playerDungAccumulated;
+            player.prevDungAccumulated = loadedData.playerPrevDungAccumulated;
+            player.maxDungSize = loadedData.playerMaxDungSize;
+            player.toLevelUp = loadedData.playerToLevelUp;
+            player.levelReached = loadedData.playerLevelReached;
+            player.enemiesKilled = loadedData.playerEnemiesKilled;
+            player.moneyEarned = loadedData.playerMoneyEarned;
+            player.invincibilityFrameTime = loadedData.playerInvincibilityFrameTime;
+            player.isInvincible = loadedData.playerIsInvincible;
+            player.willLevelUp = loadedData.playerWillLevelUp;
+            player.playerAbilities = loadedData.playerPlayerAbilities;
+            player.itemInventory = loadedData.playerItemInventory;
+            player.skillInventory = loadedData.playerSkillInventory;
+
+            Debug.Log("Player data loaded");
+        }
+        Debug.Log("Game controller loaded");
+    }
+
+    [System.Serializable]
+    public class GameControllerSaveState
+    {
+        public int totalCurrentCurrency;
+        public float totalGameRuntime;
+
+        public float playerHealth;
+        public float playerExperience;
+        public float playerExperienceToNextLevel;
+        public float playerTemporaryExperienceHolder;
+        public int playerLevel;
+        public int playerPreviousLevel;
+        public float playerCriticalHitRatio;
+        public float playerMaxHealth;
+        public float playerAttackSpeedBonus;
+        public float playerShield;
+        public float playerMaxShield;
+        public GameObject playerHealthBar;
+        public GameObject playerShieldBar;
+        public GameObject playerExpBar;
+        public float playerAttack;
+        public float playerDungAccumulated;
+        public float playerPrevDungAccumulated;
+        public float playerMaxDungSize;
+        public int[] playerToLevelUp;
+        public int playerLevelReached;
+        public int playerEnemiesKilled;
+        public int playerMoneyEarned;
+        public float playerInvincibilityFrameTime;
+        public bool playerIsInvincible;
+        public bool playerWillLevelUp;
+        public PlayerAbilities playerPlayerAbilities;
+        public List<Item> playerItemInventory;
+        public List<Skill> playerSkillInventory;
 
     }
 }

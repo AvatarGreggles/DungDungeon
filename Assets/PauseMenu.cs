@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
 
     // render what runes and skills you had
@@ -33,8 +33,7 @@ public class GameOver : MonoBehaviour
 
     [SerializeField] Button quitButton;
 
-    [SerializeField] Button retryButton;
-
+    [SerializeField] Button continueButton;
 
 
     public void UpdateCurrency()
@@ -107,10 +106,10 @@ public class GameOver : MonoBehaviour
          HandleGoToMainMenu();
      });
 
-        retryButton.onClick.AddListener(() =>
- {
-     HandleRetryGame();
- });
+        continueButton.onClick.AddListener(() =>
+      {
+          HandleContinueGame();
+      });
 
 
         player = GameController.Instance.players[0];
@@ -129,24 +128,16 @@ public class GameOver : MonoBehaviour
 
     public void HandleGoToShop()
     {
-        // player.ResetHealth();
-        // player.SavePlayer();
         SceneManager.LoadScene(2);
     }
 
     public void HandleGoToMainMenu()
     {
-        // player.ResetHealth();
-        // player.SavePlayer();
         SceneManager.LoadScene(0);
     }
 
-    public void HandleRetryGame()
+    public void HandleContinueGame()
     {
-        // player.ResetHealth();
-        // player.SavePlayer();
         SceneManager.LoadScene(1);
     }
-
-
 }
