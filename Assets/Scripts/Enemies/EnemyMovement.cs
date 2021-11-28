@@ -10,9 +10,12 @@ public class EnemyMovement : MonoBehaviour
 
     [SerializeField] SpriteRenderer enemySprite;
 
+    Enemy enemy;
+
 
     void Start()
     {
+        enemy = GetComponent<Enemy>();
         latestDirectionChangeTime = 0f;
         calcuateNewMovementVector();
     }
@@ -35,7 +38,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        if (GameController.Instance.currentState != State.Paused)
+        if (GameController.Instance.currentState != State.Paused && !enemy.isDead)
         {
             //if the changeTime was reached, calculate a new movement vector
             if (Time.time - latestDirectionChangeTime > directionChangeTime)

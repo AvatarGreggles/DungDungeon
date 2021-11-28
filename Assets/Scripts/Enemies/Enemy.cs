@@ -19,10 +19,26 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject criticalDamageSprite;
     [SerializeField] GameObject damageSprite;
 
+    Animator animator;
+
+    UbhShotCtrl shotCtrl;
+
+    public bool isDead = false;
+
+    bool spawned = false;
+
+
+    public AudioClip cry;
+    AudioSource audioSource;
+
 
     private void Awake()
     {
         collider = GetComponent<Collider2D>();
+        animator = GetComponent<Animator>();
+        shotCtrl = GetComponent<UbhShotCtrl>();
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     void Start()
@@ -32,6 +48,7 @@ public class Enemy : MonoBehaviour
         healthBarBackground.SetActive(false);
 
         initialHealthBarSize = healthBar.transform.localScale;
+
     }
 
     void OnEnable()
@@ -73,8 +90,25 @@ public class Enemy : MonoBehaviour
             GameController.Instance.AddCurrency(enemyStats.currencyDrop);
             DropLoot();
             GivePlayersExperience();
-            gameObject.SetActive(false);
+            StartCoroutine(DoEnemyDeathAnimation());
+
+            // gameObject.SetActive(false);
         }
+    }
+
+    IEnumerator DoEnemyDeathAnimation()
+    {
+        audioSource.PlayOneShot(cry, 0.7F);
+        healthBar.SetActive(false);
+        healthBarBackground.SetActive(false);
+        shotCtrl.enabled = false;
+        collider.enabled = false;
+        animator.SetBool("IsDead", true);
+        gameObject.tag = "DeadEnemy";
+        isDead = true;
+        //play sound
+        yield return new WaitForSeconds(2f);
+        gameObject.SetActive(false);
     }
 
     public void GivePlayersExperience()
@@ -94,8 +128,9 @@ public class Enemy : MonoBehaviour
 
     public void AlertObservers(string message)
     {
-        if (message.Equals("EntryAnimationEnded"))
+        if (message.Equals("EntryAnimationEnded") && !spawned)
         {
+            spawned = true;
             healthBar.SetActive(true);
             healthBarBackground.SetActive(true);
         }

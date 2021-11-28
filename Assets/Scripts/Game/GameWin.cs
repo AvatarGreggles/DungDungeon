@@ -236,6 +236,10 @@ public class GameWin : MonoBehaviour
         if (currentItemSelected == -1) { return; }
         audioSource.PlayOneShot(selectItemSound, 1f);
         buttons[currentItemSelected].onClick.Invoke();
+        foreach (Button button in buttons)
+        {
+            button.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+        }
         currentItemSelected = -1;
     }
 }

@@ -95,6 +95,6 @@ public class LevelSkill : MonoBehaviour
         GameController.Instance.currentState = State.Active;
         DoorManager.Instance.MoveToNextLevel();
         skillScreen.gameObject.SetActive(false);
-        playerInput.SwitchCurrentActionMap("Player");
+        // playerInput.SwitchCurrentActionMap("Player");
     }
 }

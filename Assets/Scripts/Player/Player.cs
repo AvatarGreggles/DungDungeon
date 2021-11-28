@@ -213,8 +213,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Debug.Log("loool");
-            playerInput.SwitchCurrentActionMap("PauseMenu");
+            Debug.Log("Is clicked");
             GameController.Instance.currentState = State.Paused;
         }
 
@@ -223,7 +222,6 @@ public class Player : MonoBehaviour
 
     public void OnUnpauseGame()
     {
-        playerInput.SwitchCurrentActionMap("Player");
         GameController.Instance.currentState = State.Active;
     }
 
@@ -351,12 +349,13 @@ public class Player : MonoBehaviour
 
     public void OnCancel()
     {
+        Debug.Log("Cancelling");
 
         if (GameController.Instance.currentState == State.Shop)
         {
             GameController.Instance.currentState = State.Active;
             GameController.Instance.shopMenu.SetActive(false);
-            playerInput.SwitchCurrentActionMap("Player");
+            // playerInput.SwitchCurrentActionMap("Player");
         }
     }
 

@@ -20,6 +20,7 @@ TagManager:
   - Price
   - Item Name
   - Loot
+  - DeadEnemy
   layers:
   - Default
   - TransparentFX

@@ -48,6 +48,8 @@ public class PauseMenu : MonoBehaviour
 
     PlayerInput playerInput;
 
+    bool isLoaded = false;
+
 
     private void Awake()
     {
@@ -112,13 +114,24 @@ public class PauseMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        playerInput = FindObjectOfType<PlayerInput>();
+        if (isLoaded)
+        {
+            playerInput = FindObjectOfType<Player>().GetComponent<PlayerInput>();
+            playerInput.actions.Disable();
+        }
+
+        isLoaded = true;
     }
 
     private void UnpauseGame()
     {
+        playerInput = FindObjectOfType<Player>().GetComponent<PlayerInput>();
         playerInput.actions.Enable();
         currentItemSelected = -1;
+        foreach (Button button in buttons)
+        {
+            button.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+        }
         StartCoroutine(LevelTransition.Instance.OnUnpause());
     }
 
@@ -155,9 +168,9 @@ public class PauseMenu : MonoBehaviour
         UpdateLevelReachedText();
         UpdateMoneyEarnedText();
         UpdateGameRuntimeText();
-
-        playerInput.actions.Disable();
     }
+
+
 
     public void HandleGoToShop()
     {
