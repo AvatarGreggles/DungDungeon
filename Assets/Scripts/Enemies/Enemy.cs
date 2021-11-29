@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public bool isSpawner = false;
     public float health;
     [SerializeField] GameObject healthBar;
     [SerializeField] GameObject healthBarBackground;
@@ -90,7 +91,9 @@ public class Enemy : MonoBehaviour
             GameController.Instance.AddCurrency(enemyStats.currencyDrop);
             DropLoot();
             GivePlayersExperience();
+
             StartCoroutine(DoEnemyDeathAnimation());
+
 
             // gameObject.SetActive(false);
         }
@@ -98,12 +101,17 @@ public class Enemy : MonoBehaviour
 
     IEnumerator DoEnemyDeathAnimation()
     {
-        audioSource.PlayOneShot(cry, 0.7F);
+        if (!isSpawner)
+        {
+            audioSource.PlayOneShot(cry, 0.7F);
+            shotCtrl.enabled = false;
+            animator.SetBool("IsDead", true);
+        }
+
         healthBar.SetActive(false);
         healthBarBackground.SetActive(false);
-        shotCtrl.enabled = false;
+
         collider.enabled = false;
-        animator.SetBool("IsDead", true);
         gameObject.tag = "DeadEnemy";
         isDead = true;
         //play sound

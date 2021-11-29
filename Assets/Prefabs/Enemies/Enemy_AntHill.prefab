@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 5440789414770337718}
   - component: {fileID: -2199812482478710586}
   - component: {fileID: 7839987163244775707}
+  - component: {fileID: 51674440285768543}
   m_Layer: 0
   m_Name: Enemy_AntHill
   m_TagString: Enemy
@@ -376,6 +377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a13f05f104ab44ccaee655367107c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSpawner: 1
   health: 0
   healthBar: {fileID: 6899987056575866106}
   healthBarBackground: {fileID: 7490112802226631750}
@@ -507,6 +509,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924245704546449608f97ba3c1362e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &51674440285768543
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8339535055624639652}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9981e32c10e8a4b67a8c6aed6359bb3a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8914729750273440283
 GameObject:
   m_ObjectHideFlags: 0
