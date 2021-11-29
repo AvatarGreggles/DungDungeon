@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: -6947175245239999833}
   - component: {fileID: 7977248938575792362}
   - component: {fileID: -2881548561785735222}
+  - component: {fileID: 5928398366959218181}
   m_Layer: 6
   m_Name: Enemy_Ant
   m_TagString: Enemy
@@ -510,6 +511,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5928398366959218181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3296269669463947543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 924245704546449608f97ba3c1362e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6193555712537493919
 GameObject:
   m_ObjectHideFlags: 0

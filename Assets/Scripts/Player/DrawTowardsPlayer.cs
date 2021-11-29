@@ -9,15 +9,22 @@ public class DrawTowardsPlayer : MonoBehaviour
     Rigidbody2D _rigidbody;
     Collider2D _collider;
 
+    SpriteRenderer spriteRenderer;
+
     [Range(0.75f, 2)]
     [SerializeField] float drawDelayTime = 2f;
+
+    AudioSource audioSource;
+    public AudioClip coinCollectSound;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         player = FindObjectOfType<Player>();
         _rigidbody = GetComponentInParent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -39,8 +46,17 @@ public class DrawTowardsPlayer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            StartCoroutine(HandleCollection());
+
         }
+    }
+
+    IEnumerator HandleCollection()
+    {
+        audioSource.PlayOneShot(coinCollectSound, 1f);
+        spriteRenderer.enabled = false;
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 }
 

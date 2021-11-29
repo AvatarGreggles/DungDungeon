@@ -66,6 +66,7 @@ public class Projectile : MonoBehaviour
 
     public void SetPower(int attack)
     {
+        Debug.Log("power is set");
         power = attack;
     }
 

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8044046741084070766}
   m_Layer: 0
   m_Name: WebProjectile
-  m_TagString: Untagged
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -233,7 +233,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Speed: 5
   m_Lifespan: 8
-  power: 1
+  enemyAttackSpeed: 0
+  power: 100
   damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
   criticalDamageSprite: {fileID: 0}
   isPlayerProjectile: 0

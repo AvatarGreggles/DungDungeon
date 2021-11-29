@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b509905c6126943e69806f97a0f3bb1d, type: 3}
-  m_Name: IncreaseCriticalHitRatio
+  m_Name: Assasin Shot
   m_EditorClassIdentifier: 
   itemName: Assasin Shot
   itemDescription: Increase crit chance
-  price: 50
+  price: 400
   itemIcon: {fileID: -8322868590462112959, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   itemType: 1
   statIncrease: 6.25
   targetStat: 6
+  ability: 0

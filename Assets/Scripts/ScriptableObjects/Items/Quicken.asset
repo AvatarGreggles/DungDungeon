@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b509905c6126943e69806f97a0f3bb1d, type: 3}
-  m_Name: RestoreHealth
+  m_Name: Quicken
   m_EditorClassIdentifier: 
-  itemName: Potion
-  itemDescription: Heal 10 health
-  price: 20
-  itemIcon: {fileID: -1110265888859276761, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
-  itemType: 2
-  statIncrease: 10
-  targetStat: 1
+  itemName: Quicken
+  itemDescription: You move faster.
+  price: 300
+  itemIcon: {fileID: 2563235876011728774, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
+  itemType: 1
+  statIncrease: 1.25
+  targetStat: 4
+  ability: 0

@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c548c840cd7174769b02fea60994279c, type: 3}
-  m_Name: Enemy_Spider
+  m_Name: S_Enemy_Spider
   m_EditorClassIdentifier: 
   level: 1
-  baseMaxHP: 600
+  baseMaxHP: 400
   baseAttackPower: 200
   baseMoveSpeed: 2
   baseAttackSpeed: 1
   baseDefense: 1
   baseCurrencyDrop: 25
   baseExpYield: 50
-  maxHP: 600
-  attackPower: 0
-  moveSpeed: 0
+  maxHP: 400
+  attackPower: 200
+  moveSpeed: 2
   attackSpeed: 1
   defense: 1
-  currencyDrop: 0
-  expYield: 0
+  currencyDrop: 75
+  expYield: 50
   statRange: 0

@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b509905c6126943e69806f97a0f3bb1d, type: 3}
-  m_Name: IncreaseDungCapacity
+  m_Name: Potion
   m_EditorClassIdentifier: 
-  itemName: Gatherer
-  itemDescription: Increase your powered dung threshold.
-  price: 50
-  itemIcon: {fileID: -7961490728788840413, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
-  itemType: 1
-  statIncrease: 20
-  targetStat: 5
+  itemName: Potion
+  itemDescription: Heal 10 health
+  price: 150
+  itemIcon: {fileID: -1110265888859276761, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
+  itemType: 2
+  statIncrease: 300
+  targetStat: 1
+  ability: 0

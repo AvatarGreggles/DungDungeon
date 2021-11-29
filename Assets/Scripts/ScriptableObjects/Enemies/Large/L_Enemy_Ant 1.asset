@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c548c840cd7174769b02fea60994279c, type: 3}
-  m_Name: Enemy_Ant
+  m_Name: L_Enemy_Ant 1
   m_EditorClassIdentifier: 
   level: 1
   baseMaxHP: 200
@@ -27,4 +27,4 @@ MonoBehaviour:
   defense: 1
   currencyDrop: 0
   expYield: 0
-  statRange: 0
+  statRange: 2

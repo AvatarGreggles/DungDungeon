@@ -244,34 +244,46 @@ public class Player : MonoBehaviour
     //should count up until it hits the experience amount to add.
     public IEnumerator FillExperienceBar(float experienceToAdd)
     {
-
-        temporaryExperienceHolder = 0;
-
-        if (experience + experienceToAdd >= toLevelUp[level])
+        if (level < toLevelUp.Length)
         {
-            willLevelUp = true;
-        }
 
-        // addingXp = true;
-        //received from external sources. Add xp incrementally to move bar up slowly instead of chunks.
-        for (int i = 0; i < experienceToAdd; i++)
-        {
-            experience++;
-            expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
+            temporaryExperienceHolder = 0;
 
-            if (experience >= toLevelUp[level])
+            if (experience + experienceToAdd >= toLevelUp[level])
             {
-                GainLevel();
-                experience = toLevelUp[level - 1] - experience;
-                if (experience < 0)
-                {
-                    experience *= 1;
-                }
+                willLevelUp = true;
             }
-            yield return new WaitForSeconds(.001f);
-        }
 
-        // addingXp = false;
+            // addingXp = true;
+            //received from external sources. Add xp incrementally to move bar up slowly instead of chunks.
+            for (int i = 0; i < experienceToAdd; i++)
+            {
+                if (level < toLevelUp.Length)
+                {
+                    Debug.Log(level);
+                    experience++;
+                    expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
+
+
+
+                    if (experience >= toLevelUp[level])
+                    {
+                        GainLevel();
+                        if (level < toLevelUp.Length)
+                        {
+                            experience = toLevelUp[level] - experience;
+                            if (experience < 0)
+                            {
+                                experience *= 1;
+                            }
+                        }
+                    }
+                }
+                yield return new WaitForSeconds(.001f);
+            }
+
+            // addingXp = false;
+        }
     }
 
     public void ResetShield()
@@ -379,6 +391,11 @@ public class Player : MonoBehaviour
         }
         else
         {
+            if (shield < 0)
+            {
+                shield = 0;
+            }
+
             shieldBar.transform.localScale = new Vector3(0f, initialShieldBarSize.y, initialShieldBarSize.z);
             health -= damage;
 

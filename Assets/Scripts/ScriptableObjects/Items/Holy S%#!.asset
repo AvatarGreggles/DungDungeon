@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b509905c6126943e69806f97a0f3bb1d, type: 3}
-  m_Name: AttackPowerUp
+  m_Name: Holy S%#!
   m_EditorClassIdentifier: 
-  itemName: Heavy Dung
-  itemDescription: Boosts the base damage you deal
-  price: 50
-  itemIcon: {fileID: -8322868590462112959, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
-  itemType: 1
-  statIncrease: 1.25
-  targetStat: 2
-  ability: 0
+  itemName: Holy S#%!
+  itemDescription: Regenerate health over time.
+  price: 1000
+  itemIcon: {fileID: -1110265888859276761, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
+  itemType: 0
+  statIncrease: 0
+  targetStat: 1
+  ability: 1

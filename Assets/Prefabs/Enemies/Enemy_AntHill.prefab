@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 5834938550306486768}
   - component: {fileID: 5440789414770337718}
   - component: {fileID: -2199812482478710586}
+  - component: {fileID: 7839987163244775707}
   m_Layer: 0
   m_Name: Enemy_AntHill
   m_TagString: Enemy
@@ -494,6 +495,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7839987163244775707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8339535055624639652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 924245704546449608f97ba3c1362e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8914729750273440283
 GameObject:
   m_ObjectHideFlags: 0
