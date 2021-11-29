@@ -15,6 +15,9 @@ public class Shop : MonoBehaviour
 
     public AudioClip switchItemSound;
     public AudioClip selectItemSound;
+    public AudioClip errorSound;
+    public GameObject errorPanel;
+
     AudioSource audioSource;
 
 
@@ -234,10 +237,18 @@ public class Shop : MonoBehaviour
             }
             else
             {
-                // Play error sound purchasing
-                // audioSource.PlayOneShot(selectItemSound, 1f);
+                StartCoroutine(ShowError());
             }
         }
+    }
+
+    IEnumerator ShowError()
+    {
+        audioSource.PlayOneShot(errorSound, 1f);
+        errorPanel.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        errorPanel.SetActive(false);
+
     }
 
     public void OnCancel()

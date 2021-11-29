@@ -387,15 +387,16 @@ public class Player : MonoBehaviour
         {
             shield -= damage;
 
+            if (shield < 0)
+            {
+                shield = 0;
+            }
+
             shieldBar.transform.localScale = new Vector3(initialShieldBarSize.x * (shield / maxShield), initialShieldBarSize.y, initialShieldBarSize.z);
 
         }
         else
         {
-            if (shield < 0)
-            {
-                shield = 0;
-            }
 
             shieldBar.transform.localScale = new Vector3(0f, initialShieldBarSize.y, initialShieldBarSize.z);
             health -= damage;
