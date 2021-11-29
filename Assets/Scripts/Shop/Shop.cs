@@ -108,6 +108,7 @@ public class Shop : MonoBehaviour
         UpdateCritRatioText();
 
         playerInput.actions.Disable();
+        outOfStockObject.SetActive(false);
 
         randomShopItems = HelperMethods.GetRandomItemsFromList<Item>(shopItems, shopItemOfferCount);
 

@@ -67,7 +67,7 @@ public class MainMenuController : MonoBehaviour
 
     public void HandleQuitClick(Button button = null)
     {
-        Debug.Log(button);
+        Application.Quit();
     }
 
     public void HandleNestClick(Button button = null)

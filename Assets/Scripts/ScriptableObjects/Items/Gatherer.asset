@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gatherer
   m_EditorClassIdentifier: 
   itemName: Gatherer
-  itemDescription: Increase your powered dung threshold.
+  itemDescription: Increases your max dung size by 10.
   price: 300
   itemIcon: {fileID: -7961490728788840413, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   itemType: 1

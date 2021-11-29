@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Holy S%#!
   m_EditorClassIdentifier: 
   itemName: Holy S#%!
-  itemDescription: Regenerate health over time.
+  itemDescription: Regenerate 5% health every 10 seconds.
   price: 1000
   itemIcon: {fileID: -1110265888859276761, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   itemType: 0

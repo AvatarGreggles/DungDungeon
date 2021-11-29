@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Quicken
   m_EditorClassIdentifier: 
   itemName: Quicken
-  itemDescription: You move faster.
+  itemDescription: Increase your speed by 25%.
   price: 300
   itemIcon: {fileID: 2563235876011728774, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   itemType: 1

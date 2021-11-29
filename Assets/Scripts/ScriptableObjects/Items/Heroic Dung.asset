@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Heroic Dung
   m_EditorClassIdentifier: 
   itemName: Heroic Dung
-  itemDescription: Doubles the base damage you deal
+  itemDescription: Doubles the base damage dealt
   price: 500
   itemIcon: {fileID: -8322868590462112959, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   itemType: 1

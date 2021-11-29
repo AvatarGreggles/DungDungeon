@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class NestController : MonoBehaviour
 {
 
-    [SerializeField] GameObject statBlockSprite;
+    [SerializeField] Sprite statBlockSprite;
 
     [SerializeField] Transform healthStats;
     [SerializeField] Transform shieldStats;
@@ -96,40 +96,57 @@ public class NestController : MonoBehaviour
 
     public void GenerateStats()
     {
-        for (var i = 0; i < PlayerBaseStatManager.instance.bonusMaxHP; i++)
+        for (var i = 0; i < PlayerBaseStatManager.instance.bonusMaxHP; i += 50)
         {
-            GameObject statPoint = Instantiate(statBlockSprite, healthStats.position, healthStats.rotation);
-            statPoint.transform.SetParent(healthStats);
+            GameObject NewObj = new GameObject();
+            Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
+            NewImage.sprite = statBlockSprite;
+            NewObj.transform.SetParent(healthStats, false);
+            //    createImage.transform.SetParent(canvas.transform, false);
         }
 
-        for (var i = 0; i < PlayerBaseStatManager.instance.bonusMaxShield; i++)
+        for (var i = 0; i < PlayerBaseStatManager.instance.bonusMaxShield; i += 50)
         {
-            GameObject statPoint = Instantiate(statBlockSprite, shieldStats.position, shieldStats.rotation);
-            statPoint.transform.SetParent(shieldStats);
+            GameObject NewObj = new GameObject();
+            Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
+            NewImage.sprite = statBlockSprite;
+            NewObj.transform.SetParent(shieldStats, false);
         }
 
-        for (var i = 0; i < PlayerBaseStatManager.instance.bonusAttackPower; i++)
+        for (var i = 0; i < PlayerBaseStatManager.instance.bonusAttackPower; i += 50)
         {
-            GameObject statPoint = Instantiate(statBlockSprite, attackStats.position, attackStats.rotation);
-            statPoint.transform.SetParent(attackStats);
+            GameObject NewObj = new GameObject();
+            Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
+            NewImage.sprite = statBlockSprite;
+            NewObj.transform.SetParent(attackStats, false);
         }
 
-        for (var i = 0; i < PlayerBaseStatManager.instance.bonusDefense; i++)
+        for (var i = 0; i < PlayerBaseStatManager.instance.bonusDefense; i += 50)
         {
-            GameObject statPoint = Instantiate(statBlockSprite, defenseStats.position, defenseStats.rotation);
-            statPoint.transform.SetParent(defenseStats);
+
+            GameObject NewObj = new GameObject();
+            Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
+            NewImage.sprite = statBlockSprite;
+            NewObj.transform.SetParent(defenseStats, false);
         }
 
-        for (var i = 0; i < PlayerBaseStatManager.instance.bonusMoveSpeed; i++)
+        for (float i = 0; i < PlayerBaseStatManager.instance.bonusMoveSpeed; i += 0.25f)
         {
-            GameObject statPoint = Instantiate(statBlockSprite, speedStats.position, speedStats.rotation);
-            statPoint.transform.SetParent(speedStats);
+
+
+            GameObject NewObj = new GameObject();
+            Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
+            NewImage.sprite = statBlockSprite;
+            NewObj.transform.SetParent(speedStats, false);
         }
 
-        for (var i = 0; i < PlayerBaseStatManager.instance.bonusMaxDung; i++)
+        for (var i = 0; i < PlayerBaseStatManager.instance.bonusMaxDung; i += 2)
         {
-            GameObject statPoint = Instantiate(statBlockSprite, dungStats.position, dungStats.rotation);
-            statPoint.transform.SetParent(dungStats);
+
+            GameObject NewObj = new GameObject();
+            Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
+            NewImage.sprite = statBlockSprite;
+            NewObj.transform.SetParent(dungStats, false);
         }
     }
 
@@ -146,10 +163,16 @@ public class NestController : MonoBehaviour
 
     public void HandleIncreaseBonusHealth(Button button = null)
     {
-        PlayerBaseStatManager.instance.bonusMaxHP += 1;
-        GameObject statPoint = Instantiate(statBlockSprite, healthStats.position, healthStats.rotation);
-        statPoint.transform.SetParent(healthStats);
-        SavingSystem.i.Save("saveSlot3");
+        if (PlayerBaseStatManager.instance.bonusMaxHP >= 50 * 50)
+        {
+            return;
+        }
+        PlayerBaseStatManager.instance.bonusMaxHP += 50;
+        GameObject NewObj = new GameObject();
+        Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
+        NewImage.sprite = statBlockSprite;
+        NewObj.transform.SetParent(healthStats, false);
+        SavingSystem.i.Save("saveSlot1");
         // subtract cost
         // Increase player health by 1
         // Set stat increase gameobject to true
@@ -157,10 +180,16 @@ public class NestController : MonoBehaviour
 
     public void HandleIncreaseBonusAttack(Button button = null)
     {
-        PlayerBaseStatManager.instance.bonusAttackPower += 1;
-        GameObject statPoint = Instantiate(statBlockSprite, attackStats.position, attackStats.rotation);
-        statPoint.transform.SetParent(attackStats);
-        SavingSystem.i.Save("saveSlot3");
+        if (PlayerBaseStatManager.instance.bonusAttackPower >= 50 * 50)
+        {
+            return;
+        }
+        PlayerBaseStatManager.instance.bonusAttackPower += 50;
+        GameObject NewObj = new GameObject();
+        Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
+        NewImage.sprite = statBlockSprite;
+        NewObj.transform.SetParent(attackStats, false);
+        SavingSystem.i.Save("saveSlot1");
         // subtract cost
         // Increase player attack by 1
         // Set stat increase gameobject to true
@@ -169,10 +198,16 @@ public class NestController : MonoBehaviour
 
     public void HandleIncreaseBonusShield(Button button = null)
     {
-        PlayerBaseStatManager.instance.bonusMaxShield += 1;
-        GameObject statPoint = Instantiate(statBlockSprite, shieldStats.position, shieldStats.rotation);
-        statPoint.transform.SetParent(shieldStats);
-        SavingSystem.i.Save("saveSlot3");
+        if (PlayerBaseStatManager.instance.bonusMaxShield >= 50 * 50)
+        {
+            return;
+        }
+        PlayerBaseStatManager.instance.bonusMaxShield += 50;
+        GameObject NewObj = new GameObject();
+        Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
+        NewImage.sprite = statBlockSprite;
+        NewObj.transform.SetParent(shieldStats, false);
+        SavingSystem.i.Save("saveSlot1");
         // subtract cost
         // Increase player attack by 1
         // Set stat increase gameobject to true
@@ -180,10 +215,16 @@ public class NestController : MonoBehaviour
 
     public void HandleIncreaseBonusDefense(Button button = null)
     {
-        PlayerBaseStatManager.instance.bonusDefense += 1;
-        GameObject statPoint = Instantiate(statBlockSprite, defenseStats.position, defenseStats.rotation);
-        statPoint.transform.SetParent(defenseStats);
-        SavingSystem.i.Save("saveSlot3");
+        if (PlayerBaseStatManager.instance.bonusDefense >= 50 * 50)
+        {
+            return;
+        }
+        PlayerBaseStatManager.instance.bonusDefense += 50;
+        GameObject NewObj = new GameObject();
+        Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
+        NewImage.sprite = statBlockSprite;
+        NewObj.transform.SetParent(defenseStats, false);
+        SavingSystem.i.Save("saveSlot1");
         // subtract cost
         // Increase player attack by 1
         // Set stat increase gameobject to true
@@ -191,10 +232,16 @@ public class NestController : MonoBehaviour
 
     public void HandleIncreaseBonusMoveSpeed(Button button = null)
     {
-        PlayerBaseStatManager.instance.bonusMoveSpeed += 1;
-        GameObject statPoint = Instantiate(statBlockSprite, speedStats.position, speedStats.rotation);
-        statPoint.transform.SetParent(speedStats);
-        SavingSystem.i.Save("saveSlot3");
+        if (PlayerBaseStatManager.instance.bonusMoveSpeed >= 50 * 0.25)
+        {
+            return;
+        }
+        PlayerBaseStatManager.instance.bonusMoveSpeed += 0.25f;
+        GameObject NewObj = new GameObject();
+        Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
+        NewImage.sprite = statBlockSprite;
+        NewObj.transform.SetParent(speedStats, false);
+        SavingSystem.i.Save("saveSlot1");
         // subtract cost
         // Increase player attack by 1
         // Set stat increase gameobject to true
@@ -203,10 +250,16 @@ public class NestController : MonoBehaviour
 
     public void HandleIncreaseMaxDung(Button button = null)
     {
-        PlayerBaseStatManager.instance.bonusMaxDung += 1;
-        GameObject statPoint = Instantiate(statBlockSprite, dungStats.position, dungStats.rotation);
-        statPoint.transform.SetParent(dungStats);
-        SavingSystem.i.Save("saveSlot3");
+        if (PlayerBaseStatManager.instance.bonusMaxDung >= 50 * 2)
+        {
+            return;
+        }
+        PlayerBaseStatManager.instance.bonusMaxDung += 2;
+        GameObject NewObj = new GameObject();
+        Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
+        NewImage.sprite = statBlockSprite;
+        NewObj.transform.SetParent(dungStats, false);
+        SavingSystem.i.Save("saveSlot1");
         // subtract cost
         // Increase player attack by 1
         // Set stat increase gameobject to true

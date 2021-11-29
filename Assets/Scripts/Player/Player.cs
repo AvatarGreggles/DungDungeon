@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
 
     public PlayerAbilities playerAbilities;
 
-    public int delayAmount = 1; // Second count
+    public int delayAmount = 10; // Second count
     protected float Timer;
 
     PlayerBaseStatManager playerBaseStats;
@@ -162,7 +162,8 @@ public class Player : MonoBehaviour
                 Timer = 0f;
                 if (health < maxHealth)
                 {
-                    health++;
+                    float amountToHeal = (maxHealth / 100) * 5;
+                    health = health + amountToHeal;
                     UpdateHealthBar();
                 }
 
@@ -271,7 +272,7 @@ public class Player : MonoBehaviour
                         GainLevel();
                         if (level < toLevelUp.Length)
                         {
-                            experience = toLevelUp[level] - experience;
+                            experience = toLevelUp[level - 1] - experience;
                             if (experience < 0)
                             {
                                 experience *= 1;

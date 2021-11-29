@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Iron Shell
   m_EditorClassIdentifier: 
   itemName: Iron Shell
-  itemDescription: Boosts your shield.
+  itemDescription: Increase your shield by 300.
   price: 200
   itemIcon: {fileID: 216425512679943517, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   itemType: 1

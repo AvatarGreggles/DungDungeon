@@ -13,7 +13,7 @@ public class PlayerBaseStatManager : MonoBehaviour, ISavable
     public int bonusMaxShield = 0;
     public int bonusAttackPower = 0;
     public int bonusDefense = 0;
-    public int bonusMoveSpeed = 0;
+    public float bonusMoveSpeed = 0;
     public int bonusMaxDung = 0;
 
     public static PlayerBaseStatManager instance;
@@ -77,7 +77,7 @@ public class PlayerBaseStatManager : MonoBehaviour, ISavable
         public int totalBonusMaxShield;
         public int totalBonusAttackPower;
         public int totalBonusDefense;
-        public int totalBonusMoveSpeed;
+        public float totalBonusMoveSpeed;
         public int totalBonusMaxDung;
 
     }
