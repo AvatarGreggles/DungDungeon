@@ -21,6 +21,8 @@ public class Skill : ScriptableObject
         Bounce,
         ShootThroughEnemy,
         MegaArmor,
+        GoldRush,
+        Bloodsucker
     }
 
     public enum TargetStat
@@ -100,5 +102,19 @@ public class Skill : ScriptableObject
         {
             playerAbilities.MegaArmorEnabled();
         }
+
+        if (ability == Ability.MegaArmor)
+        {
+            playerAbilities.GoldRushEnabled();
+        }
+
+        if (ability == Ability.Bloodsucker)
+        {
+            playerAbilities.BloodsuckerEnabled();
+        }
+
+
+
+
     }
 }

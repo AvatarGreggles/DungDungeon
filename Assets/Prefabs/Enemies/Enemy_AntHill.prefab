@@ -387,6 +387,7 @@ MonoBehaviour:
   criticalDamageSprite: {fileID: 1905902881067641905, guid: cc282c30cc80f42c4b4399f5d779cec6, type: 3}
   damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
   isDead: 0
+  isSpawnee: 0
   cry: {fileID: 8300000, guid: ecae270f17b5f4304b7f8aabefaffc0e, type: 3}
 --- !u!114 &5440789414770337718
 MonoBehaviour:
@@ -673,6 +674,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Object: {fileID: 3296269669463947543, guid: 111dbd717f72140bf8d1ab4441e7c8f3, type: 3}
-  startTimeBtwSpawn: 4
-  numberOfEnemiesToSpawn: 20
+  startTimeBtwSpawn: 5
+  numberOfEnemiesToSpawn: 10
   spawnPos: {fileID: 3076029680398584194}

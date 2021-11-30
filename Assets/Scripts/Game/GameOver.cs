@@ -47,10 +47,17 @@ public class GameOver : MonoBehaviour
 
     public AudioClip switchItemSound;
     public AudioClip selectItemSound;
+    public AudioClip gameOverMusic;
     AudioSource audioSource;
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    private void OnEnable()
+    {
+        GameController.Instance.StopGameMusic();
+        audioSource.PlayOneShot(gameOverMusic, 1f);
     }
 
 

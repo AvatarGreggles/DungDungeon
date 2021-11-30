@@ -91,6 +91,9 @@ public class Player : MonoBehaviour
     float stopwatch = 0;
 
 
+    [SerializeField] GameObject healthDisplay;
+
+
     private void Awake()
     {
 
@@ -120,12 +123,12 @@ public class Player : MonoBehaviour
         initialHealthBarSize = healthBar.transform.localScale;
         initialShieldBarSize = shieldBar.transform.localScale;
         initialEXPBarSize = expBar.transform.localScale;
-        initialDungBarSize = GameController.Instance.dungBarP1.fillAmount;
+
 
         SetLevelText();
         LevelXPSetUp();
         expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
-        GameController.Instance.dungBarP1.fillAmount = dungAccumulated / maxDungSize;
+        GameController.Instance.dungBarP1.fillAmount = 0;
         dungSprite.enabled = false;
 
         // GameController.Instance.LoadData();
@@ -140,7 +143,6 @@ public class Player : MonoBehaviour
             stopwatch += Time.deltaTime;
             if (stopwatch >= invincibilityFrameTime)
             {
-                Debug.Log("no longer inv");
                 isInvincible = false;
             }
         }
@@ -164,8 +166,9 @@ public class Player : MonoBehaviour
                 Timer = 0f;
                 if (health < maxHealth)
                 {
+
                     float amountToHeal = (maxHealth / 100) * 5;
-                    health = health + amountToHeal;
+                    RestoreHealth(amountToHeal);
                     UpdateHealthBar();
                 }
 
@@ -176,6 +179,14 @@ public class Player : MonoBehaviour
 
             }
         }
+    }
+
+    public void ShowHealthGain(float gainedHealth)
+    {
+        GameObject healthObject = Instantiate(healthDisplay, damageDisplayPivot.transform.position, damageDisplayPivot.transform.rotation);
+        healthObject.transform.SetParent(transform);
+        healthObject.GetComponent<DisplayHealth>().ShowHealth(gainedHealth);
+        healthObject.transform.SetParent(null);
     }
 
     private void SetSpriteSize()
@@ -216,7 +227,6 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Debug.Log("Is clicked");
             GameController.Instance.currentState = State.Paused;
         }
 
@@ -263,7 +273,7 @@ public class Player : MonoBehaviour
             {
                 if (level < toLevelUp.Length)
                 {
-                    Debug.Log(level);
+
                     experience++;
                     expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
 
@@ -308,13 +318,18 @@ public class Player : MonoBehaviour
     }
 
     //TODO: Reaname this method
-    public void UpdateTempExperienceHolder(float value, int currency)
+    public void HandlePlayerGains(float value, int currency)
     {
         moneyEarned += currency;
         enemiesKilled++;
         if (playerAbilities.isConfidenceEnabled)
         {
             attack += 1;
+        }
+
+        if (playerAbilities.isBloodsuckerEnabled)
+        {
+            RestoreHealth((maxHealth / 100) * 1);
         }
         temporaryExperienceHolder += value;
     }
@@ -368,7 +383,7 @@ public class Player : MonoBehaviour
 
     public void OnCancel()
     {
-        Debug.Log("Cancelling");
+
 
         if (GameController.Instance.currentState == State.Shop)
         {
@@ -470,5 +485,17 @@ public class Player : MonoBehaviour
     public void IncreaseAttack(int multiplier)
     {
         attack *= multiplier;
+    }
+
+    public void RestoreHealth(float statIncrease)
+    {
+        if (health == maxHealth) { return; }
+        health += statIncrease;
+        ShowHealthGain(statIncrease);
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        UpdateHealthBar();
     }
 }

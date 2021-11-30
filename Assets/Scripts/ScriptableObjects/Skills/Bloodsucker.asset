@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52d848c2a3bb2439194e0c9f8097e858, type: 3}
-  m_Name: Wonder Guard
+  m_Name: Bloodsucker
   m_EditorClassIdentifier: 
-  skillName: Wonder Guard
-  skillDescription: Ups defense in a pinch.
+  skillName: Bloodsucker
+  skillDescription: Restore 1% health per enemy slain
   skillIcon: {fileID: 216425512679943517, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
-  skillType: 1
+  skillType: 2
   statIncrease: 100
   targetStat: 3
-  ability: 0
+  ability: 5

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Sharpen
   itemDescription: Increase attack by 100
-  price: 150
+  price: 200
   itemIcon: {fileID: -8322868590462112959, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   itemType: 1
   statIncrease: 100

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d848c2a3bb2439194e0c9f8097e858, type: 3}
   m_Name: Quick Wit
   m_EditorClassIdentifier: 
-  skillName: Quick Witt
-  skillDescription: Ups defense in a pinch.
+  skillName: Quick Wit
+  skillDescription: Boost your movement speed
   skillIcon: {fileID: 216425512679943517, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   skillType: 1
-  statIncrease: 100
-  targetStat: 3
+  statIncrease: 1.25
+  targetStat: 4
   ability: 0

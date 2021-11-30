@@ -94,7 +94,7 @@ public class LevelTransition : MonoBehaviour
         sequence.Append(overlay.transform.DOScaleX(1f, 0.4f));
         yield return sequence.WaitForCompletion();
         GameController.Instance.gameWinMenu.SetActive(true);
-        Debug.Log("Courtininggg");
+
     }
 
     public IEnumerator OnUnpause()

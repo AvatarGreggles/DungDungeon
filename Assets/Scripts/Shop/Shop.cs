@@ -248,7 +248,6 @@ public class Shop : MonoBehaviour
         if (successfulPurchase)
         {
             audioSource.PlayOneShot(selectItemSound, 1f);
-            Debug.Log("purchased, should remove");
             currentShopItem.gameObject.SetActive(false);
             currentShopItem.SetItemAsSelected();
 
@@ -271,7 +270,6 @@ public class Shop : MonoBehaviour
         if (successfulPurchase)
         {
             audioSource.PlayOneShot(selectItemSound, 1f);
-            Debug.Log("purchased, should remove");
             currentItems[currentItemSelected].gameObject.SetActive(false);
             currentItemSelected = 0;
             currentItems[currentItemSelected].SetItemAsSelected();

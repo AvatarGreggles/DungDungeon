@@ -10,8 +10,6 @@ public class ManageAttackPower : MonoBehaviour
         int attackPower = GetComponentInParent<Enemy>().enemyStats.attackPower;
         int attackSpeed = GetComponentInParent<Enemy>().enemyStats.attackSpeed;
 
-        Debug.Log("attack power is" + attackPower);
-
 
         //TODO make getter functions that get the calculated stats
         if (GetComponentInParent<UbhShotCtrl>() != null)

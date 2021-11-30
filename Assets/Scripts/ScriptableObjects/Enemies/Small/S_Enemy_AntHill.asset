@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: S_Enemy_AntHill
   m_EditorClassIdentifier: 
   level: 1
-  baseMaxHP: 1200
+  baseMaxHP: 1000
   baseAttackPower: 1
   baseMoveSpeed: 1
   baseAttackSpeed: 5
   baseDefense: 1
   baseCurrencyDrop: 30
   baseExpYield: 100
-  maxHP: 2000
+  maxHP: 1000
   attackPower: 1
   moveSpeed: 1
   attackSpeed: 5
   defense: 1
-  currencyDrop: 30
+  currencyDrop: 125
   expYield: 100
   statRange: 0

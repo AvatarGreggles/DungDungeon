@@ -22,6 +22,10 @@ public class PlayerAbilities : MonoBehaviour
 
     public bool isMegaArmorEnabled = false;
 
+    public bool isGoldRushEnabled = false;
+
+    public bool isBloodsuckerEnabled = false;
+
 
     Player player;
     // Start is called before the first frame update
@@ -46,9 +50,19 @@ public class PlayerAbilities : MonoBehaviour
         projectilePassThroughEnabled = true;
     }
 
+    public void GoldRushEnabled()
+    {
+        isGoldRushEnabled = true;
+    }
+
     public void ProjectileBounceEnabled()
     {
         projectileBounceEnabled = true;
+    }
+
+    public void BloodsuckerEnabled()
+    {
+        isBloodsuckerEnabled = true;
     }
 
     public void ShootThroughEnemiesEnabled()

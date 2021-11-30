@@ -185,6 +185,7 @@ MonoBehaviour:
   value: 1
   drawDelayTime: 0.75
   coinCollectSound: {fileID: 8300000, guid: a306eb58e5959454393e4bb10eec64be, type: 3}
+  collectibleType: 1
 --- !u!58 &2224313668610485246
 CircleCollider2D:
   m_ObjectHideFlags: 0

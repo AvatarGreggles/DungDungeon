@@ -18,6 +18,14 @@ public class DrawTowardsPlayer : MonoBehaviour
     AudioSource audioSource;
     public AudioClip coinCollectSound;
 
+    public enum CollectibleType
+    {
+        Coin,
+        Gem,
+    }
+
+    public CollectibleType collectibleType;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +62,16 @@ public class DrawTowardsPlayer : MonoBehaviour
 
     IEnumerator HandleCollection()
     {
-        GameController.Instance.AddCurrency(value);
+        if (collectibleType == CollectibleType.Coin)
+        {
+            GameController.Instance.AddCurrency(value);
+        }
+
+        if (collectibleType == CollectibleType.Gem)
+        {
+            GameController.Instance.AddGems(value);
+            //TODO Update gem count
+        }
         audioSource.PlayOneShot(coinCollectSound, 1f);
         spriteRenderer.enabled = false;
         yield return new WaitForSeconds(1f);

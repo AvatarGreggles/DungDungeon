@@ -45,7 +45,7 @@ public class LevelManager : MonoBehaviour
     {
         if (floor >= levels.Count)
         {
-            Debug.Log("Should win game");
+
             GameController.Instance.currentState = State.GameWin;
             yield break;
         }

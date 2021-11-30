@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Speed: 10
   m_Lifespan: 3
   enemyAttackSpeed: 0
-  power: 10
+  power: 100
   damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
   criticalDamageSprite: {fileID: 1905902881067641905, guid: cc282c30cc80f42c4b4399f5d779cec6, type: 3}
   isPlayerProjectile: 0

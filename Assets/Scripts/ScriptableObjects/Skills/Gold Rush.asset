@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52d848c2a3bb2439194e0c9f8097e858, type: 3}
-  m_Name: Sharpshooter
+  m_Name: Gold Rush
   m_EditorClassIdentifier: 
-  skillName: Sharpshooter
-  skillDescription: Shoot smaller but quicker dung
-  skillIcon: {fileID: -7961490728788840413, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
-  skillType: 0
-  statIncrease: 1.25
-  targetStat: 5
-  ability: 0
+  skillName: Gold Rush
+  skillDescription: Doubles coins collected
+  skillIcon: {fileID: 216425512679943517, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
+  skillType: 2
+  statIncrease: 100
+  targetStat: 0
+  ability: 4

@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour, ISavable
 
     public static GameController Instance { get; set; }
 
-    [SerializeField] CurrencyUIManager currencyUI;
+    [SerializeField] public CurrencyUIManager currencyUI;
     public GameObject shopMenu;
     public GameObject pauseMenu;
 
@@ -77,6 +77,8 @@ public class GameController : MonoBehaviour, ISavable
         SavingSystem.i.Load("saveSlot1");
 
         currencyUI.UpdateCurrency();
+        currencyUI.UpdateGems();
+
 
         float minutes = Mathf.Floor(gameRuntime / 60);
         float seconds = Mathf.Floor(gameRuntime) - (minutes * 60);
@@ -181,8 +183,23 @@ public class GameController : MonoBehaviour, ISavable
     }
     public void AddCurrency(int value)
     {
+        if (players[0].playerAbilities.isGoldRushEnabled)
+        {
+            value = value * 2;
+        }
         totalCurrency += value;
         currencyUI.UpdateCurrency();
+    }
+
+
+    public void AddGems(int value)
+    {
+        // if (players[0].playerAbilities.isGoldRushEnabled)
+        // {
+        //     value = value * 2;
+        // }
+        PlayerBaseStatManager.instance.gems += value;
+        currencyUI.UpdateGems();
     }
 
     public void RemoveCurrency(int value)
@@ -239,7 +256,6 @@ public class GameController : MonoBehaviour, ISavable
             playerWillLevelUp = player.willLevelUp,
 
         };
-        Debug.Log("Game controller saved");
 
         return saveState;
     }

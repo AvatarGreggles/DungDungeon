@@ -50,14 +50,11 @@ public class Item : ScriptableObject
     {
         if (targetStat == TargetStat.HP)
         {
-            if (player.health == player.maxHealth) { return false; }
-            player.health += statIncrease;
-            if (player.health > player.maxHealth)
-            {
-                player.health = player.maxHealth;
-            }
+            player.RestoreHealth(statIncrease);
+
+
             shop.UpdateHPText();
-            player.UpdateHealthBar();
+
         }
         return true;
     }

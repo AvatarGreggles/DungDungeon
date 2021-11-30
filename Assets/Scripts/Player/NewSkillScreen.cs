@@ -206,7 +206,7 @@ public class NewSkillScreen : MonoBehaviour
         {
             playerInput.actions.Enable();
             audioSource.PlayOneShot(selectItemSound, 1f);
-            Debug.Log(currentSkillSelected);
+
 
             LevelSkill[] currentSkills = skillList.GetComponentsInChildren<LevelSkill>();
             currentSkills[currentSkillSelected].ChooseSkill();

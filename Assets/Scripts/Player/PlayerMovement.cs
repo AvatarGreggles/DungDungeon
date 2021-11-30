@@ -166,6 +166,8 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Vector3 newPosWithRotation = new Vector3(newPos.x, newPos.y, targetedEnemy.z);
+        Debug.Log(player.dungAccumulated);
+        Debug.Log(player.maxDungSize);
         if (newPos != new Vector2(transform.position.x, transform.position.y) && GameController.Instance.currentState != State.Cleared && player.dungAccumulated < player.maxDungSize)
         {
             if (!audioSource.isPlaying)

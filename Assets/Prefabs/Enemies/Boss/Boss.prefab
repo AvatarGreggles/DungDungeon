@@ -301,15 +301,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a13f05f104ab44ccaee655367107c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSpawner: 0
   health: 0
   healthBar: {fileID: 667688715}
   healthBarBackground: {fileID: 193135794}
   damageDisplayPivot: {fileID: 3221128125135598664}
   enemyStats: {fileID: 11400000, guid: cd09e0d8c9c1d4fde9bb15bf983e77e5, type: 2}
-  loot: {fileID: 3627446960729447023, guid: 6b59ef42d087c4997ba67356c9b1a196, type: 3}
+  loot: {fileID: 3627446960729447023, guid: 9a6fdc6e6384347c09ecc46aea0e1349, type: 3}
   criticalDamageSprite: {fileID: 1905902881067641905, guid: cc282c30cc80f42c4b4399f5d779cec6, type: 3}
   damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
   isDead: 0
+  isSpawnee: 0
   cry: {fileID: 8300000, guid: a0e143d05a5154eb9970713b2231ce41, type: 3}
 --- !u!114 &-540677613515049708
 MonoBehaviour:
@@ -576,7 +578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_bulletPrefab: {fileID: 1530938748849006514, guid: 14cd44a3e82a2406195153a7518107c1, type: 3}
-  m_bulletNum: 15
+  m_bulletNum: 10
   m_bulletSpeed: 5
   m_accelerationSpeed: 0
   m_useMaxSpeed: 0

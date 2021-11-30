@@ -135,7 +135,7 @@ public class Enemy : MonoBehaviour
     {
         foreach (Player player in GameController.Instance.players)
         {
-            player.UpdateTempExperienceHolder(enemyStats.expYield, enemyStats.currencyDrop);
+            player.HandlePlayerGains(enemyStats.expYield, enemyStats.currencyDrop);
 
         }
     }
