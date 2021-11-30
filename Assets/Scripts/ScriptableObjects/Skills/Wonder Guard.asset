@@ -16,5 +16,6 @@ MonoBehaviour:
   skillDescription: Ups defense in a pinch.
   skillIcon: {fileID: 216425512679943517, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   skillType: 1
-  statIncrease: 99
+  statIncrease: 100
   targetStat: 3
+  ability: 0

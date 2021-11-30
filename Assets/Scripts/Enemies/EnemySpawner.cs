@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if (timebtwspawn <= 0 && enemiesSpawned < numberOfEnemiesToSpawn)
+        if (timebtwspawn <= 0 && enemiesSpawned < numberOfEnemiesToSpawn && GameController.Instance.currentState == State.Active)
         {
             SpawnEnemy();
         }

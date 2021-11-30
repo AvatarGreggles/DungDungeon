@@ -418,6 +418,11 @@ public class Player : MonoBehaviour
             shieldBar.transform.localScale = new Vector3(0f, initialShieldBarSize.y, initialShieldBarSize.z);
             health -= damage;
 
+            if (health < 0)
+            {
+                health = 0;
+            }
+
             UpdateHealthBar();
 
         }

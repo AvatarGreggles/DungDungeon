@@ -143,8 +143,10 @@ public class Enemy : MonoBehaviour
     private void DropLoot()
     {
 
-        Instantiate(loot, transform.position, Quaternion.identity);
-        loot.GetComponent<DrawTowardsPlayer>().value = enemyStats.currencyDrop;
+        GameObject newLoot = Instantiate(loot, transform.position, Quaternion.identity);
+
+        newLoot.GetComponent<DrawTowardsPlayer>().value = enemyStats.currencyDrop;
+
     }
 
     public void AlertObservers(string message)

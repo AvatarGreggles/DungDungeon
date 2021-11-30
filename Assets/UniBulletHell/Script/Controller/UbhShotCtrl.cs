@@ -108,7 +108,7 @@ public sealed class UbhShotCtrl : UbhMonoBehaviour
 
     public void UpdateShot(float deltaTime)
     {
-        if (m_shooting == false || GameController.Instance.currentState == State.Paused || GameController.Instance.currentState == State.Initial || GameController.Instance.currentState == State.LevelUp)
+        if (m_shooting == false || GameController.Instance.currentState == State.Paused || GameController.Instance.currentState == State.Initial || GameController.Instance.currentState == State.LevelUp || GameController.Instance.currentState == State.Death)
         {
             return;
         }
