@@ -13,7 +13,7 @@ public class NewSkillScreen : MonoBehaviour
     [SerializeField] Transform skillList;
 
 
-    [SerializeField] Text currencyText;
+    // [SerializeField] Text currencyText;
 
     [SerializeField] Text healthStatText;
     [SerializeField] Text shieldStatText;
@@ -54,10 +54,10 @@ public class NewSkillScreen : MonoBehaviour
 
 
 
-    public void UpdateCurrency()
-    {
-        currencyText.text = GameController.Instance.totalCurrency.ToString();
-    }
+    // public void UpdateCurrency()
+    // {
+    //     currencyText.text = GameController.Instance.totalCurrency.ToString();
+    // }
 
     public void UpdateSpeedText()
     {
@@ -89,7 +89,7 @@ public class NewSkillScreen : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         playerInput = player.GetComponent<PlayerInput>();
-        UpdateCurrency();
+        // UpdateCurrency();
         UpdateHPText();
         UpdateShieldText();
         UpdateAttackText();

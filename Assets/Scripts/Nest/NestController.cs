@@ -163,6 +163,7 @@ public class NestController : MonoBehaviour
 
     public void HandleIncreaseBonusHealth(Button button = null)
     {
+        // if (PlayerBaseStatManager.instance.gems)
         if (PlayerBaseStatManager.instance.bonusMaxHP >= 50 * 50)
         {
             return;
