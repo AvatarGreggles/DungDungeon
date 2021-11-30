@@ -17,6 +17,8 @@ public class Shop : MonoBehaviour
     public AudioClip selectItemSound;
     public AudioClip errorSound;
     public GameObject errorPanel;
+    public GameObject healthErrorPanel;
+
 
     AudioSource audioSource;
 
@@ -29,6 +31,9 @@ public class Shop : MonoBehaviour
     [SerializeField] Text speedStatText;
 
     [SerializeField] Text defenseStatText;
+
+    [SerializeField] Text dungStatText;
+
 
     [SerializeField] Text critRatioStatText;
 
@@ -62,6 +67,11 @@ public class Shop : MonoBehaviour
     public void UpdateCurrency()
     {
         currencyText.text = GameController.Instance.totalCurrency.ToString();
+    }
+
+    public void UpdateDungText()
+    {
+        dungStatText.text = player.maxDungSize.ToString();
     }
 
     public void UpdateSpeedText()
@@ -118,6 +128,7 @@ public class Shop : MonoBehaviour
         UpdateDefenseText();
         UpdateAttackText();
         UpdateSpeedText();
+        UpdateDungText();
         UpdateCritRatioText();
 
         playerInput.actions.Disable();
@@ -136,6 +147,7 @@ public class Shop : MonoBehaviour
                 newShopItem.GetComponent<ShopItem>().SetItemDescriptionText();
                 newShopItem.GetComponent<ShopItem>().SetItemIcon();
                 newShopItem.transform.SetParent(playerShopUI);
+                newShopItem.transform.localScale = new Vector3(1f, 1f, 1f);
             }
 
         }
@@ -219,45 +231,80 @@ public class Shop : MonoBehaviour
             return;
         }
 
-        ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
-
         // ShopItem[] items = FindObjectsOfType<ShopItem>();
 
         if (currentItemSelected != -1)
         {
-
-
-            bool successfulPurchase = currentItems[currentItemSelected].PurchaseItem();
-
-            if (successfulPurchase)
-            {
-                audioSource.PlayOneShot(selectItemSound, 1f);
-                Debug.Log("purchased, should remove");
-                currentItems[currentItemSelected].gameObject.SetActive(false);
-                currentItemSelected = 0;
-                currentItems[currentItemSelected].SetItemAsSelected();
-
-                ShopItem[] availableItems = playerShopUI.GetComponentsInChildren<ShopItem>();
-                if (availableItems.Length == 0)
-                {
-                    outOfStockObject.SetActive(true);
-                    currentItemSelected = -1;
-                }
-
-            }
-            else
-            {
-                StartCoroutine(ShowError());
-            }
+            TryPurchase();
         }
     }
 
-    IEnumerator ShowError()
+    public void PurchaseWithClick(GameObject currentSelectedGameObject)
+    {
+        ShopItem currentShopItem = currentSelectedGameObject.GetComponentInParent<ShopItem>();
+
+        bool successfulPurchase = currentShopItem.PurchaseItem();
+
+        if (successfulPurchase)
+        {
+            audioSource.PlayOneShot(selectItemSound, 1f);
+            Debug.Log("purchased, should remove");
+            currentShopItem.gameObject.SetActive(false);
+            currentShopItem.SetItemAsSelected();
+
+            ShopItem[] availableItems = playerShopUI.GetComponentsInChildren<ShopItem>();
+            if (availableItems.Length == 0)
+            {
+                outOfStockObject.SetActive(true);
+                currentItemSelected = -1;
+            }
+
+        }
+    }
+
+    public void TryPurchase()
+    {
+        ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
+
+        bool successfulPurchase = currentItems[currentItemSelected].PurchaseItem();
+
+        if (successfulPurchase)
+        {
+            audioSource.PlayOneShot(selectItemSound, 1f);
+            Debug.Log("purchased, should remove");
+            currentItems[currentItemSelected].gameObject.SetActive(false);
+            currentItemSelected = 0;
+            currentItems[currentItemSelected].SetItemAsSelected();
+
+            ShopItem[] availableItems = playerShopUI.GetComponentsInChildren<ShopItem>();
+            if (availableItems.Length == 0)
+            {
+                outOfStockObject.SetActive(true);
+                currentItemSelected = -1;
+            }
+
+        }
+
+    }
+
+    public IEnumerator ShowMoneyError()
     {
         audioSource.PlayOneShot(errorSound, 1f);
+        healthErrorPanel.SetActive(false);
         errorPanel.SetActive(true);
         yield return new WaitForSeconds(2f);
         errorPanel.SetActive(false);
+
+    }
+
+
+    public IEnumerator ShowHealthError()
+    {
+        audioSource.PlayOneShot(errorSound, 1f);
+        errorPanel.SetActive(false);
+        healthErrorPanel.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        healthErrorPanel.SetActive(false);
 
     }
 

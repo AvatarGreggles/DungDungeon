@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     public bool isDead = false;
 
     bool spawned = false;
+    public bool isSpawnee = false;
 
 
     public AudioClip cry;
@@ -88,7 +89,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             LevelManager.Instance.enemies.Remove(gameObject);
-            GameController.Instance.AddCurrency(enemyStats.currencyDrop);
+            // GameController.Instance.AddCurrency(enemyStats.currencyDrop);
             DropLoot();
             GivePlayersExperience();
 
@@ -115,8 +116,19 @@ public class Enemy : MonoBehaviour
         gameObject.tag = "DeadEnemy";
         isDead = true;
         //play sound
-        yield return new WaitForSeconds(2f);
-        gameObject.SetActive(false);
+        if (!isSpawner)
+        {
+            yield return new WaitForSeconds(1.5f);
+        }
+
+        if (isSpawnee)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void GivePlayersExperience()
@@ -132,6 +144,7 @@ public class Enemy : MonoBehaviour
     {
 
         Instantiate(loot, transform.position, Quaternion.identity);
+        loot.GetComponent<DrawTowardsPlayer>().value = enemyStats.currencyDrop;
     }
 
     public void AlertObservers(string message)

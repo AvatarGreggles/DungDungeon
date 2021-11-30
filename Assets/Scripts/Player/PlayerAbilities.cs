@@ -20,6 +20,8 @@ public class PlayerAbilities : MonoBehaviour
 
     public bool isConfidenceEnabled = false;
 
+    public bool isMegaArmorEnabled = false;
+
 
     Player player;
     // Start is called before the first frame update
@@ -78,5 +80,10 @@ public class PlayerAbilities : MonoBehaviour
     public void ConfidenceEnabled()
     {
         isConfidenceEnabled = true;
+    }
+
+    public void MegaArmorEnabled()
+    {
+        isMegaArmorEnabled = true;
     }
 }

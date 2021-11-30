@@ -70,7 +70,7 @@ public class DoorManager : MonoBehaviour
         foreach (GameObject go in gos)
         {
             go.GetComponent<PlayerMovement>().ResetPosition();
-            go.GetComponent<Player>().ResetHealth();
+            // go.GetComponent<Player>().ResetHealth();
             go.GetComponent<Player>().willLevelUp = false;
         }
     }

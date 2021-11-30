@@ -27,9 +27,10 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy()
     {
         GameObject enemy = Instantiate(Object, spawnPos.position, Quaternion.identity);
+        enemy.GetComponent<Enemy>().isSpawnee = true;
+        LevelManager.Instance.PopulateEnemy(enemy);
         enemiesSpawned++;
         timebtwspawn = startTimeBtwSpawn;
-        LevelManager.Instance.PopulateEnemy(enemy);
     }
 
     void spawnTimeCountdown()

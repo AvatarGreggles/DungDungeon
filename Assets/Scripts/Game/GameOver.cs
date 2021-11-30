@@ -21,6 +21,8 @@ public class GameOver : MonoBehaviour
     [SerializeField] Text healthStatText;
     [SerializeField] Text shieldStatText;
     [SerializeField] Text attackStatText;
+    [SerializeField] Text defenseStatText;
+    [SerializeField] Text dungStatText;
     [SerializeField] Text speedStatText;
 
     [SerializeField] Text critRatioStatText;
@@ -65,6 +67,16 @@ public class GameOver : MonoBehaviour
     public void UpdateHPText()
     {
         healthStatText.text = player.health.ToString() + " / " + player.maxHealth.ToString();
+    }
+
+    public void UpdateDungText()
+    {
+        dungStatText.text = player.maxDungSize.ToString();
+    }
+
+    public void UpdateDefenseText()
+    {
+        defenseStatText.text = player.defense.ToString();
     }
 
     public void UpdateGameRuntimeText()
@@ -135,6 +147,8 @@ public class GameOver : MonoBehaviour
         UpdateShieldText();
         UpdateAttackText();
         UpdateSpeedText();
+        UpdateDungText();
+        UpdateDefenseText();
         UpdateCritRatioText();
         UpdateEnemiesKilledText();
         UpdateLevelReachedText();

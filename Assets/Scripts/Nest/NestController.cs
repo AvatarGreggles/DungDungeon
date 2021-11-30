@@ -19,11 +19,16 @@ public class NestController : MonoBehaviour
     [SerializeField] Button startButton;
     [SerializeField] Button backButton;
 
+    [SerializeField] Text gemText;
+
     [SerializeField] List<Button> buttons;
     int currentItemSelected = -1;
 
     public AudioClip switchItemSound;
     public AudioClip selectItemSound;
+
+    public AudioClip errorSound;
+    public GameObject gemErrorPanel;
     AudioSource audioSource;
 
     private Vector2 navigateMovement;
@@ -36,6 +41,14 @@ public class NestController : MonoBehaviour
     [SerializeField] Button increaseMaxDung;
     [SerializeField] Button unlockPassiveButton;
 
+    public int healthCost = 1;
+    public int shieldCost = 1;
+    public int attackCost = 1;
+    public int defenseCost = 1;
+    public int moveSpeedCost = 1;
+    public int maxDungCost = 1;
+
+
     private void Awake()
     {
         // SavingSystem.i.Load("saveSlot1");
@@ -46,6 +59,7 @@ public class NestController : MonoBehaviour
     void Start()
     {
         GenerateStats();
+        UpdateGemText();
 
         startButton.onClick.AddListener(() =>
     {
@@ -92,6 +106,11 @@ public class NestController : MonoBehaviour
         {
             HandleUnlockPassive(unlockPassiveButton);
         });
+    }
+
+    public void UpdateGemText()
+    {
+        gemText.text = PlayerBaseStatManager.instance.gems.ToString();
     }
 
     public void GenerateStats()
@@ -163,16 +182,20 @@ public class NestController : MonoBehaviour
 
     public void HandleIncreaseBonusHealth(Button button = null)
     {
-        // if (PlayerBaseStatManager.instance.gems)
-        if (PlayerBaseStatManager.instance.bonusMaxHP >= 50 * 50)
+        int gemsAfterPurchase = PlayerBaseStatManager.instance.gems - healthCost;
+        if (PlayerBaseStatManager.instance.bonusMaxHP >= 50 * 50 || gemsAfterPurchase < 0)
         {
+            StartCoroutine(ShowNotEnoughGemError());
             return;
         }
+        audioSource.PlayOneShot(selectItemSound, 1f);
+        PlayerBaseStatManager.instance.gems -= healthCost;
         PlayerBaseStatManager.instance.bonusMaxHP += 50;
         GameObject NewObj = new GameObject();
         Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
         NewImage.sprite = statBlockSprite;
         NewObj.transform.SetParent(healthStats, false);
+        UpdateGemText();
         SavingSystem.i.Save("saveSlot1");
         // subtract cost
         // Increase player health by 1
@@ -181,15 +204,20 @@ public class NestController : MonoBehaviour
 
     public void HandleIncreaseBonusAttack(Button button = null)
     {
-        if (PlayerBaseStatManager.instance.bonusAttackPower >= 50 * 50)
+        int gemsAfterPurchase = PlayerBaseStatManager.instance.gems - attackCost;
+        if (PlayerBaseStatManager.instance.bonusAttackPower >= 50 * 50 || gemsAfterPurchase < 0)
         {
+            StartCoroutine(ShowNotEnoughGemError());
             return;
         }
+        audioSource.PlayOneShot(selectItemSound, 1f);
+        PlayerBaseStatManager.instance.gems -= attackCost;
         PlayerBaseStatManager.instance.bonusAttackPower += 50;
         GameObject NewObj = new GameObject();
         Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
         NewImage.sprite = statBlockSprite;
         NewObj.transform.SetParent(attackStats, false);
+        UpdateGemText();
         SavingSystem.i.Save("saveSlot1");
         // subtract cost
         // Increase player attack by 1
@@ -199,15 +227,20 @@ public class NestController : MonoBehaviour
 
     public void HandleIncreaseBonusShield(Button button = null)
     {
-        if (PlayerBaseStatManager.instance.bonusMaxShield >= 50 * 50)
+        int gemsAfterPurchase = PlayerBaseStatManager.instance.gems - shieldCost;
+        if (PlayerBaseStatManager.instance.bonusMaxShield >= 50 * 50 || gemsAfterPurchase < 0)
         {
+            StartCoroutine(ShowNotEnoughGemError());
             return;
         }
+        audioSource.PlayOneShot(selectItemSound, 1f);
+        PlayerBaseStatManager.instance.gems -= shieldCost;
         PlayerBaseStatManager.instance.bonusMaxShield += 50;
         GameObject NewObj = new GameObject();
         Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
         NewImage.sprite = statBlockSprite;
         NewObj.transform.SetParent(shieldStats, false);
+        UpdateGemText();
         SavingSystem.i.Save("saveSlot1");
         // subtract cost
         // Increase player attack by 1
@@ -216,15 +249,20 @@ public class NestController : MonoBehaviour
 
     public void HandleIncreaseBonusDefense(Button button = null)
     {
-        if (PlayerBaseStatManager.instance.bonusDefense >= 50 * 50)
+        int gemsAfterPurchase = PlayerBaseStatManager.instance.gems - defenseCost;
+        if (PlayerBaseStatManager.instance.bonusDefense >= 50 * 50 || gemsAfterPurchase < 0)
         {
+            StartCoroutine(ShowNotEnoughGemError());
             return;
         }
+        audioSource.PlayOneShot(selectItemSound, 1f);
+        PlayerBaseStatManager.instance.gems -= defenseCost;
         PlayerBaseStatManager.instance.bonusDefense += 50;
         GameObject NewObj = new GameObject();
         Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
         NewImage.sprite = statBlockSprite;
         NewObj.transform.SetParent(defenseStats, false);
+        UpdateGemText();
         SavingSystem.i.Save("saveSlot1");
         // subtract cost
         // Increase player attack by 1
@@ -233,15 +271,21 @@ public class NestController : MonoBehaviour
 
     public void HandleIncreaseBonusMoveSpeed(Button button = null)
     {
-        if (PlayerBaseStatManager.instance.bonusMoveSpeed >= 50 * 0.25)
+        int gemsAfterPurchase = PlayerBaseStatManager.instance.gems - moveSpeedCost;
+
+        if (PlayerBaseStatManager.instance.bonusMoveSpeed >= 50 * 0.25 || gemsAfterPurchase < 0)
         {
+            StartCoroutine(ShowNotEnoughGemError());
             return;
         }
+        audioSource.PlayOneShot(selectItemSound, 1f);
+        PlayerBaseStatManager.instance.gems -= moveSpeedCost;
         PlayerBaseStatManager.instance.bonusMoveSpeed += 0.25f;
         GameObject NewObj = new GameObject();
         Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
         NewImage.sprite = statBlockSprite;
         NewObj.transform.SetParent(speedStats, false);
+        UpdateGemText();
         SavingSystem.i.Save("saveSlot1");
         // subtract cost
         // Increase player attack by 1
@@ -251,19 +295,34 @@ public class NestController : MonoBehaviour
 
     public void HandleIncreaseMaxDung(Button button = null)
     {
-        if (PlayerBaseStatManager.instance.bonusMaxDung >= 50 * 2)
+        int gemsAfterPurchase = PlayerBaseStatManager.instance.gems - maxDungCost;
+        if (PlayerBaseStatManager.instance.bonusMaxDung >= 50 * 2 || gemsAfterPurchase < 0)
         {
+            StartCoroutine(ShowNotEnoughGemError());
             return;
         }
-        PlayerBaseStatManager.instance.bonusMaxDung += 2;
+        audioSource.PlayOneShot(selectItemSound, 1f);
+        PlayerBaseStatManager.instance.gems -= maxDungCost;
+        PlayerBaseStatManager.instance.bonusMaxDung += 1;
         GameObject NewObj = new GameObject();
         Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
         NewImage.sprite = statBlockSprite;
         NewObj.transform.SetParent(dungStats, false);
+        UpdateGemText();
         SavingSystem.i.Save("saveSlot1");
+
         // subtract cost
         // Increase player attack by 1
         // Set stat increase gameobject to true
+    }
+
+    public IEnumerator ShowNotEnoughGemError()
+    {
+        audioSource.PlayOneShot(errorSound, 1f);
+        gemErrorPanel.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        gemErrorPanel.SetActive(false);
+
     }
 
     public void HandleUnlockPassive(Button button = null)
@@ -369,7 +428,6 @@ public class NestController : MonoBehaviour
     public void OnInteract()
     {
         if (currentItemSelected == -1) { return; }
-        audioSource.PlayOneShot(selectItemSound, 1f);
         buttons[currentItemSelected].onClick.Invoke();
     }
 }

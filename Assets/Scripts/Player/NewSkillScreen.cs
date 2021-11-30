@@ -18,6 +18,8 @@ public class NewSkillScreen : MonoBehaviour
     [SerializeField] Text healthStatText;
     [SerializeField] Text shieldStatText;
     [SerializeField] Text attackStatText;
+    [SerializeField] Text defenseStatText;
+    [SerializeField] Text dungStatText;
     [SerializeField] Text speedStatText;
 
     [SerializeField] Text critRatioStatText;
@@ -84,6 +86,16 @@ public class NewSkillScreen : MonoBehaviour
         critRatioStatText.text = player.criticalHitRatio.ToString();
     }
 
+    public void UpdateDungText()
+    {
+        dungStatText.text = player.maxDungSize.ToString();
+    }
+
+    public void UpdateDefenseText()
+    {
+        defenseStatText.text = player.defense.ToString();
+    }
+
 
     public void GenerateSkills()
     {
@@ -93,7 +105,9 @@ public class NewSkillScreen : MonoBehaviour
         UpdateHPText();
         UpdateShieldText();
         UpdateAttackText();
+        UpdateDefenseText();
         UpdateSpeedText();
+        UpdateDungText();
         UpdateCritRatioText();
 
         playerInput.actions.Disable();
@@ -101,6 +115,7 @@ public class NewSkillScreen : MonoBehaviour
         foreach (Skill skill in randomSkillItems)
         {
             GameObject newSkill = Instantiate(newSkillObject, newSkillObject.transform.position, newSkillObject.transform.rotation);
+
             if (newSkill)
             {
                 newSkill.GetComponent<LevelSkill>().skill = skill;
@@ -108,6 +123,7 @@ public class NewSkillScreen : MonoBehaviour
                 newSkill.GetComponent<LevelSkill>().SetSkillDescriptionText();
                 newSkill.GetComponent<LevelSkill>().SetSkillIcon();
                 newSkill.transform.SetParent(skillList);
+                newSkill.transform.localScale = new Vector3(1f, 1f, 1f);
             }
 
         }

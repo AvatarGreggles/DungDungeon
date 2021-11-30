@@ -1432,7 +1432,7 @@ MonoBehaviour:
   shieldBar: {fileID: 6829623281336045877}
   expBar: {fileID: 70515633247146582}
   attack: 100
-  defense: 50
+  defense: 0
   damageDisplayPivot: {fileID: 6328877851658528041}
   p1Tag: {fileID: 2597456256049176975}
   p2Tag: {fileID: 2519305091937041666}

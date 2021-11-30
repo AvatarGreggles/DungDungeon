@@ -380,7 +380,16 @@ public class Player : MonoBehaviour
 
     public void DealDamage(int damage, bool isCriticalHit)
     {
-        damage -= (int)defense;
+        if (playerAbilities.isMegaArmorEnabled && health < maxHealth / 4)
+        {
+            float boostedDefense = defense * 2;
+            damage -= (int)boostedDefense;
+        }
+        else
+        {
+            damage -= (int)defense;
+        }
+
 
         if (isInvincible) { return; }
         isInvincible = true;

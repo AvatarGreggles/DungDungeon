@@ -127,6 +127,7 @@ public class PauseMenu : MonoBehaviour
     {
         playerInput = FindObjectOfType<Player>().GetComponent<PlayerInput>();
         playerInput.actions.Enable();
+        GameController.Instance.currentState = State.Active;
         currentItemSelected = -1;
         foreach (Button button in buttons)
         {

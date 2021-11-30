@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class DrawTowardsPlayer : MonoBehaviour
 {
+    public int value = 0;
     Player player;
     private bool inRange = false;
 
@@ -53,6 +54,7 @@ public class DrawTowardsPlayer : MonoBehaviour
 
     IEnumerator HandleCollection()
     {
+        GameController.Instance.AddCurrency(value);
         audioSource.PlayOneShot(coinCollectSound, 1f);
         spriteRenderer.enabled = false;
         yield return new WaitForSeconds(1f);

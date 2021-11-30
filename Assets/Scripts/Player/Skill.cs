@@ -20,6 +20,7 @@ public class Skill : ScriptableObject
         PassThrough,
         Bounce,
         ShootThroughEnemy,
+        MegaArmor,
     }
 
     public enum TargetStat
@@ -30,6 +31,7 @@ public class Skill : ScriptableObject
         Shield,
         Speed,
         Dung,
+        Defense,
     }
 
     public string skillName;
@@ -92,6 +94,11 @@ public class Skill : ScriptableObject
         if (ability == Ability.ShootThroughEnemy)
         {
             playerAbilities.ShootThroughEnemiesEnabled();
+        }
+
+        if (ability == Ability.MegaArmor)
+        {
+            playerAbilities.MegaArmorEnabled();
         }
     }
 }
