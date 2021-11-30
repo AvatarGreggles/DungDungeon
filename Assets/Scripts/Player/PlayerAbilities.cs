@@ -18,6 +18,8 @@ public class PlayerAbilities : MonoBehaviour
 
     public bool hpRegeneration = false;
 
+    public bool isConfidenceEnabled = false;
+
 
     Player player;
     // Start is called before the first frame update
@@ -71,5 +73,10 @@ public class PlayerAbilities : MonoBehaviour
     public void HealthUpEnabled()
     {
         healthUpEnabled = true;
+    }
+
+    public void ConfidenceEnabled()
+    {
+        isConfidenceEnabled = true;
     }
 }

@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     [SerializeField] public GameObject expBar;
 
     public float attack = 1;
+    public float defense = 1;
     public GameObject damageDisplayPivot;
 
     [SerializeField] GameObject p1Tag;
@@ -111,6 +112,7 @@ public class Player : MonoBehaviour
         maxShield = maxShield + playerBaseStats.bonusMaxShield;
         shield = maxShield;
         attack = attack + playerBaseStats.bonusAttackPower;
+        defense = defense + playerBaseStats.bonusDefense;
         maxDungSize = maxDungSize + playerBaseStats.bonusMaxDung;
 
         previousLevel = level;
@@ -310,6 +312,10 @@ public class Player : MonoBehaviour
     {
         moneyEarned += currency;
         enemiesKilled++;
+        if (playerAbilities.isConfidenceEnabled)
+        {
+            attack += 1;
+        }
         temporaryExperienceHolder += value;
     }
 
@@ -374,6 +380,8 @@ public class Player : MonoBehaviour
 
     public void DealDamage(int damage, bool isCriticalHit)
     {
+        damage -= (int)defense;
+
         if (isInvincible) { return; }
         isInvincible = true;
 
@@ -387,7 +395,7 @@ public class Player : MonoBehaviour
         {
             shield -= damage;
 
-            if (shield < 0)
+            if (shield < 0 || shield > maxShield)
             {
                 shield = 0;
             }

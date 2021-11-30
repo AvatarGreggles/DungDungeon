@@ -24,6 +24,7 @@ public class Item : ScriptableObject
         Speed,
         Dung,
         CritChance,
+        Defense,
     }
 
     public string itemName;
@@ -40,7 +41,8 @@ public class Item : ScriptableObject
     {
         None,
         HPRegeneration,
-        ShootThroughEnemy
+        ShootThroughEnemy,
+        Confidence,
     }
 
 
@@ -67,6 +69,12 @@ public class Item : ScriptableObject
         {
             player.attack *= statIncrease;
             shop.UpdateAttackText();
+        }
+
+        if (targetStat == TargetStat.Defense)
+        {
+            player.defense *= statIncrease;
+            shop.UpdateDefenseText();
         }
 
         if (targetStat == TargetStat.HP)
@@ -110,6 +118,13 @@ public class Item : ScriptableObject
         {
             playerAbilities.ShootThroughEnemiesEnabled();
         }
+
+        if (ability == Ability.Confidence)
+        {
+            playerAbilities.ConfidenceEnabled();
+        }
+
+
     }
 
 }

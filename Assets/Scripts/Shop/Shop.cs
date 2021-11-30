@@ -28,6 +28,8 @@ public class Shop : MonoBehaviour
     [SerializeField] Text attackStatText;
     [SerializeField] Text speedStatText;
 
+    [SerializeField] Text defenseStatText;
+
     [SerializeField] Text critRatioStatText;
 
     [SerializeField] int shopItemOfferCount = 3;
@@ -77,6 +79,13 @@ public class Shop : MonoBehaviour
         shieldStatText.text = player.shield.ToString() + " / " + player.maxShield.ToString();
     }
 
+    public void UpdateDefenseText()
+    {
+        defenseStatText.text = player.defense.ToString();
+    }
+
+
+
     public void UpdateAttackText()
     {
         attackStatText.text = player.attack.ToString();
@@ -106,6 +115,7 @@ public class Shop : MonoBehaviour
         UpdateCurrency();
         UpdateHPText();
         UpdateShieldText();
+        UpdateDefenseText();
         UpdateAttackText();
         UpdateSpeedText();
         UpdateCritRatioText();

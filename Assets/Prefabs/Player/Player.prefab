@@ -1432,6 +1432,7 @@ MonoBehaviour:
   shieldBar: {fileID: 6829623281336045877}
   expBar: {fileID: 70515633247146582}
   attack: 100
+  defense: 50
   damageDisplayPivot: {fileID: 6328877851658528041}
   p1Tag: {fileID: 2597456256049176975}
   p2Tag: {fileID: 2519305091937041666}
@@ -1476,6 +1477,7 @@ MonoBehaviour:
   projectileBounceEnabled: 1
   shootThroughEnemiesEnabled: 0
   hpRegeneration: 0
+  isConfidenceEnabled: 1
 --- !u!95 &7285743007244160389
 Animator:
   serializedVersion: 3
