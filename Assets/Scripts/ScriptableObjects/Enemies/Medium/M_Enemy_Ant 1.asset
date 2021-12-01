@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: M_Enemy_Ant 1
   m_EditorClassIdentifier: 
   level: 1
-  baseMaxHP: 200
+  baseMaxHP: 350
   baseAttackPower: 100
   baseMoveSpeed: 2
   baseAttackSpeed: 2
   baseDefense: 1
-  baseCurrencyDrop: 10
+  baseCurrencyDrop: 20
   baseExpYield: 25
-  maxHP: 200
-  attackPower: 100
-  moveSpeed: 2
-  attackSpeed: 2
+  maxHP: 300
+  attackPower: 150
+  moveSpeed: 3
+  attackSpeed: 3
   defense: 1
-  currencyDrop: 10
-  expYield: 25
+  currencyDrop: 15
+  expYield: 37
   statRange: 1

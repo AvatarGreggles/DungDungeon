@@ -11,6 +11,8 @@ public class EnemyTriggerZone : MonoBehaviour
     bool isTriggered = false;
     bool isRetracting = false;
 
+    [SerializeField] Transform enemy;
+
     [SerializeField] float speed = 2f;
     // Start is called before the first frame update
     void Start()
@@ -27,10 +29,10 @@ public class EnemyTriggerZone : MonoBehaviour
             {
                 // Move our position a step closer to the target.
                 float step = speed * Time.deltaTime; // calculate distance to move
-                transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+                enemy.position = Vector3.MoveTowards(enemy.position, target.position, step);
 
                 // Check if the position of the cube and sphere are approximately equal.
-                if (Vector3.Distance(transform.position, target.position) < 0.001f)
+                if (Vector3.Distance(enemy.position, target.position) < 0.001f)
                 {
                     isRetracting = true;
                 }
@@ -38,15 +40,13 @@ public class EnemyTriggerZone : MonoBehaviour
             else
             {
                 float step = (speed / 2) * Time.deltaTime; // calculate distance to move
-                transform.position = Vector3.MoveTowards(transform.position, startPoint.position, step);
-                if (Vector3.Distance(transform.position, startPoint.position) < 0.001f)
+                enemy.position = Vector3.MoveTowards(enemy.position, startPoint.position, step);
+                if (Vector3.Distance(enemy.position, startPoint.position) < 0.001f)
                 {
                     isRetracting = false;
                     isTriggered = false;
                 }
             }
-
-
 
         }
 

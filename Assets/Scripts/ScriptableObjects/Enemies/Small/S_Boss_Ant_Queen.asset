@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   baseMaxHP: 5000
-  baseAttackPower: 200
+  baseAttackPower: 300
   baseMoveSpeed: 1
   baseAttackSpeed: 2
   baseDefense: 1
   baseCurrencyDrop: 300
   baseExpYield: 150
-  maxHP: 300
-  attackPower: 100
+  maxHP: 5000
+  attackPower: 200
   moveSpeed: 1
   attackSpeed: 2
   defense: 1
-  currencyDrop: 50
+  currencyDrop: 300
   expYield: 150
   statRange: 0

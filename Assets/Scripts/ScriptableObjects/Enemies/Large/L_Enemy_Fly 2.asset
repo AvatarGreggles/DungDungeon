@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: L_Enemy_Fly 2
   m_EditorClassIdentifier: 
   level: 1
-  baseMaxHP: 200
+  baseMaxHP: 600
   baseAttackPower: 100
   baseMoveSpeed: 2
   baseAttackSpeed: 2
   baseDefense: 1
-  baseCurrencyDrop: 10
+  baseCurrencyDrop: 35
   baseExpYield: 25
-  maxHP: 200
-  attackPower: 100
-  moveSpeed: 2
-  attackSpeed: 2
-  defense: 1
-  currencyDrop: 10
-  expYield: 25
+  maxHP: 400
+  attackPower: 200
+  moveSpeed: 4
+  attackSpeed: 4
+  defense: 2
+  currencyDrop: 20
+  expYield: 50
   statRange: 2

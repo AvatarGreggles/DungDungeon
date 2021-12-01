@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f3a27946834042c0850c743414f2fb2, type: 3}
-  m_Name: Boss
+  m_Name: BossLevel10
   m_EditorClassIdentifier: 
   listToSpawnFrom: {fileID: 5510609785596027938, guid: f00de6c171c7f4c03aaada2c2bea1777, type: 3}
   levelListItems: []

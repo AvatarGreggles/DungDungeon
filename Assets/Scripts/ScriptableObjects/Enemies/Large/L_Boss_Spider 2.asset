@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: L_Boss_Spider 2
   m_EditorClassIdentifier: 
   level: 1
-  baseMaxHP: 5000
-  baseAttackPower: 300
+  baseMaxHP: 7000
+  baseAttackPower: 350
   baseMoveSpeed: 2
   baseAttackSpeed: 2
   baseDefense: 1
   baseCurrencyDrop: 300
   baseExpYield: 150
-  maxHP: 5000
-  attackPower: 300
-  moveSpeed: 2
-  attackSpeed: 2
-  defense: 1
-  currencyDrop: 300
-  expYield: 150
+  maxHP: 10000
+  attackPower: 600
+  moveSpeed: 4
+  attackSpeed: 4
+  defense: 2
+  currencyDrop: 600
+  expYield: 300
   statRange: 2

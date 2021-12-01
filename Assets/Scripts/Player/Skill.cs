@@ -90,7 +90,7 @@ public class Skill : ScriptableObject
     {
         if (targetStat == TargetStat.Dung)
         {
-            player.GetComponent<PlayerMovement>().dungAccumulationRate *= 2f;
+            player.GetComponent<PlayerMovement>().dungAccumulationRate *= statIncrease;
         }
     }
 

@@ -216,6 +216,7 @@ public class Player : MonoBehaviour
         level += 1;
         levelReached = level;
         SetLevelText();
+        ResetHealth();
     }
 
     public void OnToggleControls()
@@ -504,7 +505,9 @@ public class Player : MonoBehaviour
 
     public void ResetHealth()
     {
-        health = maxHealth;
+        float amountToRestore = maxHealth - health;
+
+        RestoreHealth(amountToRestore, true);
     }
 
     public void IncreaseAttack(int multiplier)
@@ -512,12 +515,15 @@ public class Player : MonoBehaviour
         attack *= multiplier;
     }
 
-    public void RestoreHealth(float statIncrease)
+    public void RestoreHealth(float statIncrease, bool isReset = false)
     {
         if (health == maxHealth) { return; }
         health += statIncrease;
         // healthBar.GetComponent<SpriteRenderer>().color = Color.green;
-        ShowHealthGain(statIncrease);
+        if (!isReset)
+        {
+            ShowHealthGain(statIncrease);
+        }
         if (health > maxHealth)
         {
             health = maxHealth;

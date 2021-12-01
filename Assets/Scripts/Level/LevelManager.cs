@@ -108,6 +108,8 @@ public class LevelManager : MonoBehaviour
 
         }
 
+        floorText.text = "Cleared";
+
     }
 
     private void IncrementFloor(int floorsToIncrement)

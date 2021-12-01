@@ -115,6 +115,8 @@ public class Shop : MonoBehaviour
     {
         ClearItems();
         GenerateItems();
+        errorPanel.SetActive(false);
+        healthErrorPanel.SetActive(false);
     }
 
     public void GenerateItems()

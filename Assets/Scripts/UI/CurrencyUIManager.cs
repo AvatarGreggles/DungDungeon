@@ -69,8 +69,9 @@ public class CurrencyUIManager : MonoBehaviour
         {
             tipIsShown = true;
             wallHitTip.SetActive(true);
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(2f);
             wallHitTip.SetActive(false);
+            yield return new WaitForSeconds(10f);
             tipIsShown = false;
         }
     }
