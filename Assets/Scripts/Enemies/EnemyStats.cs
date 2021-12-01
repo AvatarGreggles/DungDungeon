@@ -35,7 +35,7 @@ public class EnemyStats : ScriptableObject
 
     void OnEnable()
     {
-        int multiplier = 1;
+        float multiplier = 1;
 
         if (statRange == StatRange.S)
         {
@@ -44,32 +44,32 @@ public class EnemyStats : ScriptableObject
 
         if (statRange == StatRange.M)
         {
-            multiplier = 2;
+            multiplier = 1.5f;
         }
 
         if (statRange == StatRange.L)
         {
-            multiplier = 3;
+            multiplier = 2;
         }
 
         if (statRange == StatRange.XL)
         {
-            multiplier = 4;
+            multiplier = 2.5f;
         }
 
         if (statRange == StatRange.XXL)
         {
-            multiplier = 5;
+            multiplier = 3;
         }
 
         if (statRange == StatRange.XXX)
         {
-            multiplier = 6;
+            multiplier = 3.5f;
         }
 
         if (statRange == StatRange.Nightmare)
         {
-            multiplier = 7;
+            multiplier = 4;
         }
 
 
@@ -81,13 +81,13 @@ public class EnemyStats : ScriptableObject
         currencyDrop = baseCurrencyDrop;
         expYield = baseExpYield;
 
-        maxHP = maxHP * multiplier;
-        attackPower = attackPower * multiplier;
-        moveSpeed = moveSpeed * multiplier;
-        attackSpeed = attackSpeed * multiplier;
-        defense = defense * multiplier;
-        currencyDrop = currencyDrop * multiplier;
-        expYield = expYield * multiplier;
+        maxHP = (int)(maxHP * multiplier);
+        attackPower = (int)(attackPower * multiplier);
+        moveSpeed = (int)(moveSpeed * multiplier);
+        attackSpeed = (int)(attackSpeed * multiplier);
+        defense = (int)(defense * multiplier);
+        currencyDrop = (int)(currencyDrop * multiplier);
+        expYield = (int)(expYield * multiplier);
     }
 
 }

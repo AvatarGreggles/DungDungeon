@@ -19,4 +19,4 @@ MonoBehaviour:
   itemType: 0
   statIncrease: 0
   targetStat: 0
-  ability: 0
+  ability: 3
