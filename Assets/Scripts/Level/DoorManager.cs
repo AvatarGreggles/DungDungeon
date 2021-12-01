@@ -46,6 +46,7 @@ public class DoorManager : MonoBehaviour
             {
                 GameController.Instance.currentState = State.LevelUp;
                 player.previousLevel = player.level;
+                player.willLevelUp = false;
             }
             else
             {
