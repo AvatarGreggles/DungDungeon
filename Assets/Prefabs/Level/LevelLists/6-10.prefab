@@ -553,7 +553,7 @@ GameObject:
   - component: {fileID: 4768627447836993333}
   - component: {fileID: 4768627447836993332}
   - component: {fileID: 4768627447836993335}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pit
   m_TagString: Pit
   m_Icon: {fileID: 0}
@@ -3203,7 +3203,7 @@ GameObject:
   - component: {fileID: 8861508699689438675}
   - component: {fileID: 8804466525388598094}
   - component: {fileID: 860464592587772932}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pit
   m_TagString: Pit
   m_Icon: {fileID: 0}
@@ -7605,7 +7605,7 @@ GameObject:
   - component: {fileID: 7994435189432350729}
   - component: {fileID: 7994435189432350728}
   - component: {fileID: 7994435189432350735}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pit
   m_TagString: Pit
   m_Icon: {fileID: 0}
@@ -9092,7 +9092,7 @@ GameObject:
   - component: {fileID: 3522524286609717216}
   - component: {fileID: 3096255021329909291}
   - component: {fileID: 3174116272115481208}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pit
   m_TagString: Pit
   m_Icon: {fileID: 0}
@@ -10730,7 +10730,7 @@ GameObject:
   - component: {fileID: 8765113663509478776}
   - component: {fileID: 8765113663509478777}
   - component: {fileID: 8765113663509478778}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pit
   m_TagString: Pit
   m_Icon: {fileID: 0}

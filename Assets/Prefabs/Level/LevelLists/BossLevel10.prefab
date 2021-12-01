@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 5510609784484443917}
   - component: {fileID: 5510609784484443914}
   - component: {fileID: 5510609784484443915}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collidable
-  m_TagString: Wall
+  m_TagString: Pit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1144,9 +1144,9 @@ GameObject:
   - component: {fileID: 5510609785474063738}
   - component: {fileID: 5510609785474063739}
   - component: {fileID: 5510609785474063736}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collidable
-  m_TagString: Wall
+  m_TagString: Pit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6792,9 +6792,9 @@ GameObject:
   - component: {fileID: 140778895295372782}
   - component: {fileID: 8303658599168308339}
   - component: {fileID: 8354954455736479218}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collidable
-  m_TagString: Wall
+  m_TagString: Pit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7816,7 +7816,7 @@ GameObject:
   - component: {fileID: 6314898211358745563}
   - component: {fileID: 6314898211358745562}
   - component: {fileID: 6314898211358745560}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pit
   m_TagString: Pit
   m_Icon: {fileID: 0}
