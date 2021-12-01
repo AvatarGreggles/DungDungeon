@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3a27946834042c0850c743414f2fb2, type: 3}
   m_Name: Shop
   m_EditorClassIdentifier: 
-  listToSpawnFrom: {fileID: 2859067851357077174, guid: f2a7b61bc03ec4283b6a82339157dcab, type: 3}
+  listToSpawnFrom: {fileID: 3139621467642488285, guid: bcb0df347fd45408daec473d301cd44b, type: 3}
   levelListItems: []
   spawnedObject: {fileID: 0}
   prefabSpawnPoint: {x: 0, y: 0, z: 0}

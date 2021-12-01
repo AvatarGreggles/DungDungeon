@@ -1477,7 +1477,7 @@ MonoBehaviour:
   projectilePassThroughEnabled: 0
   projectileBounceEnabled: 0
   shootThroughEnemiesEnabled: 0
-  hpRegeneration: 1
+  hpRegeneration: 0
   isConfidenceEnabled: 0
   isMegaArmorEnabled: 0
   isGoldRushEnabled: 0
