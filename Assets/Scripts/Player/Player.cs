@@ -176,7 +176,7 @@ public class Player : MonoBehaviour
                 if (health < maxHealth)
                 {
 
-                    float amountToHeal = (maxHealth / 100) * 5;
+                    float amountToHeal = (maxHealth / 100) * 10;
                     RestoreHealth(amountToHeal);
                     UpdateHealthBar();
                 }

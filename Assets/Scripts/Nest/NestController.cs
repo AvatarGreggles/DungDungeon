@@ -48,6 +48,13 @@ public class NestController : MonoBehaviour
     public int moveSpeedCost = 1;
     public int maxDungCost = 1;
 
+    [SerializeField] Text healthCostText;
+    [SerializeField] Text shieldCostText;
+    [SerializeField] Text attackCostText;
+    [SerializeField] Text defenseCostText;
+    [SerializeField] Text speedCostText;
+    [SerializeField] Text maxDungCostText;
+
 
     private void Awake()
     {
@@ -115,6 +122,14 @@ public class NestController : MonoBehaviour
 
     public void GenerateStats()
     {
+
+        healthCostText.text = healthCost.ToString();
+        shieldCostText.text = shieldCost.ToString();
+        attackCostText.text = attackCost.ToString();
+        defenseCostText.text = defenseCost.ToString();
+        speedCostText.text = moveSpeedCost.ToString();
+        maxDungCostText.text = maxDungCost.ToString();
+
         for (var i = 0; i < PlayerBaseStatManager.instance.bonusMaxHP; i += 50)
         {
             GameObject NewObj = new GameObject();
@@ -130,6 +145,7 @@ public class NestController : MonoBehaviour
             Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
             NewImage.sprite = statBlockSprite;
             NewObj.transform.SetParent(shieldStats, false);
+
         }
 
         for (var i = 0; i < PlayerBaseStatManager.instance.bonusAttackPower; i += 50)
@@ -138,6 +154,7 @@ public class NestController : MonoBehaviour
             Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
             NewImage.sprite = statBlockSprite;
             NewObj.transform.SetParent(attackStats, false);
+
         }
 
         for (var i = 0; i < PlayerBaseStatManager.instance.bonusDefense; i += 50)
@@ -147,6 +164,7 @@ public class NestController : MonoBehaviour
             Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
             NewImage.sprite = statBlockSprite;
             NewObj.transform.SetParent(defenseStats, false);
+
         }
 
         for (float i = 0; i < PlayerBaseStatManager.instance.bonusMoveSpeed; i += 0.25f)
@@ -157,6 +175,7 @@ public class NestController : MonoBehaviour
             Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
             NewImage.sprite = statBlockSprite;
             NewObj.transform.SetParent(speedStats, false);
+
         }
 
         for (var i = 0; i < PlayerBaseStatManager.instance.bonusMaxDung; i += 2)
@@ -166,6 +185,7 @@ public class NestController : MonoBehaviour
             Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
             NewImage.sprite = statBlockSprite;
             NewObj.transform.SetParent(dungStats, false);
+
         }
     }
 
@@ -190,6 +210,7 @@ public class NestController : MonoBehaviour
         }
         audioSource.PlayOneShot(selectItemSound, 1f);
         PlayerBaseStatManager.instance.gems -= healthCost;
+        healthCostText.text = healthCost.ToString();
         PlayerBaseStatManager.instance.bonusMaxHP += 50;
         GameObject NewObj = new GameObject();
         Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
@@ -212,6 +233,7 @@ public class NestController : MonoBehaviour
         }
         audioSource.PlayOneShot(selectItemSound, 1f);
         PlayerBaseStatManager.instance.gems -= attackCost;
+        attackCostText.text = attackCost.ToString();
         PlayerBaseStatManager.instance.bonusAttackPower += 50;
         GameObject NewObj = new GameObject();
         Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
@@ -235,6 +257,7 @@ public class NestController : MonoBehaviour
         }
         audioSource.PlayOneShot(selectItemSound, 1f);
         PlayerBaseStatManager.instance.gems -= shieldCost;
+        shieldCostText.text = shieldCost.ToString();
         PlayerBaseStatManager.instance.bonusMaxShield += 50;
         GameObject NewObj = new GameObject();
         Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
@@ -257,6 +280,7 @@ public class NestController : MonoBehaviour
         }
         audioSource.PlayOneShot(selectItemSound, 1f);
         PlayerBaseStatManager.instance.gems -= defenseCost;
+        defenseCostText.text = defenseCost.ToString();
         PlayerBaseStatManager.instance.bonusDefense += 50;
         GameObject NewObj = new GameObject();
         Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
@@ -280,6 +304,7 @@ public class NestController : MonoBehaviour
         }
         audioSource.PlayOneShot(selectItemSound, 1f);
         PlayerBaseStatManager.instance.gems -= moveSpeedCost;
+        speedCostText.text = moveSpeedCost.ToString();
         PlayerBaseStatManager.instance.bonusMoveSpeed += 0.25f;
         GameObject NewObj = new GameObject();
         Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
@@ -303,6 +328,7 @@ public class NestController : MonoBehaviour
         }
         audioSource.PlayOneShot(selectItemSound, 1f);
         PlayerBaseStatManager.instance.gems -= maxDungCost;
+        maxDungCostText.text = maxDungCost.ToString();
         PlayerBaseStatManager.instance.bonusMaxDung += 1;
         GameObject NewObj = new GameObject();
         Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script

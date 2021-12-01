@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Holy S#%!
   m_EditorClassIdentifier: 
   skillName: Holy S#%!
-  skillDescription: Regenerate 5% health every 10 seconds.
+  skillDescription: Regenerate 10% health every 10 seconds.
   skillIcon: {fileID: 21300000, guid: fbee5f442b07e4be78a2ffc2538bdcbb, type: 3}
   skillType: 2
   statIncrease: 0
   targetStat: 0
-  ability: 0
+  ability: 6

@@ -17,10 +17,24 @@ public class HandleGlobalPlayerInput : MonoBehaviour
         playerInputManager = GetComponent<PlayerInputManager>();
     }
 
+    private void Start()
+    {
+        DisableJoining();
+        StartCoroutine(EnableJoinAfterIntro());
+    }
+
+    IEnumerator EnableJoinAfterIntro()
+    {
+        yield return new WaitForSeconds(1f);
+        EnableJoining();
+
+    }
+
 
     // Update is called once per frame
     void Update()
     {
+
 
         if (playerInputManager.playerCount == 1)
         {
