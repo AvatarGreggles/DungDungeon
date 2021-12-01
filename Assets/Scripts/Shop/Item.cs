@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Item", order = 1)]
+[System.Serializable]
 public class Item : ScriptableObject
 {
 
@@ -23,6 +24,7 @@ public class Item : ScriptableObject
         Speed,
         Dung,
         CritChance,
+        Defense,
     }
 
     public string itemName;
@@ -39,22 +41,22 @@ public class Item : ScriptableObject
     {
         None,
         HPRegeneration,
-        ShootThroughEnemy
+        ShootThroughEnemy,
+        Confidence,
     }
 
 
-    public void HealStat(Player player, Shop shop)
+    public bool HealStat(Player player, Shop shop)
     {
         if (targetStat == TargetStat.HP)
         {
-            player.health += statIncrease;
-            if (player.health > player.maxHealth)
-            {
-                player.health = player.maxHealth;
-            }
+            player.RestoreHealth(statIncrease);
+
+
             shop.UpdateHPText();
-            player.UpdateHealthBar();
+
         }
+        return true;
     }
 
     public void IncreaseStat(Player player, Shop shop)
@@ -64,6 +66,12 @@ public class Item : ScriptableObject
         {
             player.attack *= statIncrease;
             shop.UpdateAttackText();
+        }
+
+        if (targetStat == TargetStat.Defense)
+        {
+            player.defense *= statIncrease;
+            shop.UpdateDefenseText();
         }
 
         if (targetStat == TargetStat.HP)
@@ -107,6 +115,13 @@ public class Item : ScriptableObject
         {
             playerAbilities.ShootThroughEnemiesEnabled();
         }
+
+        if (ability == Ability.Confidence)
+        {
+            playerAbilities.ConfidenceEnabled();
+        }
+
+
     }
 
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public bool isSpawner = false;
     public float health;
     [SerializeField] GameObject healthBar;
     [SerializeField] GameObject healthBarBackground;
@@ -19,10 +20,27 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject criticalDamageSprite;
     [SerializeField] GameObject damageSprite;
 
+    Animator animator;
+
+    UbhShotCtrl shotCtrl;
+
+    public bool isDead = false;
+
+    bool spawned = false;
+    public bool isSpawnee = false;
+
+
+    public AudioClip cry;
+    AudioSource audioSource;
+
 
     private void Awake()
     {
         collider = GetComponent<Collider2D>();
+        animator = GetComponent<Animator>();
+        shotCtrl = GetComponent<UbhShotCtrl>();
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     void Start()
@@ -32,6 +50,7 @@ public class Enemy : MonoBehaviour
         healthBarBackground.SetActive(false);
 
         initialHealthBarSize = healthBar.transform.localScale;
+
     }
 
     void OnEnable()
@@ -70,9 +89,44 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             LevelManager.Instance.enemies.Remove(gameObject);
-            GameController.Instance.AddCurrency(enemyStats.currencyDrop);
+            // GameController.Instance.AddCurrency(enemyStats.currencyDrop);
             DropLoot();
             GivePlayersExperience();
+
+            StartCoroutine(DoEnemyDeathAnimation());
+
+
+            // gameObject.SetActive(false);
+        }
+    }
+
+    IEnumerator DoEnemyDeathAnimation()
+    {
+        if (!isSpawner)
+        {
+            audioSource.PlayOneShot(cry, 0.7F);
+            shotCtrl.enabled = false;
+            animator.SetBool("IsDead", true);
+        }
+
+        healthBar.SetActive(false);
+        healthBarBackground.SetActive(false);
+
+        collider.enabled = false;
+        gameObject.tag = "DeadEnemy";
+        isDead = true;
+        //play sound
+        if (!isSpawner)
+        {
+            yield return new WaitForSeconds(1.5f);
+        }
+
+        if (isSpawnee)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
             gameObject.SetActive(false);
         }
     }
@@ -81,7 +135,7 @@ public class Enemy : MonoBehaviour
     {
         foreach (Player player in GameController.Instance.players)
         {
-            player.UpdateTempExperienceHolder(enemyStats.expYield, enemyStats.currencyDrop);
+            player.HandlePlayerGains(enemyStats.expYield, enemyStats.currencyDrop);
 
         }
     }
@@ -89,13 +143,17 @@ public class Enemy : MonoBehaviour
     private void DropLoot()
     {
 
-        Instantiate(loot, transform.position, Quaternion.identity);
+        GameObject newLoot = Instantiate(loot, transform.position, Quaternion.identity);
+
+        newLoot.GetComponent<DrawTowardsPlayer>().value = enemyStats.currencyDrop;
+
     }
 
     public void AlertObservers(string message)
     {
-        if (message.Equals("EntryAnimationEnded"))
+        if (message.Equals("EntryAnimationEnded") && !spawned)
         {
+            spawned = true;
             healthBar.SetActive(true);
             healthBarBackground.SetActive(true);
         }

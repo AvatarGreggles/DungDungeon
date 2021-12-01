@@ -1034,7 +1034,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6328877851658528041}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.12, y: 3.2, z: -0.2801067}
+  m_LocalPosition: {x: -0.01, y: 2.21, z: -0.2801067}
   m_LocalScale: {x: 2.539835, y: 2.539835, z: 2.539835}
   m_Children: []
   m_Father: {fileID: 8568219434171882056}
@@ -1432,6 +1432,7 @@ MonoBehaviour:
   shieldBar: {fileID: 6829623281336045877}
   expBar: {fileID: 70515633247146582}
   attack: 100
+  defense: 0
   damageDisplayPivot: {fileID: 6328877851658528041}
   p1Tag: {fileID: 2597456256049176975}
   p2Tag: {fileID: 2519305091937041666}
@@ -1442,17 +1443,21 @@ MonoBehaviour:
   prevDungAccumulated: 0
   maxDungSize: 5
   isShooting: 0
-  toLevelUp: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  toLevelUp: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   levelReached: 0
   enemiesKilled: 0
   moneyEarned: 0
-  invincibilityFrameTime: 1
+  invincibilityFrameTime: 2
   isInvincible: 0
   willLevelUp: 0
   playerLevelTextP1: {fileID: 6526278113208250979}
-  delayAmount: 1
+  playerAbilities: {fileID: 0}
+  delayAmount: 10
   criticalDamageSprite: {fileID: 1905902881067641905, guid: cc282c30cc80f42c4b4399f5d779cec6, type: 3}
   damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
+  itemInventory: []
+  skillInventory: []
+  healthDisplay: {fileID: 1905902881067641905, guid: 41fb12c42bd23444d90893b0031e7533, type: 3}
 --- !u!114 &3620035378186348920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1470,9 +1475,13 @@ MonoBehaviour:
   attackUpEnabled: 0
   healthUpEnabled: 0
   projectilePassThroughEnabled: 0
-  projectileBounceEnabled: 1
+  projectileBounceEnabled: 0
   shootThroughEnemiesEnabled: 0
   hpRegeneration: 0
+  isConfidenceEnabled: 0
+  isMegaArmorEnabled: 0
+  isGoldRushEnabled: 0
+  isBloodsuckerEnabled: 0
 --- !u!95 &7285743007244160389
 Animator:
   serializedVersion: 3

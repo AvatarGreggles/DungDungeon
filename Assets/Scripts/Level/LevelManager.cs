@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] GameObject waitScreen;
     [SerializeField] public Transform playerSpawnPoint;
-    [SerializeField] List<Level> levels;
+    [SerializeField] public List<Level> levels;
 
     bool isFloorCleared = false;
 
@@ -45,6 +45,7 @@ public class LevelManager : MonoBehaviour
     {
         if (floor >= levels.Count)
         {
+
             GameController.Instance.currentState = State.GameWin;
             yield break;
         }
@@ -119,7 +120,7 @@ public class LevelManager : MonoBehaviour
 
     private void SetFloorText(string currentFloor)
     {
-        floorText.text = currentFloor;
+        floorText.text = "Floor " + currentFloor;
     }
 
     public void PopulateEnemiesList()
@@ -173,6 +174,7 @@ public class LevelManager : MonoBehaviour
         foreach (GameObject go in gos)
         {
             go.GetComponent<Player>().ResetShield();
+            go.GetComponent<Player>().ResetInvincibility();
         }
     }
 

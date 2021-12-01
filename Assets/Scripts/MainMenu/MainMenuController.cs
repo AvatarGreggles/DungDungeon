@@ -67,7 +67,7 @@ public class MainMenuController : MonoBehaviour
 
     public void HandleQuitClick(Button button = null)
     {
-        Debug.Log(button);
+        Application.Quit();
     }
 
     public void HandleNestClick(Button button = null)
@@ -106,7 +106,6 @@ public class MainMenuController : MonoBehaviour
             currentSkillSelected = 0;
         }
 
-        Debug.Log(currentSkillSelected);
 
         buttons[currentSkillSelected].GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.2f);
     }

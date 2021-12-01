@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameWin : MonoBehaviour
 {
@@ -33,10 +34,27 @@ public class GameWin : MonoBehaviour
 
     [SerializeField] Button quitButton;
 
+    [SerializeField] Button retryButton;
+
+    [SerializeField] List<Button> buttons;
+
+    int currentItemSelected = -1;
+
+    private Vector2 navigateMovement;
+
+    public AudioClip switchItemSound;
+    public AudioClip selectItemSound;
+    AudioSource audioSource;
+
 
     Player player;
 
-    // Start is called before the first frame update
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void Start()
     {
 
@@ -44,6 +62,11 @@ public class GameWin : MonoBehaviour
  {
      HandleGoToShop();
  });
+
+        retryButton.onClick.AddListener(() =>
+  {
+      HandleRetryGame();
+  });
 
         quitButton.onClick.AddListener(() =>
      {
@@ -67,13 +90,26 @@ public class GameWin : MonoBehaviour
 
     public void HandleGoToShop()
     {
+        // player.ResetHealth();
+        // player.SavePlayer();
         SceneManager.LoadScene(2);
     }
 
     public void HandleGoToMainMenu()
     {
+        // player.ResetHealth();
+        // player.SavePlayer();
         SceneManager.LoadScene(0);
     }
+
+    public void HandleRetryGame()
+    {
+        // player.ResetHealth();
+        // GameController.Instance.SavePlayer();
+        SceneManager.LoadScene(1);
+    }
+
+
 
     // public void CloseSkillScreen()
     // {
@@ -136,9 +172,74 @@ public class GameWin : MonoBehaviour
         critRatioStatText.text = player.criticalHitRatio.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnNavigateUI(InputValue value)
     {
+        navigateMovement = value.Get<Vector2>();
 
+
+        foreach (Button button in buttons)
+        {
+            button.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+        }
+
+        if (currentItemSelected == -1)
+        {
+            currentItemSelected = 0;
+            audioSource.PlayOneShot(switchItemSound, 1f);
+            return;
+        }
+
+        // On top row
+
+
+        if (navigateMovement.x > 0f)
+        {
+            audioSource.PlayOneShot(switchItemSound, 1f);
+            currentItemSelected++;
+        }
+        else if (navigateMovement.x < 0f)
+        {
+            audioSource.PlayOneShot(switchItemSound, 1f);
+            currentItemSelected--;
+        }
+
+        // Move to next section
+        if (navigateMovement.y > 0f)
+        {
+            audioSource.PlayOneShot(switchItemSound, 1f);
+            currentItemSelected--;
+        }
+        else if (navigateMovement.y < 0f)
+        {
+            audioSource.PlayOneShot(switchItemSound, 1f);
+            currentItemSelected++;
+        }
+
+
+
+        if (currentItemSelected < 0)
+        {
+            currentItemSelected = buttons.Count - 1;
+        }
+
+        if (currentItemSelected > buttons.Count - 1)
+        {
+            currentItemSelected = 0;
+        }
+
+
+        buttons[currentItemSelected].GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.2f);
+    }
+
+    public void OnInteract()
+    {
+        if (currentItemSelected == -1) { return; }
+        audioSource.PlayOneShot(selectItemSound, 1f);
+        buttons[currentItemSelected].onClick.Invoke();
+        foreach (Button button in buttons)
+        {
+            button.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+        }
+        currentItemSelected = -1;
     }
 }

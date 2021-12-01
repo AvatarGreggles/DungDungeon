@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Skill", order = 1)]
-
+[System.Serializable]
 public class Skill : ScriptableObject
 {
 
@@ -20,6 +20,10 @@ public class Skill : ScriptableObject
         PassThrough,
         Bounce,
         ShootThroughEnemy,
+        MegaArmor,
+        GoldRush,
+        Bloodsucker,
+        HPRegeneration,
     }
 
     public enum TargetStat
@@ -30,6 +34,7 @@ public class Skill : ScriptableObject
         Shield,
         Speed,
         Dung,
+        Defense,
     }
 
     public string skillName;
@@ -63,8 +68,20 @@ public class Skill : ScriptableObject
 
         if (targetStat == TargetStat.Speed)
         {
-            player.attackSpeedBonus += statIncrease;
+            player.GetComponent<PlayerMovement>().movementSpeed += statIncrease;
             skillScreen.UpdateSpeedText();
+        }
+
+        if (targetStat == TargetStat.Defense)
+        {
+            player.defense += statIncrease;
+            skillScreen.UpdateDefenseText();
+        }
+
+        if (targetStat == TargetStat.Dung)
+        {
+            player.maxDungSize += statIncrease;
+            skillScreen.UpdateDungText();
         }
     }
 
@@ -93,5 +110,29 @@ public class Skill : ScriptableObject
         {
             playerAbilities.ShootThroughEnemiesEnabled();
         }
+
+        if (ability == Ability.MegaArmor)
+        {
+            playerAbilities.MegaArmorEnabled();
+        }
+
+        if (ability == Ability.MegaArmor)
+        {
+            playerAbilities.GoldRushEnabled();
+        }
+
+        if (ability == Ability.Bloodsucker)
+        {
+            playerAbilities.BloodsuckerEnabled();
+        }
+
+        if (ability == Ability.HPRegeneration)
+        {
+            playerAbilities.HPRegenerationEnabled();
+        }
+
+
+
+
     }
 }

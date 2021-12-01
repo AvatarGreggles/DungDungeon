@@ -97,6 +97,7 @@ public class PlayerAttack : MonoBehaviour
                     projectile.GetComponent<Projectile>().power = Convert.ToInt32(Mathf.Round((GetComponent<Player>().attack * bonusCritDamage))); // TODO: Modifier for dung collected player.dungAccumulated / 10
                     player.dungAccumulated = 0;
                     GameController.Instance.SetDungText(player.dungAccumulated, playerInput);
+                    GameController.Instance.SetDungText(player.dungAccumulated, playerInput);
                     attackReleased = false;
                     player.isShooting = false;
                     yield break;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ShopItem : MonoBehaviour
 {
@@ -69,11 +70,17 @@ public class ShopItem : MonoBehaviour
         itemIcon.sprite = item.itemIcon;
     }
 
+    public void HandlePurchaseItem()
+    {
+
+        shop.PurchaseWithClick(EventSystem.current.currentSelectedGameObject);
+    }
+
     public bool PurchaseItem()
     {
         if (item.itemType == Item.ItemType.Heal && player.health >= player.maxHealth)
         {
-            Debug.Log("Your health is already full");
+            StartCoroutine(shop.ShowHealthError());
             return false;
         }
 
@@ -100,12 +107,14 @@ public class ShopItem : MonoBehaviour
 
             Debug.Log("You purchased " + item.itemName);
 
+            player.AddItem(item);
+
             return true;
 
         }
         else
         {
-            Debug.Log("Not enough money");
+            StartCoroutine(shop.ShowMoneyError());
             return false;
         }
     }

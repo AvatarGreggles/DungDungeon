@@ -10,6 +10,7 @@ public class HandlePlayerJoining : MonoBehaviour
         if (playerInput.gameObject.GetComponent<PlayerMovement>() != null)
         {
             // LevelManager.Instance.UnpauseGame();
+            Debug.Log("Player joined");
             Player newPlayer = playerInput.transform.GetComponent<Player>();
             GameController.Instance.currentState = State.Active;
             GameController.Instance.players.Add(newPlayer);

@@ -36,6 +36,7 @@ public class EnemyStats : ScriptableObject
     void OnEnable()
     {
         int multiplier = 1;
+
         if (statRange == StatRange.S)
         {
             multiplier = 1;

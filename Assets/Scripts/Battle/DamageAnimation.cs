@@ -23,10 +23,6 @@ public class DamageAnimation : MonoBehaviour
 
         if (isPlayer)
         {
-            if (player != null)
-            {
-                player.isInvincible = true;
-            }
             sprite.color = new Color(1, 0, 0, 1);
             yield return new WaitForSeconds(damageAnimationFramleDelay);
             sprite.color = new Color(1, 1, 1, 1);
@@ -45,11 +41,11 @@ public class DamageAnimation : MonoBehaviour
             sprite.color = new Color(1, 0, 0, 1);
             yield return new WaitForSeconds(damageAnimationFramleDelay);
             sprite.color = new Color(1, 1, 1, 1);
-            if (player != null)
-            {
-                yield return new WaitForSeconds(player.invincibilityFrameTime);
-                player.isInvincible = false;
-            }
+            // if (player != null)
+            // {
+            //     yield return new WaitForSeconds(player.invincibilityFrameTime);
+            //     player.isInvincible = false;
+            // }
         }
     }
 }

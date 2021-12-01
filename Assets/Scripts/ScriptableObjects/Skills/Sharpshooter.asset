@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Sharpshooter
   m_EditorClassIdentifier: 
   skillName: Sharpshooter
-  skillDescription: Shoot smaller and quicker but less powerful dung pellets.
-  skillIcon: {fileID: -7961490728788840413, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
+  skillDescription: Shoot smaller but quicker dung
+  skillIcon: {fileID: 21300000, guid: cd3e37d2542a4437ab74ef5e6561933d, type: 3}
   skillType: 0
-  statIncrease: 2
+  statIncrease: 1.25
   targetStat: 5
+  ability: 0

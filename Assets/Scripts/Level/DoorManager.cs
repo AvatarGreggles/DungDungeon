@@ -36,6 +36,12 @@ public class DoorManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Player player = other.gameObject.GetComponent<Player>();
+
+            if (LevelManager.Instance.floor > LevelManager.Instance.levels.Count - 1)
+            {
+                GameController.Instance.currentState = State.GameWin;
+                return;
+            }
             if (player.willLevelUp)
             {
                 GameController.Instance.currentState = State.LevelUp;
@@ -64,7 +70,7 @@ public class DoorManager : MonoBehaviour
         foreach (GameObject go in gos)
         {
             go.GetComponent<PlayerMovement>().ResetPosition();
-            go.GetComponent<Player>().ResetHealth();
+            // go.GetComponent<Player>().ResetHealth();
             go.GetComponent<Player>().willLevelUp = false;
         }
     }

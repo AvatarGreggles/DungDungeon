@@ -15,6 +15,11 @@ public class Shop : MonoBehaviour
 
     public AudioClip switchItemSound;
     public AudioClip selectItemSound;
+    public AudioClip errorSound;
+    public GameObject errorPanel;
+    public GameObject healthErrorPanel;
+
+
     AudioSource audioSource;
 
 
@@ -24,6 +29,11 @@ public class Shop : MonoBehaviour
     [SerializeField] Text shieldStatText;
     [SerializeField] Text attackStatText;
     [SerializeField] Text speedStatText;
+
+    [SerializeField] Text defenseStatText;
+
+    [SerializeField] Text dungStatText;
+
 
     [SerializeField] Text critRatioStatText;
 
@@ -51,12 +61,17 @@ public class Shop : MonoBehaviour
         currentItemSelected = -1;
         gameObject.SetActive(false);
         GameController.Instance.currentState = State.Active;
-        playerInput.SwitchCurrentActionMap("Player");
+        playerInput.actions.Enable();
     }
 
     public void UpdateCurrency()
     {
         currencyText.text = GameController.Instance.totalCurrency.ToString();
+    }
+
+    public void UpdateDungText()
+    {
+        dungStatText.text = player.maxDungSize.ToString();
     }
 
     public void UpdateSpeedText()
@@ -73,6 +88,13 @@ public class Shop : MonoBehaviour
     {
         shieldStatText.text = player.shield.ToString() + " / " + player.maxShield.ToString();
     }
+
+    public void UpdateDefenseText()
+    {
+        defenseStatText.text = player.defense.ToString();
+    }
+
+
 
     public void UpdateAttackText()
     {
@@ -103,11 +125,15 @@ public class Shop : MonoBehaviour
         UpdateCurrency();
         UpdateHPText();
         UpdateShieldText();
+        UpdateDefenseText();
         UpdateAttackText();
         UpdateSpeedText();
+        UpdateDungText();
         UpdateCritRatioText();
 
-        playerInput.SwitchCurrentActionMap("LevelUpMenu");
+        playerInput.actions.Disable();
+        outOfStockObject.SetActive(false);
+
         randomShopItems = HelperMethods.GetRandomItemsFromList<Item>(shopItems, shopItemOfferCount);
 
         foreach (Item shopItem in randomShopItems)
@@ -121,6 +147,7 @@ public class Shop : MonoBehaviour
                 newShopItem.GetComponent<ShopItem>().SetItemDescriptionText();
                 newShopItem.GetComponent<ShopItem>().SetItemIcon();
                 newShopItem.transform.SetParent(playerShopUI);
+                newShopItem.transform.localScale = new Vector3(1f, 1f, 1f);
             }
 
         }
@@ -139,7 +166,7 @@ public class Shop : MonoBehaviour
 
 
 
-    public void HandleNavigation(InputValue value)
+    public void OnNavigateUI(InputValue value)
     {
         ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
         if (currentItems.Length == 0)
@@ -148,7 +175,6 @@ public class Shop : MonoBehaviour
         }
 
         navigateMovement = value.Get<Vector2>();
-        Debug.Log(navigateMovement.x);
 
 
         if (navigateMovement.y < 0f)
@@ -198,39 +224,90 @@ public class Shop : MonoBehaviour
 
     }
 
-    public void HandleInteract()
+    public void OnInteract()
     {
         if (currentItemSelected == -1)
         {
             return;
         }
 
-        ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
-
-        audioSource.PlayOneShot(selectItemSound, 1f);
         // ShopItem[] items = FindObjectsOfType<ShopItem>();
 
         if (currentItemSelected != -1)
         {
-
-
-            bool successfulPurchase = currentItems[currentItemSelected].PurchaseItem();
-
-            if (successfulPurchase)
-            {
-                Debug.Log("purchased, should remove");
-                currentItems[currentItemSelected].gameObject.SetActive(false);
-                currentItemSelected = 0;
-                currentItems[currentItemSelected].SetItemAsSelected();
-
-                ShopItem[] availableItems = playerShopUI.GetComponentsInChildren<ShopItem>();
-                if (availableItems.Length == 0)
-                {
-                    outOfStockObject.SetActive(true);
-                    currentItemSelected = -1;
-                }
-
-            }
+            TryPurchase();
         }
+    }
+
+    public void PurchaseWithClick(GameObject currentSelectedGameObject)
+    {
+        ShopItem currentShopItem = currentSelectedGameObject.GetComponentInParent<ShopItem>();
+
+        bool successfulPurchase = currentShopItem.PurchaseItem();
+
+        if (successfulPurchase)
+        {
+            audioSource.PlayOneShot(selectItemSound, 1f);
+            currentShopItem.gameObject.SetActive(false);
+            currentShopItem.SetItemAsSelected();
+
+            ShopItem[] availableItems = playerShopUI.GetComponentsInChildren<ShopItem>();
+            if (availableItems.Length == 0)
+            {
+                outOfStockObject.SetActive(true);
+                currentItemSelected = -1;
+            }
+
+        }
+    }
+
+    public void TryPurchase()
+    {
+        ShopItem[] currentItems = playerShopUI.GetComponentsInChildren<ShopItem>();
+
+        bool successfulPurchase = currentItems[currentItemSelected].PurchaseItem();
+
+        if (successfulPurchase)
+        {
+            audioSource.PlayOneShot(selectItemSound, 1f);
+            currentItems[currentItemSelected].gameObject.SetActive(false);
+            currentItemSelected = 0;
+            currentItems[currentItemSelected].SetItemAsSelected();
+
+            ShopItem[] availableItems = playerShopUI.GetComponentsInChildren<ShopItem>();
+            if (availableItems.Length == 0)
+            {
+                outOfStockObject.SetActive(true);
+                currentItemSelected = -1;
+            }
+
+        }
+
+    }
+
+    public IEnumerator ShowMoneyError()
+    {
+        audioSource.PlayOneShot(errorSound, 1f);
+        healthErrorPanel.SetActive(false);
+        errorPanel.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        errorPanel.SetActive(false);
+
+    }
+
+
+    public IEnumerator ShowHealthError()
+    {
+        audioSource.PlayOneShot(errorSound, 1f);
+        errorPanel.SetActive(false);
+        healthErrorPanel.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        healthErrorPanel.SetActive(false);
+
+    }
+
+    public void OnCancel()
+    {
+        CloseShop();
     }
 }

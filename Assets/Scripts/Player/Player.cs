@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using System;
+
 
 public class Player : MonoBehaviour
 {
@@ -26,11 +28,12 @@ public class Player : MonoBehaviour
 
     public float shield;
     [SerializeField] public float maxShield = 3;
-    [SerializeField] GameObject healthBar;
-    [SerializeField] GameObject shieldBar;
-    [SerializeField] GameObject expBar;
+    [SerializeField] public GameObject healthBar;
+    [SerializeField] public GameObject shieldBar;
+    [SerializeField] public GameObject expBar;
 
     public float attack = 1;
+    public float defense = 1;
     public GameObject damageDisplayPivot;
 
     [SerializeField] GameObject p1Tag;
@@ -63,7 +66,7 @@ public class Player : MonoBehaviour
 
     Collider2D collider;
 
-    public float invincibilityFrameTime = 1f;
+    public float invincibilityFrameTime = 4f;
     public bool isInvincible = false;
 
     public bool willLevelUp = false;
@@ -72,9 +75,9 @@ public class Player : MonoBehaviour
     [SerializeField] TMPro.TMP_Text playerLevelTextP1;
     // [SerializeField] Text playerLevelTextP2;
 
-    PlayerAbilities playerAbilities;
+    public PlayerAbilities playerAbilities;
 
-    public int delayAmount = 1; // Second count
+    public int delayAmount = 10; // Second count
     protected float Timer;
 
     PlayerBaseStatManager playerBaseStats;
@@ -82,6 +85,13 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject criticalDamageSprite;
     [SerializeField] GameObject damageSprite;
 
+    [SerializeField] public List<Item> itemInventory;
+    [SerializeField] public List<Skill> skillInventory;
+
+    float stopwatch = 0;
+
+
+    [SerializeField] GameObject healthDisplay;
 
 
     private void Awake()
@@ -92,16 +102,20 @@ public class Player : MonoBehaviour
         collider = GetComponent<Collider2D>();
         playerAbilities = GetComponent<PlayerAbilities>();
 
+        GameController.Instance.LoadData();
+
     }
 
 
     void Start()
     {
         playerBaseStats = FindObjectOfType<PlayerBaseStatManager>();
-        health = maxHealth + playerBaseStats.bonusMaxHP;
+        maxHealth = maxHealth + playerBaseStats.bonusMaxHP;
+        health = maxHealth;
         maxShield = maxShield + playerBaseStats.bonusMaxShield;
         shield = maxShield;
         attack = attack + playerBaseStats.bonusAttackPower;
+        defense = defense + playerBaseStats.bonusDefense;
         maxDungSize = maxDungSize + playerBaseStats.bonusMaxDung;
 
         previousLevel = level;
@@ -109,18 +123,34 @@ public class Player : MonoBehaviour
         initialHealthBarSize = healthBar.transform.localScale;
         initialShieldBarSize = shieldBar.transform.localScale;
         initialEXPBarSize = expBar.transform.localScale;
-        initialDungBarSize = GameController.Instance.dungBarP1.fillAmount;
+
 
         SetLevelText();
         LevelXPSetUp();
         expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
-        GameController.Instance.dungBarP1.fillAmount = dungAccumulated / maxDungSize;
+        GameController.Instance.dungBarP1.fillAmount = 0;
         dungSprite.enabled = false;
+
+        // GameController.Instance.LoadData();
 
     }
 
     private void Update()
     {
+
+        if (isInvincible == true)
+        {
+            stopwatch += Time.deltaTime;
+            if (stopwatch >= invincibilityFrameTime)
+            {
+                isInvincible = false;
+            }
+        }
+        else
+        {
+            stopwatch = 0;
+        }
+
         if (dungAccumulated != prevDungAccumulated && dungAccumulated > 0 && dungAccumulated < maxDungSize && !isShooting)
         {
             SetSpriteSize();
@@ -136,7 +166,9 @@ public class Player : MonoBehaviour
                 Timer = 0f;
                 if (health < maxHealth)
                 {
-                    health++;
+
+                    float amountToHeal = (maxHealth / 100) * 5;
+                    RestoreHealth(amountToHeal);
                     UpdateHealthBar();
                 }
 
@@ -147,6 +179,14 @@ public class Player : MonoBehaviour
 
             }
         }
+    }
+
+    public void ShowHealthGain(float gainedHealth)
+    {
+        GameObject healthObject = Instantiate(healthDisplay, damageDisplayPivot.transform.position, damageDisplayPivot.transform.rotation);
+        healthObject.transform.SetParent(transform);
+        healthObject.GetComponent<DisplayHealth>().ShowHealth(gainedHealth);
+        healthObject.transform.SetParent(null);
     }
 
     private void SetSpriteSize()
@@ -169,6 +209,40 @@ public class Player : MonoBehaviour
         SetLevelText();
     }
 
+    public void OnToggleControls()
+    {
+        GameController.Instance.currencyUI.ToggleControls();
+    }
+
+    public void AddItem(Item item)
+    {
+        itemInventory.Add(item);
+    }
+
+    public void AddSkill(Skill skill)
+    {
+        skillInventory.Add(skill);
+    }
+
+    public void OnPauseGame()
+    {
+        if (GameController.Instance.currentState == State.Initial || GameController.Instance.currentState == State.Death || GameController.Instance.currentState == State.GameWin || GameController.Instance.currentState == State.LevelUp || GameController.Instance.currentState == State.Shop)
+        {
+            return;
+        }
+        else
+        {
+            GameController.Instance.currentState = State.Paused;
+        }
+
+
+    }
+
+    public void OnUnpauseGame()
+    {
+        GameController.Instance.currentState = State.Active;
+    }
+
     void SetLevelText()
     {
         if (playerInput.playerIndex == 0)
@@ -188,34 +262,46 @@ public class Player : MonoBehaviour
     //should count up until it hits the experience amount to add.
     public IEnumerator FillExperienceBar(float experienceToAdd)
     {
-
-        temporaryExperienceHolder = 0;
-
-        if (experience + experienceToAdd >= toLevelUp[level])
+        if (level < toLevelUp.Length)
         {
-            willLevelUp = true;
-        }
 
-        // addingXp = true;
-        //received from external sources. Add xp incrementally to move bar up slowly instead of chunks.
-        for (int i = 0; i < experienceToAdd; i++)
-        {
-            experience++;
-            expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
+            temporaryExperienceHolder = 0;
 
-            if (experience >= toLevelUp[level])
+            if (experience + experienceToAdd >= toLevelUp[level])
             {
-                GainLevel();
-                experience = toLevelUp[level - 1] - experience;
-                if (experience < 0)
-                {
-                    experience *= 1;
-                }
+                willLevelUp = true;
             }
-            yield return new WaitForSeconds(.001f);
-        }
 
-        // addingXp = false;
+            // addingXp = true;
+            //received from external sources. Add xp incrementally to move bar up slowly instead of chunks.
+            for (int i = 0; i < experienceToAdd; i++)
+            {
+                if (level < toLevelUp.Length)
+                {
+
+                    experience++;
+                    expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
+
+
+
+                    if (experience >= toLevelUp[level])
+                    {
+                        GainLevel();
+                        if (level < toLevelUp.Length)
+                        {
+                            experience = toLevelUp[level - 1] - experience;
+                            if (experience < 0)
+                            {
+                                experience *= 1;
+                            }
+                        }
+                    }
+                }
+                yield return new WaitForSeconds(.001f);
+            }
+
+            // addingXp = false;
+        }
     }
 
     public void ResetShield()
@@ -225,6 +311,11 @@ public class Player : MonoBehaviour
 
     }
 
+    public void ResetInvincibility()
+    {
+        isInvincible = false;
+    }
+
     public void MergeTempExperience()
     {
         StartCoroutine(FillExperienceBar(temporaryExperienceHolder));
@@ -232,10 +323,19 @@ public class Player : MonoBehaviour
     }
 
     //TODO: Reaname this method
-    public void UpdateTempExperienceHolder(float value, int currency)
+    public void HandlePlayerGains(float value, int currency)
     {
         moneyEarned += currency;
         enemiesKilled++;
+        if (playerAbilities.isConfidenceEnabled)
+        {
+            attack += 1;
+        }
+
+        if (playerAbilities.isBloodsuckerEnabled)
+        {
+            RestoreHealth((maxHealth / 100) * 1);
+        }
         temporaryExperienceHolder += value;
     }
 
@@ -277,53 +377,42 @@ public class Player : MonoBehaviour
     public void OnNavigateUI(InputValue value)
     {
 
-        if (GameController.Instance.currentState == State.LevelUp)
-        {
-            NewSkillScreen levelUpScreen = FindObjectOfType<NewSkillScreen>();
-            levelUpScreen.HandleNavigation(value);
-        }
 
-        if (GameController.Instance.currentState == State.Shop)
-        {
-            Shop shopScreen = FindObjectOfType<Shop>();
-            shopScreen.HandleNavigation(value);
-        }
     }
 
     public void OnInteract()
     {
-        if (GameController.Instance.currentState == State.LevelUp)
-        {
-            NewSkillScreen levelUpScreen = FindObjectOfType<NewSkillScreen>();
-            levelUpScreen.HandleInteract();
-        }
 
-        if (GameController.Instance.currentState == State.Shop)
-        {
-            Shop shopScreen = FindObjectOfType<Shop>();
-            shopScreen.HandleInteract();
-        }
+
     }
 
     public void OnCancel()
     {
-        // if (GameController.Instance.currentState == State.LevelUp)
-        // {
-        //     GameController.Instance.currentState = State.Active;
-        //     GameController.Instance.levelUpMenu.SetActive(false);
-        // }
+
 
         if (GameController.Instance.currentState == State.Shop)
         {
             GameController.Instance.currentState = State.Active;
             GameController.Instance.shopMenu.SetActive(false);
-            playerInput.SwitchCurrentActionMap("Player");
+            // playerInput.SwitchCurrentActionMap("Player");
         }
     }
 
     public void DealDamage(int damage, bool isCriticalHit)
     {
+        if (playerAbilities.isMegaArmorEnabled && health < maxHealth / 4)
+        {
+            float boostedDefense = defense * 2;
+            damage -= (int)boostedDefense;
+        }
+        else
+        {
+            damage -= (int)defense;
+        }
+
+
         if (isInvincible) { return; }
+        isInvincible = true;
 
         GameObject spriteToInstantiate = isCriticalHit ? criticalDamageSprite : damageSprite;
         GameObject damageObject = Instantiate(spriteToInstantiate, damageDisplayPivot.transform.position, damageDisplayPivot.transform.rotation);
@@ -335,13 +424,24 @@ public class Player : MonoBehaviour
         {
             shield -= damage;
 
+            if (shield < 0 || shield > maxShield)
+            {
+                shield = 0;
+            }
+
             shieldBar.transform.localScale = new Vector3(initialShieldBarSize.x * (shield / maxShield), initialShieldBarSize.y, initialShieldBarSize.z);
 
         }
         else
         {
+
             shieldBar.transform.localScale = new Vector3(0f, initialShieldBarSize.y, initialShieldBarSize.z);
             health -= damage;
+
+            if (health < 0)
+            {
+                health = 0;
+            }
 
             UpdateHealthBar();
 
@@ -390,5 +490,17 @@ public class Player : MonoBehaviour
     public void IncreaseAttack(int multiplier)
     {
         attack *= multiplier;
+    }
+
+    public void RestoreHealth(float statIncrease)
+    {
+        if (health == maxHealth) { return; }
+        health += statIncrease;
+        ShowHealthGain(statIncrease);
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        UpdateHealthBar();
     }
 }

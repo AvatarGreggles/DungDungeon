@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class PlayerAbilities : MonoBehaviour
 {
 
@@ -16,6 +17,14 @@ public class PlayerAbilities : MonoBehaviour
     public bool shootThroughEnemiesEnabled = false;
 
     public bool hpRegeneration = false;
+
+    public bool isConfidenceEnabled = false;
+
+    public bool isMegaArmorEnabled = false;
+
+    public bool isGoldRushEnabled = false;
+
+    public bool isBloodsuckerEnabled = false;
 
 
     Player player;
@@ -41,9 +50,19 @@ public class PlayerAbilities : MonoBehaviour
         projectilePassThroughEnabled = true;
     }
 
+    public void GoldRushEnabled()
+    {
+        isGoldRushEnabled = true;
+    }
+
     public void ProjectileBounceEnabled()
     {
         projectileBounceEnabled = true;
+    }
+
+    public void BloodsuckerEnabled()
+    {
+        isBloodsuckerEnabled = true;
     }
 
     public void ShootThroughEnemiesEnabled()
@@ -70,5 +89,15 @@ public class PlayerAbilities : MonoBehaviour
     public void HealthUpEnabled()
     {
         healthUpEnabled = true;
+    }
+
+    public void ConfidenceEnabled()
+    {
+        isConfidenceEnabled = true;
+    }
+
+    public void MegaArmorEnabled()
+    {
+        isMegaArmorEnabled = true;
     }
 }

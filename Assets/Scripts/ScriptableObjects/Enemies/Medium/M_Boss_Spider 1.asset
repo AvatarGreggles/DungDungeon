@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c548c840cd7174769b02fea60994279c, type: 3}
+  m_Name: M_Boss_Spider 1
+  m_EditorClassIdentifier: 
+  level: 1
+  baseMaxHP: 5000
+  baseAttackPower: 300
+  baseMoveSpeed: 2
+  baseAttackSpeed: 2
+  baseDefense: 1
+  baseCurrencyDrop: 300
+  baseExpYield: 150
+  maxHP: 5000
+  attackPower: 300
+  moveSpeed: 2
+  attackSpeed: 2
+  defense: 1
+  currencyDrop: 300
+  expYield: 150
+  statRange: 1

@@ -73,7 +73,7 @@ public class Projectile : MonoBehaviour
     {
 
         enemyAttackSpeed = speed;
-        Debug.Log(enemyAttackSpeed);
+
     }
 
     public void moveTowardsCloestTarget()
@@ -162,9 +162,18 @@ public class Projectile : MonoBehaviour
         {
             player.DealDamage(power, isCriticalHit);
         }
+
         // Clean up projectile
-        yield return new WaitForSeconds(0.5f);
-        // Destroy(gameObject);
+        PlayerAbilities currentPlayer = FindObjectOfType<Player>()?.GetComponent<PlayerAbilities>();
+        if (currentPlayer && !currentPlayer.shootThroughEnemiesEnabled)
+        {
+            Destroy(gameObject);
+        }
+
+        yield return null;
+
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -195,16 +204,18 @@ public class Projectile : MonoBehaviour
 
     private void ShouldDestroyProjectileOnWallCollision(GameObject collidedObject)
     {
-        if (collidedObject.CompareTag("Wall") && !shouldPlayerProjectilePassThroughWall && !shouldPlayerProjectileBounce)
+        // Clean up projectile
+        Player currentPlayer = FindObjectOfType<Player>();
+        if (collidedObject.CompareTag("Wall") && !shouldPlayerProjectilePassThroughWall)
         {
+            if (isPlayerProjectile)
+            {
+                GameController.Instance.currencyUI.ShowWallHitTip();
+                Destroy(gameObject);
+            }
             Destroy(gameObject);
         }
 
-        if (collidedObject.CompareTag("Wall") && shouldPlayerProjectileBounce)
-        {
-            // m_Rigidbody.gravityScale = 1f;
-
-        }
     }
 
     public void EnablePassThroughWall()

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c548c840cd7174769b02fea60994279c, type: 3}
+  m_Name: S_Enemy_FireAnt
+  m_EditorClassIdentifier: 
+  level: 1
+  baseMaxHP: 400
+  baseAttackPower: 200
+  baseMoveSpeed: 2
+  baseAttackSpeed: 4
+  baseDefense: 1
+  baseCurrencyDrop: 20
+  baseExpYield: 50
+  maxHP: 400
+  attackPower: 200
+  moveSpeed: 2
+  attackSpeed: 4
+  defense: 1
+  currencyDrop: 50
+  expYield: 50
+  statRange: 0
