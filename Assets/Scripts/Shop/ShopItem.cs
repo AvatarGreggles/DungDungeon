@@ -62,7 +62,8 @@ public class ShopItem : MonoBehaviour
 
     public void SetPriceText()
     {
-        priceText.text = item.price.ToString();
+        float price = item.price + (LevelManager.Instance.floor * 10);
+        priceText.text = price.ToString();
     }
 
     public void SetItemIcon()
@@ -84,7 +85,7 @@ public class ShopItem : MonoBehaviour
             return false;
         }
 
-        int currencyAfterPurchase = GameController.Instance.totalCurrency - item.price;
+        int currencyAfterPurchase = GameController.Instance.totalCurrency - (item.price + (LevelManager.Instance.floor * 10));
 
         if (currencyAfterPurchase >= 0)
         {

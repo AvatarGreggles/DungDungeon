@@ -24,6 +24,7 @@ public class Skill : ScriptableObject
         GoldRush,
         Bloodsucker,
         HPRegeneration,
+        Shield,
     }
 
     public enum TargetStat
@@ -129,6 +130,12 @@ public class Skill : ScriptableObject
         if (ability == Ability.HPRegeneration)
         {
             playerAbilities.HPRegenerationEnabled();
+        }
+
+        if (ability == Ability.Shield)
+        {
+            playerAbilities.ShieldEnabled();
+
         }
 
 

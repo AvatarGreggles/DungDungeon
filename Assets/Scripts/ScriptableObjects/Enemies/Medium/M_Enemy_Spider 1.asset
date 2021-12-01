@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: M_Enemy_Spider 1
   m_EditorClassIdentifier: 
   level: 1
-  baseMaxHP: 800
+  baseMaxHP: 1100
   baseAttackPower: 200
   baseMoveSpeed: 2
-  baseAttackSpeed: 1
+  baseAttackSpeed: 2
   baseDefense: 1
-  baseCurrencyDrop: 35
+  baseCurrencyDrop: 50
   baseExpYield: 50
-  maxHP: 600
+  maxHP: 1200
   attackPower: 300
   moveSpeed: 3
   attackSpeed: 1
   defense: 1
-  currencyDrop: 37
+  currencyDrop: 52
   expYield: 75
   statRange: 1

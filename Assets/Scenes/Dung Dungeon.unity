@@ -46250,8 +46250,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bdd5b182da771489e92d0121f9684377, type: 2}
   - {fileID: 11400000, guid: bdd5b182da771489e92d0121f9684377, type: 2}
   - {fileID: 11400000, guid: bdd5b182da771489e92d0121f9684377, type: 2}
-  - {fileID: 11400000, guid: bdd5b182da771489e92d0121f9684377, type: 2}
-  - {fileID: 11400000, guid: bdd5b182da771489e92d0121f9684377, type: 2}
+  - {fileID: 11400000, guid: 26a088173c92f44cdbe276a3849aec0e, type: 2}
+  - {fileID: 11400000, guid: 26a088173c92f44cdbe276a3849aec0e, type: 2}
+  - {fileID: 11400000, guid: 26a088173c92f44cdbe276a3849aec0e, type: 2}
+  - {fileID: 11400000, guid: 26a088173c92f44cdbe276a3849aec0e, type: 2}
+  - {fileID: 11400000, guid: 26a088173c92f44cdbe276a3849aec0e, type: 2}
+  - {fileID: 11400000, guid: 26a088173c92f44cdbe276a3849aec0e, type: 2}
+  - {fileID: 11400000, guid: 26a088173c92f44cdbe276a3849aec0e, type: 2}
   skillList: {fileID: 1078944448}
   healthStatText: {fileID: 1921729253}
   shieldStatText: {fileID: 606644675}

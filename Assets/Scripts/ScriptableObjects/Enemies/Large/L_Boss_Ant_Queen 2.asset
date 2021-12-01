@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: L_Boss_Ant_Queen 2
   m_EditorClassIdentifier: 
   level: 1
-  baseMaxHP: 7500
-  baseAttackPower: 300
+  baseMaxHP: 15000
+  baseAttackPower: 400
   baseMoveSpeed: 1
-  baseAttackSpeed: 2
+  baseAttackSpeed: 3
   baseDefense: 1
-  baseCurrencyDrop: 300
+  baseCurrencyDrop: 400
   baseExpYield: 150
-  maxHP: 10000
-  attackPower: 400
+  maxHP: 15000
+  attackPower: 600
   moveSpeed: 2
   attackSpeed: 4
   defense: 2

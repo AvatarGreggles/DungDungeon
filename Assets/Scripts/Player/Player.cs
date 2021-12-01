@@ -93,6 +93,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] GameObject healthDisplay;
 
+    [SerializeField] public GameObject shieldBarContainer;
+
+
 
     private void Awake()
     {
@@ -123,6 +126,11 @@ public class Player : MonoBehaviour
         initialHealthBarSize = healthBar.transform.localScale;
         initialShieldBarSize = shieldBar.transform.localScale;
         initialEXPBarSize = expBar.transform.localScale;
+
+        if (!playerAbilities.isShieldEnabled)
+        {
+            shieldBarContainer.SetActive(false);
+        }
 
 
         SetLevelText();
@@ -228,7 +236,6 @@ public class Player : MonoBehaviour
     {
         itemInventory.Add(item);
     }
-
     public void AddSkill(Skill skill)
     {
         skillInventory.Add(skill);
@@ -316,6 +323,7 @@ public class Player : MonoBehaviour
 
     public void ResetShield()
     {
+        if (!playerAbilities.isShieldEnabled) { return; }
         shield = maxShield;
         shieldBar.transform.localScale = new Vector3(initialShieldBarSize.x * (shield / maxShield), initialShieldBarSize.y, initialShieldBarSize.z);
 
@@ -436,7 +444,7 @@ public class Player : MonoBehaviour
         damageObject.GetComponent<DisplayDamage>().showDamage(damage);
         damageObject.transform.SetParent(null);
 
-        if (shield > 0)
+        if (shield > 0 && playerAbilities.isShieldEnabled)
         {
             shield -= damage;
 
@@ -450,8 +458,10 @@ public class Player : MonoBehaviour
         }
         else
         {
-
-            shieldBar.transform.localScale = new Vector3(0f, initialShieldBarSize.y, initialShieldBarSize.z);
+            if (playerAbilities.isShieldEnabled)
+            {
+                shieldBar.transform.localScale = new Vector3(0f, initialShieldBarSize.y, initialShieldBarSize.z);
+            }
             health -= damage;
 
             // if (health < maxHealth / 4)

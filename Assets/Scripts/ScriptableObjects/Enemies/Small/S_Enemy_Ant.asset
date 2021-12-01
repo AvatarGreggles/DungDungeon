@@ -18,13 +18,13 @@ MonoBehaviour:
   baseMoveSpeed: 2
   baseAttackSpeed: 2
   baseDefense: 1
-  baseCurrencyDrop: 10
+  baseCurrencyDrop: 25
   baseExpYield: 25
   maxHP: 200
   attackPower: 100
   moveSpeed: 2
   attackSpeed: 2
   defense: 1
-  currencyDrop: 30
+  currencyDrop: 25
   expYield: 25
   statRange: 0

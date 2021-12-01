@@ -26,6 +26,9 @@ public class PlayerAbilities : MonoBehaviour
 
     public bool isGoldRushEnabled = false;
 
+    public bool isShieldEnabled = false;
+
+
     public int goldRushStack = 0;
 
     public bool isBloodsuckerEnabled = false;
@@ -70,6 +73,12 @@ public class PlayerAbilities : MonoBehaviour
     {
         bloodSuckerStack += 1;
         isBloodsuckerEnabled = true;
+    }
+
+    public void ShieldEnabled()
+    {
+        player.shieldBarContainer.SetActive(true);
+        isShieldEnabled = true;
     }
 
     public void ShootThroughEnemiesEnabled()

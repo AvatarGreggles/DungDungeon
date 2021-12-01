@@ -307,11 +307,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324749510039381606}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15990004, y: 1.53, z: 0}
-  m_LocalScale: {x: 1.9002733, y: 0.15985748, z: 1}
+  m_LocalPosition: {x: -1.1446127, y: 1.7600856, z: 4.4999638}
+  m_LocalScale: {x: 1.6421595, y: 0.13814406, z: 0.86417013}
   m_Children: []
-  m_Father: {fileID: 8568219434171882056}
-  m_RootOrder: 13
+  m_Father: {fileID: 7164690897836500169}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7579562518741614245
 SpriteRenderer:
@@ -1065,11 +1065,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6829623281336045877}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.79, y: 1.53, z: 0}
-  m_LocalScale: {x: 1.274334, y: 1.6320314, z: 1}
+  m_LocalPosition: {x: -1.965488, y: 1.7600856, z: 4.4999638}
+  m_LocalScale: {x: 1.1012414, y: 1.4103527, z: 0.86417013}
   m_Children: []
-  m_Father: {fileID: 8568219434171882056}
-  m_RootOrder: 14
+  m_Father: {fileID: 7164690897836500169}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8811232929392157614
 SpriteRenderer:
@@ -1204,6 +1204,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8470538500647744137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7164690897836500169}
+  m_Layer: 0
+  m_Name: ShieldBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7164690897836500169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8470538500647744137}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.4844224, y: -0.5067351, z: -5.207266}
+  m_LocalScale: {x: 1.1571796, y: 1.1571796, z: 1.1571796}
+  m_Children:
+  - {fileID: 9061015102223218024}
+  - {fileID: 7530992081120181894}
+  m_Father: {fileID: 8568219434171882056}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8568219434171882062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,8 +1287,7 @@ Transform:
   - {fileID: 1167475257365764970}
   - {fileID: 5964126066873873064}
   - {fileID: 3151957356505702708}
-  - {fileID: 9061015102223218024}
-  - {fileID: 7530992081120181894}
+  - {fileID: 7164690897836500169}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1424,7 +1455,7 @@ MonoBehaviour:
   level: 1
   previousLevel: 0
   criticalHitRatio: 6.25
-  maxHealth: 500
+  maxHealth: 1000
   attackSpeedBonus: 1
   shield: 0
   maxShield: 300
@@ -1458,6 +1489,7 @@ MonoBehaviour:
   itemInventory: []
   skillInventory: []
   healthDisplay: {fileID: 1905902881067641905, guid: 41fb12c42bd23444d90893b0031e7533, type: 3}
+  shieldBarContainer: {fileID: 8470538500647744137}
 --- !u!114 &3620035378186348920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1479,9 +1511,13 @@ MonoBehaviour:
   shootThroughEnemiesEnabled: 0
   hpRegeneration: 0
   isConfidenceEnabled: 0
+  confidenceStack: 0
   isMegaArmorEnabled: 0
   isGoldRushEnabled: 0
+  isShieldEnabled: 0
+  goldRushStack: 0
   isBloodsuckerEnabled: 0
+  bloodSuckerStack: 0
 --- !u!95 &7285743007244160389
 Animator:
   serializedVersion: 3
