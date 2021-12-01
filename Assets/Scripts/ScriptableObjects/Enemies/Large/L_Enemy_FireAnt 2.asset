@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c548c840cd7174769b02fea60994279c, type: 3}
-  m_Name: M_Enemy_Spider 1
+  m_Name: L_Enemy_FireAnt 2
   m_EditorClassIdentifier: 
   level: 1
   baseMaxHP: 400
   baseAttackPower: 200
   baseMoveSpeed: 2
-  baseAttackSpeed: 1
+  baseAttackSpeed: 4
   baseDefense: 1
-  baseCurrencyDrop: 25
+  baseCurrencyDrop: 20
   baseExpYield: 50
   maxHP: 400
   attackPower: 200
   moveSpeed: 2
-  attackSpeed: 1
+  attackSpeed: 4
   defense: 1
-  currencyDrop: 25
+  currencyDrop: 20
   expYield: 50
-  statRange: 1
+  statRange: 2

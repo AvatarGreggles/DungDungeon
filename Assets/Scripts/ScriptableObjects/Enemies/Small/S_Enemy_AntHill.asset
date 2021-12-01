@@ -25,6 +25,6 @@ MonoBehaviour:
   moveSpeed: 1
   attackSpeed: 5
   defense: 1
-  currencyDrop: 125
+  currencyDrop: 75
   expYield: 100
   statRange: 0

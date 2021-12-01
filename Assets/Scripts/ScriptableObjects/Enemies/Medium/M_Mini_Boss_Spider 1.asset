@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c548c840cd7174769b02fea60994279c, type: 3}
-  m_Name: L_Boss_Spider 1
+  m_Name: M_Mini_Boss_Spider 1
   m_EditorClassIdentifier: 
   level: 1
-  baseMaxHP: 5000
-  baseAttackPower: 300
-  baseMoveSpeed: 2
-  baseAttackSpeed: 1
+  baseMaxHP: 1800
+  baseAttackPower: 250
+  baseMoveSpeed: 3
+  baseAttackSpeed: 2
   baseDefense: 1
-  baseCurrencyDrop: 50
-  baseExpYield: 150
-  maxHP: 5000
-  attackPower: 0
-  moveSpeed: 0
-  attackSpeed: 1
+  baseCurrencyDrop: 250
+  baseExpYield: 175
+  maxHP: 1800
+  attackPower: 250
+  moveSpeed: 3
+  attackSpeed: 2
   defense: 1
-  currencyDrop: 0
-  expYield: 0
-  statRange: 2
+  currencyDrop: 250
+  expYield: 175
+  statRange: 1

@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c548c840cd7174769b02fea60994279c, type: 3}
-  m_Name: L_Enemy_Ant 1
+  m_Name: L_Boss_Spider 2
   m_EditorClassIdentifier: 
   level: 1
-  baseMaxHP: 200
-  baseAttackPower: 100
+  baseMaxHP: 5000
+  baseAttackPower: 300
   baseMoveSpeed: 2
-  baseAttackSpeed: 20
+  baseAttackSpeed: 2
   baseDefense: 1
-  baseCurrencyDrop: 10
-  baseExpYield: 25
-  maxHP: 200
-  attackPower: 0
-  moveSpeed: 0
-  attackSpeed: 20
+  baseCurrencyDrop: 300
+  baseExpYield: 150
+  maxHP: 5000
+  attackPower: 300
+  moveSpeed: 2
+  attackSpeed: 2
   defense: 1
-  currencyDrop: 0
-  expYield: 0
+  currencyDrop: 300
+  expYield: 150
   statRange: 2

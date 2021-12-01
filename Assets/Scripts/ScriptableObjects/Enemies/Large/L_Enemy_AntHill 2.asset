@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c548c840cd7174769b02fea60994279c, type: 3}
-  m_Name: L_Enemy_Spider 1
+  m_Name: L_Enemy_AntHill 2
   m_EditorClassIdentifier: 
   level: 1
-  baseMaxHP: 600
-  baseAttackPower: 200
-  baseMoveSpeed: 2
-  baseAttackSpeed: 1
+  baseMaxHP: 1000
+  baseAttackPower: 1
+  baseMoveSpeed: 1
+  baseAttackSpeed: 5
   baseDefense: 1
-  baseCurrencyDrop: 25
-  baseExpYield: 50
-  maxHP: 600
-  attackPower: 0
-  moveSpeed: 0
-  attackSpeed: 1
+  baseCurrencyDrop: 30
+  baseExpYield: 100
+  maxHP: 1000
+  attackPower: 1
+  moveSpeed: 1
+  attackSpeed: 5
   defense: 1
-  currencyDrop: 0
-  expYield: 0
+  currencyDrop: 30
+  expYield: 100
   statRange: 2

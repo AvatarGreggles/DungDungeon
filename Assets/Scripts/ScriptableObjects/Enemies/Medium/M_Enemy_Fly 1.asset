@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: M_Enemy_Fly 1
   m_EditorClassIdentifier: 
   level: 1
-  baseMaxHP: 400
+  baseMaxHP: 200
   baseAttackPower: 100
   baseMoveSpeed: 2
-  baseAttackSpeed: 1
+  baseAttackSpeed: 2
   baseDefense: 1
   baseCurrencyDrop: 10
   baseExpYield: 25
-  maxHP: 400
-  attackPower: 0
-  moveSpeed: 0
-  attackSpeed: 1
+  maxHP: 200
+  attackPower: 100
+  moveSpeed: 2
+  attackSpeed: 2
   defense: 1
-  currencyDrop: 0
-  expYield: 0
+  currencyDrop: 10
+  expYield: 25
   statRange: 1

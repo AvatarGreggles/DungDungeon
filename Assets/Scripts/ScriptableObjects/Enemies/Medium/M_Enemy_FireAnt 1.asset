@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: M_Enemy_FireAnt 1
   m_EditorClassIdentifier: 
   level: 1
-  baseMaxHP: 600
+  baseMaxHP: 400
   baseAttackPower: 200
   baseMoveSpeed: 2
-  baseAttackSpeed: 2
+  baseAttackSpeed: 4
   baseDefense: 1
   baseCurrencyDrop: 20
   baseExpYield: 50
-  maxHP: 600
-  attackPower: 0
-  moveSpeed: 0
-  attackSpeed: 2
+  maxHP: 400
+  attackPower: 200
+  moveSpeed: 2
+  attackSpeed: 4
   defense: 1
-  currencyDrop: 0
-  expYield: 0
+  currencyDrop: 20
+  expYield: 50
   statRange: 1

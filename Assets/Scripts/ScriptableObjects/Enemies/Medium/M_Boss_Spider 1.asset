@@ -16,15 +16,15 @@ MonoBehaviour:
   baseMaxHP: 5000
   baseAttackPower: 300
   baseMoveSpeed: 2
-  baseAttackSpeed: 1
+  baseAttackSpeed: 2
   baseDefense: 1
-  baseCurrencyDrop: 50
+  baseCurrencyDrop: 300
   baseExpYield: 150
   maxHP: 5000
-  attackPower: 0
-  moveSpeed: 0
-  attackSpeed: 1
+  attackPower: 300
+  moveSpeed: 2
+  attackSpeed: 2
   defense: 1
-  currencyDrop: 0
-  expYield: 0
+  currencyDrop: 300
+  expYield: 150
   statRange: 1
