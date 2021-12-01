@@ -131,14 +131,14 @@ public class Player : MonoBehaviour
         GameController.Instance.dungBarP1.fillAmount = 0;
         dungSprite.enabled = false;
 
-        if (health > maxHealth / 4)
-        {
-            healthBar.GetComponent<SpriteRenderer>().color = Color.green;
-        }
-        else
-        {
-            healthBar.GetComponent<SpriteRenderer>().color = Color.red;
-        }
+        // if (health > maxHealth / 4)
+        // {
+        //     healthBar.GetComponent<SpriteRenderer>().color = Color.green;
+        // }
+        // else
+        // {
+        //     healthBar.GetComponent<SpriteRenderer>().color = Color.red;
+        // }
 
         // GameController.Instance.LoadData();
 
@@ -453,10 +453,10 @@ public class Player : MonoBehaviour
             shieldBar.transform.localScale = new Vector3(0f, initialShieldBarSize.y, initialShieldBarSize.z);
             health -= damage;
 
-            if (health < maxHealth / 4)
-            {
-                healthBar.GetComponent<SpriteRenderer>().color = Color.red;
-            }
+            // if (health < maxHealth / 4)
+            // {
+            //     healthBar.GetComponent<SpriteRenderer>().color = Color.red;
+            // }
 
             if (health < 0)
             {
@@ -516,7 +516,7 @@ public class Player : MonoBehaviour
     {
         if (health == maxHealth) { return; }
         health += statIncrease;
-        healthBar.GetComponent<SpriteRenderer>().color = Color.green;
+        // healthBar.GetComponent<SpriteRenderer>().color = Color.green;
         ShowHealthGain(statIncrease);
         if (health > maxHealth)
         {

@@ -76,10 +76,10 @@ public class Enemy : MonoBehaviour
         damageObject.transform.SetParent(null);
 
         health -= damage;
-        if (health < enemyStats.maxHP / 4)
-        {
-            healthBar.GetComponent<SpriteRenderer>().color = Color.red;
-        }
+        // if (health < enemyStats.maxHP / 4)
+        // {
+        //     healthBar.GetComponent<SpriteRenderer>().color = Color.red;
+        // }
         if (gameObject.activeSelf)
         {
             bool isPlayer = gameObject.CompareTag("Player");
