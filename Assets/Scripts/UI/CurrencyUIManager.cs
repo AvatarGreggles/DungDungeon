@@ -15,7 +15,7 @@ public class CurrencyUIManager : MonoBehaviour
 
     bool tipIsShown = false;
 
-    public bool controlsAreShown = false;
+    public bool controlsAreShown = true;
 
 
     void Start()

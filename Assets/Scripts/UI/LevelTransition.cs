@@ -43,6 +43,7 @@ public class LevelTransition : MonoBehaviour
         var sequence = DOTween.Sequence();
         sequence.Append(overlay.transform.DOScaleX(1f, 0.4f));
         yield return sequence.WaitForCompletion();
+        GameController.Instance.introTip.SetActive(true);
     }
 
     public IEnumerator OnEnterShop()
@@ -68,7 +69,7 @@ public class LevelTransition : MonoBehaviour
     {
         var sequence = DOTween.Sequence();
         sequence.Append(overlay.transform.DOScaleX(1f, 0.4f));
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
 
         GameController.Instance.pauseMenu.SetActive(true);
     }
@@ -99,6 +100,7 @@ public class LevelTransition : MonoBehaviour
 
     public IEnumerator OnUnpause()
     {
+        GameController.Instance.introTip.SetActive(false);
         var sequence = DOTween.Sequence();
         sequence.Append(overlay.transform.DOScaleX(0f, 0.4f));
         yield return sequence.WaitForCompletion();

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Exoshell
   itemDescription: Increase defense by 50.
-  price: 200
+  price: 150
   itemIcon: {fileID: 216425512679943517, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   itemType: 1
-  statIncrease: 300
+  statIncrease: 50
   targetStat: 7
   ability: 0

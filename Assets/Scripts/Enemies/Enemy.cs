@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
 {
     public bool isSpawner = false;
     public float health;
+
+    float initialHealth;
     [SerializeField] GameObject healthBar;
     [SerializeField] GameObject healthBarBackground;
     public GameObject damageDisplayPivot;
@@ -74,6 +76,10 @@ public class Enemy : MonoBehaviour
         damageObject.transform.SetParent(null);
 
         health -= damage;
+        if (health < enemyStats.maxHP / 4)
+        {
+            healthBar.GetComponent<SpriteRenderer>().color = Color.red;
+        }
         if (gameObject.activeSelf)
         {
             bool isPlayer = gameObject.CompareTag("Player");

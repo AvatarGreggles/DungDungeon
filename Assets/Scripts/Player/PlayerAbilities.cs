@@ -20,11 +20,16 @@ public class PlayerAbilities : MonoBehaviour
 
     public bool isConfidenceEnabled = false;
 
+    public int confidenceStack = 0;
+
     public bool isMegaArmorEnabled = false;
 
     public bool isGoldRushEnabled = false;
 
+    public int goldRushStack = 0;
+
     public bool isBloodsuckerEnabled = false;
+    public int bloodSuckerStack = 0;
 
 
     Player player;
@@ -52,6 +57,7 @@ public class PlayerAbilities : MonoBehaviour
 
     public void GoldRushEnabled()
     {
+        goldRushStack += 1;
         isGoldRushEnabled = true;
     }
 
@@ -62,6 +68,7 @@ public class PlayerAbilities : MonoBehaviour
 
     public void BloodsuckerEnabled()
     {
+        bloodSuckerStack += 1;
         isBloodsuckerEnabled = true;
     }
 
@@ -93,6 +100,7 @@ public class PlayerAbilities : MonoBehaviour
 
     public void ConfidenceEnabled()
     {
+        confidenceStack += 1;
         isConfidenceEnabled = true;
     }
 

@@ -16,6 +16,6 @@ MonoBehaviour:
   skillDescription: Shoot smaller but quicker dung
   skillIcon: {fileID: 21300000, guid: cd3e37d2542a4437ab74ef5e6561933d, type: 3}
   skillType: 0
-  statIncrease: 1.25
+  statIncrease: 1.15
   targetStat: 5
   ability: 0

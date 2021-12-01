@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Assasin Shot
   itemDescription: Increase crit chance by 6.25%.
-  price: 400
+  price: 200
   itemIcon: {fileID: -8322868590462112959, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   itemType: 1
   statIncrease: 6.25

@@ -131,6 +131,15 @@ public class Player : MonoBehaviour
         GameController.Instance.dungBarP1.fillAmount = 0;
         dungSprite.enabled = false;
 
+        if (health > maxHealth / 4)
+        {
+            healthBar.GetComponent<SpriteRenderer>().color = Color.green;
+        }
+        else
+        {
+            healthBar.GetComponent<SpriteRenderer>().color = Color.red;
+        }
+
         // GameController.Instance.LoadData();
 
     }
@@ -329,12 +338,12 @@ public class Player : MonoBehaviour
         enemiesKilled++;
         if (playerAbilities.isConfidenceEnabled)
         {
-            attack += 1;
+            attack += (1 * playerAbilities.confidenceStack);
         }
 
         if (playerAbilities.isBloodsuckerEnabled)
         {
-            RestoreHealth((maxHealth / 100) * 10);
+            RestoreHealth((maxHealth / 100) * (5 * playerAbilities.bloodSuckerStack));
         }
         temporaryExperienceHolder += value;
     }
@@ -410,6 +419,12 @@ public class Player : MonoBehaviour
             damage -= (int)defense;
         }
 
+        if (damage < 0)
+        {
+            //TO DO: BLOCKED BY DEFENSE
+            damage = 0;
+        }
+
 
         if (isInvincible) { return; }
         isInvincible = true;
@@ -437,6 +452,11 @@ public class Player : MonoBehaviour
 
             shieldBar.transform.localScale = new Vector3(0f, initialShieldBarSize.y, initialShieldBarSize.z);
             health -= damage;
+
+            if (health < maxHealth / 4)
+            {
+                healthBar.GetComponent<SpriteRenderer>().color = Color.red;
+            }
 
             if (health < 0)
             {
@@ -496,6 +516,7 @@ public class Player : MonoBehaviour
     {
         if (health == maxHealth) { return; }
         health += statIncrease;
+        healthBar.GetComponent<SpriteRenderer>().color = Color.green;
         ShowHealthGain(statIncrease);
         if (health > maxHealth)
         {

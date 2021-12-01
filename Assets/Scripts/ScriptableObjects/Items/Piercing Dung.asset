@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Piercing Dung
   itemDescription: Shoot through enemies
-  price: 250
+  price: 300
   itemIcon: {fileID: -7961490728788840413, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   itemType: 0
   statIncrease: 0

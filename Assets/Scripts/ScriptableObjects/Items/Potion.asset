@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Potion
   itemDescription: Restore 300 health.
-  price: 150
+  price: 50
   itemIcon: {fileID: -1110265888859276761, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   itemType: 2
   statIncrease: 300

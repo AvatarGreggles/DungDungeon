@@ -60,6 +60,9 @@ public class GameController : MonoBehaviour, ISavable
 
     [SerializeField] NewSkillScreen skillScreen;
 
+    [SerializeField] public GameObject introTip;
+
+
 
     private void Awake()
     {
@@ -189,7 +192,12 @@ public class GameController : MonoBehaviour, ISavable
     {
         if (players[0].playerAbilities.isGoldRushEnabled)
         {
-            value = value * 2;
+            int multiplier = players[0].playerAbilities.goldRushStack;
+            // Todo update text to be double, triple etc.
+            value = value * (1 + multiplier);
+            Debug.Log(value);
+            Debug.Log("multipler " + multiplier);
+
         }
         totalCurrency += value;
         currencyUI.UpdateCurrency();
