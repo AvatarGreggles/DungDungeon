@@ -64,13 +64,13 @@ public class Item : ScriptableObject
 
         if (targetStat == TargetStat.Attack)
         {
-            player.attack *= statIncrease;
+            player.attack += statIncrease;
             shop.UpdateAttackText();
         }
 
         if (targetStat == TargetStat.Defense)
         {
-            player.defense *= statIncrease;
+            player.defense += statIncrease;
             shop.UpdateDefenseText();
         }
 
@@ -96,6 +96,12 @@ public class Item : ScriptableObject
         {
             player.criticalHitRatio += statIncrease;
             shop.UpdateCritRatioText();
+        }
+
+        if (targetStat == TargetStat.Dung)
+        {
+            player.maxDungSize += statIncrease;
+            shop.UpdateDungText();
         }
     }
 

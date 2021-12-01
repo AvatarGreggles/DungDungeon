@@ -334,7 +334,7 @@ public class Player : MonoBehaviour
 
         if (playerAbilities.isBloodsuckerEnabled)
         {
-            RestoreHealth((maxHealth / 100) * 1);
+            RestoreHealth((maxHealth / 100) * 10);
         }
         temporaryExperienceHolder += value;
     }

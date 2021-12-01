@@ -44302,6 +44302,7 @@ MonoBehaviour:
   delayAmount: 1
   gameMusic: {fileID: 0}
   audioSource: {fileID: 0}
+  skillScreen: {fileID: 1317138467}
 --- !u!82 &1225922273
 AudioSource:
   m_ObjectHideFlags: 0

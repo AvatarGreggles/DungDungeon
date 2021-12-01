@@ -58,6 +58,8 @@ public class GameController : MonoBehaviour, ISavable
     public AudioClip gameMusic;
     [SerializeField] AudioSource audioSource;
 
+    [SerializeField] NewSkillScreen skillScreen;
+
 
     private void Awake()
     {
@@ -159,8 +161,10 @@ public class GameController : MonoBehaviour, ISavable
                 // PlayerInput levelupMenuInput = levelUpMenu.GetComponent<PlayerInput>();
                 // playerInput.actions.Disable();
                 // levelupMenuInput.actions.Enable();
-
-                StartCoroutine(LevelTransition.Instance.OnLevelUp());
+                if (skillScreen.skills.Count > 0)
+                {
+                    StartCoroutine(LevelTransition.Instance.OnLevelUp());
+                }
             }
 
             previousState = currentState;

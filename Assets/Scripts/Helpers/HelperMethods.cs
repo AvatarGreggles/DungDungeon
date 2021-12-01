@@ -6,6 +6,7 @@ public class HelperMethods : MonoBehaviour
 {
     public static List<T> GetRandomItemsFromList<T>(List<T> list, int number)
     {
+
         // this is the list we're going to remove picked items from
         List<T> tmpList = new List<T>(list);
         // this is the list we're going to move items to
