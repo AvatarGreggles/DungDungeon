@@ -120,7 +120,7 @@ public class LevelManager : MonoBehaviour
 
     private void SetFloorText(string currentFloor)
     {
-        floorText.text = currentFloor;
+        floorText.text = "Floor " + currentFloor;
     }
 
     public void PopulateEnemiesList()

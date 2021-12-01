@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52d848c2a3bb2439194e0c9f8097e858, type: 3}
-  m_Name: Sharpshooter
+  m_Name: Holy S#%!
   m_EditorClassIdentifier: 
-  skillName: Sharpshooter
-  skillDescription: Shoot smaller but quicker dung
-  skillIcon: {fileID: 21300000, guid: cd3e37d2542a4437ab74ef5e6561933d, type: 3}
-  skillType: 0
-  statIncrease: 1.25
-  targetStat: 5
+  skillName: Holy S#%!
+  skillDescription: Regenerate 5% health every 10 seconds.
+  skillIcon: {fileID: 21300000, guid: fbee5f442b07e4be78a2ffc2538bdcbb, type: 3}
+  skillType: 2
+  statIncrease: 0
+  targetStat: 0
   ability: 0

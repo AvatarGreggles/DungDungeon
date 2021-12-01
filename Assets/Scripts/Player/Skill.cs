@@ -22,7 +22,8 @@ public class Skill : ScriptableObject
         ShootThroughEnemy,
         MegaArmor,
         GoldRush,
-        Bloodsucker
+        Bloodsucker,
+        HPRegeneration,
     }
 
     public enum TargetStat
@@ -67,8 +68,20 @@ public class Skill : ScriptableObject
 
         if (targetStat == TargetStat.Speed)
         {
-            player.attackSpeedBonus += statIncrease;
+            player.GetComponent<PlayerMovement>().movementSpeed += statIncrease;
             skillScreen.UpdateSpeedText();
+        }
+
+        if (targetStat == TargetStat.Defense)
+        {
+            player.defense += statIncrease;
+            skillScreen.UpdateDefenseText();
+        }
+
+        if (targetStat == TargetStat.Dung)
+        {
+            player.maxDungSize += statIncrease;
+            skillScreen.UpdateDungText();
         }
     }
 
@@ -111,6 +124,11 @@ public class Skill : ScriptableObject
         if (ability == Ability.Bloodsucker)
         {
             playerAbilities.BloodsuckerEnabled();
+        }
+
+        if (ability == Ability.HPRegeneration)
+        {
+            playerAbilities.HPRegenerationEnabled();
         }
 
 

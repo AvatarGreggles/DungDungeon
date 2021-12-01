@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Gold Rush
   skillDescription: Doubles coins collected
-  skillIcon: {fileID: 216425512679943517, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
+  skillIcon: {fileID: 21300000, guid: ca0b15facaf224a69b59b75a9383809b, type: 3}
   skillType: 2
   statIncrease: 100
   targetStat: 0

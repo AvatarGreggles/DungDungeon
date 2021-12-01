@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Quick Wit
   skillDescription: Boost your movement speed
-  skillIcon: {fileID: 216425512679943517, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
+  skillIcon: {fileID: 21300000, guid: 9560fb0d1aef2478cbfeee58594b6349, type: 3}
   skillType: 1
   statIncrease: 1.25
   targetStat: 4

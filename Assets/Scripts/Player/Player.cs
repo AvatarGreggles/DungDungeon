@@ -209,6 +209,11 @@ public class Player : MonoBehaviour
         SetLevelText();
     }
 
+    public void OnToggleControls()
+    {
+        GameController.Instance.currencyUI.ToggleControls();
+    }
+
     public void AddItem(Item item)
     {
         itemInventory.Add(item);

@@ -1452,7 +1452,7 @@ MonoBehaviour:
   willLevelUp: 0
   playerLevelTextP1: {fileID: 6526278113208250979}
   playerAbilities: {fileID: 0}
-  delayAmount: 1
+  delayAmount: 10
   criticalDamageSprite: {fileID: 1905902881067641905, guid: cc282c30cc80f42c4b4399f5d779cec6, type: 3}
   damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
   itemInventory: []
