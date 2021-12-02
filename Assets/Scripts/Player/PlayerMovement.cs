@@ -45,6 +45,9 @@ public class PlayerMovement : MonoBehaviour
 
     PlayerBaseStatManager playerBaseStats;
 
+    public bool isCollidingWithWall = false;
+
+    RaycastHit m_Hit;
 
     private void Awake()
     {
@@ -116,7 +119,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+
+
     }
+
 
     public IEnumerator CheckIfReleased(Vector2 movement)
     {
@@ -164,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 adjustedMovement = movement * (movementSpeed + playerBaseStats.bonusMoveSpeed);
         Vector2 newPos = currentPos + adjustedMovement * Time.fixedDeltaTime;
 
-
+        // if (newPos != new Vector2(transform.position.x, transform.position.y) && GameController.Instance.currentState != State.Cleared && player.dungAccumulated < player.maxDungSize && !isCollidingWithWall)
         if (newPos != new Vector2(transform.position.x, transform.position.y) && GameController.Instance.currentState != State.Cleared && player.dungAccumulated < player.maxDungSize)
         {
             if (!audioSource.isPlaying)
@@ -194,6 +200,27 @@ public class PlayerMovement : MonoBehaviour
     {
         Movement();
 
+        // //Test to see if there is a hit using a BoxCast
+        // //Calculate using the center of the GameObject's Collider(could also just use the GameObject's position), half the GameObject's size, the direction, the GameObject's rotation, and the maximum distance as variables.
+        // //Also fetch the hit data
+        // RaycastHit2D checkForWall = Physics2D.BoxCast(transform.position, new Vector2(3f, 3f), 0f, new Vector2(3f, 3f), 1f);
+
+        // //Method to draw the ray in scene for debug purpose
+        // ExtDebug.DrawBoxCast2D(transform.position, new Vector2(3f, 3f), 0f, new Vector2(3f, 3f), 1f, Color.red);
+        // if (checkForWall)
+        // {
+        //     if (checkForWall.collider.CompareTag("Wall") || checkForWall.collider.CompareTag("Pit"))
+        //     {
+        //         Debug.Log("hitting wall");
+        //         isCollidingWithWall = true;
+        //         return;
+        //     }
+
+        // }
+
+        // Debug.Log("not hitting wall");
+        // isCollidingWithWall = false;
+
     }
 
     public void ResetPosition()
@@ -204,4 +231,5 @@ public class PlayerMovement : MonoBehaviour
             transform.position = spawnPosition.position;
         }
     }
+
 }

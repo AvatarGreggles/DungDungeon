@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d848c2a3bb2439194e0c9f8097e858, type: 3}
   m_Name: Shield Armor
   m_EditorClassIdentifier: 
+  isUnique: 1
   skillName: Shield Armor
   skillDescription: Gain a shield
   skillIcon: {fileID: 21300000, guid: 3d6bb887550e3425b8283db7214fc0e5, type: 3}
