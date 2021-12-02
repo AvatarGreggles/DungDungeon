@@ -94,11 +94,32 @@ public class LevelSkill : MonoBehaviour
 
         GameController.Instance.currentState = State.Active;
         DoorManager.Instance.MoveToNextLevel();
-        skillScreen.gameObject.SetActive(false);
 
-        skillScreen.skills.Remove(skill);
+        HandleSkillCleanup(skill);
         // Destroy(skillScreen.gameObject);
         playerInput.actions.Enable();
         // playerInput.SwitchCurrentActionMap("Player");
+    }
+
+    public void HandleSkillCleanup(Skill chosenSkill)
+    {
+        if (chosenSkill.isUnique)
+        {
+            for (int i = 0; i < skillScreen.skills.Count; i++)
+            {
+                if (skillScreen.skills[i] == chosenSkill)
+                {
+                    skillScreen.skills.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+        else
+        {
+            skillScreen.skills.Remove(skill);
+        }
+
+        skillScreen.gameObject.SetActive(false);
+
     }
 }

@@ -27,6 +27,8 @@ public class Skill : ScriptableObject
         Shield,
     }
 
+    public bool isUnique = false;
+
     public enum TargetStat
     {
         None,
