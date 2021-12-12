@@ -29,7 +29,7 @@ public class PlayerBaseStatManager : MonoBehaviour, ISavable
 
     void Start()
     {
-        SavingSystem.i.Load("saveSlot3");
+        SavingSystem.i.Load("saveSlot2");
         DontDestroyOnLoad(this);
     }
 

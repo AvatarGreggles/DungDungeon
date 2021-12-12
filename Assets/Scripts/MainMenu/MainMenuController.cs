@@ -11,11 +11,6 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] List<Button> buttons;
     [SerializeField] Color highlightedColor;
 
-    [Header("Sound Effects")]
-    [SerializeField] AudioClip switchItemSound;
-    [SerializeField] AudioClip selectItemSound;
-    AudioSource audioSource;
-
     PlayerInput playerInput;
     private Vector2 navigateMovement;
 
@@ -23,7 +18,7 @@ public class MainMenuController : MonoBehaviour
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+
     }
 
     // Start is called before the first frame update
@@ -90,7 +85,7 @@ public class MainMenuController : MonoBehaviour
         // If no button is selected
         if (currentItemSelected == -1) { return; }
 
-        PlaySelectSound();
+        SoundManager.Instance.PlaySelectSound();
 
         // Call the buttons method
         buttons[currentItemSelected].onClick.Invoke();
@@ -100,24 +95,14 @@ public class MainMenuController : MonoBehaviour
     {
         if (navigateMovement.y > 0f)
         {
-            PlaySwitchSound();
+            SoundManager.Instance.PlaySwitchSound();
             currentItemSelected--;
         }
         else if (navigateMovement.y < 0f)
         {
-            PlaySwitchSound();
+            SoundManager.Instance.PlaySwitchSound();
             currentItemSelected++;
         }
-    }
-
-    void PlaySwitchSound()
-    {
-        audioSource.PlayOneShot(switchItemSound, 1f);
-    }
-
-    void PlaySelectSound()
-    {
-        audioSource.PlayOneShot(selectItemSound, 1f);
     }
 
     void HandleMenuSelectionOutOfBounds()
