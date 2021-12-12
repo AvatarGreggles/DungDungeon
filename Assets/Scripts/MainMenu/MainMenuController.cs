@@ -42,10 +42,15 @@ public class MainMenuController : MonoBehaviour
            HandleQuitClick();
        });
 
+        // buttons[2].onClick.AddListener(() =>
+        // {
+        //     Debug.Log("New button clicked");
+        // });
+
         buttons[2].onClick.AddListener(() =>
-        {
-            HandleNestClick();
-        });
+      {
+          HandleNestClick();
+      });
     }
 
     public void HandleStartClick(Button button = null)
