@@ -8,10 +8,8 @@ public class MainMenuController : MonoBehaviour
 {
 
     [Header("Menu Buttons")]
-    [SerializeField] Button startButton;
-    [SerializeField] Button quitButton;
-    [SerializeField] Button nestButton;
-    List<Button> buttons;
+    [SerializeField] List<Button> buttons;
+    [SerializeField] Color highlightedColor;
 
     [Header("Sound Effects")]
     [SerializeField] AudioClip switchItemSound;
@@ -26,7 +24,6 @@ public class MainMenuController : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        buttons = new List<Button>() { startButton, quitButton, nestButton };
     }
 
     // Start is called before the first frame update
@@ -34,20 +31,21 @@ public class MainMenuController : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
 
-        startButton.onClick.AddListener(() =>
+        // Any buttons add should get an on click listener and any accompanied method to be called
+        buttons[0].onClick.AddListener(() =>
         {
             HandleStartClick();
         });
 
-        quitButton.onClick.AddListener(() =>
+        buttons[1].onClick.AddListener(() =>
        {
            HandleQuitClick();
        });
 
-        nestButton.onClick.AddListener(() =>
-       {
-           HandleNestClick();
-       });
+        buttons[2].onClick.AddListener(() =>
+        {
+            HandleNestClick();
+        });
     }
 
     public void HandleStartClick(Button button = null)
@@ -70,36 +68,16 @@ public class MainMenuController : MonoBehaviour
         navigateMovement = value.Get<Vector2>();
 
         // Reset each buttons color to the default
-        foreach (Button button in buttons)
-        {
-            button.GetComponent<Image>().color = new Color(1f, 1f, 1f);
-        }
+        SetAsUnselected();
 
         // Handle navigating buttons
-        if (navigateMovement.y > 0f)
-        {
-            PlaySwitchSound();
-            currentItemSelected--;
-        }
-        else if (navigateMovement.y < 0f)
-        {
-            PlaySwitchSound();
-            currentItemSelected++;
-        }
+        HandleNavigation();
 
         // Handles if the selection goes out of bounds and places it at start or end of the list
-        if (currentItemSelected < 0)
-        {
-            currentItemSelected = buttons.Count - 1;
-        }
-
-        if (currentItemSelected > buttons.Count - 1)
-        {
-            currentItemSelected = 0;
-        }
+        HandleMenuSelectionOutOfBounds();
 
         // Set the buttons color as the selected color
-        buttons[currentItemSelected].GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.2f);
+        SetAsSelected();
     }
 
     public void OnInteract()
@@ -113,6 +91,20 @@ public class MainMenuController : MonoBehaviour
         buttons[currentItemSelected].onClick.Invoke();
     }
 
+    void HandleNavigation()
+    {
+        if (navigateMovement.y > 0f)
+        {
+            PlaySwitchSound();
+            currentItemSelected--;
+        }
+        else if (navigateMovement.y < 0f)
+        {
+            PlaySwitchSound();
+            currentItemSelected++;
+        }
+    }
+
     void PlaySwitchSound()
     {
         audioSource.PlayOneShot(switchItemSound, 1f);
@@ -120,6 +112,32 @@ public class MainMenuController : MonoBehaviour
 
     void PlaySelectSound()
     {
-        audioSource.PlayOneShot(switchItemSound, 1f);
+        audioSource.PlayOneShot(selectItemSound, 1f);
+    }
+
+    void HandleMenuSelectionOutOfBounds()
+    {
+        if (currentItemSelected < 0)
+        {
+            currentItemSelected = buttons.Count - 1;
+        }
+
+        if (currentItemSelected > buttons.Count - 1)
+        {
+            currentItemSelected = 0;
+        }
+    }
+
+    void SetAsSelected()
+    {
+        buttons[currentItemSelected].GetComponent<Image>().color = highlightedColor;
+    }
+
+    void SetAsUnselected()
+    {
+        foreach (Button button in buttons)
+        {
+            button.GetComponent<Image>().color = new Color(1f, 1f, 1f);
+        }
     }
 }
