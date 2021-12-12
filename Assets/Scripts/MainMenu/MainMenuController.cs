@@ -1,34 +1,32 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-using DG.Tweening;
 
 public class MainMenuController : MonoBehaviour
 {
 
+    [Header("Menu Buttons")]
     [SerializeField] Button startButton;
     [SerializeField] Button quitButton;
-
     [SerializeField] Button nestButton;
+    List<Button> buttons;
 
-    [SerializeField] List<Button> buttons;
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip switchItemSound;
+    [SerializeField] AudioClip selectItemSound;
+    AudioSource audioSource;
 
     PlayerInput playerInput;
-
     private Vector2 navigateMovement;
 
-    int currentSkillSelected = -1;
-
-    public AudioClip switchItemSound;
-    public AudioClip selectItemSound;
-    AudioSource audioSource;
+    int currentItemSelected = -1;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        buttons = new List<Button>() { startButton, quitButton, nestButton };
     }
 
     // Start is called before the first frame update
@@ -52,17 +50,9 @@ public class MainMenuController : MonoBehaviour
        });
     }
 
-    // IEnumerator EnterGame()
-    // {
-    //     var sequence = DOTween.Sequence();
-    //     sequence.Append(Camera.main.transform.DOScaleZ(1f, 2.4f));
-    //     yield return sequence.WaitForCompletion();
-    // }
-
     public void HandleStartClick(Button button = null)
     {
         SceneManager.LoadScene(1);
-        // StartCoroutine(EnterGame());
     }
 
     public void HandleQuitClick(Button button = null)
@@ -79,41 +69,57 @@ public class MainMenuController : MonoBehaviour
     {
         navigateMovement = value.Get<Vector2>();
 
-
+        // Reset each buttons color to the default
         foreach (Button button in buttons)
         {
             button.GetComponent<Image>().color = new Color(1f, 1f, 1f);
         }
 
+        // Handle navigating buttons
         if (navigateMovement.y > 0f)
         {
-            audioSource.PlayOneShot(switchItemSound, 1f);
-            currentSkillSelected--;
+            PlaySwitchSound();
+            currentItemSelected--;
         }
         else if (navigateMovement.y < 0f)
         {
-            audioSource.PlayOneShot(switchItemSound, 1f);
-            currentSkillSelected++;
+            PlaySwitchSound();
+            currentItemSelected++;
         }
 
-        if (currentSkillSelected < 0)
+        // Handles if the selection goes out of bounds and places it at start or end of the list
+        if (currentItemSelected < 0)
         {
-            currentSkillSelected = buttons.Count - 1;
+            currentItemSelected = buttons.Count - 1;
         }
 
-        if (currentSkillSelected > buttons.Count - 1)
+        if (currentItemSelected > buttons.Count - 1)
         {
-            currentSkillSelected = 0;
+            currentItemSelected = 0;
         }
 
-
-        buttons[currentSkillSelected].GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.2f);
+        // Set the buttons color as the selected color
+        buttons[currentItemSelected].GetComponent<Image>().color = new Color(0.5f, 0.4f, 0.2f);
     }
 
     public void OnInteract()
     {
-        if (currentSkillSelected == -1) { return; }
-        audioSource.PlayOneShot(selectItemSound, 1f);
-        buttons[currentSkillSelected].onClick.Invoke();
+        // If no button is selected
+        if (currentItemSelected == -1) { return; }
+
+        PlaySelectSound();
+
+        // Call the buttons method
+        buttons[currentItemSelected].onClick.Invoke();
+    }
+
+    void PlaySwitchSound()
+    {
+        audioSource.PlayOneShot(switchItemSound, 1f);
+    }
+
+    void PlaySelectSound()
+    {
+        audioSource.PlayOneShot(switchItemSound, 1f);
     }
 }
