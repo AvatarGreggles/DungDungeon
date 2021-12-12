@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listToSpawnFrom: {fileID: 8765113662994128772, guid: 68c3803ce79cd4ee19f4140b77c7dc95, type: 3}
   levelListItems:
-  - {fileID: 1421461121628075628, guid: cd058faf3f9744af1993d956a94601c8, type: 3}
+  - {fileID: 7994435189591651914, guid: 68c3803ce79cd4ee19f4140b77c7dc95, type: 3}
+  - {fileID: 4768627449868515180, guid: 68c3803ce79cd4ee19f4140b77c7dc95, type: 3}
+  - {fileID: 8765113662800668924, guid: 68c3803ce79cd4ee19f4140b77c7dc95, type: 3}
+  - {fileID: 5410653915693006063, guid: 68c3803ce79cd4ee19f4140b77c7dc95, type: 3}
+  - {fileID: 4961253278229324887, guid: 68c3803ce79cd4ee19f4140b77c7dc95, type: 3}
   spawnedObject: {fileID: 0}
   prefabSpawnPoint: {x: 0, y: 0, z: 0}
   levelType: 0

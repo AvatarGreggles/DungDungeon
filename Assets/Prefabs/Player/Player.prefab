@@ -1204,6 +1204,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8126896792300287099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7339513832432597129}
+  - component: {fileID: 3577280878023612991}
+  m_Layer: 7
+  m_Name: AtttackRange
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7339513832432597129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126896792300287099}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8568219434171882056}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &3577280878023612991
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126896792300287099}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 10
 --- !u!1 &8470538500647744137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,6 +1335,7 @@ Transform:
   - {fileID: 5964126066873873064}
   - {fileID: 3151957356505702708}
   - {fileID: 7164690897836500169}
+  - {fileID: 7339513832432597129}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1415,6 +1463,7 @@ MonoBehaviour:
   dustSpawnPointRight: {fileID: 3151957356505702708}
   dustTrailObject: {fileID: 8655670639085478576, guid: e28330e9e722f4ae9964bf175a970a29, type: 3}
   dungCollectSound: {fileID: 8300000, guid: 5435cb232842043c6906185526a7e02a, type: 3}
+  isCollidingWithWall: 0
 --- !u!114 &-3320277435940982530
 MonoBehaviour:
   m_ObjectHideFlags: 0

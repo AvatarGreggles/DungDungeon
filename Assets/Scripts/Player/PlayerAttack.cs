@@ -12,6 +12,8 @@ public class PlayerAttack : MonoBehaviour
 
     public bool isShooting = false;
 
+    public bool isEnemyInRange = false;
+
     [SerializeField] float attackDelay = 1f;
 
     [SerializeField] float attackCost = 5f;
@@ -29,6 +31,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] PlayerInput playerInput;
 
     PlayerBaseStatManager playerBaseStatManager;
+
+    List<GameObject> targetableEnmies = new List<GameObject>();
 
 
     private void Awake()
@@ -50,7 +54,8 @@ public class PlayerAttack : MonoBehaviour
 
     void OnShoot(InputValue value)
     {
-        if (!player.isShooting && player.dungAccumulated >= attackCost)
+        Debug.Log(targetableEnmies);
+        if (!player.isShooting && player.dungAccumulated >= attackCost && isEnemyInRange)
         {
             StartCoroutine(Shooting());
         }
@@ -137,5 +142,25 @@ public class PlayerAttack : MonoBehaviour
             }
 
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("In range");
+            targetableEnmies.Add(other.gameObject);
+            isEnemyInRange = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            targetableEnmies.Remove(other.gameObject);
+            isEnemyInRange = false;
+        }
+
     }
 }
