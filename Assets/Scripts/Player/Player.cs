@@ -393,7 +393,27 @@ public class Player : MonoBehaviour
     public void OnInteract()
     {
 
+        if (GameController.Instance.currentState == State.Cleared)
+        {
+            Debug.Log("Interacting");
+            var facingDir = new Vector3(0f, 1f);
+            var interactPos = transform.position + facingDir;
 
+            Debug.DrawLine(transform.position, interactPos, Color.green, 0.5f);
+
+            var collider = Physics2D.OverlapCircle(interactPos, 3f, GameLayers.Instance.InteractableLayer);
+            if (collider != null)
+            {
+                Debug.Log("something there");
+                collider.GetComponent<Interactable>()?.Interact(transform);
+            }
+        }
+
+        if (GameController.Instance.currentState == State.Dialog)
+        {
+            Debug.Log("next line");
+            DialogManager.Instance.HandleNextLine();
+        }
     }
 
     public void OnCancel()
@@ -469,7 +489,7 @@ public class Player : MonoBehaviour
         }
         if (gameObject != null)
         {
-            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation(gameObject));
+            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation());
         }
 
         audioSource.PlayOneShot(hurtSound, 1f);

@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour
         if (gameObject.activeSelf)
         {
             bool isPlayer = gameObject.CompareTag("Player");
-            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation(gameObject));
+            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation());
             healthBar.transform.localScale = new Vector3(initialHealthBarSize.x * (health / enemyStats.maxHP), initialHealthBarSize.y, initialHealthBarSize.z);
         }
 
@@ -94,7 +94,8 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0)
         {
-            LevelManager.Instance.enemies.Remove(gameObject);
+
+            LevelManager.Instance.RemoveEnemy(gameObject);
             // GameController.Instance.AddCurrency(enemyStats.currencyDrop);
             DropLoot();
             GivePlayersExperience();
