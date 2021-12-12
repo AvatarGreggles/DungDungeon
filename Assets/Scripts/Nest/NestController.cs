@@ -8,37 +8,28 @@ using System.Linq;
 
 public class NestController : MonoBehaviour
 {
-    [Header("Stat Block Manager")]
+    [Header("Stat Panel Manager")]
     [SerializeField] GameObject statPanelObj;
     [SerializeField] Transform statGrid;
-
-    [Header("Stat Point")]
     [SerializeField] Sprite statBlockSprite;
-
-    [Header("Stat Blocks")]
     [SerializeField] List<StatBlock> statBlocks;
-    Transform healthStats;
-    Transform shieldStats;
-    Transform attackStats;
-    Transform defenseStats;
-    Transform speedStats;
-    Transform dungStats;
 
-    [Header("Passive Manager")]
+    [Header("Passive Panel Manager")]
     [SerializeField] GameObject passiveObj;
     [SerializeField] Transform passiveHolder;
     [SerializeField] List<Passive> passives;
 
     [Header("Menu Buttons")]
-    private Vector2 navigateMovement;
+
+    [SerializeField] Color highlightedColor;
     [SerializeField] Button startButton;
     [SerializeField] Button backButton;
 
+    [SerializeField] Button resetButton;
     [SerializeField] List<Button> passiveButtons;
     [SerializeField] List<Button> statUpgradeButtons;
-
+    private Vector2 navigateMovement;
     List<Button> buttons;
-    [SerializeField] Color highlightedColor;
     int currentItemSelected = -1;
 
 
@@ -50,6 +41,12 @@ public class NestController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InitializeUI();
+        SetupButtonList();
+    }
+
+    void InitializeUI()
+    {
         foreach (var statBlock in statBlocks)
         {
             SetUpStatPanel(statBlock.statType, statBlock);
@@ -60,7 +57,6 @@ public class NestController : MonoBehaviour
             SetUpPassivePanel();
         }
 
-        SetupButtonList();
         UpdateGemText();
     }
 
@@ -74,6 +70,7 @@ public class NestController : MonoBehaviour
         buttons = passiveButtons.Concat(statUpgradeButtons).ToList();
         buttons.Add(startButton);
         buttons.Add(backButton);
+        buttons.Add(resetButton);
 
         startButton.onClick.AddListener(() =>
         {
@@ -83,6 +80,11 @@ public class NestController : MonoBehaviour
         backButton.onClick.AddListener(() =>
         {
             HandleBackClick(backButton);
+        });
+
+        resetButton.onClick.AddListener(() =>
+        {
+            ResetStatsAndGems();
         });
 
     }
@@ -123,7 +125,6 @@ public class NestController : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-
 
     public void HandleBackClick(Button button = null)
     {
@@ -200,8 +201,6 @@ public class NestController : MonoBehaviour
 
     public void IncreaseStat(StatType statType, float increaseValue)
     {
-
-
         if (statType == StatType.Health)
         {
 
@@ -237,34 +236,14 @@ public class NestController : MonoBehaviour
 
             PlayerBaseStatManager.instance.bonusMaxDung += (int)increaseValue;
         }
-
     }
 
     public IEnumerator ShowNotEnoughGemError()
     {
-
         SoundManager.Instance.PlayErrorSound();
         gemErrorPanel.SetActive(true);
         yield return new WaitForSeconds(2f);
         gemErrorPanel.SetActive(false);
-
-    }
-
-    public void HandleUnlockPassive(Button button = null)
-    {
-        // subtract cost
-        // Set player passive ability
-        // Set stat passive gameobject to true
-    }
-
-    public void OnCancel(InputValue value)
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    public void OnStart(InputValue value)
-    {
-        SceneManager.LoadScene(1);
     }
 
     public void OnNavigateUI(InputValue value)
@@ -378,6 +357,23 @@ public class NestController : MonoBehaviour
         {
             button.GetComponent<Image>().color = new Color(1f, 1f, 1f);
         }
+    }
+
+    void ResetStatsAndGems()
+    {
+        foreach (var statBlock in statBlocks)
+        {
+            statBlock.Refund();
+        }
+
+        StatPanel[] statPanels = FindObjectsOfType<StatPanel>();
+
+        foreach (StatPanel statPanel in statPanels)
+        {
+            statPanel.ClearStatPoints();
+        }
+
+        UpdateGemText();
     }
 }
 

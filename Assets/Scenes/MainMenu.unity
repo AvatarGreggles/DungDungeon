@@ -1067,7 +1067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6045138326999342126, guid: c3b984084a6284e6d98dff23681a8447, type: 3}
       propertyPath: gems
-      value: 9999
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6045138326999342127, guid: c3b984084a6284e6d98dff23681a8447, type: 3}
       propertyPath: m_Name

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,25 +20,22 @@ public class StatPanel : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void AddStatPoint()
     {
-        // for (var i = 0; i < statLimit; i += (int)incrementValue)
-        // {
-        //     GameObject NewObj = new GameObject();
-        //     Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
-        //     NewImage.sprite = statBlockSprite;
-        //     NewObj.transform.SetParent(statHolder, false);
-        // }
         GameObject NewObj = new GameObject();
         Image NewImage = NewObj.AddComponent<Image>(); //Add the Image Component script
         NewImage.sprite = statBlockSprite;
         NewObj.transform.SetParent(statHolder, false);
+    }
+
+    public void ClearStatPoints()
+    {
+        Image[] statPoints = statHolder.GetComponentsInChildren<Image>();
+        foreach (Image child in statPoints)
+        {
+            GameObject.Destroy(child.gameObject);
+
+        }
     }
 
 
