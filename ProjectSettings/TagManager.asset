@@ -33,7 +33,7 @@ TagManager:
   - Hazard
   - PlayerProjectile
   - Pit
-  - 
+  - Interactable
   - 
   - 
   - 
@@ -61,14 +61,14 @@ TagManager:
   - name: Ground
     uniqueID: 1954032405
     locked: 0
-  - name: Pit
-    uniqueID: 1684478017
-    locked: 0
   - name: Walls
     uniqueID: 4290856473
     locked: 0
   - name: Wall_Above_Player
     uniqueID: 181733749
+    locked: 0
+  - name: Pit
+    uniqueID: 1684478017
     locked: 0
   - name: Doors
     uniqueID: 2696603919

@@ -135,25 +135,27 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMove(InputValue value)
     {
-        movement = value.Get<Vector2>();
-
-        StartCoroutine(CheckIfReleased(movement));
-
-        if (movement.x < 0f)
+        if (GameController.Instance.currentState != State.Dialog)
         {
-            // playerAnimator.SetBool("IsFacingRight", false);
-            dustTrail.transform.eulerAngles = new Vector3(newTrailRotation.x, 90, newTrailRotation.z);
-            isFacingRight = false;
-        }
-        else if (movement.x > 0f)
-        {
-            // playerAnimator.SetBool("IsFacingRight", true);
-            dustTrail.transform.eulerAngles = new Vector3(newTrailRotation.x, -90, newTrailRotation.z);
-            isFacingRight = true;
-        }
+            movement = value.Get<Vector2>();
 
-        dustTrail.GetComponent<ParticleSystem>().Play();
+            StartCoroutine(CheckIfReleased(movement));
 
+            if (movement.x < 0f)
+            {
+                // playerAnimator.SetBool("IsFacingRight", false);
+                dustTrail.transform.eulerAngles = new Vector3(newTrailRotation.x, 90, newTrailRotation.z);
+                isFacingRight = false;
+            }
+            else if (movement.x > 0f)
+            {
+                // playerAnimator.SetBool("IsFacingRight", true);
+                dustTrail.transform.eulerAngles = new Vector3(newTrailRotation.x, -90, newTrailRotation.z);
+                isFacingRight = true;
+            }
+
+            dustTrail.GetComponent<ParticleSystem>().Play();
+        }
     }
 
 

@@ -1,14 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DamageAnimation : MonoBehaviour
 {
     float damageAnimationFramleDelay = 0.05f;
-
     SpriteRenderer sprite;
-
     public float invincibilityTime = 1f;
+    public float numberOfDamageFrames = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -16,36 +14,14 @@ public class DamageAnimation : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
     }
 
-    public IEnumerator PlayDamageAnimation(GameObject damagedTarget)
+    public IEnumerator PlayDamageAnimation()
     {
-        bool isPlayer = damagedTarget.CompareTag("Player");
-        Player player = damagedTarget.GetComponent<Player>();
-
-        if (isPlayer)
+        for (var i = 0; i < numberOfDamageFrames; i++)
         {
             sprite.color = new Color(1, 0, 0, 1);
             yield return new WaitForSeconds(damageAnimationFramleDelay);
             sprite.color = new Color(1, 1, 1, 1);
             yield return new WaitForSeconds(damageAnimationFramleDelay);
-        }
-        sprite.color = new Color(1, 0, 0, 1);
-        yield return new WaitForSeconds(damageAnimationFramleDelay);
-        sprite.color = new Color(1, 1, 1, 1);
-        yield return new WaitForSeconds(damageAnimationFramleDelay);
-        sprite.color = new Color(1, 0, 0, 1);
-        yield return new WaitForSeconds(damageAnimationFramleDelay);
-        sprite.color = new Color(1, 1, 1, 1);
-
-        if (isPlayer)
-        {
-            sprite.color = new Color(1, 0, 0, 1);
-            yield return new WaitForSeconds(damageAnimationFramleDelay);
-            sprite.color = new Color(1, 1, 1, 1);
-            // if (player != null)
-            // {
-            //     yield return new WaitForSeconds(player.invincibilityFrameTime);
-            //     player.isInvincible = false;
-            // }
         }
     }
 }

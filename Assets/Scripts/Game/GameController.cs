@@ -14,6 +14,7 @@ public enum State
     Cleared,
     Shop,
     LevelUp,
+    Dialog,
     GameWin,
 }
 
@@ -75,6 +76,17 @@ public class GameController : MonoBehaviour, ISavable
     private void Start()
     {
         StartCoroutine(LevelManager.Instance.HandleLevelLoad(true));
+
+        DialogManager.Instance.OnShowDialog += () =>
+        {
+            currentState = State.Dialog;
+        };
+
+        DialogManager.Instance.OnCloseDialog += () =>
+        {
+            if (currentState == State.Dialog)
+                currentState = State.Cleared;
+        };
     }
 
     public void LoadData()
@@ -142,7 +154,6 @@ public class GameController : MonoBehaviour, ISavable
             }
 
 
-
             if (currentState == State.Active)
             {
                 // PlayerInput playerInput = players[0].GetComponent<PlayerInput>();
@@ -187,6 +198,11 @@ public class GameController : MonoBehaviour, ISavable
 
                 gameRuntimeText.text = minutes.ToString() + "m " + seconds.ToString() + "s";
             }
+        }
+
+        if (currentState == State.Dialog)
+        {
+            DialogManager.Instance.HandleUpdate();
         }
     }
     public void AddCurrency(int value)

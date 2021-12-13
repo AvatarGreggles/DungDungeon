@@ -38,7 +38,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        if (GameController.Instance.currentState != State.Paused && !enemy.isDead)
+        if (GameController.Instance.currentState != State.Paused && !enemy.isDead && GameController.Instance.currentState != State.Dialog)
         {
             //if the changeTime was reached, calculate a new movement vector
             if (Time.time - latestDirectionChangeTime > directionChangeTime)
