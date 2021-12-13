@@ -97,8 +97,12 @@ public class LevelManager : MonoBehaviour
 
     private void OnFloorCleared()
     {
-        door.gameObject.SetActive(true);
         isFloorCleared = true;
+        if (door != null)
+        {
+            door.ShowDoor();
+        }
+
         GameController.Instance.currentState = State.Cleared;
 
         foreach (Player player in GameController.Instance.players)

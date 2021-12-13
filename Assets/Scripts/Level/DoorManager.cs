@@ -19,16 +19,16 @@ public class DoorManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ShowDoor();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.activeSelf == true)
-        {
-            ShowDoor();
-        }
+        // if (gameObject.activeSelf == true)
+        // {
+        //     ShowDoor();
+        // }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -76,13 +76,13 @@ public class DoorManager : MonoBehaviour
         }
     }
 
-    void HideDoor()
+    public void HideDoor()
     {
         tilemap.enabled = true;
         collider.enabled = true;
     }
 
-    void ShowDoor()
+    public void ShowDoor()
     {
         tilemap.enabled = false;
         collider.enabled = false;
