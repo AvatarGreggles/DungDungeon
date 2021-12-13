@@ -1224,6 +1224,7 @@ GameObject:
   - component: {fileID: 4792874046299293430}
   - component: {fileID: 5705499219796297356}
   - component: {fileID: 256465949867495522}
+  - component: {fileID: 7920250712718120848}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1416,48 +1417,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1198b1b06b1143d78fb3cd3a8aafa18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  playerInput: {fileID: 8568219434171882053}
+  playerAbilities: {fileID: 0}
+  minimumDamageDeal: 50
+  itemInventory: []
+  skillInventory: []
+  level: 1
   experience: 0
+  previousLevel: 0
   baseXP: 100
   temporaryExperienceHolder: 0
   experienceToNextLevel: 0
-  level: 1
-  previousLevel: 0
-  criticalHitRatio: 6.25
-  maxHealth: 500
-  attackSpeedBonus: 1
-  shield: 0
-  maxShield: 300
+  toLevelUp: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  willLevelUp: 0
+  playerLevelTextP1: {fileID: 6526278113208250979}
   healthBar: {fileID: 2078988125718980244}
   shieldBar: {fileID: 6829623281336045877}
   expBar: {fileID: 70515633247146582}
-  attack: 100
-  defense: 0
+  criticalDamageSprite: {fileID: 1905902881067641905, guid: cc282c30cc80f42c4b4399f5d779cec6, type: 3}
+  damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
+  healthDisplay: {fileID: 1905902881067641905, guid: 41fb12c42bd23444d90893b0031e7533, type: 3}
   damageDisplayPivot: {fileID: 6328877851658528041}
   p1Tag: {fileID: 2597456256049176975}
   p2Tag: {fileID: 2519305091937041666}
-  playerInput: {fileID: 8568219434171882053}
   hurtSound: {fileID: 8300000, guid: e842f9e99074a423889a584a3ed61d33, type: 3}
   dungSprite: {fileID: 4680403796343406537}
-  dungAccumulated: 0
-  prevDungAccumulated: 0
-  maxDungSize: 5
   isShooting: 0
-  toLevelUp: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  levelReached: 0
-  enemiesKilled: 0
-  moneyEarned: 0
   invincibilityFrameTime: 2
   isInvincible: 0
-  willLevelUp: 0
-  playerLevelTextP1: {fileID: 6526278113208250979}
-  playerAbilities: {fileID: 0}
-  delayAmount: 10
-  criticalDamageSprite: {fileID: 1905902881067641905, guid: cc282c30cc80f42c4b4399f5d779cec6, type: 3}
-  damageSprite: {fileID: 1905902881067641905, guid: 31e29e15ea1e143329d19c0432f99ae6, type: 3}
-  itemInventory: []
-  skillInventory: []
-  healthDisplay: {fileID: 1905902881067641905, guid: 41fb12c42bd23444d90893b0031e7533, type: 3}
 --- !u!114 &3620035378186348920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1479,9 +1466,12 @@ MonoBehaviour:
   shootThroughEnemiesEnabled: 0
   hpRegeneration: 0
   isConfidenceEnabled: 0
+  confidenceStack: 0
   isMegaArmorEnabled: 0
   isGoldRushEnabled: 0
+  goldRushStack: 0
   isBloodsuckerEnabled: 0
+  bloodSuckerStack: 0
 --- !u!95 &7285743007244160389
 Animator:
   serializedVersion: 3
@@ -1529,7 +1519,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00717d90db8054e058b3b5f7ba57502d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invincibilityTime: 1
+  numberOfDamageFrames: 5
+  applyColor: {r: 1, g: 0, b: 0, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!82 &256465949867495522
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1626,3 +1618,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7920250712718120848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8568219434171882062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e941b831dec0c40deb401b8deeef44f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 500
+  maxHealth: 500
+  attack: 100
+  defense: 0
+  shield: 300
+  maxShield: 300
+  criticalHitRatio: 6.25
+  attackSpeedBonus: 0
+  dungAccumulated: 0
+  prevDungAccumulated: 0
+  maxDungSize: 5
+  levelReached: 0
+  enemiesKilled: 0
+  moneyEarned: 0
+  hpRegenDelay: 10

@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     Player player;
 
+    PlayerStatManager playerStatManager;
+
     SpriteRenderer playerSprite;
 
     [SerializeField] PlayerInput playerInput;
@@ -51,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         rbody = GetComponent<Rigidbody2D>();
         player = GetComponent<Player>();
         playerSprite = GetComponent<SpriteRenderer>();
+        playerStatManager = GetComponent<PlayerStatManager>();
         originalDungScale = transform.localScale;
         playerInput = GetComponent<PlayerInput>();
         audioSource = GetComponent<AudioSource>();
@@ -167,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 newPos = currentPos + adjustedMovement * Time.fixedDeltaTime;
 
 
-        if (newPos != new Vector2(transform.position.x, transform.position.y) && GameController.Instance.currentState != State.Cleared && player.dungAccumulated < player.maxDungSize)
+        if (newPos != new Vector2(transform.position.x, transform.position.y) && GameController.Instance.currentState != State.Cleared && playerStatManager.dungAccumulated < playerStatManager.maxDungSize)
         {
             if (!audioSource.isPlaying)
             {

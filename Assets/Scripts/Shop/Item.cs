@@ -59,7 +59,7 @@ public class Item : ScriptableObject
         return true;
     }
 
-    public void IncreaseStat(Player player, Shop shop)
+    public void IncreaseStat(PlayerStatManager player, Shop shop)
     {
 
         if (targetStat == TargetStat.Attack)

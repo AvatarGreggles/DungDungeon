@@ -24,6 +24,7 @@ public class LevelSkill : MonoBehaviour
     NewSkillScreen skillScreen;
 
     PlayerInput playerInput;
+    PlayerStatManager playerStatManager;
 
     public bool isSelected = false;
 
@@ -33,6 +34,7 @@ public class LevelSkill : MonoBehaviour
         skillScreen = FindObjectOfType<NewSkillScreen>();
         player = FindObjectOfType<Player>();
         playerInput = player.GetComponent<PlayerInput>();
+        playerStatManager = player.GetComponent<PlayerStatManager>();
 
         skillCardSpriteRenderer.sprite = defaultSkillCard;
     }
@@ -76,7 +78,7 @@ public class LevelSkill : MonoBehaviour
     {
         if (skill.skillType == Skill.SkillType.Boost)
         {
-            skill.IncreaseStat(player, skillScreen);
+            skill.IncreaseStat(playerStatManager, skillScreen);
         }
 
         if (skill.skillType == Skill.SkillType.Equip)

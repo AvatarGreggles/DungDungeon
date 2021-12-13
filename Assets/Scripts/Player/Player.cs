@@ -10,185 +10,147 @@ using System;
 public class Player : MonoBehaviour
 {
 
-    public float health;
+    [SerializeField] PlayerInput playerInput;
+    public PlayerAbilities playerAbilities;
 
+    PlayerStatManager playerStatManager;
+    Collider2D collider;
+
+    [SerializeField] int minimumDamageDeal = 50;
+
+    [Header("Player Inventory")]
+    [SerializeField] public List<Item> itemInventory;
+    [SerializeField] public List<Skill> skillInventory;
+
+    [Header("Player Level & Experience")]
+
+    public int level;
     public float experience;
-
+    public int previousLevel;
     public float baseXP;
     public float temporaryExperienceHolder;
     public float experienceToNextLevel;
-    public int level;
-    public int previousLevel;
+    public int[] toLevelUp = new int[1];
 
-    public float criticalHitRatio = 6.25f;
+    public bool willLevelUp = false;
 
-    [SerializeField] public float maxHealth = 3;
-
-    public float attackSpeedBonus;
-
-    public float shield;
-    [SerializeField] public float maxShield = 3;
+    [Header("Player UI Manager")]
+    [SerializeField] TMPro.TMP_Text playerLevelTextP1;
     [SerializeField] public GameObject healthBar;
     [SerializeField] public GameObject shieldBar;
     [SerializeField] public GameObject expBar;
 
-    public float attack = 1;
-    public float defense = 1;
-    public GameObject damageDisplayPivot;
-
-    [SerializeField] GameObject p1Tag;
-    [SerializeField] GameObject p2Tag;
-
-    [SerializeField] PlayerInput playerInput;
-
-    public AudioClip hurtSound;
-    AudioSource audioSource;
-
     Vector3 initialHealthBarSize;
     Vector3 initialShieldBarSize;
     Vector3 initialEXPBarSize;
+
     float initialDungBarSize;
 
-    public SpriteRenderer dungSprite;
-
-    public float dungAccumulated = 0f;
-    public float prevDungAccumulated = 0f;
-
-    public float maxDungSize = 4f;
-
-    public bool isShooting = false;
-
-    public int[] toLevelUp = new int[1];
-
-    public int levelReached = 0;
-    public int enemiesKilled = 0;
-    public int moneyEarned = 0;
-
-    Collider2D collider;
-
-    public float invincibilityFrameTime = 4f;
-    public bool isInvincible = false;
-
-    public bool willLevelUp = false;
-
-
-    [SerializeField] TMPro.TMP_Text playerLevelTextP1;
-    // [SerializeField] Text playerLevelTextP2;
-
-    public PlayerAbilities playerAbilities;
-
-    public int delayAmount = 10; // Second count
-    protected float Timer;
-
-    PlayerBaseStatManager playerBaseStats;
-
+    [Header("Player Display Pivots")]
     [SerializeField] GameObject criticalDamageSprite;
     [SerializeField] GameObject damageSprite;
-
-    [SerializeField] public List<Item> itemInventory;
-    [SerializeField] public List<Skill> skillInventory;
-
-    float stopwatch = 0;
-
-
     [SerializeField] GameObject healthDisplay;
+    [SerializeField] GameObject damageDisplayPivot;
+    [SerializeField] GameObject p1Tag;
+    [SerializeField] GameObject p2Tag;
+
+    [Header("Player Sound Effects")]
+    [SerializeField] AudioClip hurtSound;
+    AudioSource audioSource;
+
+
+    [Header("Player Attack Details")]
+    public SpriteRenderer dungSprite;
+    public bool isShooting = false;
+
+    [Header("Player Invincibility Framerate")]
+    public float invincibilityFrameTime = 4f;
+    float invincibilityTimer = 0;
+    public bool isInvincible = false;
 
 
     private void Awake()
     {
-
         audioSource = GetComponent<AudioSource>();
         playerInput = GetComponent<PlayerInput>();
         collider = GetComponent<Collider2D>();
         playerAbilities = GetComponent<PlayerAbilities>();
-
-        GameController.Instance.LoadData();
-
-    }
-
-
-    void Start()
-    {
-        playerBaseStats = FindObjectOfType<PlayerBaseStatManager>();
-        maxHealth = maxHealth + playerBaseStats.bonusMaxHP;
-        health = maxHealth;
-        maxShield = maxShield + playerBaseStats.bonusMaxShield;
-        shield = maxShield;
-        attack = attack + playerBaseStats.bonusAttackPower;
-        defense = defense + playerBaseStats.bonusDefense;
-        maxDungSize = maxDungSize + playerBaseStats.bonusMaxDung;
-
-        previousLevel = level;
-        SetPlayerTag();
-        initialHealthBarSize = healthBar.transform.localScale;
-        initialShieldBarSize = shieldBar.transform.localScale;
-        initialEXPBarSize = expBar.transform.localScale;
-
-
-        SetLevelText();
-        LevelXPSetUp();
-        expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
-        GameController.Instance.dungBarP1.fillAmount = 0;
-        dungSprite.enabled = false;
-
-        // if (health > maxHealth / 4)
-        // {
-        //     healthBar.GetComponent<SpriteRenderer>().color = Color.green;
-        // }
-        // else
-        // {
-        //     healthBar.GetComponent<SpriteRenderer>().color = Color.red;
-        // }
+        playerStatManager = GetComponent<PlayerStatManager>();
 
         // GameController.Instance.LoadData();
 
     }
 
-    private void Update()
+    void Start()
     {
+        SetUpPlayer();
+        SetLevelText();
+    }
 
+    void HandleInvincibilityReset()
+    {
         if (isInvincible == true)
         {
-            stopwatch += Time.deltaTime;
-            if (stopwatch >= invincibilityFrameTime)
+            invincibilityTimer += Time.deltaTime;
+            if (invincibilityTimer >= invincibilityFrameTime)
             {
                 isInvincible = false;
             }
         }
         else
         {
-            stopwatch = 0;
-        }
-
-        if (dungAccumulated != prevDungAccumulated && dungAccumulated > 0 && dungAccumulated < maxDungSize && !isShooting)
-        {
-            SetSpriteSize();
-            prevDungAccumulated = dungAccumulated;
-        }
-
-        if (playerAbilities.hpRegeneration)
-        {
-            Timer += Time.deltaTime;
-
-            if (Timer >= delayAmount)
-            {
-                Timer = 0f;
-                if (health < maxHealth)
-                {
-
-                    float amountToHeal = (maxHealth / 100) * 10;
-                    RestoreHealth(amountToHeal);
-                    UpdateHealthBar();
-                }
-
-                if (health == maxHealth)
-                {
-                    UpdateHealthBar();
-                }
-
-            }
+            invincibilityTimer = 0;
         }
     }
+
+    void UpdateDungSize()
+    {
+        if (playerStatManager.dungAccumulated != playerStatManager.prevDungAccumulated && playerStatManager.dungAccumulated > 0 && playerStatManager.dungAccumulated < playerStatManager.maxDungSize && !isShooting)
+        {
+            SetSpriteSize();
+            playerStatManager.prevDungAccumulated = playerStatManager.dungAccumulated;
+        }
+    }
+
+    private void Update()
+    {
+        HandleInvincibilityReset();
+
+        UpdateDungSize();
+    }
+
+    void SetUpPlayer()
+    {
+        previousLevel = level;
+
+        LevelXPSetUp();
+        SetInitialPlayerUI();
+        SetPlayerTag();
+
+        GameController.Instance.dungBarP1.fillAmount = 0;
+        dungSprite.enabled = false;
+    }
+
+    void SetInitialPlayerUI()
+    {
+        initialHealthBarSize = healthBar.transform.localScale;
+        initialShieldBarSize = shieldBar.transform.localScale;
+        initialEXPBarSize = expBar.transform.localScale;
+
+        expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
+    }
+
+    // void UpdateHPBarColor()
+    // {
+    //     if (health > maxHealth / 4)
+    //     {
+    //         healthBar.GetComponent<SpriteRenderer>().color = Color.green;
+    //     }
+    //     else
+    //     {
+    //         healthBar.GetComponent<SpriteRenderer>().color = Color.red;
+    //     }
+    // }
 
     public void ShowHealthGain(float gainedHealth)
     {
@@ -206,15 +168,15 @@ public class Player : MonoBehaviour
 
     public void AccumulateDung(float dungAccumulationRate)
     {
-        dungAccumulated += dungAccumulationRate;
-        GameController.Instance.dungBarP1.fillAmount = dungAccumulated / maxDungSize;
-        GameController.Instance.SetDungText(dungAccumulated, playerInput);
+        playerStatManager.dungAccumulated += dungAccumulationRate;
+        GameController.Instance.dungBarP1.fillAmount = playerStatManager.dungAccumulated / playerStatManager.maxDungSize;
+        GameController.Instance.SetDungText(playerStatManager.dungAccumulated, playerInput);
     }
 
     public void GainLevel()
     {
         level += 1;
-        levelReached = level;
+        playerStatManager.levelReached = level;
         SetLevelText();
         ResetHealth();
     }
@@ -316,8 +278,8 @@ public class Player : MonoBehaviour
 
     public void ResetShield()
     {
-        shield = maxShield;
-        shieldBar.transform.localScale = new Vector3(initialShieldBarSize.x * (shield / maxShield), initialShieldBarSize.y, initialShieldBarSize.z);
+        playerStatManager.shield = playerStatManager.maxShield;
+        shieldBar.transform.localScale = new Vector3(initialShieldBarSize.x * (playerStatManager.shield / playerStatManager.maxShield), initialShieldBarSize.y, initialShieldBarSize.z);
 
     }
 
@@ -335,16 +297,16 @@ public class Player : MonoBehaviour
     //TODO: Reaname this method
     public void HandlePlayerGains(float value, int currency)
     {
-        moneyEarned += currency;
-        enemiesKilled++;
+        playerStatManager.moneyEarned += currency;
+        playerStatManager.enemiesKilled++;
         if (playerAbilities.isConfidenceEnabled)
         {
-            attack += (1 * playerAbilities.confidenceStack);
+            playerStatManager.attack += (1 * playerAbilities.confidenceStack);
         }
 
         if (playerAbilities.isBloodsuckerEnabled)
         {
-            RestoreHealth((maxHealth / 100) * (5 * playerAbilities.bloodSuckerStack));
+            RestoreHealth((playerStatManager.maxHealth / 100) * (5 * playerAbilities.bloodSuckerStack));
         }
         temporaryExperienceHolder += value;
     }
@@ -381,7 +343,7 @@ public class Player : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        healthBar.transform.localScale = new Vector3(initialHealthBarSize.x * (health / maxHealth), initialHealthBarSize.y, initialHealthBarSize.z);
+        healthBar.transform.localScale = new Vector3(initialHealthBarSize.x * (playerStatManager.health / playerStatManager.maxHealth), initialHealthBarSize.y, initialHealthBarSize.z);
     }
 
     public void OnNavigateUI(InputValue value)
@@ -428,65 +390,75 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void DealDamage(int damage, bool isCriticalHit)
+    int RunPlayerAbilities(int damage)
     {
-        if (playerAbilities.isMegaArmorEnabled && health < maxHealth / 4)
+        // Mega Armor: Doubles damage when health is less than 25%
+        if (playerAbilities.isMegaArmorEnabled && playerStatManager.health < playerStatManager.maxHealth / 4)
         {
-            float boostedDefense = defense * 2;
+            float boostedDefense = playerStatManager.defense * 2;
             damage -= (int)boostedDefense;
         }
         else
         {
-            damage -= (int)defense;
+            damage -= (int)playerStatManager.defense;
         }
 
-        if (damage < 0)
-        {
-            //TO DO: BLOCKED BY DEFENSE
-            damage = 0;
-        }
+        return damage;
+    }
 
+    void HandleDamageOutOfBounds(int damage)
+    {
+        damage = minimumDamageDeal;
+        Debug.Log("Damage was below 0, so rounding up to minimum!");
+    }
 
-        if (isInvincible) { return; }
-        isInvincible = true;
-
+    void HandleDamageDisplay(bool isCriticalHit, int damage)
+    {
         GameObject spriteToInstantiate = isCriticalHit ? criticalDamageSprite : damageSprite;
         GameObject damageObject = Instantiate(spriteToInstantiate, damageDisplayPivot.transform.position, damageDisplayPivot.transform.rotation);
         damageObject.transform.SetParent(transform);
         damageObject.GetComponent<DisplayDamage>().showDamage(damage);
         damageObject.transform.SetParent(null);
+    }
 
-        if (shield > 0)
+    void HandleDamageDealing(int damage)
+    {
+
+        if (playerStatManager.shield > 0)
         {
-            shield -= damage;
-
-            if (shield < 0 || shield > maxShield)
-            {
-                shield = 0;
-            }
-
-            shieldBar.transform.localScale = new Vector3(initialShieldBarSize.x * (shield / maxShield), initialShieldBarSize.y, initialShieldBarSize.z);
-
+            playerStatManager.shield = Mathf.Clamp(playerStatManager.shield - damage, 0, playerStatManager.maxShield);
+            shieldBar.transform.localScale = new Vector3(initialShieldBarSize.x * (playerStatManager.shield / playerStatManager.maxShield), initialShieldBarSize.y, initialShieldBarSize.z);
         }
         else
         {
-
             shieldBar.transform.localScale = new Vector3(0f, initialShieldBarSize.y, initialShieldBarSize.z);
-            health -= damage;
+            playerStatManager.health = Mathf.Clamp(playerStatManager.health - damage, 0, playerStatManager.maxHealth);
+            UpdateHealthBar();
 
             // if (health < maxHealth / 4)
             // {
             //     healthBar.GetComponent<SpriteRenderer>().color = Color.red;
             // }
 
-            if (health < 0)
-            {
-                health = 0;
-            }
-
-            UpdateHealthBar();
-
         }
+    }
+
+    public void DealDamage(int initialDamage, bool isCriticalHit)
+    {
+        if (isInvincible) { return; }
+        isInvincible = true;
+
+        int damage = RunPlayerAbilities(initialDamage);
+        if (damage < 0)
+        {
+            HandleDamageOutOfBounds(damage);
+        }
+
+        HandleDamageDisplay(isCriticalHit, damage);
+
+        HandleDamageDealing(damage);
+
+
         if (gameObject != null)
         {
             StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation());
@@ -504,7 +476,7 @@ public class Player : MonoBehaviour
 
     void IsPlayerDead()
     {
-        if (health <= 0)
+        if (playerStatManager.health <= 0)
         {
             Camera.main.transform.SetParent(null);
             gameObject.SetActive(false);
@@ -525,28 +497,28 @@ public class Player : MonoBehaviour
 
     public void ResetHealth()
     {
-        float amountToRestore = maxHealth - health;
+        float amountToRestore = playerStatManager.maxHealth - playerStatManager.health;
 
         RestoreHealth(amountToRestore, true);
     }
 
     public void IncreaseAttack(int multiplier)
     {
-        attack *= multiplier;
+        playerStatManager.attack *= multiplier;
     }
 
     public void RestoreHealth(float statIncrease, bool isReset = false)
     {
-        if (health == maxHealth) { return; }
-        health += statIncrease;
+        if (playerStatManager.health == playerStatManager.maxHealth) { return; }
+        playerStatManager.health += statIncrease;
         // healthBar.GetComponent<SpriteRenderer>().color = Color.green;
         if (!isReset)
         {
             ShowHealthGain(statIncrease);
         }
-        if (health > maxHealth)
+        if (playerStatManager.health > playerStatManager.maxHealth)
         {
-            health = maxHealth;
+            playerStatManager.health = playerStatManager.maxHealth;
         }
         UpdateHealthBar();
     }

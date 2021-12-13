@@ -30,6 +30,8 @@ public class PlayerAttack : MonoBehaviour
 
     PlayerBaseStatManager playerBaseStatManager;
 
+    PlayerStatManager playerStatManager;
+
 
     private void Awake()
     {
@@ -38,6 +40,7 @@ public class PlayerAttack : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         player = GetComponent<Player>();
         playerInput = GetComponent<PlayerInput>();
+        playerStatManager = GetComponent<PlayerStatManager>();
     }
 
     private void Start()
@@ -50,7 +53,7 @@ public class PlayerAttack : MonoBehaviour
 
     void OnShoot(InputValue value)
     {
-        if (!player.isShooting && player.dungAccumulated >= attackCost)
+        if (!player.isShooting && playerStatManager.dungAccumulated >= attackCost)
         {
             StartCoroutine(Shooting());
         }
@@ -63,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
             // yield return new WaitForSeconds(attackDelay);
             if (m_Projectile != null && m_SpawnTransform != null)
             {
-                if (player.dungAccumulated >= attackCost)
+                if (playerStatManager.dungAccumulated >= attackCost)
                 // if (attackReleased && player.dungAccumulated >= attackCost)
                 // if (attackReleased)
                 {
@@ -87,17 +90,17 @@ public class PlayerAttack : MonoBehaviour
                     // playerMovement.dungAccumulated -= attackCost;
 
                     float bonusCritDamage = 1f;
-                    if (UnityEngine.Random.value * 100f <= player.criticalHitRatio)
+                    if (UnityEngine.Random.value * 100f <= playerStatManager.criticalHitRatio)
                     {
 
                         projectile.GetComponent<Projectile>().isCriticalHit = true;
                         bonusCritDamage = 2f;
                     }
 
-                    projectile.GetComponent<Projectile>().power = Convert.ToInt32(Mathf.Round((GetComponent<Player>().attack * bonusCritDamage))); // TODO: Modifier for dung collected player.dungAccumulated / 10
-                    player.dungAccumulated = 0;
-                    GameController.Instance.SetDungText(player.dungAccumulated, playerInput);
-                    GameController.Instance.SetDungText(player.dungAccumulated, playerInput);
+                    projectile.GetComponent<Projectile>().power = Convert.ToInt32(Mathf.Round((playerStatManager.attack * bonusCritDamage))); // TODO: Modifier for dung collected player.dungAccumulated / 10
+                    playerStatManager.dungAccumulated = 0;
+                    GameController.Instance.SetDungText(playerStatManager.dungAccumulated, playerInput);
+                    GameController.Instance.SetDungText(playerStatManager.dungAccumulated, playerInput);
                     attackReleased = false;
                     player.isShooting = false;
                     yield break;

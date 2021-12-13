@@ -48,6 +48,7 @@ public class GameWin : MonoBehaviour
 
 
     Player player;
+    PlayerStatManager playerStatManager;
 
 
     private void Awake()
@@ -74,6 +75,7 @@ public class GameWin : MonoBehaviour
      });
 
         player = GameController.Instance.players[0];
+        playerStatManager = player.GetComponent<PlayerStatManager>();
 
         UpdateCurrency();
         UpdateHPText();
@@ -124,12 +126,12 @@ public class GameWin : MonoBehaviour
 
     public void UpdateSpeedText()
     {
-        speedStatText.text = player.attackSpeedBonus.ToString();
+        speedStatText.text = playerStatManager.attackSpeedBonus.ToString();
     }
 
     public void UpdateHPText()
     {
-        healthStatText.text = player.health.ToString() + " / " + player.maxHealth.ToString();
+        healthStatText.text = playerStatManager.health.ToString() + " / " + playerStatManager.maxHealth.ToString();
     }
 
     public void UpdateGameRuntimeText()
@@ -144,32 +146,32 @@ public class GameWin : MonoBehaviour
 
     public void UpdateMoneyEarnedText()
     {
-        moneyEarnedText.text = player.moneyEarned.ToString();
+        moneyEarnedText.text = playerStatManager.moneyEarned.ToString();
     }
 
     public void UpdateEnemiesKilledText()
     {
-        enemiesKilledText.text = player.enemiesKilled.ToString();
+        enemiesKilledText.text = playerStatManager.enemiesKilled.ToString();
     }
 
     public void UpdateLevelReachedText()
     {
-        levelReachedText.text = player.levelReached.ToString();
+        levelReachedText.text = playerStatManager.levelReached.ToString();
     }
 
     public void UpdateShieldText()
     {
-        shieldStatText.text = player.shield.ToString() + " / " + player.maxShield.ToString();
+        shieldStatText.text = playerStatManager.shield.ToString() + " / " + playerStatManager.maxShield.ToString();
     }
 
     public void UpdateAttackText()
     {
-        attackStatText.text = player.attack.ToString();
+        attackStatText.text = playerStatManager.attack.ToString();
     }
 
     public void UpdateCritRatioText()
     {
-        critRatioStatText.text = player.criticalHitRatio.ToString();
+        critRatioStatText.text = playerStatManager.criticalHitRatio.ToString();
     }
 
     public void OnNavigateUI(InputValue value)

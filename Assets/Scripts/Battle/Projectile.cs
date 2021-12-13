@@ -90,13 +90,13 @@ public class Projectile : MonoBehaviour
         if (targetGO)
         {
             GameObject sourcePlayer = FindClosestTarget("Player");
-            Player player = sourcePlayer.GetComponent<Player>();
+            PlayerStatManager playerStatManager = sourcePlayer.GetComponent<PlayerStatManager>();
             var dir = targetGO.transform.position - transform.position;
             dir = dir.normalized;
             RotateTowardsTarget(targetGO.transform);
             if (targetGO.CompareTag("Enemy"))
             {
-                m_Rigidbody.AddForce(dir * (m_Speed + player.attackSpeedBonus));
+                m_Rigidbody.AddForce(dir * (m_Speed + playerStatManager.attackSpeedBonus));
             }
 
         }

@@ -256,33 +256,33 @@ public class GameController : MonoBehaviour, ISavable
         Player player = players[0].GetComponent<Player>();
         var saveState = new GameControllerSaveState()
         {
-            totalCurrentCurrency = totalCurrency,
-            totalGameRuntime = gameRuntime,
+            // totalCurrentCurrency = totalCurrency,
+            // totalGameRuntime = gameRuntime,
 
-            playerHealth = player.health,
-            playerExperience = player.experience,
-            playerTemporaryExperienceHolder = player.temporaryExperienceHolder,
-            playerExperienceToNextLevel = player.experienceToNextLevel,
-            playerLevel = player.level,
-            playerPreviousLevel = player.previousLevel,
-            playerCriticalHitRatio = player.criticalHitRatio,
-            playerMaxHealth = player.maxHealth,
-            playerAttackSpeedBonus = player.attackSpeedBonus,
-            playerShield = player.shield,
-            playerMaxShield = player.maxShield,
-            // playerHealthBar = player.healthBar,
-            // playerShieldBar = player.shieldBar,
-            // playerExpBar = player.expBar,
-            playerAttack = player.attack,
-            playerDungAccumulated = player.dungAccumulated,
-            playerPrevDungAccumulated = player.prevDungAccumulated,
-            playerMaxDungSize = player.maxDungSize,
-            playerToLevelUp = player.toLevelUp,
-            playerLevelReached = player.levelReached,
-            playerEnemiesKilled = player.enemiesKilled,
-            playerMoneyEarned = player.moneyEarned,
-            playerInvincibilityFrameTime = player.invincibilityFrameTime,
-            playerWillLevelUp = player.willLevelUp,
+            // playerHealth = player.health,
+            // playerExperience = player.experience,
+            // playerTemporaryExperienceHolder = player.temporaryExperienceHolder,
+            // playerExperienceToNextLevel = player.experienceToNextLevel,
+            // playerLevel = player.level,
+            // playerPreviousLevel = player.previousLevel,
+            // playerCriticalHitRatio = player.criticalHitRatio,
+            // playerMaxHealth = player.maxHealth,
+            // playerAttackSpeedBonus = player.attackSpeedBonus,
+            // playerShield = player.shield,
+            // playerMaxShield = player.maxShield,
+            // // playerHealthBar = player.healthBar,
+            // // playerShieldBar = player.shieldBar,
+            // // playerExpBar = player.expBar,
+            // playerAttack = player.attack,
+            // playerDungAccumulated = player.dungAccumulated,
+            // playerPrevDungAccumulated = player.prevDungAccumulated,
+            // playerMaxDungSize = player.maxDungSize,
+            // playerToLevelUp = player.toLevelUp,
+            // playerLevelReached = player.levelReached,
+            // playerEnemiesKilled = player.enemiesKilled,
+            // playerMoneyEarned = player.moneyEarned,
+            // playerInvincibilityFrameTime = player.invincibilityFrameTime,
+            // playerWillLevelUp = player.willLevelUp,
 
         };
 
@@ -299,30 +299,30 @@ public class GameController : MonoBehaviour, ISavable
 
         if (player != null)
         {
-            player.health = loadedData.playerHealth;
-            player.experience = loadedData.playerExperience;
-            player.temporaryExperienceHolder = loadedData.playerTemporaryExperienceHolder;
-            player.experienceToNextLevel = loadedData.playerExperienceToNextLevel;
-            player.level = loadedData.playerLevel;
-            player.previousLevel = loadedData.playerPreviousLevel;
-            player.criticalHitRatio = loadedData.playerCriticalHitRatio;
-            player.maxHealth = loadedData.playerMaxHealth;
-            player.attackSpeedBonus = loadedData.playerAttackSpeedBonus;
-            player.shield = loadedData.playerShield;
-            player.maxShield = loadedData.playerMaxShield;
-            // player.healthBar = loadedData.playerHealthBar;
-            // player.shieldBar = loadedData.playerShieldBar;
-            // player.expBar = loadedData.playerExpBar;
-            player.attack = loadedData.playerAttack;
-            player.dungAccumulated = loadedData.playerDungAccumulated;
-            player.prevDungAccumulated = loadedData.playerPrevDungAccumulated;
-            player.maxDungSize = loadedData.playerMaxDungSize;
-            player.toLevelUp = loadedData.playerToLevelUp;
-            player.levelReached = loadedData.playerLevelReached;
-            player.enemiesKilled = loadedData.playerEnemiesKilled;
-            player.moneyEarned = loadedData.playerMoneyEarned;
-            player.invincibilityFrameTime = loadedData.playerInvincibilityFrameTime;
-            player.willLevelUp = loadedData.playerWillLevelUp;
+            // player.health = loadedData.playerHealth;
+            // player.experience = loadedData.playerExperience;
+            // player.temporaryExperienceHolder = loadedData.playerTemporaryExperienceHolder;
+            // player.experienceToNextLevel = loadedData.playerExperienceToNextLevel;
+            // player.level = loadedData.playerLevel;
+            // player.previousLevel = loadedData.playerPreviousLevel;
+            // player.criticalHitRatio = loadedData.playerCriticalHitRatio;
+            // player.maxHealth = loadedData.playerMaxHealth;
+            // player.attackSpeedBonus = loadedData.playerAttackSpeedBonus;
+            // player.shield = loadedData.playerShield;
+            // player.maxShield = loadedData.playerMaxShield;
+            // // player.healthBar = loadedData.playerHealthBar;
+            // // player.shieldBar = loadedData.playerShieldBar;
+            // // player.expBar = loadedData.playerExpBar;
+            // player.attack = loadedData.playerAttack;
+            // player.dungAccumulated = loadedData.playerDungAccumulated;
+            // player.prevDungAccumulated = loadedData.playerPrevDungAccumulated;
+            // player.maxDungSize = loadedData.playerMaxDungSize;
+            // player.toLevelUp = loadedData.playerToLevelUp;
+            // player.levelReached = loadedData.playerLevelReached;
+            // player.enemiesKilled = loadedData.playerEnemiesKilled;
+            // player.moneyEarned = loadedData.playerMoneyEarned;
+            // player.invincibilityFrameTime = loadedData.playerInvincibilityFrameTime;
+            // player.willLevelUp = loadedData.playerWillLevelUp;
 
             Debug.Log("Player data loaded");
         }

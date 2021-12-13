@@ -53026,6 +53026,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4b38c3d7013cf48e88fcc8e4a00ac17a, type: 2}
+    - target: {fileID: 458936488184220977, guid: 6a8a4c59be09243638a88412c356acd8, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 596090097685580686, guid: 6a8a4c59be09243638a88412c356acd8, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -53070,9 +53074,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5362265096858783902, guid: 6a8a4c59be09243638a88412c356acd8, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6309816750665008250, guid: 6a8a4c59be09243638a88412c356acd8, type: 3}
       propertyPath: m_Name
       value: Grid
+      objectReference: {fileID: 0}
+    - target: {fileID: 6309816750665008250, guid: 6a8a4c59be09243638a88412c356acd8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a8a4c59be09243638a88412c356acd8, type: 3}
