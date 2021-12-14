@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerStatManager : MonoBehaviour
 {
     PlayerBaseStatManager playerBaseStats;
+
+    PlayerLevelManager playerLevelManager;
     PlayerAbilities playerAbilities;
     Player player;
 
@@ -37,6 +39,7 @@ public class PlayerStatManager : MonoBehaviour
     {
         player = GetComponent<Player>();
         playerAbilities = GetComponent<PlayerAbilities>();
+        playerLevelManager = GetComponent<PlayerLevelManager>();
     }
 
     // Start is called before the first frame update
@@ -117,6 +120,11 @@ public class PlayerStatManager : MonoBehaviour
         }
 
         player.UpdateHealthBar();
+    }
+
+    public void UpdateMaxLevelReached()
+    {
+        levelReached = playerLevelManager.level;
     }
 
 }

@@ -107,9 +107,10 @@ public class LevelManager : MonoBehaviour
 
         foreach (Player player in GameController.Instance.players)
         {
+            PlayerLevelManager playerLevelManager = player.GetComponent<PlayerLevelManager>();
             if (player != null && player.isActiveAndEnabled)
             {
-                player.MergeTempExperience();
+                playerLevelManager.MergeTempExperience();
             }
 
         }
