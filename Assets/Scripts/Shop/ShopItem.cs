@@ -99,7 +99,7 @@ public class ShopItem : MonoBehaviour
 
             if (item.itemType == Item.ItemType.Heal)
             {
-                item.HealStat(player, shop);
+                item.HealStat(playerStatManager, shop);
             }
 
             if (item.itemType == Item.ItemType.Equip)

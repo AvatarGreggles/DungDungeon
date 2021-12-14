@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 using TMPro;
 using System;
 
-
 public class Player : MonoBehaviour
 {
 
@@ -140,18 +139,6 @@ public class Player : MonoBehaviour
         expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
     }
 
-    // void UpdateHPBarColor()
-    // {
-    //     if (health > maxHealth / 4)
-    //     {
-    //         healthBar.GetComponent<SpriteRenderer>().color = Color.green;
-    //     }
-    //     else
-    //     {
-    //         healthBar.GetComponent<SpriteRenderer>().color = Color.red;
-    //     }
-    // }
-
     public void ShowHealthGain(float gainedHealth)
     {
         GameObject healthObject = Instantiate(healthDisplay, damageDisplayPivot.transform.position, damageDisplayPivot.transform.rotation);
@@ -178,7 +165,7 @@ public class Player : MonoBehaviour
         level += 1;
         playerStatManager.levelReached = level;
         SetLevelText();
-        ResetHealth();
+        playerStatManager.ResetHealth();
     }
 
     public void OnToggleControls()
@@ -299,16 +286,24 @@ public class Player : MonoBehaviour
     {
         playerStatManager.moneyEarned += currency;
         playerStatManager.enemiesKilled++;
+        RunAbilityGains();
+        temporaryExperienceHolder += value;
+    }
+
+    public void RunAbilityGains()
+    {
         if (playerAbilities.isConfidenceEnabled)
         {
-            playerStatManager.attack += (1 * playerAbilities.confidenceStack);
+            int amountToIncrease = 1 * playerAbilities.confidenceStack;
+            playerStatManager.IncreaseAttack(amountToIncrease);
+
         }
 
         if (playerAbilities.isBloodsuckerEnabled)
         {
-            RestoreHealth((playerStatManager.maxHealth / 100) * (5 * playerAbilities.bloodSuckerStack));
+            float amountToRestore = (playerStatManager.maxHealth / 100) * (5 * playerAbilities.bloodSuckerStack);
+            playerStatManager.RestoreHealth(amountToRestore);
         }
-        temporaryExperienceHolder += value;
     }
 
 
@@ -344,49 +339,63 @@ public class Player : MonoBehaviour
     public void UpdateHealthBar()
     {
         healthBar.transform.localScale = new Vector3(initialHealthBarSize.x * (playerStatManager.health / playerStatManager.maxHealth), initialHealthBarSize.y, initialHealthBarSize.z);
+        UpdateHPBarColor();
     }
 
-    public void OnNavigateUI(InputValue value)
+    void UpdateHPBarColor()
     {
-
-
+        if (playerStatManager.health > playerStatManager.maxHealth / 4)
+        {
+            healthBar.GetComponent<SpriteRenderer>().color = Color.green;
+        }
+        else
+        {
+            healthBar.GetComponent<SpriteRenderer>().color = Color.red;
+        }
     }
+
+    // public void OnNavigateUI(InputValue value)
+    // {
+
+
+    // }
 
     public void OnInteract()
     {
 
         if (GameController.Instance.currentState == State.Cleared)
         {
-            Debug.Log("Interacting");
-            var facingDir = new Vector3(0f, 1f);
-            var interactPos = transform.position + facingDir;
-
-            Debug.DrawLine(transform.position, interactPos, Color.green, 0.5f);
-
-            var collider = Physics2D.OverlapCircle(interactPos, 3f, GameLayers.Instance.InteractableLayer);
-            if (collider != null)
-            {
-                Debug.Log("something there");
-                collider.GetComponent<Interactable>()?.Interact(transform);
-            }
+            InteractWithObject();
         }
 
         if (GameController.Instance.currentState == State.Dialog)
         {
-            Debug.Log("next line");
             DialogManager.Instance.HandleNextLine();
+        }
+    }
+
+    void InteractWithObject()
+    {
+        var facingDir = new Vector3(0f, 1f);
+        var interactPos = transform.position + facingDir;
+
+        Debug.DrawLine(transform.position, interactPos, Color.green, 0.5f);
+
+        var collider = Physics2D.OverlapCircle(interactPos, 3f, GameLayers.Instance.InteractableLayer);
+        if (collider != null)
+        {
+            Debug.Log("something there");
+            collider.GetComponent<Interactable>()?.Interact(transform);
         }
     }
 
     public void OnCancel()
     {
 
-
         if (GameController.Instance.currentState == State.Shop)
         {
             GameController.Instance.currentState = State.Active;
             GameController.Instance.shopMenu.SetActive(false);
-            // playerInput.SwitchCurrentActionMap("Player");
         }
     }
 
@@ -493,33 +502,5 @@ public class Player : MonoBehaviour
             }
         }
         return true;
-    }
-
-    public void ResetHealth()
-    {
-        float amountToRestore = playerStatManager.maxHealth - playerStatManager.health;
-
-        RestoreHealth(amountToRestore, true);
-    }
-
-    public void IncreaseAttack(int multiplier)
-    {
-        playerStatManager.attack *= multiplier;
-    }
-
-    public void RestoreHealth(float statIncrease, bool isReset = false)
-    {
-        if (playerStatManager.health == playerStatManager.maxHealth) { return; }
-        playerStatManager.health += statIncrease;
-        // healthBar.GetComponent<SpriteRenderer>().color = Color.green;
-        if (!isReset)
-        {
-            ShowHealthGain(statIncrease);
-        }
-        if (playerStatManager.health > playerStatManager.maxHealth)
-        {
-            playerStatManager.health = playerStatManager.maxHealth;
-        }
-        UpdateHealthBar();
     }
 }

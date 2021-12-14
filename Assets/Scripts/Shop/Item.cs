@@ -46,7 +46,7 @@ public class Item : ScriptableObject
     }
 
 
-    public bool HealStat(Player player, Shop shop)
+    public bool HealStat(PlayerStatManager player, Shop shop)
     {
         if (targetStat == TargetStat.HP)
         {

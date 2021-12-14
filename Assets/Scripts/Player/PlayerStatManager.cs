@@ -77,7 +77,7 @@ public class PlayerStatManager : MonoBehaviour
             {
 
                 float amountToHeal = (maxHealth / 100) * 10;
-                player.RestoreHealth(amountToHeal);
+                RestoreHealth(amountToHeal);
                 player.UpdateHealthBar();
             }
 
@@ -87,6 +87,36 @@ public class PlayerStatManager : MonoBehaviour
             }
 
         }
+    }
+
+
+    public void ResetHealth()
+    {
+        float amountToRestore = maxHealth - health;
+
+        RestoreHealth(amountToRestore, true);
+    }
+
+    public void IncreaseAttack(int statIncrease)
+    {
+        attack += statIncrease;
+    }
+
+    public void RestoreHealth(float statIncrease, bool isReset = false)
+    {
+        if (health == maxHealth) { return; }
+        health += statIncrease;
+        // healthBar.GetComponent<SpriteRenderer>().color = Color.green;
+        if (!isReset)
+        {
+            player.ShowHealthGain(statIncrease);
+        }
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+
+        player.UpdateHealthBar();
     }
 
 }
