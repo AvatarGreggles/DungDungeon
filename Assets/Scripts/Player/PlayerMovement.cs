@@ -64,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         playerBaseStats = FindObjectOfType<PlayerBaseStatManager>();
@@ -75,19 +74,10 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void FixedUpdate()
     {
         Movement();
     }
-
-
-
 
     void OnMove(InputValue value)
     {
@@ -123,12 +113,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (adjustedMovement != Vector2.zero)
         {
-            if (newPos != new Vector2(transform.position.x, transform.position.y) && GameController.Instance.currentState != State.Cleared && playerStatManager.dungAccumulated < playerStatManager.maxDungSize)
+            bool canCollectDung = GameController.Instance.currentState != State.Cleared && playerStatManager.dungAccumulated < playerStatManager.maxDungSize;
+
+            if (canCollectDung)
             {
-                if (!audioSource.isPlaying)
-                {
-                    audioSource.PlayOneShot(dungCollectSound, 0.75F);
-                }
+                HandleGatherDungSoundEffect();
                 player.AccumulateDung(dungAccumulationRate);
                 animator.SetBool("IsMoving", true);
             }
@@ -140,6 +129,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rbody.MovePosition(newPos);
+    }
+
+    void HandleGatherDungSoundEffect()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(dungCollectSound, 0.75F);
+        }
     }
 
     void OnStopMovement()
