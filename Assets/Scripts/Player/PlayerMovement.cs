@@ -78,48 +78,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (targetedEnemy != null)
-        {
-            // Vector3 targetPos = Camera.main.ScreenToWorldPoint(targetedEnemy);
-            // transform.rotation = Quaternion.LookRotation(Vector3.forward, targetPos - transform.position);
-
-            // Raycast Mouse Looking
-            Ray ray = Camera.main.ScreenPointToRay(targetedEnemy);
-            RaycastHit hit = new RaycastHit();
-            if (Physics.Raycast(ray, out hit, 100))
-            {
-                Vector3 hitPoint = hit.point;
-
-                Vector3 targetDir = hitPoint - transform.position;
-
-                float angle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            }
-        }
-
-        // Vector3 newTrailRotation = dustTrail.transform.position;
-        if (isFacingRight)
-        {
-            // Vector3 newScale = transform.localScale;
-            // newScale.x = originalDungScale.x * 1f;
-            // transform.localScale = newScale;
-            dustTrail.transform.position = new Vector3(dustSpawnPointLeft.transform.position.x, dustSpawnPointLeft.transform.position.y, dustSpawnPointLeft.transform.position.z);
-            dustTrail.transform.eulerAngles = new Vector3(newTrailRotation.x, 90, newTrailRotation.z);
-            playerSprite.flipX = false;
-        }
-        else
-        {
-            // Vector3 newScale = transform.localScale;
-            // newScale.x = originalDungScale.x * -1f;
-            // transform.localScale = newScale;
-            dustTrail.transform.eulerAngles = new Vector3(newTrailRotation.x, -90, newTrailRotation.z);
-
-            dustTrail.transform.position = new Vector3(dustSpawnPointRight.transform.position.x, dustSpawnPointRight.transform.position.y, dustSpawnPointRight.transform.position.z);
-            playerSprite.flipX = true;
-        }
-
 
     }
+
+    void FixedUpdate()
+    {
+        Movement();
+    }
+
+
 
 
     void OnMove(InputValue value)
@@ -127,24 +94,24 @@ public class PlayerMovement : MonoBehaviour
         if (GameController.Instance.currentState != State.Dialog)
         {
             movement = value.Get<Vector2>();
+            if (movement.x > 0f)
+            {
 
-            if (movement.x < 0f)
-            {
-                // playerAnimator.SetBool("IsFacingRight", false);
+                dustTrail.transform.position = new Vector3(dustSpawnPointLeft.transform.position.x, dustSpawnPointLeft.transform.position.y, dustSpawnPointLeft.transform.position.z);
                 dustTrail.transform.eulerAngles = new Vector3(newTrailRotation.x, 90, newTrailRotation.z);
-                isFacingRight = false;
+                playerSprite.flipX = false;
             }
-            else if (movement.x > 0f)
+            else if (movement.x < 0f)
             {
-                // playerAnimator.SetBool("IsFacingRight", true);
+
                 dustTrail.transform.eulerAngles = new Vector3(newTrailRotation.x, -90, newTrailRotation.z);
-                isFacingRight = true;
+                dustTrail.transform.position = new Vector3(dustSpawnPointRight.transform.position.x, dustSpawnPointRight.transform.position.y, dustSpawnPointRight.transform.position.z);
+                playerSprite.flipX = true;
             }
 
             dustTrail.GetComponent<ParticleSystem>().Play();
         }
     }
-
 
 
     private void Movement()
@@ -154,36 +121,33 @@ public class PlayerMovement : MonoBehaviour
         Vector2 newPos = currentPos + adjustedMovement * Time.fixedDeltaTime;
 
 
-        if (newPos != new Vector2(transform.position.x, transform.position.y) && GameController.Instance.currentState != State.Cleared && playerStatManager.dungAccumulated < playerStatManager.maxDungSize)
+        if (adjustedMovement != Vector2.zero)
         {
-            if (!audioSource.isPlaying)
+            if (newPos != new Vector2(transform.position.x, transform.position.y) && GameController.Instance.currentState != State.Cleared && playerStatManager.dungAccumulated < playerStatManager.maxDungSize)
             {
-                audioSource.PlayOneShot(dungCollectSound, 0.75F);
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.PlayOneShot(dungCollectSound, 0.75F);
+                }
+                player.AccumulateDung(dungAccumulationRate);
+                animator.SetBool("IsMoving", true);
             }
-            player.AccumulateDung(dungAccumulationRate);
-
-        }
-
-        if (adjustedMovement == Vector2.zero)
-        {
-            animator.SetBool("IsMoving", false);
-            dustTrail.GetComponent<ParticleSystem>().Stop();
         }
         else
         {
-            animator.SetBool("IsMoving", true);
-        }
+            OnStopMovement();
 
+        }
 
         rbody.MovePosition(newPos);
     }
 
-
-    void FixedUpdate()
+    void OnStopMovement()
     {
-        Movement();
-
+        animator.SetBool("IsMoving", false);
+        dustTrail.GetComponent<ParticleSystem>().Stop();
     }
+
 
     public void ResetPosition()
     {
