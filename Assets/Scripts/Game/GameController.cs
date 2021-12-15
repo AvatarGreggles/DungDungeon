@@ -237,17 +237,10 @@ public class GameController : MonoBehaviour, ISavable
         currencyUI.UpdateCurrency();
     }
 
-    public void SetDungText(float value, PlayerInput playerInput)
+    public void SetDungText(float value)
     {
-        if (playerInput.playerIndex == 0)
-        {
-            dungTextP1.text = value.ToString("F0");
-        }
 
-        if (playerInput.playerIndex == 1)
-        {
-            dungTextP2.text = value.ToString("F0");
-        }
+        dungTextP1.text = value.ToString("F0");
 
     }
 

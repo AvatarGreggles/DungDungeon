@@ -121,28 +121,12 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    public IEnumerator CheckIfReleased(Vector2 movement)
-    {
-        yield return new WaitForSeconds(0.01f);
-        if (new Vector2(0f, 0f) == movement)
-        {
-            PlayerAttack.Instance.attackReleased = true;
-        }
-        else
-        {
-            PlayerAttack.Instance.attackReleased = false;
-        }
-
-        yield return null;
-    }
 
     void OnMove(InputValue value)
     {
         if (GameController.Instance.currentState != State.Dialog)
         {
             movement = value.Get<Vector2>();
-
-            StartCoroutine(CheckIfReleased(movement));
 
             if (movement.x < 0f)
             {

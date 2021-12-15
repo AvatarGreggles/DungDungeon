@@ -1226,6 +1226,7 @@ GameObject:
   - component: {fileID: 256465949867495522}
   - component: {fileID: 7920250712718120848}
   - component: {fileID: 5025166787421563996}
+  - component: {fileID: 1790517331685486895}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1418,7 +1419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1198b1b06b1143d78fb3cd3a8aafa18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 8568219434171882053}
   playerAbilities: {fileID: 0}
   minimumDamageDeal: 50
   itemInventory: []
@@ -1648,12 +1648,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  experience: 0
-  previousLevel: 0
+  maxLevel: 100
   baseXP: 100
-  temporaryExperienceHolder: 0
-  experienceToNextLevel: 0
-  toLevelUp: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  willLevelUp: 0
   playerLevelTextP1: {fileID: 6526278113208250979}
   expBar: {fileID: 70515633247146582}
+  willLevelUp: 0
+--- !u!114 &1790517331685486895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8568219434171882062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b5c0aee295d4a84959b479a2c831ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}

@@ -8,19 +8,19 @@ public class PlayerLevelManager : MonoBehaviour
 
     [Header("Player Level & Experience")]
 
-    public int level;
-    public float experience;
-    public int previousLevel;
-    public float baseXP;
-    public float temporaryExperienceHolder;
-    public float experienceToNextLevel;
-    public int[] toLevelUp = new int[1];
+    public int level = 1;
+    [SerializeField] int maxLevel = 100;
 
-    public bool willLevelUp = false;
-
+    [SerializeField] float baseXP;
     [SerializeField] TMPro.TMP_Text playerLevelTextP1;
-
     [SerializeField] public GameObject expBar;
+    float experience;
+    int previousLevel;
+
+    float temporaryExperienceHolder;
+    float experienceToNextLevel;
+    int[] toLevelUp = new int[1];
+    public bool willLevelUp = false;
 
     Vector3 initialEXPBarSize;
 
@@ -35,14 +35,8 @@ public class PlayerLevelManager : MonoBehaviour
         previousLevel = level;
         LevelXPSetUp();
         initialEXPBarSize = expBar.transform.localScale;
-        expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
+        UpdateExperienceBar();
         SetLevelText();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void GainLevel()
@@ -59,14 +53,14 @@ public class PlayerLevelManager : MonoBehaviour
         playerLevelTextP1.text = level.ToString();
     }
 
-    public void MergeTempExperience()
+    public void HandleExperienceGain()
     {
         StartCoroutine(FillExperienceBar(temporaryExperienceHolder));
-        // GainEXP(temporaryExperienceHolder);
     }
 
     void LevelXPSetUp()
     {
+        toLevelUp = new int[maxLevel];
         for (int i = 1; i < toLevelUp.Length; i++)
         {
             toLevelUp[i] = (int)(Mathf.Floor(baseXP * (Mathf.Pow(i, 1.2f))));
@@ -79,48 +73,67 @@ public class PlayerLevelManager : MonoBehaviour
         willLevelUp = false;
     }
 
+    public void UpdateTemporaryEXP(float value)
+    {
+        temporaryExperienceHolder += value;
+    }
+
+    void CheckIfPlayerWillLevelUp(float experienceToAdd)
+    {
+        if (experience + experienceToAdd >= toLevelUp[level])
+        {
+            willLevelUp = true;
+        }
+    }
+
+    void UpdateExperienceBar()
+    {
+        expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
+
+    }
+
+    void HandleExpeienceOverflow()
+    {
+        experience = toLevelUp[level - 1] - experience;
+        if (experience < 0)
+        {
+            experience *= 1;
+        }
+    }
+
     //should count up until it hits the experience amount to add.
     public IEnumerator FillExperienceBar(float experienceToAdd)
     {
         if (level < toLevelUp.Length)
         {
-
             temporaryExperienceHolder = 0;
 
-            if (experience + experienceToAdd >= toLevelUp[level])
-            {
-                willLevelUp = true;
-            }
+            CheckIfPlayerWillLevelUp(experienceToAdd);
 
-            // addingXp = true;
-            //received from external sources. Add xp incrementally to move bar up slowly instead of chunks.
+            // Slowly add experience
             for (int i = 0; i < experienceToAdd; i++)
             {
                 if (level < toLevelUp.Length)
                 {
-
+                    // Increase experience and update exp bar
                     experience++;
-                    expBar.transform.localScale = new Vector3(initialEXPBarSize.x * (experience / toLevelUp[level]), initialEXPBarSize.y, initialEXPBarSize.z);
+                    UpdateExperienceBar();
 
-
-
+                    // If the experience reaches the limit
                     if (experience >= toLevelUp[level])
                     {
                         GainLevel();
+
+                        // If can not max level
                         if (level < toLevelUp.Length)
                         {
-                            experience = toLevelUp[level - 1] - experience;
-                            if (experience < 0)
-                            {
-                                experience *= 1;
-                            }
+                            // Also handle exp overflow
+                            HandleExpeienceOverflow();
                         }
                     }
                 }
                 yield return new WaitForSeconds(.001f);
             }
-
-            // addingXp = false;
         }
     }
 }
