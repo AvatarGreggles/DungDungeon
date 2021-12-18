@@ -51,6 +51,8 @@ public class Player : MonoBehaviour
     float invincibilityTimer = 0;
     public bool isInvincible = false;
 
+    LineRenderer lineRenderer;
+
 
     private void Awake()
     {
@@ -58,6 +60,8 @@ public class Player : MonoBehaviour
         playerAbilities = GetComponent<PlayerAbilities>();
         playerStatManager = GetComponent<PlayerStatManager>();
         playerLevelManager = GetComponent<PlayerLevelManager>();
+
+        lineRenderer = GetComponent<LineRenderer>();
 
         // GameController.Instance.LoadData();
 
@@ -72,6 +76,7 @@ public class Player : MonoBehaviour
     {
         HandleInvincibilityReset();
         UpdateDungSize();
+        LockOnToEnemy();
     }
 
     void HandleInvincibilityReset()
@@ -308,6 +313,46 @@ public class Player : MonoBehaviour
             healthBar.GetComponent<SpriteRenderer>().color = Color.red;
         }
 
+    }
+
+    public void LockOnToEnemy()
+    {
+        List<GameObject> enemies = LevelManager.Instance.enemies;
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.GetComponent<Enemy>().Untarget();
+        }
+
+        Enemy closestEnemy = FindClosestTarget("Enemy")?.GetComponent<Enemy>();
+
+        if (closestEnemy != null)
+        {
+            closestEnemy.SetAsTargetted();
+        }
+    }
+
+    public GameObject FindClosestTarget(string targetTag)
+    {
+        //TODO copy the logic and use it t trigger a draw to player function for coins
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag(targetTag);
+
+        GameObject closest = null;
+
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+
+        return closest;
     }
 
     // Death logic

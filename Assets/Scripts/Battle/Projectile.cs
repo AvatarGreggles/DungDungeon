@@ -31,6 +31,7 @@ public class Projectile : MonoBehaviour
 
     public bool isCriticalHit = false;
 
+
     public enum projectileTypes
     {
         Default,
@@ -45,6 +46,7 @@ public class Projectile : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         projectileSprite = GetComponent<SpriteRenderer>();
+
     }
 
     void Start()
@@ -79,7 +81,8 @@ public class Projectile : MonoBehaviour
     public void moveTowardsCloestTarget()
     {
         GameObject targetGO;
-        targetGO = FindClosestTarget("Enemy");
+        Player player = GameController.Instance.players[0];
+        targetGO = player.FindClosestTarget("Enemy");
 
         if (!targetGO)
         {
@@ -89,11 +92,13 @@ public class Projectile : MonoBehaviour
 
         if (targetGO)
         {
-            GameObject sourcePlayer = FindClosestTarget("Player");
-            PlayerStatManager playerStatManager = sourcePlayer.GetComponent<PlayerStatManager>();
+
+            PlayerStatManager playerStatManager = player.GetComponent<PlayerStatManager>();
             var dir = targetGO.transform.position - transform.position;
             dir = dir.normalized;
             RotateTowardsTarget(targetGO.transform);
+
+
             if (targetGO.CompareTag("Enemy"))
             {
                 m_Rigidbody.AddForce(dir * (m_Speed + playerStatManager.attackSpeedBonus));

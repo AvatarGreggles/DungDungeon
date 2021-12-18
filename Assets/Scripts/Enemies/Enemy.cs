@@ -36,6 +36,8 @@ public class Enemy : MonoBehaviour
     public AudioClip cry;
     AudioSource audioSource;
 
+    [SerializeField] GameObject targetIcon;
+
 
     private void Awake()
     {
@@ -54,11 +56,23 @@ public class Enemy : MonoBehaviour
 
         initialHealthBarSize = healthBar.transform.localScale;
         healthBar.GetComponent<SpriteRenderer>().color = Color.green;
+
+        targetIcon.SetActive(false);
     }
 
     void OnEnable()
     {
         health = enemyStats.maxHP;
+    }
+
+    public void SetAsTargetted()
+    {
+        targetIcon.SetActive(true);
+    }
+
+    public void Untarget()
+    {
+        targetIcon.SetActive(false);
     }
 
 
@@ -95,6 +109,7 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0)
         {
+            Untarget();
 
             LevelManager.Instance.RemoveEnemy(gameObject);
             // GameController.Instance.AddCurrency(enemyStats.currencyDrop);
