@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: S_Enemy_Spider
   m_EditorClassIdentifier: 
   level: 1
-  baseMaxHP: 9999
+  baseMaxHP: 800
   baseAttackPower: 200
   baseMoveSpeed: 2
   baseAttackSpeed: 1

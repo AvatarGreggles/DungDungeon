@@ -113,6 +113,8 @@ public class Player : MonoBehaviour
     {
         initialHealthBarSize = healthBar.transform.localScale;
         initialShieldBarSize = shieldBar.transform.localScale;
+
+        healthBar.GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     public void ShowHealthGain(float gainedHealth)
@@ -301,14 +303,11 @@ public class Player : MonoBehaviour
 
     void UpdateHPBarColor()
     {
-        if (playerStatManager.health > playerStatManager.maxHealth / 4)
-        {
-            healthBar.GetComponent<SpriteRenderer>().color = Color.green;
-        }
-        else
+        if (playerStatManager.health < playerStatManager.maxHealth / 4)
         {
             healthBar.GetComponent<SpriteRenderer>().color = Color.red;
         }
+
     }
 
     // Death logic

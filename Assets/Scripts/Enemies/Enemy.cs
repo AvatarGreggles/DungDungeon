@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
         healthBarBackground.SetActive(false);
 
         initialHealthBarSize = healthBar.transform.localScale;
-
+        healthBar.GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     void OnEnable()
@@ -77,10 +77,10 @@ public class Enemy : MonoBehaviour
         damageObject.transform.SetParent(null);
 
         health -= damage;
-        // if (health < enemyStats.maxHP / 4)
-        // {
-        //     healthBar.GetComponent<SpriteRenderer>().color = Color.red;
-        // }
+        if (health < enemyStats.maxHP / 4)
+        {
+            healthBar.GetComponent<SpriteRenderer>().color = Color.red;
+        }
         if (gameObject.activeSelf)
         {
             bool isPlayer = gameObject.CompareTag("Player");
