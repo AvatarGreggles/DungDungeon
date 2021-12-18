@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     [SerializeField] public GameObject healthBar;
     [SerializeField] public GameObject shieldBar;
 
+
     Vector3 initialHealthBarSize;
     Vector3 initialShieldBarSize;
 

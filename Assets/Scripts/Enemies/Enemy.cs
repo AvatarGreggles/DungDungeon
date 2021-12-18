@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject healthBar;
     [SerializeField] GameObject healthBarBackground;
     public GameObject damageDisplayPivot;
+
     public EnemyStats enemyStats;
 
     [SerializeField] GameObject loot;

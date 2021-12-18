@@ -10,6 +10,7 @@ public class PlayerStatManager : MonoBehaviour
     PlayerAbilities playerAbilities;
     Player player;
 
+
     [Header("Player Stats")]
     public float health;
     [SerializeField] public float maxHealth = 3;
@@ -40,6 +41,7 @@ public class PlayerStatManager : MonoBehaviour
         player = GetComponent<Player>();
         playerAbilities = GetComponent<PlayerAbilities>();
         playerLevelManager = GetComponent<PlayerLevelManager>();
+
     }
 
     // Start is called before the first frame update

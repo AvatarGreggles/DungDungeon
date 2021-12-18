@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1905902881067641911}
-  - component: {fileID: 637430430091947762}
+  - component: {fileID: 603048797980651926}
   m_Layer: 0
   m_Name: CriticalDamageSprite
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &637430430091947762
+--- !u!114 &603048797980651926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1905902881067641905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1605995e4e3d46d09632fa11bdaa060, type: 3}
+  m_Script: {fileID: 11500000, guid: f5b523c4341084f92a483ed7575be1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageDisplayTime: 0.33
+  damageDisplayTime: 1
   damageText: {fileID: 3983655340872620768}
 --- !u!1 &5303353934285342298
 GameObject:
