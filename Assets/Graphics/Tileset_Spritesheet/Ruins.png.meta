@@ -111,6 +111,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -796,6 +797,36 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Ruins 1_4: -7487058845005442762
+      Ruins 1_23: 1377046888035865374
+      Ruins 1_12: -3485906322909912523
+      Ruins 1_24: -4202571387631002718
+      Ruins 1_9: 5298354306110991426
+      Ruins 1_3: -7141865769289608961
+      Ruins 1_2: 8588179396278540836
+      Ruins 1_26: -8152804954808038555
+      Ruins 1_0: -4950617064901118974
+      Ruins 1_8: 6215278377391108824
+      Ruins 1_21: -8942817407765684540
+      Ruins 1_27: 2645241384300356830
+      Ruins 1_6: -5117524868371551492
+      Ruins 1_17: -6728888729667157082
+      Ruins 1_10: 3983661445441966572
+      Ruins 1_19: 7584306794980032369
+      Ruins 1_25: 3382518671090068153
+      Ruins 1_13: 8883439934648271939
+      Ruins 1_20: -3599654720536661864
+      Ruins 1_22: 1241614546738951445
+      Ruins 1_7: 6555621733921439956
+      Ruins 1_11: -3424469948261064146
+      Ruins 1_14: -2886701592411564393
+      Ruins 1_16: -4103651341871671880
+      Ruins 1_1: 2925218804125508211
+      Ruins 1_18: 5548159422802731526
+      Ruins 1_5: 8121372882652842587
+      Ruins 1_15: 1941732105268684945
+      Ruins 1_28: -943742636124148046
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

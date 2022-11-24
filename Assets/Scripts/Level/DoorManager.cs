@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 public class DoorManager : MonoBehaviour
 {
 
+    PlayerLevelManager playerLevelManager;
     [SerializeField] TilemapRenderer tilemap;
     [SerializeField] TilemapCollider2D collider;
 
@@ -19,16 +20,7 @@ public class DoorManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ShowDoor();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (gameObject.activeSelf == true)
-        {
-            ShowDoor();
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -36,17 +28,18 @@ public class DoorManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Player player = other.gameObject.GetComponent<Player>();
+            playerLevelManager = player.GetComponent<PlayerLevelManager>();
 
             if (LevelManager.Instance.floor > LevelManager.Instance.levels.Count - 1)
             {
                 GameController.Instance.currentState = State.GameWin;
                 return;
             }
-            if (player.willLevelUp)
+
+            if (playerLevelManager.willLevelUp)
             {
                 GameController.Instance.currentState = State.LevelUp;
-                player.previousLevel = player.level;
-                player.willLevelUp = false;
+                playerLevelManager.ResetLevelUp();
             }
             else
             {
@@ -72,17 +65,17 @@ public class DoorManager : MonoBehaviour
         {
             go.GetComponent<PlayerMovement>().ResetPosition();
             // go.GetComponent<Player>().ResetHealth();
-            go.GetComponent<Player>().willLevelUp = false;
+            playerLevelManager.willLevelUp = false;
         }
     }
 
-    void HideDoor()
+    public void HideDoor()
     {
         tilemap.enabled = true;
         collider.enabled = true;
     }
 
-    void ShowDoor()
+    public void ShowDoor()
     {
         tilemap.enabled = false;
         collider.enabled = false;

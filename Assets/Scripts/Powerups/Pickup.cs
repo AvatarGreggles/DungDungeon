@@ -43,9 +43,6 @@ public class Pickup : MonoBehaviour
                     case abilities.BurstShotEnabled:
                         other.gameObject.GetComponent<PlayerAbilities>().BurstShotEnabled();
                         break;
-                    case abilities.AttackUp:
-                        other.gameObject.GetComponent<PlayerAbilities>().AttackUpEnabled();
-                        break;
                     case abilities.HealthUp:
                         other.gameObject.GetComponent<PlayerAbilities>().HealthUpEnabled();
                         break;

@@ -21,6 +21,7 @@ public class ShopItem : MonoBehaviour
     [SerializeField] Image itemIcon;
 
     Player player;
+    PlayerStatManager playerStatManager;
 
     Shop shop;
 
@@ -31,6 +32,7 @@ public class ShopItem : MonoBehaviour
     void Start()
     {
         player = FindObjectsOfType<Player>()[0];
+        playerStatManager = player.GetComponent<PlayerStatManager>();
 
         shop = FindObjectOfType<Shop>();
     }
@@ -78,7 +80,7 @@ public class ShopItem : MonoBehaviour
 
     public bool PurchaseItem()
     {
-        if (item.itemType == Item.ItemType.Heal && player.health >= player.maxHealth)
+        if (item.itemType == Item.ItemType.Heal && playerStatManager.health >= playerStatManager.maxHealth)
         {
             StartCoroutine(shop.ShowHealthError());
             return false;
@@ -92,12 +94,12 @@ public class ShopItem : MonoBehaviour
             shop.UpdateCurrency();
             if (item.itemType == Item.ItemType.Boost)
             {
-                item.IncreaseStat(player, shop);
+                item.IncreaseStat(playerStatManager, shop);
             }
 
             if (item.itemType == Item.ItemType.Heal)
             {
-                item.HealStat(player, shop);
+                item.HealStat(playerStatManager, shop);
             }
 
             if (item.itemType == Item.ItemType.Equip)

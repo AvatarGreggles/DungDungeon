@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject healthBar;
     [SerializeField] GameObject healthBarBackground;
     public GameObject damageDisplayPivot;
+
     public EnemyStats enemyStats;
 
     [SerializeField] GameObject loot;
@@ -35,6 +36,8 @@ public class Enemy : MonoBehaviour
     public AudioClip cry;
     AudioSource audioSource;
 
+    [SerializeField] GameObject targetIcon;
+
 
     private void Awake()
     {
@@ -52,12 +55,35 @@ public class Enemy : MonoBehaviour
         healthBarBackground.SetActive(false);
 
         initialHealthBarSize = healthBar.transform.localScale;
+        healthBar.GetComponent<SpriteRenderer>().color = Color.green;
 
+        // targetIcon.SetActive(false);
     }
 
     void OnEnable()
     {
         health = enemyStats.maxHP;
+    }
+
+    public void SetAsTargetted()
+    {
+        // targetIcon.SetActive(true);
+    }
+
+    public void Untarget()
+    {
+        // targetIcon.SetActive(false);
+        // Player player = GameController.Instance.players[0];
+
+        // foreach (GameObject target in player.targettableEnemies)
+        // {
+        //     if (target == gameObject)
+        //     {
+        //         player.targettableEnemies.Remove(gameObject);
+        //     }
+
+        // }
+
     }
 
 
@@ -76,14 +102,14 @@ public class Enemy : MonoBehaviour
         damageObject.transform.SetParent(null);
 
         health -= damage;
-        // if (health < enemyStats.maxHP / 4)
-        // {
-        //     healthBar.GetComponent<SpriteRenderer>().color = Color.red;
-        // }
+        if (health < enemyStats.maxHP / 4)
+        {
+            healthBar.GetComponent<SpriteRenderer>().color = Color.red;
+        }
         if (gameObject.activeSelf)
         {
             bool isPlayer = gameObject.CompareTag("Player");
-            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation(gameObject));
+            StartCoroutine(GetComponent<DamageAnimation>().PlayDamageAnimation());
             healthBar.transform.localScale = new Vector3(initialHealthBarSize.x * (health / enemyStats.maxHP), initialHealthBarSize.y, initialHealthBarSize.z);
         }
 
@@ -94,7 +120,9 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0)
         {
-            LevelManager.Instance.enemies.Remove(gameObject);
+            Untarget();
+
+            LevelManager.Instance.RemoveEnemy(gameObject);
             // GameController.Instance.AddCurrency(enemyStats.currencyDrop);
             DropLoot();
             GivePlayersExperience();

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Heart
   itemDescription: Increase your max health by 250.
-  price: 150
+  price: 100
   itemIcon: {fileID: -1110265888859276761, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   itemType: 1
   statIncrease: 250

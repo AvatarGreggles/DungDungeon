@@ -41,59 +41,47 @@ public class NewSkillScreen : MonoBehaviour
 
 
     Player player;
+    PlayerStatManager playerStatManager;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
-    // public void CloseSkillScreen()
-    // {
-    //     gameObject.SetActive(false);
-    //     GameController.Instance.currentState = State.Active;
-    // }
-
-
-
-
-    // public void UpdateCurrency()
-    // {
-    //     currencyText.text = GameController.Instance.totalCurrency.ToString();
-    // }
 
     public void UpdateSpeedText()
     {
-        speedStatText.text = player.attackSpeedBonus.ToString();
+        speedStatText.text = playerStatManager.attackSpeedBonus.ToString();
     }
 
     public void UpdateHPText()
     {
-        healthStatText.text = player.health.ToString() + " / " + player.maxHealth.ToString();
+        healthStatText.text = playerStatManager.health.ToString() + " / " + playerStatManager.maxHealth.ToString();
     }
 
     public void UpdateShieldText()
     {
-        shieldStatText.text = player.shield.ToString() + " / " + player.maxShield.ToString();
+        shieldStatText.text = playerStatManager.shield.ToString() + " / " + playerStatManager.maxShield.ToString();
     }
 
     public void UpdateAttackText()
     {
-        attackStatText.text = player.attack.ToString();
+        attackStatText.text = playerStatManager.attack.ToString();
     }
 
     public void UpdateCritRatioText()
     {
-        critRatioStatText.text = player.criticalHitRatio.ToString();
+        critRatioStatText.text = playerStatManager.criticalHitRatio.ToString();
     }
 
     public void UpdateDungText()
     {
-        dungStatText.text = player.maxDungSize.ToString();
+        dungStatText.text = playerStatManager.maxDungSize.ToString();
     }
 
     public void UpdateDefenseText()
     {
-        defenseStatText.text = player.defense.ToString();
+        defenseStatText.text = playerStatManager.defense.ToString();
     }
 
 
@@ -101,6 +89,7 @@ public class NewSkillScreen : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         playerInput = player.GetComponent<PlayerInput>();
+        playerStatManager = player.GetComponent<PlayerStatManager>();
         // UpdateCurrency();
         UpdateHPText();
         UpdateShieldText();

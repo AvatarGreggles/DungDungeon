@@ -21,4 +21,11 @@ public class HandlePlayerJoining : MonoBehaviour
 
     }
 
+    void Update(){
+        if(Touchscreen.current.primaryTouch.press.isPressed){
+            Debug.Log("Touch");
+        }
+     
+    }
+
 }

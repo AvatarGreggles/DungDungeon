@@ -294,6 +294,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -2260,6 +2261,97 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      BaseTileset_46: 3341064303893428724
+      BaseTileset_79: 4320618590583773556
+      BaseTileset_68: 8791779611576307849
+      BaseTileset_77: 7696268120050706344
+      BaseTileset_2: -28020261474528244
+      BaseTileset_28: -5931533371054864699
+      BaseTileset_66: -6431974029586528082
+      BaseTileset_84: 6469605124361954654
+      BaseTileset_29: 3700524892801768424
+      BaseTileset_37: 2683366744860160784
+      BaseTileset_8: 3744088255270794033
+      BaseTileset_76: 8795137340503583785
+      BaseTileset_0: 1909944001367179602
+      BaseTileset_81: 7093617711138261262
+      BaseTileset_9: -5094935800240278807
+      BaseTileset_1: 8502078822621331092
+      BaseTileset_50: 6161024538003004320
+      BaseTileset_27: -5138518619233586670
+      BaseTileset_51: 8834266328177268563
+      BaseTileset_56: 2319029458925634987
+      BaseTileset_19: 4008589740099773317
+      BaseTileset_85: 8223103492550208661
+      BaseTileset_18: 554039211412494657
+      BaseTileset_67: 7525854273734099754
+      BaseTileset_42: 6571676909643536620
+      BaseTileset_53: -6007292461072360765
+      BaseTileset_14: -8417886605206895882
+      BaseTileset_33: -4584495195235487798
+      BaseTileset_83: 2746906801803916186
+      BaseTileset_36: -4236982310103942620
+      BaseTileset_58: -2294391127777135515
+      BaseTileset_15: 1722817325807356832
+      BaseTileset_55: -5696626164879689997
+      BaseTileset_48: 2500702609307242570
+      BaseTileset_5: -7966126318453561162
+      BaseTileset_80: 8474443405296739818
+      BaseTileset_40: -1087518179198416409
+      BaseTileset_63: 1289181090251073961
+      BaseTileset_89: 8903623971300628146
+      BaseTileset_39: 6237626312621380569
+      BaseTileset_11: 2262279021475290148
+      BaseTileset_47: -5383146509957502797
+      BaseTileset_6: -1798712273475302616
+      BaseTileset_54: 5997463446361544272
+      BaseTileset_74: 5374151121538971691
+      BaseTileset_70: -974839215468380203
+      BaseTileset_88: -2471511564303930058
+      BaseTileset_31: 8491474130074954975
+      BaseTileset_21: -3923892255192025210
+      BaseTileset_12: 2921230589090451368
+      BaseTileset_45: 2144436461099692466
+      BaseTileset_60: -8141915237837109081
+      BaseTileset_4: 2756265056946108970
+      BaseTileset_16: 9037953684344843042
+      BaseTileset_86: 4109362857803235242
+      BaseTileset_38: -2901085375615809792
+      BaseTileset_24: -614389872913030700
+      BaseTileset_78: -2209993190213155803
+      BaseTileset_57: 3113917200844692860
+      BaseTileset_23: 1307935320496142758
+      BaseTileset_32: 691254404174286034
+      BaseTileset_49: -5789635910532900660
+      BaseTileset_73: 7157479801258771808
+      BaseTileset_72: 2027024067800928831
+      BaseTileset_35: -5052693383428888927
+      BaseTileset_26: -275731290554758848
+      BaseTileset_59: -2927664582787405895
+      BaseTileset_82: 4427322237054657107
+      BaseTileset_7: -8109325943616917139
+      BaseTileset_69: 7061880603925385176
+      BaseTileset_34: -8967427306733832764
+      BaseTileset_30: -3003608095193546460
+      BaseTileset_61: -3354915692203103844
+      BaseTileset_52: 7371116491817011201
+      BaseTileset_64: -6872134910963778097
+      BaseTileset_3: -3587681077888716204
+      BaseTileset_41: -1271069285651157906
+      BaseTileset_71: 4907543362624153057
+      BaseTileset_87: 3490869142178652319
+      BaseTileset_75: -1522286618226472255
+      BaseTileset_62: -6487779208416635469
+      BaseTileset_22: 1525616034674223626
+      BaseTileset_20: 3044674017343309487
+      BaseTileset_25: -1320264043404669062
+      BaseTileset_10: 413784100732083570
+      BaseTileset_44: -9005382554012848208
+      BaseTileset_43: -7566244241754976377
+      BaseTileset_13: -5644488923056134685
+      BaseTileset_65: -6602450652340230772
+      BaseTileset_17: 8940653975880403186
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

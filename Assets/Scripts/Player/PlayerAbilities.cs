@@ -6,9 +6,10 @@ using UnityEngine;
 public class PlayerAbilities : MonoBehaviour
 {
 
+    PlayerStatManager playerStatManager;
+
     public bool rapidShotEnabled = false;
     public bool burstShotEnabled = false;
-    public bool attackUpEnabled = false;
     public bool healthUpEnabled = false;
 
     public bool projectilePassThroughEnabled = false;
@@ -34,16 +35,13 @@ public class PlayerAbilities : MonoBehaviour
 
     Player player;
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         player = GetComponent<Player>();
+        playerStatManager = GetComponent<PlayerStatManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void RapidShotEnabled()
     {
@@ -85,12 +83,6 @@ public class PlayerAbilities : MonoBehaviour
     public void HPRegenerationEnabled()
     {
         hpRegeneration = true;
-    }
-
-    public void AttackUpEnabled()
-    {
-        player.IncreaseAttack(2);
-        attackUpEnabled = true;
     }
 
     public void HealthUpEnabled()

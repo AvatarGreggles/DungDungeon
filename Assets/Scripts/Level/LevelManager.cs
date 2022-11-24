@@ -10,13 +10,15 @@ public class LevelManager : MonoBehaviour
 
     public List<GameObject> enemies = new List<GameObject>();
 
+    public Text enemiesLeftToKill;
+
     // Start is called before the first frame update
 
     [SerializeField] public int floor = 1;
 
     public static LevelManager Instance { get; set; }
 
-    [SerializeField] DoorManager door;
+    public DoorManager door;
 
     [SerializeField] Text floorText;
 
@@ -95,16 +97,18 @@ public class LevelManager : MonoBehaviour
 
     private void OnFloorCleared()
     {
-        door.gameObject.SetActive(true);
         isFloorCleared = true;
+        if (door != null)
+        {
+            door.ShowDoor();
+        }
+
         GameController.Instance.currentState = State.Cleared;
 
         foreach (Player player in GameController.Instance.players)
         {
-            if (player != null && player.isActiveAndEnabled)
-            {
-                player.MergeTempExperience();
-            }
+            PlayerLevelManager playerLevelManager = player.GetComponent<PlayerLevelManager>();
+            playerLevelManager.HandleExperienceGain();
 
         }
 
@@ -131,11 +135,19 @@ public class LevelManager : MonoBehaviour
         {
             enemies.Add(enemyObj);
         }
+
+        enemiesLeftToKill.text = enemies.Count.ToString();
     }
 
     public void PopulateEnemy(GameObject enemyObj)
     {
         enemies.Add(enemyObj);
+    }
+
+    public void RemoveEnemy(GameObject enemy)
+    {
+        enemies.Remove(enemy);
+        enemiesLeftToKill.text = enemies.Count.ToString();
     }
 
     private void ResetShooting()

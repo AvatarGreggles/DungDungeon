@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.InputSystem;
 
 public class LevelTransition : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class LevelTransition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Touchscreen.current.primaryTouch.press.isPressed && GameController.Instance.introTip.activeSelf){
+            StartCoroutine(OnUnpause());
+        }
 
     }
 
@@ -104,7 +108,7 @@ public class LevelTransition : MonoBehaviour
         var sequence = DOTween.Sequence();
         sequence.Append(overlay.transform.DOScaleX(0f, 0.4f));
         yield return sequence.WaitForCompletion();
-        // GameController.Instance.currentState = State.Active;
+        GameController.Instance.currentState = State.Active;
         GameController.Instance.pauseMenu.SetActive(false);
     }
 

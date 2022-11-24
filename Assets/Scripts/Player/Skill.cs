@@ -46,7 +46,7 @@ public class Skill : ScriptableObject
     public Ability ability;
 
 
-    public void IncreaseStat(Player player, NewSkillScreen skillScreen)
+    public void IncreaseStat(PlayerStatManager player, NewSkillScreen skillScreen)
     {
         if (targetStat == TargetStat.Attack)
         {

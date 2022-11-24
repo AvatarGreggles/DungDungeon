@@ -31,6 +31,7 @@ public class Projectile : MonoBehaviour
 
     public bool isCriticalHit = false;
 
+
     public enum projectileTypes
     {
         Default,
@@ -45,6 +46,7 @@ public class Projectile : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         projectileSprite = GetComponent<SpriteRenderer>();
+
     }
 
     void Start()
@@ -78,8 +80,16 @@ public class Projectile : MonoBehaviour
 
     public void moveTowardsCloestTarget()
     {
-        GameObject targetGO;
-        targetGO = FindClosestTarget("Enemy");
+        GameObject targetGO = null;
+        Player player = GameController.Instance.players[0];
+        if (player.targettableEnemies.Count > 0)
+        {
+            targetGO = player.targettableEnemies[player.currentTargetIndex];
+        }
+        else
+        {
+            Debug.Log("Not in range to shoot");
+        }
 
         if (!targetGO)
         {
@@ -89,14 +99,15 @@ public class Projectile : MonoBehaviour
 
         if (targetGO)
         {
-            GameObject sourcePlayer = FindClosestTarget("Player");
-            Player player = sourcePlayer.GetComponent<Player>();
+
+            PlayerStatManager playerStatManager = player.GetComponent<PlayerStatManager>();
             var dir = targetGO.transform.position - transform.position;
             dir = dir.normalized;
             RotateTowardsTarget(targetGO.transform);
+
             if (targetGO.CompareTag("Enemy"))
             {
-                m_Rigidbody.AddForce(dir * (m_Speed + player.attackSpeedBonus));
+                m_Rigidbody.AddForce(dir * (m_Speed + playerStatManager.attackSpeedBonus));
             }
 
         }
@@ -210,7 +221,7 @@ public class Projectile : MonoBehaviour
         {
             if (isPlayerProjectile)
             {
-                GameController.Instance.currencyUI.ShowWallHitTip();
+                // GameController.Instance.currencyUI.ShowWallHitTip();
                 Destroy(gameObject);
             }
             Destroy(gameObject);

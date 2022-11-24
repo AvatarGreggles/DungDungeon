@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1905902881067641911}
   - component: {fileID: 7553319989968327744}
-  - component: {fileID: 55762381543801156}
+  - component: {fileID: 4568594415829840580}
   m_Layer: 0
   m_Name: HealthDisplay
   m_TagString: Untagged
@@ -52,7 +52,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &55762381543801156
+--- !u!114 &4568594415829840580
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,10 +61,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1905902881067641905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10ea5427e5836430bb30a1addd79f42c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ab0f7e4d9ad44c73a7870ceef9dc391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthDisplayTime: 1
+  healthDisplayTime: 0.75
   healthText: {fileID: 3983655340872620768}
 --- !u!1 &5303353934285342298
 GameObject:

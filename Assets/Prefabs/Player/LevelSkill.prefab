@@ -28,14 +28,15 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3056363911117304718}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.27633, y: 155}
-  m_SizeDelta: {x: 255.836, y: 68.297}
+  m_AnchoredPosition: {x: 6.7819, y: 155}
+  m_SizeDelta: {x: 321.5198, y: 68.297}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3056363910918656840
 CanvasRenderer:
@@ -67,7 +68,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0a0d76bdbb99c492b962a4e6a5b7d568, type: 3}
-    m_FontSize: 32
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -107,7 +108,8 @@ RectTransform:
   m_GameObject: {fileID: 3056363911117304719}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1503, y: 1.1503, z: 1.1503}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3056363912410741082}
   - {fileID: 3056363910918656842}
@@ -170,6 +172,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.280397, y: 2.280397, z: 2.280397}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3056363911117304718}
   m_RootOrder: 0
@@ -245,6 +248,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.073088, y: 2.073088, z: 2.073088}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3056363911117304718}
   m_RootOrder: 3
@@ -320,14 +324,15 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3056363911117304718}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.19422, y: -141.28}
-  m_SizeDelta: {x: 256, y: 128.78}
+  m_AnchoredPosition: {x: -0.19423, y: -141.28}
+  m_SizeDelta: {x: 307.56, y: 128.78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2185831760772506148
 CanvasRenderer:
@@ -359,7 +364,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0a0d76bdbb99c492b962a4e6a5b7d568, type: 3}
-    m_FontSize: 26
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -370,7 +375,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Skill description
+  m_Text: 'Skill description Skill description Skill description
 
 
 '
@@ -403,6 +408,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.073088, y: 2.073088, z: 2.073088}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3056363911117304718}
   m_RootOrder: 4

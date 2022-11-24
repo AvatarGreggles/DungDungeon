@@ -80,6 +80,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -90,7 +92,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 0
     aniso: 1
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -111,9 +113,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
@@ -540,6 +545,26 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Spaceship_0: 21300000
+      Spaceship_9: 21300018
+      Spaceship_10: 21300020
+      Spaceship_2: 21300004
+      Spaceship_5: 21300010
+      Spaceship_14: 21300028
+      Spaceship_18: 21300036
+      Spaceship_7: 21300014
+      Spaceship_1: 21300002
+      Spaceship_15: 21300030
+      Spaceship_6: 21300012
+      Spaceship_12: 21300024
+      Spaceship_8: 21300016
+      Spaceship_4: 21300008
+      Spaceship_13: 21300026
+      Spaceship_17: 21300034
+      Spaceship_11: 21300022
+      Spaceship_16: 21300032
+      Spaceship_3: 21300006
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
