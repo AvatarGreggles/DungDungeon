@@ -47,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
 
     PlayerBaseStatManager playerBaseStats;
 
+     public MovementJoystick movementJoystick;
+
 
     private void Awake()
     {
@@ -76,14 +78,57 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (movementJoystick.joystickVec.y != 0)
+        {
+            OnTouchMove(new Vector2(movementJoystick.joystickVec.x * movementSpeed, movementJoystick.joystickVec.y * movementSpeed));
+        }
+        else
+        {
+            OnTouchMove(Vector2.zero);;
+        }
+
         Movement();
+    }
+
+        void OnTouchMove(Vector2 value)
+    {
+        if (GameController.Instance.currentState != State.Dialog)
+        {
+            // Controller Input
+            // movement = value.Get<Vector2>();
+
+            movement = new Vector2(movementJoystick.joystickVec.x, movementJoystick.joystickVec.y);
+
+
+            if (movement.x > 0f)
+            {
+
+                dustTrail.transform.position = new Vector3(dustSpawnPointLeft.transform.position.x, dustSpawnPointLeft.transform.position.y, dustSpawnPointLeft.transform.position.z);
+                dustTrail.transform.eulerAngles = new Vector3(newTrailRotation.x, 90, newTrailRotation.z);
+                playerSprite.flipX = false;
+            }
+            else if (movement.x < 0f)
+            {
+
+                dustTrail.transform.eulerAngles = new Vector3(newTrailRotation.x, -90, newTrailRotation.z);
+                dustTrail.transform.position = new Vector3(dustSpawnPointRight.transform.position.x, dustSpawnPointRight.transform.position.y, dustSpawnPointRight.transform.position.z);
+                playerSprite.flipX = true;
+            }
+
+            dustTrail.GetComponent<ParticleSystem>().Play();
+        }
     }
 
     void OnMove(InputValue value)
     {
         if (GameController.Instance.currentState != State.Dialog)
         {
+            // Controller Input
             movement = value.Get<Vector2>();
+
+            // movement = new Vector2(movementJoystick.joystickVec.x, movementJoystick.joystickVec.y);
+
+
             if (movement.x > 0f)
             {
 

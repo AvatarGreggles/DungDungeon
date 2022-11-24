@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Bladerunner
   m_EditorClassIdentifier: 
   itemName: Bladerunner
-  itemDescription: Increase attack by 250
-  price: 300
+  itemDescription: Increase attack by 150
+  price: 150
   itemIcon: {fileID: -8322868590462112959, guid: 8477dcd8b18ea4a019c39c03a8255fc2, type: 3}
   itemType: 1
-  statIncrease: 250
+  statIncrease: 150
   targetStat: 2
   ability: 0

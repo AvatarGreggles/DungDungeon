@@ -80,9 +80,16 @@ public class Projectile : MonoBehaviour
 
     public void moveTowardsCloestTarget()
     {
-        GameObject targetGO;
+        GameObject targetGO = null;
         Player player = GameController.Instance.players[0];
-        targetGO = player.FindClosestTarget("Enemy");
+        if (player.targettableEnemies.Count > 0)
+        {
+            targetGO = player.targettableEnemies[player.currentTargetIndex];
+        }
+        else
+        {
+            Debug.Log("Not in range to shoot");
+        }
 
         if (!targetGO)
         {
@@ -97,7 +104,6 @@ public class Projectile : MonoBehaviour
             var dir = targetGO.transform.position - transform.position;
             dir = dir.normalized;
             RotateTowardsTarget(targetGO.transform);
-
 
             if (targetGO.CompareTag("Enemy"))
             {
@@ -215,7 +221,7 @@ public class Projectile : MonoBehaviour
         {
             if (isPlayerProjectile)
             {
-                GameController.Instance.currencyUI.ShowWallHitTip();
+                // GameController.Instance.currencyUI.ShowWallHitTip();
                 Destroy(gameObject);
             }
             Destroy(gameObject);

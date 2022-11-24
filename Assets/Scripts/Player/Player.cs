@@ -53,6 +53,10 @@ public class Player : MonoBehaviour
 
     LineRenderer lineRenderer;
 
+    public List<GameObject> targettableEnemies;
+
+    public int currentTargetIndex = 0;
+
 
     private void Awake()
     {
@@ -76,7 +80,6 @@ public class Player : MonoBehaviour
     {
         HandleInvincibilityReset();
         UpdateDungSize();
-        LockOnToEnemy();
     }
 
     void HandleInvincibilityReset()
@@ -315,22 +318,6 @@ public class Player : MonoBehaviour
 
     }
 
-    public void LockOnToEnemy()
-    {
-        List<GameObject> enemies = LevelManager.Instance.enemies;
-        foreach (GameObject enemy in enemies)
-        {
-            enemy.GetComponent<Enemy>().Untarget();
-        }
-
-        Enemy closestEnemy = FindClosestTarget("Enemy")?.GetComponent<Enemy>();
-
-        if (closestEnemy != null)
-        {
-            closestEnemy.SetAsTargetted();
-        }
-    }
-
     public GameObject FindClosestTarget(string targetTag)
     {
         //TODO copy the logic and use it t trigger a draw to player function for coins
@@ -376,5 +363,83 @@ public class Player : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public void OnSwitchTarget()
+    {
+        // if theres an enemy available
+        if (targettableEnemies.Count > 0)
+        {
+            // If theres only one, make sure we set the current index to 0
+            if (targettableEnemies.Count == 1)
+            {
+                currentTargetIndex = 0;
+                SetEnemyAsTargetted();
+                return;
+            }
+
+            if (currentTargetIndex > targettableEnemies.Count - 1)
+            {
+                currentTargetIndex = 0;
+                SetEnemyAsTargetted();
+                return;
+            }
+
+            // if (currentTargetIndex > targettableEnemies.Count)
+            // {
+            //     currentTargetIndex = 0;
+            // }
+
+            if (targettableEnemies.Count > 1)
+            {
+                targettableEnemies[currentTargetIndex].GetComponent<Enemy>().Untarget();
+                currentTargetIndex++;
+                if (currentTargetIndex > targettableEnemies.Count - 1)
+                {
+                    currentTargetIndex = 0;
+                }
+                SetEnemyAsTargetted();
+            }
+        }
+        else
+        {
+            Debug.Log("nothing to target in range");
+        }
+    }
+
+    public void SetEnemyAsTargetted()
+    {
+    //     if (currentTargetIndex > targettableEnemies.Count - 1)
+    //     {
+    //         currentTargetIndex = 0;
+    //     }
+
+    //     targettableEnemies[currentTargetIndex].GetComponent<Enemy>().SetAsTargetted();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+
+            targettableEnemies.Add(other.gameObject);
+            if (targettableEnemies.Count == 1)
+            {
+                SetEnemyAsTargetted();
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            targettableEnemies.Remove(other.gameObject);
+            other.gameObject.GetComponent<Enemy>().Untarget();
+            if (targettableEnemies.Count == 0)
+            {
+                currentTargetIndex = 0;
+            }
+        }
     }
 }

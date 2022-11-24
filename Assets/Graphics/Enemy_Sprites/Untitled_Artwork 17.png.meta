@@ -75,6 +75,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -508,6 +509,24 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Untitled_Artwork 17_1: -244889539074004602
+      Untitled_Artwork 17_14: 637529079859280666
+      Untitled_Artwork 17_0: 265230211176263168
+      Untitled_Artwork 17_5: -8981632999814381065
+      Untitled_Artwork 17_7: 5236221630581567552
+      Untitled_Artwork 17_8: -8587404888427986388
+      Untitled_Artwork 17_16: -7943627511998890278
+      Untitled_Artwork 17_11: 3554397476389791557
+      Untitled_Artwork 17_10: 7802376641418934875
+      Untitled_Artwork 17_4: -674477005934450302
+      Untitled_Artwork 17_3: -609475678575588938
+      Untitled_Artwork 17_15: -187599917867461023
+      Untitled_Artwork 17_12: 3837699579257743709
+      Untitled_Artwork 17_6: -2740533557006500066
+      Untitled_Artwork 17_2: -1816830136686335809
+      Untitled_Artwork 17_9: 4159868323285230511
+      Untitled_Artwork 17_13: 8275991635710392310
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -40,12 +40,21 @@ public class PlayerAttack : MonoBehaviour
         playerBaseStatManager = FindObjectOfType<PlayerBaseStatManager>();
     }
 
+    void Update(){
+         bool hasEnoughDung = playerStatManager.dungAccumulated >= attackCost;
+
+         if(hasEnoughDung){
+              StartCoroutine(Shooting());
+
+         }
+    }
+
 
     void OnShoot(InputValue value)
     {
-        bool hasEnoughDung = playerStatManager.dungAccumulated >= attackCost;
+        // bool hasEnoughDung = playerStatManager.dungAccumulated >= attackCost;
 
-        if (!player.isShooting && hasEnoughDung)
+        if (!player.isShooting)
         {
             StartCoroutine(Shooting());
         }

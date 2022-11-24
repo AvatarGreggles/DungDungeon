@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
         initialHealthBarSize = healthBar.transform.localScale;
         healthBar.GetComponent<SpriteRenderer>().color = Color.green;
 
-        targetIcon.SetActive(false);
+        // targetIcon.SetActive(false);
     }
 
     void OnEnable()
@@ -67,12 +67,23 @@ public class Enemy : MonoBehaviour
 
     public void SetAsTargetted()
     {
-        targetIcon.SetActive(true);
+        // targetIcon.SetActive(true);
     }
 
     public void Untarget()
     {
-        targetIcon.SetActive(false);
+        // targetIcon.SetActive(false);
+        // Player player = GameController.Instance.players[0];
+
+        // foreach (GameObject target in player.targettableEnemies)
+        // {
+        //     if (target == gameObject)
+        //     {
+        //         player.targettableEnemies.Remove(gameObject);
+        //     }
+
+        // }
+
     }
 
 
