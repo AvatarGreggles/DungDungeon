@@ -1348,6 +1348,7 @@ MonoBehaviour:
   dustSpawnPointRight: {fileID: 3151957356505702708}
   dustTrailObject: {fileID: 8655670639085478576, guid: e28330e9e722f4ae9964bf175a970a29, type: 3}
   dungCollectSound: {fileID: 8300000, guid: 5435cb232842043c6906185526a7e02a, type: 3}
+  movementJoystick: {fileID: 0}
 --- !u!114 &-3320277435940982530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1413,7 +1414,7 @@ MonoBehaviour:
   rapidShotEnabled: 0
   burstShotEnabled: 0
   healthUpEnabled: 0
-  projectilePassThroughEnabled: 0
+  projectilePassThroughEnabled: 1
   projectileBounceEnabled: 0
   shootThroughEnemiesEnabled: 0
   hpRegeneration: 0

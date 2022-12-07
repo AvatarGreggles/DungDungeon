@@ -5,10 +5,5 @@ using UnityEngine;
 public class LevelVariant : MonoBehaviour
 {
 
-    [SerializeField] DoorManager door;
-    void Start()
-    {
-        LevelManager.Instance.door = door;
-    }
 
 }

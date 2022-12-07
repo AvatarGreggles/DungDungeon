@@ -18,8 +18,6 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager Instance { get; set; }
 
-    public DoorManager door;
-
     [SerializeField] Text floorText;
 
     [SerializeField] GameObject enemy;
@@ -35,11 +33,12 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        playerInputManager = FindObjectOfType<PlayerInputManager>();
     }
 
     void Start()
     {
-        playerInputManager = FindObjectOfType<PlayerInputManager>();
+        
     }
 
 
@@ -76,13 +75,13 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
 
-        if (playerInputManager.playerCount > 0)
-        {
-            if (AreAllEnemiesDead() && !isFloorCleared)
-            {
-                OnFloorCleared();
-            }
-        }
+        // if (playerInputManager.playerCount > 0)
+        // {
+        //     if (AreAllEnemiesDead() && !isFloorCleared)
+        //     {
+        //         OnFloorCleared();
+        //     }
+        // }
     }
 
     bool AreAllEnemiesDead()
@@ -98,10 +97,6 @@ public class LevelManager : MonoBehaviour
     private void OnFloorCleared()
     {
         isFloorCleared = true;
-        if (door != null)
-        {
-            door.ShowDoor();
-        }
 
         GameController.Instance.currentState = State.Cleared;
 

@@ -156,10 +156,6 @@ public class GameController : MonoBehaviour, ISavable
 
             if (currentState == State.Active)
             {
-                // PlayerInput playerInput = players[0].GetComponent<PlayerInput>();
-                // PlayerInput levelupMenuInput = levelUpMenu.GetComponent<PlayerInput>();
-                // playerInput.actions.Enable();
-                // levelupMenuInput.actions.Disable();
                 StartCoroutine(LevelTransition.Instance.OnUnpause());
 
             }
@@ -171,11 +167,6 @@ public class GameController : MonoBehaviour, ISavable
 
             if (currentState == State.LevelUp)
             {
-                // PlayerInput playerInput = players[0].GetComponent<PlayerInput>();
-                // PlayerInput levelupMenuInput = levelUpMenu.GetComponent<PlayerInput>();
-                // playerInput.actions.Disable();
-                // levelupMenuInput.actions.Enable();
-                // TODO update this so we can use it properly, it was breraking before
                 if (skillScreen.skills.Count > 0)
                 {
                     StartCoroutine(LevelTransition.Instance.OnLevelUp());

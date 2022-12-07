@@ -95,7 +95,6 @@ public class LevelSkill : MonoBehaviour
         player.AddSkill(skill);
 
         GameController.Instance.currentState = State.Active;
-        DoorManager.Instance.MoveToNextLevel();
         skillScreen.gameObject.SetActive(false);
 
         skillScreen.skills.Remove(skill);
